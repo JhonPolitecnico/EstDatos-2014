@@ -4,11 +4,9 @@ public class Nodo {
 
 	private Nodo right;
 	private Object content;
-	private int id;
 
-	public Nodo(int id, Object content) {
+	public Nodo(Object content) {
 		super();
-		this.id = id;
 		this.content = content;
 	}
 
@@ -31,13 +29,4 @@ public class Nodo {
 	public void setContent(Object content) {
 		this.content = content;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 }
