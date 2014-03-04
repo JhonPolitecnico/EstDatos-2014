@@ -61,9 +61,22 @@ public class Main {
 			lista.removeItem(i);
 		}
 
+		System.out.println("List ==> \n");
+
 		// Print content
 		for (int i = 0; i < lista.getLength(); i++) {
 			System.out.print(lista.getItem(i));
+		}
+
+		// Search content
+		String search = "OS";
+
+		System.out.println("\n\nSearch => " + search + "\n");
+
+		for (int i = 0; i < lista.getLength(); i++) {
+			if (((String) lista.getItem(i)).toLowerCase().contains(search.toLowerCase())) {
+				System.out.println(lista.getItem(i));
+			}
 		}
 
 	}
