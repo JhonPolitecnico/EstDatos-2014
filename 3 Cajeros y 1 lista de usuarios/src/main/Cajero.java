@@ -6,17 +6,17 @@ public class Cajero {
 
 	Pila pila = new Pila();
 
-	public void addForm(Form form) {
-		this.pila.push(form);
+	public void addForm(User user) {
+		this.pila.push(user);
 	}
 
 	@Override
 	public String toString() {
-		Form form;
+		User user;
 		String ret = "";
-		while ((form = (Form) pila.pop()) != null) {
-			ret += "Ticket: " + form.getTicket() + " Name: "
-					+ form.getUser().getName() + "\n";
+		while ((user = (User) pila.pop()) != null) {
+			ret += "Ticket: " + user.getTicket() + " Name: " + user.getName()
+					+ "\n";
 		}
 		return ret;
 	}

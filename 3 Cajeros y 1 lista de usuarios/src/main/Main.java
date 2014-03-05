@@ -18,32 +18,31 @@ public class Main {
 		cajeros.addItem(new Cajero());
 		cajeros.addItem(new Cajero());
 
-		usuarios.enqueue(new User("Jhon"));
-		usuarios.enqueue(new User("Jairo"));
-		usuarios.enqueue(new User("Juan"));
+		usuarios.enqueue(new User("Jhon", ticket.getTicket()));
+		usuarios.enqueue(new User("Jairo", ticket.getTicket()));
+		usuarios.enqueue(new User("Juan", ticket.getTicket()));
 
-		usuarios.enqueue(new User("Jorge"));
-		usuarios.enqueue(new User("Jesus"));
-		usuarios.enqueue(new User("Johnatan"));
+		usuarios.enqueue(new User("Jorge", ticket.getTicket()));
+		usuarios.enqueue(new User("Jesus", ticket.getTicket()));
+		usuarios.enqueue(new User("Johnatan", ticket.getTicket()));
 
-		usuarios.enqueue(new User("Freddy"));
-		usuarios.enqueue(new User("Fred"));
-		usuarios.enqueue(new User("Carlos"));
+		usuarios.enqueue(new User("Freddy", ticket.getTicket()));
+		usuarios.enqueue(new User("Fred", ticket.getTicket()));
+		usuarios.enqueue(new User("Carlos", ticket.getTicket()));
 
-		usuarios.enqueue(new User("Pedro"));
-		usuarios.enqueue(new User("Alejandro"));
-		usuarios.enqueue(new User("Francisco"));
+		usuarios.enqueue(new User("Pedro", ticket.getTicket()));
+		usuarios.enqueue(new User("Alejandro", ticket.getTicket()));
+		usuarios.enqueue(new User("Francisco", ticket.getTicket()));
 
-		usuarios.enqueue(new User("Daniel"));
-		usuarios.enqueue(new User("Jordan"));
-		usuarios.enqueue(new User("Samuel"));
+		usuarios.enqueue(new User("Daniel", ticket.getTicket()));
+		usuarios.enqueue(new User("Jordan", ticket.getTicket()));
+		usuarios.enqueue(new User("Samuel", ticket.getTicket()));
 
 		// add 3 users per ATM
 		for (int i = 0; i < cajeros.getLength(); i++) {
 			Cajero cajero = (Cajero) cajeros.getItem(i);
 			for (int j = 1; j <= 3; j++) {
-				cajero.addForm(new Form((User) usuarios.dequeue(),
-						ticket.getTicket()));
+				cajero.addForm((User) usuarios.dequeue());
 			}
 
 		}
