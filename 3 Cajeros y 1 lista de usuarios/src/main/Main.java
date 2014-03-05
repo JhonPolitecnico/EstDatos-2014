@@ -42,7 +42,7 @@ public class Main {
 		for (int i = 0; i < cajeros.getLength(); i++) {
 			Cajero cajero = (Cajero) cajeros.getItem(i);
 			for (int j = 1; j <= 3; j++) {
-				cajero.agregarUsuario(new Form((User) usuarios.dequeue(),
+				cajero.addForm(new Form((User) usuarios.dequeue(),
 						ticket.getTicket()));
 			}
 

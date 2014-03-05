@@ -6,7 +6,7 @@ public class Cajero {
 
 	Pila pila = new Pila();
 
-	public void agregarUsuario(Form form) {
+	public void addForm(Form form) {
 		this.pila.push(form);
 	}
 
