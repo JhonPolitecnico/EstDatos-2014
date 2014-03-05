@@ -47,8 +47,9 @@ public class Main {
 
 		}
 
+		// dispatch users
 		for (int i = 0; i < cajeros.getLength(); i++) {
-			System.out.println("Usuarios en el cajero " + i + " ==>");
+			System.out.println("Se procesaron los siguientes formularios en el cajero " + i + " ==>");
 			System.out.println(cajeros.getItem(i).toString());
 		}
 
