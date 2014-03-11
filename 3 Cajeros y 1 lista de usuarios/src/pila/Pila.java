@@ -1,5 +1,7 @@
 package pila;
 
+import nodo.Nodo;
+
 public class Pila extends Nodo {
 
 	public Pila() {

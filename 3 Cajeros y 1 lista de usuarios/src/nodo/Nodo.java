@@ -1,4 +1,4 @@
-package pila;
+package nodo;
 
 public class Nodo {
 
@@ -22,7 +22,7 @@ public class Nodo {
 		this.right = right;
 	}
 
-	protected Object getContent() {
+	public Object getContent() {
 		return content;
 	}
 

@@ -1,5 +1,7 @@
 package cola;
 
+import nodo.Nodo;
+
 public class Cola extends Nodo {
 
 	public Cola() {
