@@ -2,9 +2,9 @@ package main;
 
 public class Fecha implements Comparable, Almacenable {
 
-	int año;
-	int mes;
-	int dia;
+	private int año;
+	private int mes;
+	private int dia;
 
 	@Override
 	public String toXml() {
@@ -25,6 +25,7 @@ public class Fecha implements Comparable, Almacenable {
 
 		Fecha of = (Fecha) o;
 
+		// Si algún dato no es igual, entonces, la Fecha no es igual
 		if (of.getAño() != this.getAño() || of.getMes() != this.getMes() || of.getDia() != this.getDia())
 			return false;
 
@@ -38,16 +39,33 @@ public class Fecha implements Comparable, Almacenable {
 
 		Fecha of = (Fecha) o;
 
-		if (of.getAño() < this.getAño())
-			return false;
+		// Si el año es mayor, el resto también lo es
+		if (this.getAño() > of.getAño())
+			return true;
 
-		if (of.getMes() < this.getMes())
-			return false;
+		// Si no, entonces, o es igual, o es menor
 
-		if (of.getDia() < this.getDia())
-			return false;
+		// Si es igual, entonces analizar mes y día
+		if (this.getAño() == of.getAño()) {
 
-		return true;
+			// Si el mes es mayor, el resto también lo es
+			if (of.getMes() > of.getMes())
+				return true;
+
+			// Si no, entonces, o es igual, o es menor
+
+			// Si es igual, entonces analizar días
+			if (this.getMes() == of.getMes()) {
+
+				// Si al final, el día es mayor, todo es mayor
+				if (this.getDia() > of.getDia())
+					return true;
+
+			}
+		}
+
+		// Algo no es mayor
+		return false;
 	}
 
 	@Override
@@ -57,16 +75,33 @@ public class Fecha implements Comparable, Almacenable {
 
 		Fecha of = (Fecha) o;
 
-		if (of.getAño() > this.getAño())
-			return false;
+		// Si el año es menor, el resto también lo es
+		if (this.getAño() < of.getAño())
+			return true;
 
-		if (of.getMes() > this.getMes())
-			return false;
+		// Si no, entonces, o es igual, o es mayor
 
-		if (of.getDia() > this.getDia())
-			return false;
+		// Si es igual, entonces analizar mes y día
+		if (this.getAño() == of.getAño()) {
 
-		return true;
+			// Si el mes es menor, el resto también lo es
+			if (of.getMes() < of.getMes())
+				return true;
+
+			// Si no, entonces, o es igual, o es mayor
+
+			// Si es igual, entonces analizar días
+			if (this.getMes() == of.getMes()) {
+
+				// Si al final, el día es menor, todo es menor
+				if (this.getDia() < of.getDia())
+					return true;
+
+			}
+		}
+
+		// Algo no es menor
+		return false;
 	}
 
 	@Override

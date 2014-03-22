@@ -1,9 +1,9 @@
 package main;
 
 public class Pelicula {
-	String nombre;
-	Hora horaInicio;
-	Hora horaFin;
+	private String nombre;
+	private Hora horaInicio;
+	private Hora horaFin;
 
 	public Pelicula(String nombre, Hora horaInicio, Hora horaFin) {
 		super();
@@ -21,6 +21,7 @@ public class Pelicula {
 	}
 
 	public Hora getHoraInicio() {
+		System.out.println("Peli:" + horaInicio.getHora() + ":" + horaInicio.getMinuto() + ":" + horaInicio.getSegundo());
 		return horaInicio;
 	}
 

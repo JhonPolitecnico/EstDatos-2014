@@ -2,9 +2,9 @@ package main;
 
 public class Hora implements Comparable, Almacenable {
 
-	int hora;
-	int minuto;
-	int segundo;
+	private int hora;
+	private int minuto;
+	private int segundo;
 
 	@Override
 	public String toXml() {
@@ -32,6 +32,7 @@ public class Hora implements Comparable, Almacenable {
 
 		Hora of = (Hora) o;
 
+		// Si algún dato no es igual, entonces, la hora no es igual
 		if (of.getHora() != this.getHora() || of.getMinuto() != this.getMinuto() || of.getSegundo() != this.getSegundo())
 			return false;
 
@@ -45,16 +46,33 @@ public class Hora implements Comparable, Almacenable {
 
 		Hora of = (Hora) o;
 
-		if (of.getHora() < this.getHora())
-			return false;
+		// Si la hora es mayor, el resto también lo es
+		if (this.getHora() > of.getHora())
+			return true;
 
-		if (of.getMinuto() < this.getMinuto())
-			return false;
+		// Si no, entonces, o es igual, o es menor
 
-		if (of.getSegundo() < this.getSegundo())
-			return false;
+		// Si es igual, entonces analizar minutos y segundos
+		if (this.getHora() == of.getHora()) {
 
-		return true;
+			// Si el minuto es mayor, el resto también lo es
+			if (of.getMinuto() > of.getMinuto())
+				return true;
+
+			// Si no, entonces, o es igual, o es menor
+
+			// Si es igual, entonces analizar segundos
+			if (this.getMinuto() == of.getMinuto()) {
+
+				// Si al final, el "segundo" es mayor, todo es mayor
+				if (this.getSegundo() > of.getSegundo())
+					return true;
+
+			}
+		}
+
+		// Algo no es mayor
+		return false;
 	}
 
 	@Override
@@ -64,16 +82,33 @@ public class Hora implements Comparable, Almacenable {
 
 		Hora of = (Hora) o;
 
-		if (of.getHora() > this.getHora())
-			return false;
+		// Si la hora es menor, el resto también lo es
+		if (this.getHora() < of.getHora())
+			return true;
 
-		if (of.getMinuto() > this.getMinuto())
-			return false;
+		// Si no, entonces, o es igual, o es mayor
 
-		if (of.getSegundo() > this.getSegundo())
-			return false;
+		// Si es igual, entonces analizar minutos y segundos
+		if (this.getHora() == of.getHora()) {
 
-		return true;
+			// Si el minuto es menor, el resto también lo es
+			if (of.getMinuto() < of.getMinuto())
+				return true;
+
+			// Si no, entonces, o es igual, o es mayor
+
+			// Si es igual, entonces analizar segundos
+			if (this.getMinuto() == of.getMinuto()) {
+
+				// Si al final, el "segundo" es menor, todo es menor
+				if (this.getSegundo() < of.getSegundo())
+					return true;
+
+			}
+		}
+
+		// Algo no es menor
+		return false;
 	}
 
 	@Override

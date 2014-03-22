@@ -3,9 +3,9 @@ package main;
 import java.util.ArrayList;
 
 public class Sala {
-	Hora horaInicio;
-	Hora horaFin;
-	ArrayList<Pelicula> peliculas;
+	private Hora horaInicio;
+	private Hora horaFin;
+	private ArrayList<Pelicula> peliculas;
 
 	public Sala(Hora horaInicio, Hora horaFin) {
 		super();
@@ -15,6 +15,7 @@ public class Sala {
 	}
 
 	public Hora getHoraInicio() {
+		System.out.println("Sala:" + horaInicio.getHora() + ":" + horaInicio.getMinuto() + ":" + horaInicio.getSegundo());
 		return horaInicio;
 	}
 
