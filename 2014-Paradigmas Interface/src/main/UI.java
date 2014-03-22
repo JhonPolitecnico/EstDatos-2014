@@ -109,18 +109,6 @@ public class UI {
 		return (silla == 0) ? "V" : "O";
 	}
 
-	private String espaciosIzquierda(int num) {
-		// 0 - 9
-		if (num / 10 == 0) {
-			return " ";
-			// 10 - 100
-		} else if (num / 100 == 0) {
-			return "  ";
-		}
-
-		return "";
-	}
-
 	private String printToNum(int num) {
 		String ret = "";
 		for (int i = 0; i < num; i++) {
