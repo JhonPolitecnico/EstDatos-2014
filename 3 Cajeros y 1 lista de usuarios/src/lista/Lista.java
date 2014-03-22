@@ -1,5 +1,7 @@
 package lista;
 
+import nodo.Nodo;
+
 public class Lista extends Nodo {
 
 	private int length;
