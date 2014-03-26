@@ -4,6 +4,7 @@ public class Pelicula {
 	private String nombre;
 	private Hora horaInicio;
 	private Hora horaFin;
+	private int sillas[][];
 
 	public Pelicula(String nombre, Hora horaInicio, Hora horaFin) {
 		super();
@@ -21,7 +22,6 @@ public class Pelicula {
 	}
 
 	public Hora getHoraInicio() {
-		System.out.println("Peli:" + horaInicio.getHora() + ":" + horaInicio.getMinuto() + ":" + horaInicio.getSegundo());
 		return horaInicio;
 	}
 
@@ -35,6 +35,22 @@ public class Pelicula {
 
 	public void setHoraFin(Hora horaFin) {
 		this.horaFin = horaFin;
+	}
+
+	public int[][] getSillas() {
+		return sillas;
+	}
+
+	public void setSillas(int[][] sillas) {
+		this.sillas = sillas;
+	}
+
+	public boolean ocuparSilla(int x, int y) {
+		if (this.sillas[x][y] == 0)
+			return false;
+
+		this.sillas[x][y] = 1;
+		return true;
 	}
 
 }

@@ -37,12 +37,17 @@ public class UI {
 
 					// Add theater
 					case 1:
-						salas.add(new Sala(new Hora(8, 0, 0), new Hora(12, 0, 0)));
+						salas.add(new Sala(new Hora(8, 0, 0), new Hora(20, 0, 0), 5, 20));
 						break;
 
 					// Add movie
 					case 2:
-						AgregarPelicula(2, new Pelicula("Viernes 13", new Hora(18, 0, 0), new Hora(20, 0, 0)));
+						boolean ret = AgregarPelicula(0, new Pelicula("Viernes 13", new Hora(18, 0, 0), new Hora(20, 0, 0)));
+
+						if (ret)
+							System.out.println("La pelicula se agrego!");
+						else
+							System.out.println("la pelicula no puede agregarse :c");
 						break;
 
 					// Buy ticket
@@ -51,6 +56,27 @@ public class UI {
 
 					// List theaters
 					case 4:
+						int i = 0;
+						for (Sala sala : salas) {
+							System.out.println("Sala No: " + i);
+							System.out.println("\tHorario:  " + this.horarioToString(sala.getHoraInicio()) + " - " + this.horarioToString(sala.getHoraFin()));
+							System.out.println();
+							System.out.println("\tEstas son las peliculas:");
+							for (Pelicula peli : sala.getPeliculas()) {
+								System.out.println("\t\tPelicula: " + peli.getNombre());
+								System.out.println("\t\tHorario:  " + this.horarioToString(peli.getHoraInicio()) + " - " + this.horarioToString(peli.getHoraFin()));
+								System.out.println("\t\tSillas:   ");
+								System.out.println("\t\t\t   " + printToNum(peli.getSillas()[0].length));
+								for (int j = 0; j < peli.getSillas().length; j++) {
+									System.out.print("\t\t\t" + this.numToLetter(j) + " ");
+									for (int j2 = 0; j2 < peli.getSillas()[0].length; j2++) {
+										System.out.print("  " + this.estadoSilla(peli.getSillas()[j][j2]));
+									}
+									System.out.println();
+								}
+							}
+							i++;
+						}
 						break;
 
 					// Exit
@@ -79,6 +105,30 @@ public class UI {
 
 	}
 
+	private String estadoSilla(int silla) {
+		return (silla == 0) ? "V" : "O";
+	}
+
+	private String printToNum(int num) {
+		String ret = "";
+		for (int i = 0; i < num; i++) {
+			ret += (i > 9) ? i + " " : " " + i + " ";
+		}
+		return ret;
+	}
+
+	private String numToLetter(int num) {
+		return String.valueOf(((char) (65 + num)));
+	}
+
+	private String horarioToString(Hora hora) {
+		return hora.getHora() + ":" + hora.getMinuto() + ":" + hora.getSegundo();
+	}
+
+	private String fechaToString(Fecha fecha) {
+		return fecha.getAño() + ":" + fecha.getMes() + ":" + fecha.getDia();
+	}
+
 	private void printMenu() {
 		System.out.println("\nMenu:");
 		System.out.println("\t1. Agregar Sala");
@@ -89,28 +139,10 @@ public class UI {
 	}
 
 	public boolean AgregarPelicula(int noSala, Pelicula peli) {
+		if (noSala > salas.size() - 1)
+			return false;
+
 		Sala sala = salas.get(noSala);
-
-		// Si la película esta en el horario de la sala de cine
-		if ((peli.getHoraInicio().mayorQue(sala.getHoraInicio()) || peli.getHoraInicio().igualQue(sala.getHoraInicio()))
-				&& (peli.getHoraFin().menorQue(sala.getHoraFin()) || peli.getHoraFin().igualQue(sala.getHoraFin()))) {
-
-			if (sala.getPeliculas().size() == 0) {
-				sala.getPeliculas().add(peli);
-				return true;
-			}
-
-			for (Pelicula sPeli : sala.getPeliculas()) {
-
-				// Caso 1, Nueva peli luego de la peli antigua || Caso 2, Nueva peli antes de la peli antigua
-				if (!peli.getHoraInicio().mayorQue(sPeli.getHoraFin()) || !peli.getHoraFin().menorQue(sPeli.getHoraInicio()))
-					return false;
-
-			}
-
-			return true;
-		}
-
-		return false;
+		return sala.AgregarPelicula(peli);
 	}
 }
