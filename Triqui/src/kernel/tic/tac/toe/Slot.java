@@ -2,7 +2,7 @@ package kernel.tic.tac.toe;
 
 public class Slot {
 	private Position position;
-	private XorO value;
+	private Chip value;
 	private boolean empty = true;
 
 	public Slot(Position position) {
@@ -14,20 +14,24 @@ public class Slot {
 		return position;
 	}
 
-	public void setValue(XorO value) {
+	public void setValue(Chip value) {
 		this.value = value;
 		this.empty = false;
 	}
 
-	public XorO getValue() {
+	public boolean isEmpty() {
+		return this.empty;
+	}
+
+	public Chip getValue() {
 		return (!this.empty) ? this.value : null;
 	}
 
 	public boolean isX() {
-		return (this.value == XorO.X && !this.empty);
+		return (this.value == Chip.X && !this.empty);
 	}
 
 	public boolean isO() {
-		return (this.value == XorO.O && !this.empty);
+		return (this.value == Chip.O && !this.empty);
 	}
 }

@@ -1,5 +1,5 @@
 package kernel.tic.tac.toe;
 
-public enum XorO {
+public enum Chip {
 	X, O;
 }
