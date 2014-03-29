@@ -84,18 +84,6 @@ public class TicTacToe {
 
 		Check: {
 
-			// Tie
-			boolean isFull = true;
-
-			for (int i = 0; i < 9; i++)
-				if (this.getSlot(Position.values()[i]).isEmpty())
-					isFull = false;
-
-			if (isFull) {
-				this.state = State.DRAW;
-				break Check;
-			}
-
 			Chip actual;
 			for (int i = 0; i < Chip.values().length; i++) {
 				actual = Chip.values()[i];
@@ -128,6 +116,18 @@ public class TicTacToe {
 					this.state = (actual == Chip.X) ? State.WIN_X : State.WIN_O;
 					break Check;
 				}
+			}
+
+			// Tie
+			boolean isFull = true;
+
+			for (int i = 0; i < 9; i++)
+				if (this.getSlot(Position.values()[i]).isEmpty())
+					isFull = false;
+
+			if (isFull) {
+				this.state = State.DRAW;
+				break Check;
 			}
 		}
 
