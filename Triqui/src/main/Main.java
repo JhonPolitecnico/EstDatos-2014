@@ -85,6 +85,26 @@ public class Main {
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel.setLayout(gbl_panel);
 
+		JDataButton[] buttons = new JDataButton[9];
+
+		for (int i = 0; i < 9; i += 3) {
+
+			for (int j = 0; j < 3; j++) {
+				buttons[i] = new JDataButton();
+
+				GridBagConstraints gbc_BTN_00 = new GridBagConstraints();
+				gbc_BTN_00.fill = GridBagConstraints.BOTH;
+				gbc_BTN_00.insets = new Insets(0, 0, 5, 5);
+
+				gbc_BTN_00.gridx = j;
+				gbc_BTN_00.gridy = i / 3;
+				
+				panel.add(buttons[i], gbc_BTN_00.clone());
+			}
+
+		}
+
+		/*
 		JDataButton BTN_00 = new JDataButton();
 		GridBagConstraints gbc_BTN_00 = new GridBagConstraints();
 		gbc_BTN_00.fill = GridBagConstraints.BOTH;
@@ -159,11 +179,12 @@ public class Main {
 		frame.getContentPane().setLayout(groupLayout);
 
 		final UI UI = new UI(frame, BTN_00, BTN_01, BTN_02, BTN_10, BTN_11, BTN_12, BTN_20, BTN_21, BTN_22);
+		*/
 
 		BTN_Reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				UI.reset();
+				//UI.reset();
 			}
 		});
 
