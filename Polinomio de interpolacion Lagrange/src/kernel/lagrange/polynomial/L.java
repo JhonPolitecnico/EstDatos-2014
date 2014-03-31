@@ -20,7 +20,7 @@ public class L {
 		Point point = null;
 		for (int i = 0; i < points.length; i++) {
 			// No multiplicarnos a nosotros mismos
-			if (i == id)
+			if (i == this.id)
 				continue;
 
 			point = points[i];
@@ -35,7 +35,7 @@ public class L {
 			// Todos los (x-xk) posibles menos (x-x1) porque estamos con el polinomio L1.
 			this.xNumeratorResult += "(x - " + point.getX() + ")";
 			// Y ahora dividimos por la misma expresión que tenemos en el numerador, pero sustituyendo x por x1. así:
-			this.xDenominatorResult *= (points[id].getX() - point.getX());
+			this.xDenominatorResult *= (points[this.id].getX() - point.getX());
 		}
 
 	}

@@ -46,6 +46,7 @@ public class UI {
 
 					switch (action) {
 
+					// Agregar puntos
 					case 1:
 						System.out.println("Digite el numero de puntos que tiene su conjunto:");
 						if (in.hasNextInt()) {
@@ -58,6 +59,7 @@ public class UI {
 						}
 						break;
 
+					// Ingresar los valores de las coordenadas
 					case 2:
 
 						if (points == null) {
@@ -92,25 +94,21 @@ public class UI {
 						}
 						break;
 
+					// Imprimir funcion
 					case 3:
 
 						if (ls == null || points == null) {
 							this.nullError();
 							break;
 						}
-						
-						System.out.println("ffff");
 
 						// Calcular polinomios individuales
 						for (int i = 0; i < ls.length; i++) {
-							ls[0] = new L(i, points);
+							ls[i] = new L(i, points);
 						}
-						
-						System.out.println("ffff");
 
 						// Generar funcion de interpolacion de Lagrange
 						p = new P(ls, points);
-						System.out.println("ffff");
 						System.out.println(p.toString());
 
 						break;
