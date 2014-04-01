@@ -24,10 +24,10 @@ public class UI {
 				System.out.println();
 				System.out.println("Jhon Jairo Eslava\t\t\t1310012946");
 				System.out.println("Juan Guillermo Celemin\t\t\t1210010657");
-				System.out.println("Jhon Jairo Eslava 1310012946");
-				System.out.println("Jhon Jairo Eslava 1310012946");
+				System.out.println("Michael Roberto Torres\t\t\t1310019024");
+				System.out.println("Jabier Alejandro Sierra\t\t\t0612040895");
 				System.out.println();
-				System.out.println("3 Cajeros y 1 lista de usuarios\n");
+				System.out.println("Polinomio de interpolacion de Lagrange\n");
 
 				do {
 
