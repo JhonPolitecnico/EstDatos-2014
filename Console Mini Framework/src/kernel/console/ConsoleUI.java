@@ -9,6 +9,11 @@ public abstract class ConsoleUI {
 	protected boolean off = false;
 	protected String[] commands;
 
+	/**
+	 * Register commands to use
+	 * 
+	 * @return
+	 */
 	protected abstract String[] registerCommands();
 
 	/**
@@ -108,7 +113,7 @@ public abstract class ConsoleUI {
 						// New line
 						System.out.println();
 
-						// Return action
+						// Return command
 						this.onCommand(command);
 
 						// Run Command
