@@ -6,7 +6,7 @@ public class UI extends ConsoleUI {
 
 	@Override
 	protected String[] registerCommands() {
-		String[] commands = { "hello", "exit" };
+		String[] commands = { "hello world:hello", "login", "exit" };
 		return commands;
 	}
 
@@ -19,6 +19,7 @@ public class UI extends ConsoleUI {
 	protected void printMenu() {
 		System.out.println();
 		System.out.println("hello:\tHola Mundo");
+		System.out.println("login:\tIdentificarse");
 		System.out.println("exit:\tSalir");
 		System.out.println();
 
@@ -37,8 +38,28 @@ public class UI extends ConsoleUI {
 		// ...
 	}
 
+	@Override
+	protected void onInvalidCommand(String command) {
+		System.out.println("No selecciono una opci\u00F3n valida");
+	}
+
 	public void helloAction() {
 		System.out.println("Hola Mundo!");
+	}
+
+	public void loginAction() {
+		System.out.println("Escribe tu nombre:");
+		if (this.in.hasNext())
+			System.out.println("Tu nombre es: " + this.in.next());
+
+		System.out.println("Escribe tu ID:");
+		if (this.in.hasNextInt())
+			System.out.println("Tu ID es: " + this.in.nextInt());
+		else {
+			System.out.println("Tu ID es invalido");
+			this.skipError();
+		}
+
 	}
 
 	public void exitAction() {
