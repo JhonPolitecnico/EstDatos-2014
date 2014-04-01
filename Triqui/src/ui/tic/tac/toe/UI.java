@@ -16,22 +16,11 @@ public class UI {
 	private TicTacToe juego;
 
 	private JFrame frame;
-	private JDataButton BTN_00;
-	private JDataButton BTN_01;
-	private JDataButton BTN_02;
-
-	private JDataButton BTN_10;
-	private JDataButton BTN_11;
-	private JDataButton BTN_12;
-
-	private JDataButton BTN_20;
-	private JDataButton BTN_21;
-	private JDataButton BTN_22;
+	private JDataButton[] buttons;
 
 	private UI self = this;
 
-	public UI(JFrame frame, JDataButton bTN_00, JDataButton bTN_01, JDataButton bTN_02, JDataButton bTN_10, JDataButton bTN_11, JDataButton bTN_12, JDataButton bTN_20, JDataButton bTN_21,
-			JDataButton bTN_22) {
+	public UI(JFrame frame, JDataButton[] buttons) {
 		super();
 
 		this.juego = new TicTacToe(new Callable<Void>() {
@@ -45,32 +34,13 @@ public class UI {
 		 * Handles
 		 */
 		this.frame = frame;
-		BTN_00 = bTN_00;
-		BTN_01 = bTN_01;
-		BTN_02 = bTN_02;
-
-		BTN_10 = bTN_10;
-		BTN_11 = bTN_11;
-		BTN_12 = bTN_12;
-
-		BTN_20 = bTN_20;
-		BTN_21 = bTN_21;
-		BTN_22 = bTN_22;
+		this.buttons = buttons;
 
 		/*
 		 * Events
 		 */
-		BTN_00.addMouseListener(this.newMouseEvent());
-		BTN_01.addMouseListener(this.newMouseEvent());
-		BTN_02.addMouseListener(this.newMouseEvent());
-
-		BTN_10.addMouseListener(this.newMouseEvent());
-		BTN_11.addMouseListener(this.newMouseEvent());
-		BTN_12.addMouseListener(this.newMouseEvent());
-
-		BTN_20.addMouseListener(this.newMouseEvent());
-		BTN_21.addMouseListener(this.newMouseEvent());
-		BTN_22.addMouseListener(this.newMouseEvent());
+		for (int i = 0; i < this.buttons.length; i++)
+			this.buttons[i].addMouseListener(this.newMouseEvent());
 
 		// New game
 		this.newGame();
@@ -129,32 +99,14 @@ public class UI {
 		/*
 		 * Data
 		 */
-		BTN_00.setData(new ButtonData(Position.P00));
-		BTN_01.setData(new ButtonData(Position.P01));
-		BTN_02.setData(new ButtonData(Position.P02));
-
-		BTN_10.setData(new ButtonData(Position.P10));
-		BTN_11.setData(new ButtonData(Position.P11));
-		BTN_12.setData(new ButtonData(Position.P12));
-
-		BTN_20.setData(new ButtonData(Position.P20));
-		BTN_21.setData(new ButtonData(Position.P21));
-		BTN_22.setData(new ButtonData(Position.P22));
+		for (int i = 0; i < this.buttons.length; i++)
+			this.buttons[i].setData(new ButtonData(Position.values()[i]));
 
 		/*
 		 * Empty images
 		 */
-		BTN_00.setIcon(this.getImageOfV());
-		BTN_01.setIcon(this.getImageOfV());
-		BTN_02.setIcon(this.getImageOfV());
-
-		BTN_10.setIcon(this.getImageOfV());
-		BTN_11.setIcon(this.getImageOfV());
-		BTN_12.setIcon(this.getImageOfV());
-
-		BTN_20.setIcon(this.getImageOfV());
-		BTN_21.setIcon(this.getImageOfV());
-		BTN_22.setIcon(this.getImageOfV());
+		for (int i = 0; i < this.buttons.length; i++)
+			this.buttons[i].setIcon(this.getImageOfV());
 
 		/*
 		 * Disable buttons
@@ -173,17 +125,8 @@ public class UI {
 
 	private void disableButtons(boolean disable) {
 		disable = !disable;
-		BTN_00.setEnabled(disable);
-		BTN_01.setEnabled(disable);
-		BTN_02.setEnabled(disable);
-
-		BTN_10.setEnabled(disable);
-		BTN_11.setEnabled(disable);
-		BTN_12.setEnabled(disable);
-
-		BTN_20.setEnabled(disable);
-		BTN_21.setEnabled(disable);
-		BTN_22.setEnabled(disable);
+		for (int i = 0; i < this.buttons.length; i++)
+			this.buttons[i].setEnabled(disable);
 	}
 
 	public void onClick(MouseEvent e) {

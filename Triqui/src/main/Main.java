@@ -84,107 +84,45 @@ public class Main {
 		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0 };
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel.setLayout(gbl_panel);
-
+		
+		/*
+		 * Runtime buttons
+		 */
 		JDataButton[] buttons = new JDataButton[9];
+		GridBagConstraints[] gbc_buttons = new GridBagConstraints[9];
 
+		int pos = 0;
 		for (int i = 0; i < 9; i += 3) {
 
 			for (int j = 0; j < 3; j++) {
-				buttons[i] = new JDataButton();
+				buttons[i + j] = new JDataButton();
+				gbc_buttons[i + j] = new GridBagConstraints();
 
-				GridBagConstraints gbc_BTN_00 = new GridBagConstraints();
-				gbc_BTN_00.fill = GridBagConstraints.BOTH;
-				gbc_BTN_00.insets = new Insets(0, 0, 5, 5);
+				gbc_buttons[i + j].fill = GridBagConstraints.BOTH;
+				if (pos < 2) {
+					gbc_buttons[i + j].insets = new Insets(0, 0, 5, 5);
+					pos++;
+				} else {
+					gbc_buttons[i + j].insets = new Insets(0, 0, 5, 0);
+					pos = 0;
+				}
 
-				gbc_BTN_00.gridx = j;
-				gbc_BTN_00.gridy = i / 3;
-				
-				panel.add(buttons[i], gbc_BTN_00.clone());
+				gbc_buttons[i + j].gridx = j;
+				gbc_buttons[i + j].gridy = i / 3;
+
+				panel.add(buttons[i + j], gbc_buttons[i + j]);
 			}
 
 		}
 
-		/*
-		JDataButton BTN_00 = new JDataButton();
-		GridBagConstraints gbc_BTN_00 = new GridBagConstraints();
-		gbc_BTN_00.fill = GridBagConstraints.BOTH;
-		gbc_BTN_00.insets = new Insets(0, 0, 5, 5);
-		gbc_BTN_00.gridx = 0;
-		gbc_BTN_00.gridy = 0;
-		panel.add(BTN_00, gbc_BTN_00);
-
-		JDataButton BTN_01 = new JDataButton();
-		GridBagConstraints gbc_BTN_01 = new GridBagConstraints();
-		gbc_BTN_01.fill = GridBagConstraints.BOTH;
-		gbc_BTN_01.insets = new Insets(0, 0, 5, 5);
-		gbc_BTN_01.gridx = 1;
-		gbc_BTN_01.gridy = 0;
-		panel.add(BTN_01, gbc_BTN_01);
-
-		JDataButton BTN_02 = new JDataButton();
-		GridBagConstraints gbc_BTN_02 = new GridBagConstraints();
-		gbc_BTN_02.insets = new Insets(0, 0, 5, 0);
-		gbc_BTN_02.fill = GridBagConstraints.BOTH;
-		gbc_BTN_02.gridx = 2;
-		gbc_BTN_02.gridy = 0;
-		panel.add(BTN_02, gbc_BTN_02);
-
-		JDataButton BTN_10 = new JDataButton();
-		GridBagConstraints gbc_BTN_10 = new GridBagConstraints();
-		gbc_BTN_10.fill = GridBagConstraints.BOTH;
-		gbc_BTN_10.insets = new Insets(0, 0, 5, 5);
-		gbc_BTN_10.gridx = 0;
-		gbc_BTN_10.gridy = 1;
-		panel.add(BTN_10, gbc_BTN_10);
-
-		JDataButton BTN_11 = new JDataButton();
-		GridBagConstraints gbc_BTN_11 = new GridBagConstraints();
-		gbc_BTN_11.fill = GridBagConstraints.BOTH;
-		gbc_BTN_11.insets = new Insets(0, 0, 5, 5);
-		gbc_BTN_11.gridx = 1;
-		gbc_BTN_11.gridy = 1;
-		panel.add(BTN_11, gbc_BTN_11);
-
-		JDataButton BTN_12 = new JDataButton();
-		GridBagConstraints gbc_BTN_12 = new GridBagConstraints();
-		gbc_BTN_12.insets = new Insets(0, 0, 5, 0);
-		gbc_BTN_12.fill = GridBagConstraints.BOTH;
-		gbc_BTN_12.gridx = 2;
-		gbc_BTN_12.gridy = 1;
-		panel.add(BTN_12, gbc_BTN_12);
-
-		JDataButton BTN_20 = new JDataButton();
-		GridBagConstraints gbc_BTN_20 = new GridBagConstraints();
-		gbc_BTN_20.fill = GridBagConstraints.BOTH;
-		gbc_BTN_20.insets = new Insets(0, 0, 5, 5);
-		gbc_BTN_20.gridx = 0;
-		gbc_BTN_20.gridy = 2;
-		panel.add(BTN_20, gbc_BTN_20);
-
-		JDataButton BTN_21 = new JDataButton();
-		GridBagConstraints gbc_BTN_21 = new GridBagConstraints();
-		gbc_BTN_21.fill = GridBagConstraints.BOTH;
-		gbc_BTN_21.insets = new Insets(0, 0, 5, 5);
-		gbc_BTN_21.gridx = 1;
-		gbc_BTN_21.gridy = 2;
-		panel.add(BTN_21, gbc_BTN_21);
-
-		JDataButton BTN_22 = new JDataButton();
-		GridBagConstraints gbc_BTN_22 = new GridBagConstraints();
-		gbc_BTN_22.fill = GridBagConstraints.BOTH;
-		gbc_BTN_22.insets = new Insets(0, 0, 5, 0);
-		gbc_BTN_22.gridx = 2;
-		gbc_BTN_22.gridy = 2;
-		panel.add(BTN_22, gbc_BTN_22);
 		frame.getContentPane().setLayout(groupLayout);
 
-		final UI UI = new UI(frame, BTN_00, BTN_01, BTN_02, BTN_10, BTN_11, BTN_12, BTN_20, BTN_21, BTN_22);
-		*/
+		final UI UI = new UI(frame, buttons);
 
 		BTN_Reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//UI.reset();
+				UI.reset();
 			}
 		});
 
