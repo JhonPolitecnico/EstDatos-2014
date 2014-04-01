@@ -6,8 +6,7 @@ public class UI extends ConsoleUI {
 
 	@Override
 	protected String[] registerCommands() {
-		String[] commands = { "hello world:hello", "login", "exit" };
-		return commands;
+		return new String[] { "hello world:hello", "login", "exit" };
 	}
 
 	@Override
@@ -42,6 +41,10 @@ public class UI extends ConsoleUI {
 	protected void onInvalidCommand(String command) {
 		System.out.println("No selecciono una opci\u00F3n valida");
 	}
+
+	/*
+	 * Actions
+	 */
 
 	public void helloAction() {
 		System.out.println("Hola Mundo!");

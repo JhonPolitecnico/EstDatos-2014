@@ -11,14 +11,35 @@ public abstract class ConsoleUI {
 
 	protected abstract String[] registerCommands();
 
+	/**
+	 * Print header
+	 */
 	protected abstract void printHeader();
 
+	/**
+	 * Print menu
+	 */
 	protected abstract void printMenu();
 
+	/**
+	 * On error
+	 * 
+	 * @param e
+	 */
 	protected abstract void onError(Exception e);
 
+	/**
+	 * On receipt of a valid or invalid command
+	 * 
+	 * @param command
+	 */
 	protected abstract void onCommand(String command);
 
+	/**
+	 * When receiving an invalid command
+	 * 
+	 * @param command
+	 */
 	protected abstract void onInvalidCommand(String command);
 
 	protected ConsoleUI() {
@@ -32,6 +53,11 @@ public abstract class ConsoleUI {
 		in.next();
 	}
 
+	/**
+	 * Invoke an action
+	 * 
+	 * @param action
+	 */
 	protected void invokeAction(String action) {
 		try {
 			this.getClass().getMethod(action + "Action").invoke(this);
@@ -40,10 +66,16 @@ public abstract class ConsoleUI {
 		}
 	}
 
+	/**
+	 * Turn off console
+	 */
 	protected void off() {
 		this.off = true;
 	}
 
+	/**
+	 * Turn console
+	 */
 	public void on() {
 		try {
 
