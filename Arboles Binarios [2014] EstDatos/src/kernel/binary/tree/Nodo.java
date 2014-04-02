@@ -6,7 +6,8 @@ public class Nodo {
 	private Nodo right;
 	private int num;
 
-	public Nodo(int n) {
+	public Nodo(int num) {
+		this.num = num;
 	}
 
 	public Nodo getLeft() {
