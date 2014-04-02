@@ -5,6 +5,10 @@ import ui.console.UI;
 
 public class Main {
 
+	/*
+	 * Guia: http://prezi.com/jf3pn1z9lxv4/arboles-binarios/
+	 */
+
 	public static void main(String[] args) {
 
 		Arbol arbol = new Arbol();
@@ -23,6 +27,15 @@ public class Main {
 		arbol.addNode(47);
 		arbol.addNode(30);
 		arbol.addNode(35);
+
+		System.out.println("Preorden:");
+		System.out.println(arbol.preorden());
+
+		System.out.println("Inorden:");
+		System.out.println(arbol.inorden());
+		
+		System.out.println("Postorden:");
+		System.out.println(arbol.postorden());
 
 		/*
 		 * UI UI = new UI(); UI.on();

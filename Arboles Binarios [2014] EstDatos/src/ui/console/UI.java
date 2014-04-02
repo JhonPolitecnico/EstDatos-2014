@@ -17,9 +17,9 @@ public class UI extends ConsoleUI {
 	@Override
 	protected void printMenu() {
 		System.out.println();
-		System.out.println("hello:\tHola Mundo");
-		System.out.println("login:\tIdentificarse");
-		System.out.println("exit:\tSalir");
+		System.out.println("hello world:\tHola Mundo");
+		System.out.println("login:\t\tIdentificarse");
+		System.out.println("exit:\t\tSalir");
 		System.out.println();
 
 	}
