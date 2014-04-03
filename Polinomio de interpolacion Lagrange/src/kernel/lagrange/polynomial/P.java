@@ -34,4 +34,9 @@ public class P {
 		sRet += "\n";
 		return sRet;
 	}
+
+	public PSub[] getParts() {
+		return parts;
+	}
+
 }

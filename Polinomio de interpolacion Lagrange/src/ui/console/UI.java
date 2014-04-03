@@ -1,21 +1,21 @@
 package ui.console;
 
 import kernel.console.ConsoleUI;
+import kernel.lagrange.polynomial.D;
 import kernel.lagrange.polynomial.L;
+import kernel.lagrange.polynomial.Math;
 import kernel.lagrange.polynomial.P;
 import kernel.lagrange.polynomial.Point;
-import kernel.lagrange.polynomial.Math;
 
 public class UI extends ConsoleUI {
 
-	L[] ls = null;
-	Point[] points = null;
-	P p = null;
-	Math math = new Math();
+	private L[] ls = null;
+	private Point[] points = null;
+	private P p = null;
 
 	@Override
 	protected String[] registerCommands() {
-		return new String[] { "puntos", "agregar", "generar", "salir" };
+		return new String[] { "puntos", "agregar", "generar", "sub", "distancia", "salir" };
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class UI extends ConsoleUI {
 		System.out.println("Michael Roberto Torres\t\t\t1310019024");
 		System.out.println("Jabier Alejandro Sierra\t\t\t0612040895");
 		System.out.println();
-		System.out.println("Polinomio de interpolacion de Lagrange\n");		
+		System.out.println("Polinomio de interpolacion de Lagrange\n");
 	}
 
 	@Override
@@ -36,6 +36,8 @@ public class UI extends ConsoleUI {
 		System.out.println("puntos:\t\t\tNumero De Puntos");
 		System.out.println("agregar:\t\tAgregar Puntos");
 		System.out.println("generar:\t\tGenerar P(x)");
+		System.out.println("sub:\t\t\tObtener el numeor de subconjuntos posibles");
+		System.out.println("distancia:\t\tObtener la distancia entre el conjunto principal y el primer subconjunto truncado");
 		System.out.println("salir:\t\t\tSalir");
 
 	}
@@ -129,6 +131,67 @@ public class UI extends ConsoleUI {
 		// Generar funcion de interpolacion de Lagrange
 		p = new P(ls, points);
 		System.out.println(p.toString());
+	}
+
+	public void subAction() {
+		if (ls == null || points == null) {
+			this.nullError();
+			return;
+		}
+
+		System.out.println("Escriba la longutud de elementos del subconjunto:");
+		if (in.hasNextInt()) {
+			int iSub = in.nextInt();
+
+			if (iSub > points.length) {
+				System.out.println("La longitud del subconjunto no puede ser mayor al del conjunto original");
+			}
+
+			System.out.println("El numero de subconjuntos posibles es: " + Math.binomialCoefficient(points.length, iSub));
+		} else {
+			System.out.println("Es un subconjunto invalido.");
+			this.skipError();
+		}
+	}
+
+	public void distanciaAction() {
+		if (ls == null || points == null) {
+			this.nullError();
+			return;
+		}
+
+		System.out.println("Escriba la longutud de elementos del subconjunto:");
+		if (in.hasNextInt()) {
+			int iSub = in.nextInt();
+
+			if (iSub > points.length) {
+				System.out.println("La longitud del subconjunto no puede ser mayor al del conjunto original");
+			}
+
+			L[] ls2 = new L[iSub];
+			Point[] points2 = new Point[iSub];
+
+			// Generar el primer subconjunto de puntos truncado
+			for (int i = 0; i < points2.length; i++) {
+				points2[i] = points[i];
+			}
+
+			// Calcular polinomios individuales
+			for (int i = 0; i < ls2.length; i++) {
+				ls2[i] = new L(i, points2);
+			}
+
+			// Generar funcion de interpolacion de Lagrange
+			P p2 = new P(ls2, points2);
+
+			D d = new D(points2, p, p2);
+
+			System.out.println("La distancia es: " + d.getDistance());
+
+		} else {
+			System.out.println("Es un subconjunto invalido.");
+			this.skipError();
+		}
 	}
 
 	public void salirAction() {

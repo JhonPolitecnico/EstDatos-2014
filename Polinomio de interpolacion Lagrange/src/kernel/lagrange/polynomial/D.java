@@ -2,32 +2,31 @@ package kernel.lagrange.polynomial;
 
 public class D {
 
-	private L minuend;
-	private L subtrahend;
+	private P minuend;
+	private P subtrahend;
 	private float distance = 0;
 
-	public D(Point[] points, L l, L subL) {
-		this.minuend = l;
-		this.subtrahend = subL;
+	// Formula: http://prntscr.com/36n0f2
+	public D(Point[] points, P p, P subP) {
+		this.minuend = p;
+		this.subtrahend = subP;
 
-		Math math = new Math();
-
-		for (int k = 0; k < points.length - 1; k++) {
-			float part1 = math.solve(points[k].getX(), "x", minuend.getxNumeratorResult()) / minuend.getxDenominatorResult();
-			float part2 = math.solve(points[k].getX(), "x", subtrahend.getxNumeratorResult()) / subtrahend.getxDenominatorResult();
-			distance += (part1 - part2);
+		// Sumatoria con "k=0" hasta "n-1"
+		for (int k = 0; k < points.length; k++) {
+			// |La(X0) - Li(X0)| + |La(X1) - Li(X1)| + ... + |La(Xk) - Li(Xk)|;
+			System.out.println(Math.absoluteValue(Math.solveLagrangePolynomial(minuend, points[k].getX()) - Math.solveLagrangePolynomial(subtrahend, points[k].getX())));
+			distance += Math.absoluteValue(Math.solveLagrangePolynomial(minuend, points[k].getX()) - Math.solveLagrangePolynomial(subtrahend, points[k].getX()));
 		}
 
-		distance = math.absoluteValue(distance);
-
+		// Sumatoria / n;
 		distance /= points.length;
 	}
 
-	public L getMinuend() {
+	public P getMinuend() {
 		return minuend;
 	}
 
-	public L getSubtrahend() {
+	public P getSubtrahend() {
 		return subtrahend;
 	}
 
