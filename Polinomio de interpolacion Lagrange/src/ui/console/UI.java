@@ -4,12 +4,14 @@ import kernel.console.ConsoleUI;
 import kernel.lagrange.polynomial.L;
 import kernel.lagrange.polynomial.P;
 import kernel.lagrange.polynomial.Point;
+import kernel.lagrange.polynomial.Math;
 
 public class UI extends ConsoleUI {
 
 	L[] ls = null;
 	Point[] points = null;
 	P p = null;
+	Math math = new Math();
 
 	@Override
 	protected String[] registerCommands() {
@@ -25,7 +27,7 @@ public class UI extends ConsoleUI {
 		System.out.println("Michael Roberto Torres\t\t\t1310019024");
 		System.out.println("Jabier Alejandro Sierra\t\t\t0612040895");
 		System.out.println();
-		System.out.println("Polinomio de interpolacion de Lagrange\n");
+		System.out.println("Polinomio de interpolacion de Lagrange\n");		
 	}
 
 	@Override
