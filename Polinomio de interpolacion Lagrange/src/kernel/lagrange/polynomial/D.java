@@ -13,13 +13,14 @@ public class D {
 
 		// Sumatoria con "k=0" hasta "n-1"
 		for (int k = 0; k < points.length; k++) {
-			// |La(X0) - Li(X0)| + |La(X1) - Li(X1)| + ... + |La(Xk) - Li(Xk)|;
-			System.out.println(Math.absoluteValue(Math.solveLagrangePolynomial(minuend, points[k].getX()) - Math.solveLagrangePolynomial(subtrahend, points[k].getX())));
-			distance += Math.absoluteValue(Math.solveLagrangePolynomial(minuend, points[k].getX()) - Math.solveLagrangePolynomial(subtrahend, points[k].getX()));
-		}
 
-		// Sumatoria / n;
-		distance /= points.length;
+			// |La(X0) - Li(X0)|/3 + |La(X1) - Li(X1)|/3 + ... + |La(Xk) - Li(Xk)|/n;
+			// @formatter:off
+			distance += Math.absoluteValue(
+							Math.solveLagrangePolynomial(minuend, points[k].getX()) - Math.solveLagrangePolynomial(subtrahend, points[k].getX())
+					) / points.length;
+			// @formatter:on
+		}
 	}
 
 	public P getMinuend() {

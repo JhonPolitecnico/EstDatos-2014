@@ -1,11 +1,14 @@
 package ui.console;
 
+import java.util.ArrayList;
+
 import kernel.console.ConsoleUI;
 import kernel.lagrange.polynomial.D;
 import kernel.lagrange.polynomial.L;
 import kernel.lagrange.polynomial.Math;
 import kernel.lagrange.polynomial.P;
 import kernel.lagrange.polynomial.Point;
+import kernel.subsets.tree.SubsetsTree;
 
 public class UI extends ConsoleUI {
 
@@ -36,8 +39,8 @@ public class UI extends ConsoleUI {
 		System.out.println("puntos:\t\t\tNumero De Puntos");
 		System.out.println("agregar:\t\tAgregar Puntos");
 		System.out.println("generar:\t\tGenerar P(x)");
-		System.out.println("sub:\t\t\tObtener el numeor de subconjuntos posibles");
-		System.out.println("distancia:\t\tObtener la distancia entre el conjunto principal y el primer subconjunto truncado");
+		System.out.println("sub:\t\t\tObtener el numero de subconjuntos posibles");
+		System.out.println("distancia:\t\tObtener la distancia entre el conjunto principal y los subconjuntos indicados");
 		System.out.println("salir:\t\t\tSalir");
 
 	}
@@ -166,27 +169,48 @@ public class UI extends ConsoleUI {
 
 			if (iSub > points.length) {
 				System.out.println("La longitud del subconjunto no puede ser mayor al del conjunto original");
+				return;
 			}
 
-			L[] ls2 = new L[iSub];
-			Point[] points2 = new Point[iSub];
+			// Obtener los subconjuntos
+			SubsetsTree tree = new SubsetsTree(this.points, iSub);
+			ArrayList<ArrayList<Object>> susetsOfPoints = tree.getSubsets();
 
-			// Generar el primer subconjunto de puntos truncado
-			for (int i = 0; i < points2.length; i++) {
-				points2[i] = points[i];
+			// Evaluar todos los subconjuntos con respecto al conjunto principal
+			L[] subLs = null;
+			Point[] subPoints = null;
+			MinorSubset minor = null;
+
+			for (ArrayList<Object> oSubPoints : susetsOfPoints) {
+				subLs = new L[iSub];
+				subPoints = oSubPoints.toArray(new Point[iSub]);
+
+				// Calcular polinomios individuales
+				for (int i = 0; i < subLs.length; i++) {
+					subLs[i] = new L(i, subPoints);
+				}
+
+				// Generar funcion de interpolacion de Lagrange
+				P subP = new P(subLs, subPoints);
+
+				D d = new D(subPoints, p, subP);
+
+				if (minor == null || d.getDistance() <= minor.getDistance()) {
+					minor = new MinorSubset(d.getDistance(), subPoints);
+				}
+
 			}
 
-			// Calcular polinomios individuales
-			for (int i = 0; i < ls2.length; i++) {
-				ls2[i] = new L(i, points2);
+			// Imprimir el subconjunto de menor distancia del conjunto original
+			System.out.println("La menor distancia es: ");
+			Point tmpPoint = null;
+			System.out.print("\t{");
+			for (int i = 0; i < minor.getPoints().length; i++) {
+				tmpPoint = minor.getPoints()[i];
+				System.out.print("(" + tmpPoint.getX() + ", " + tmpPoint.getY() + ((i == minor.getPoints().length - 1) ? ")" : "),"));
 			}
-
-			// Generar funcion de interpolacion de Lagrange
-			P p2 = new P(ls2, points2);
-
-			D d = new D(points2, p, p2);
-
-			System.out.println("La distancia es: " + d.getDistance());
+			System.out.println("}");
+			System.out.println("\tDistancia: " + minor.getDistance());
 
 		} else {
 			System.out.println("Es un subconjunto invalido.");
