@@ -173,10 +173,13 @@ public class Frame extends JFrame {
 				break;
 			}
 
+			// Eliminar todo
 			panel.removeAll();
 
 			cartas = this.model.darListaCartasJugador(i);
 			for (int j = 0; j < cartas.length; j++) {
+
+				// this.model.palosSegunImagenes[i-1];
 
 				if (cartas[j].indexOf(this.model.PALOS_CORAZONES) != -1) {
 					palo = 0;
@@ -210,8 +213,9 @@ public class Frame extends JFrame {
 				panel.add(label);
 
 			}
-
-			panel.revalidate();
+			// Referencia: http://docs.oracle.com/javase/7/docs/api/java/awt/Container.html#removeAll()
+			panel.validate();
+			panel.repaint();
 
 		}
 	}

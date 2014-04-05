@@ -20,6 +20,7 @@ public class MainVentiuna {
 	public char PALOS_CORAZONES = '♥';
 	public char PALOS_TREBOLES = '♣';
 	public char PALOS_DIAMANTES = '♦';
+	public char[] palosSegunImagenes = { PALOS_CORAZONES, PALOS_TREBOLES, PALOS_PICAS, PALOS_DIAMANTES };
 
 	public int turnoActual = 1;
 	public boolean partidaTerminada = false;
