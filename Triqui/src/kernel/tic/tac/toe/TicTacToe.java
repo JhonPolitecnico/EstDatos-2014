@@ -2,6 +2,13 @@ package kernel.tic.tac.toe;
 
 import java.util.concurrent.Callable;
 
+/**
+ * Triqui
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class TicTacToe {
 
 	private Chip turnoActual;
@@ -91,28 +98,42 @@ public class TicTacToe {
 				// Fields
 				for (int j = 0; j < 9; j += 3) {
 
-					if (this.equalSlotValue(Position.values()[j], actual) && this.equalSlotValue(Position.values()[j + 1], actual) && this.equalSlotValue(Position.values()[j + 2], actual)) {
-						this.state = (actual == Chip.X) ? State.WIN_X : State.WIN_O;
+					if (this.equalSlotValue(Position.values()[j], actual)
+							&& this.equalSlotValue(Position.values()[j + 1],
+									actual)
+							&& this.equalSlotValue(Position.values()[j + 2],
+									actual)) {
+						this.state = (actual == Chip.X) ? State.WIN_X
+								: State.WIN_O;
 						break Check;
 					}
 				}
 
 				// Columns
 				for (int j = 0; j < 3; j++) {
-					if (this.equalSlotValue(Position.values()[j], actual) && this.equalSlotValue(Position.values()[j + 3], actual) && this.equalSlotValue(Position.values()[j + 6], actual)) {
-						this.state = (actual == Chip.X) ? State.WIN_X : State.WIN_O;
+					if (this.equalSlotValue(Position.values()[j], actual)
+							&& this.equalSlotValue(Position.values()[j + 3],
+									actual)
+							&& this.equalSlotValue(Position.values()[j + 6],
+									actual)) {
+						this.state = (actual == Chip.X) ? State.WIN_X
+								: State.WIN_O;
 						break Check;
 					}
 				}
 
 				// Diagonal principal
-				if (this.equalSlotValue(Position.P00, actual) && this.equalSlotValue(Position.P11, actual) && this.equalSlotValue(Position.P22, actual)) {
+				if (this.equalSlotValue(Position.P00, actual)
+						&& this.equalSlotValue(Position.P11, actual)
+						&& this.equalSlotValue(Position.P22, actual)) {
 					this.state = (actual == Chip.X) ? State.WIN_X : State.WIN_O;
 					break Check;
 				}
 
 				// Diagonal secundaria
-				if (this.equalSlotValue(Position.P02, actual) && this.equalSlotValue(Position.P11, actual) && this.equalSlotValue(Position.P20, actual)) {
+				if (this.equalSlotValue(Position.P02, actual)
+						&& this.equalSlotValue(Position.P11, actual)
+						&& this.equalSlotValue(Position.P20, actual)) {
 					this.state = (actual == Chip.X) ? State.WIN_X : State.WIN_O;
 					break Check;
 				}

@@ -1,5 +1,12 @@
 package kernel.tic.tac.toe;
 
+/**
+ * Triqui
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Slot {
 	private Position position;
 	private Chip value;

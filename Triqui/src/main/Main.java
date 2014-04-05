@@ -15,6 +15,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Triqui
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Main {
 
 	private JFrame frame;
@@ -63,28 +70,64 @@ public class Main {
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
-				groupLayout
-						.createSequentialGroup()
-						.addContainerGap()
+		groupLayout
+				.setHorizontalGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
 						.addGroup(
 								groupLayout
-										.createParallelGroup(Alignment.LEADING)
-										.addComponent(panel, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+										.createSequentialGroup()
+										.addContainerGap()
 										.addGroup(
-												groupLayout.createSequentialGroup().addComponent(BTN_Reset, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-														.addComponent(BTN_Salir, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
-				groupLayout.createSequentialGroup().addGap(6).addComponent(panel, GroupLayout.PREFERRED_SIZE, 453, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(BTN_Reset).addComponent(BTN_Salir)).addContainerGap(68, Short.MAX_VALUE)));
+												groupLayout
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(
+																panel,
+																GroupLayout.DEFAULT_SIZE,
+																502,
+																Short.MAX_VALUE)
+														.addGroup(
+																groupLayout
+																		.createSequentialGroup()
+																		.addComponent(
+																				BTN_Reset,
+																				GroupLayout.PREFERRED_SIZE,
+																				186,
+																				GroupLayout.PREFERRED_SIZE)
+																		.addPreferredGap(
+																				ComponentPlacement.RELATED,
+																				130,
+																				Short.MAX_VALUE)
+																		.addComponent(
+																				BTN_Salir,
+																				GroupLayout.PREFERRED_SIZE,
+																				186,
+																				GroupLayout.PREFERRED_SIZE)))
+										.addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
+				Alignment.LEADING)
+				.addGroup(
+						groupLayout
+								.createSequentialGroup()
+								.addGap(6)
+								.addComponent(panel,
+										GroupLayout.PREFERRED_SIZE, 453,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addGroup(
+										groupLayout
+												.createParallelGroup(
+														Alignment.BASELINE)
+												.addComponent(BTN_Reset)
+												.addComponent(BTN_Salir))
+								.addContainerGap(68, Short.MAX_VALUE)));
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.rowHeights = new int[] { 128, 128, 128, 0, 0 };
 		gbl_panel.columnWidths = new int[] { 128, 128, 128 };
 		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0 };
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel.setLayout(gbl_panel);
-		
+
 		/*
 		 * Runtime buttons
 		 */
