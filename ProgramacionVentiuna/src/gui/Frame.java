@@ -2,9 +2,13 @@ package gui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import poligran.MainVentiuna;
 
 /**
@@ -30,10 +34,15 @@ public class Frame extends JFrame {
 		Frame frame = new Frame();
 	}
 
-	public Frame() {
-		this.model = new MainVentiuna();
-		this.model.reiniciar();
+	private String getPath() {
+		return System.getProperty("user.dir");
+	}
 
+	public ImageIcon getImage(int numeroCarta, int palo) {
+		return new ImageIcon(this.getPath() + "\\img\\card" + (numeroCarta - 1) + "" + palo + ".png");
+	}
+
+	public Frame() {
 		this.setBounds(50, 50, 850, 750);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -126,7 +135,84 @@ public class Frame extends JFrame {
 		this.btnCarta.addActionListener(buttonController);
 		this.btnPasar.addActionListener(buttonController);
 
+		/*
+		 * Modelo
+		 */
+		this.model = new MainVentiuna();
+		this.model.reiniciar();
+		this.refrescar();
+
 		// Hacer visible
 		this.setVisible(true);
+	}
+
+	public MainVentiuna getModel() {
+		return model;
+	}
+
+	public void refrescar() {
+
+		String[] cartas = null;
+		JPanel panel = null;
+		int palo = 0;
+		int numeroCarta = 0;
+
+		for (int i = 1; i <= 4; i++) {
+			switch (i) {
+			case 1:
+				panel = this.panelPlayer1;
+				break;
+			case 2:
+				panel = this.panelPlayer2;
+				break;
+			case 3:
+				panel = this.panelPlayer3;
+				break;
+			case 4:
+				panel = this.panelPlayer4;
+				break;
+			}
+
+			panel.removeAll();
+
+			cartas = this.model.darListaCartasJugador(i);
+			for (int j = 0; j < cartas.length; j++) {
+
+				if (cartas[j].indexOf(this.model.PALOS_CORAZONES) != -1) {
+					palo = 0;
+				} else if (cartas[j].indexOf(this.model.PALOS_TREBOLES) != -1) {
+					palo = 1;
+				} else if (cartas[j].indexOf(this.model.PALOS_PICAS) != -1) {
+					palo = 2;
+				} else if (cartas[j].indexOf(this.model.PALOS_DIAMANTES) != -1) {
+					palo = 3;
+				}
+
+				for (int j2 = 0; j2 < this.model.valores.length; j2++) {
+
+					// Si es jugador actual, sus cartas de ven
+					if (i == this.model.darTurno()) {
+						if (cartas[j].indexOf(this.model.valores[j2]) != -1) {
+							numeroCarta = j2;
+							break;
+						}
+
+					} else {
+						numeroCarta = 10;
+						palo = 9;
+					}
+
+				}
+
+				ImageIcon img = this.getImage(numeroCarta, palo);
+				JLabel label = new JLabel(img);
+
+				panel.add(label);
+
+			}
+
+			panel.revalidate();
+
+		}
 	}
 }

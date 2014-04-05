@@ -21,7 +21,29 @@ public class ButtonController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String sCommand = arg0.getActionCommand();
-		System.out.println(sCommand);
+
+		switch (sCommand) {
+		case "Carta":
+			this.cartaCommand();
+			break;
+
+		case "Pasar":
+			this.pasarCommand();
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
+	private void cartaCommand() {
+		this.frame.getModel().pedirCarta(this.frame.getModel().darTurno());
+		this.frame.refrescar();
+	}
+
+	private void pasarCommand() {
+		this.frame.getModel().plantar(this.frame.getModel().darTurno());
+		this.frame.refrescar();
+	}
 }

@@ -15,6 +15,7 @@ public class MainVentiuna {
 	public int CHIPOLO = 1000;
 	public int MAX_PALOS = 4;
 	public int MAX_VALORES = 13;
+	// Palos
 	public char PALOS_PICAS = '♠';
 	public char PALOS_CORAZONES = '♥';
 	public char PALOS_TREBOLES = '♣';
@@ -23,26 +24,20 @@ public class MainVentiuna {
 	public int turnoActual = 1;
 	public boolean partidaTerminada = false;
 
-	public char[] palos = { PALOS_PICAS, PALOS_CORAZONES, PALOS_TREBOLES,
-			PALOS_DIAMANTES };
-	public char[] valores = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-			'J', 'Q', 'K' };
+	public char[] palos = { PALOS_PICAS, PALOS_CORAZONES, PALOS_TREBOLES, PALOS_DIAMANTES };
+
+	// Valores en String
+	public char[] valores = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K' };
 	public int[] puntajes = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
 	// TODO : PUNTO 1 : Declare los arreglos que representan el
 	// juego.-------------------------------------------------------
 	/*
 	 * 
-	 * El arreglo etiquetasCartas es un arreglo de Strings que representa las
-	 * etiquetas de la carta i El arreglo puntajesCartas es un arreglo entero
-	 * que representa el puntaje de la carta i El arreglo cantidadCartas es un
-	 * arreglo entero que representa la cantidad existente de la carta i El
-	 * arreglo cartasJugador1 es un arreglo entero que representa la cantidad de
-	 * carta i que tiene el jugador 1 El arreglo cartasJugador2 es un arreglo
-	 * entero que representa la cantidad de carta i que tiene el jugador 2 El
-	 * arreglo cartasJugador3 es un arreglo entero que representa la cantidad de
-	 * carta i que tiene el jugador 3 El arreglo cartasJugador4 es un arreglo
-	 * entero que representa la cantidad de carta i que tiene el jugador 4
+	 * El arreglo etiquetasCartas es un arreglo de Strings que representa las etiquetas de la carta i El arreglo puntajesCartas es un arreglo entero que representa el puntaje de la carta i El arreglo
+	 * cantidadCartas es un arreglo entero que representa la cantidad existente de la carta i El arreglo cartasJugador1 es un arreglo entero que representa la cantidad de carta i que tiene el jugador
+	 * 1 El arreglo cartasJugador2 es un arreglo entero que representa la cantidad de carta i que tiene el jugador 2 El arreglo cartasJugador3 es un arreglo entero que representa la cantidad de carta
+	 * i que tiene el jugador 3 El arreglo cartasJugador4 es un arreglo entero que representa la cantidad de carta i que tiene el jugador 4
 	 */
 	public String[] etiquetasCartas = new String[NUMERO_CARTAS];
 	public int[] puntajesCartas = new int[NUMERO_CARTAS];
@@ -60,8 +55,7 @@ public class MainVentiuna {
 		// TODO: PUNTO 2:
 		// ----------------------------------------------------------------------------------------------------
 		/*
-		 * Modificar los valores del arreglo de etiquetasCartas y puntajesCartas
-		 * para que queden correctos
+		 * Modificar los valores del arreglo de etiquetasCartas y puntajesCartas para que queden correctos
 		 */
 		int carta = 0;
 		for (int i = 0; i < MAX_PALOS; i++) {
@@ -102,17 +96,13 @@ public class MainVentiuna {
 	 * contarCartas
 	 * 
 	 * @param jugador
-	 * @return El metodo tiene la responsabilidad de contar las cartas del
-	 *         jugador que tiene como parametro Para hacerlo, se debe revisar el
-	 *         arreglo cartasJugador que corresponda
+	 * @return El metodo tiene la responsabilidad de contar las cartas del jugador que tiene como parametro Para hacerlo, se debe revisar el arreglo cartasJugador que corresponda
 	 */
 	public int contarCartas(int jugador) {
 		// TODO: PUNTO 3:
 		// --------------------------------------------------------------------------------------------------------
 		/*
-		 * Este metodo debe retornar la cantidad de cartas que tiene un jugador
-		 * particular, el parametro es el numero de jugador por quien se esta
-		 * preguntando.
+		 * Este metodo debe retornar la cantidad de cartas que tiene un jugador particular, el parametro es el numero de jugador por quien se esta preguntando.
 		 */
 		int contador = 0;
 		if (jugador == 1) {
@@ -142,10 +132,8 @@ public class MainVentiuna {
 	 * contarPuntaje
 	 * 
 	 * @param jugador
-	 * @return El metodo tiene la responsabilidad de contar el puntaje de las
-	 *         cartas que tiene el jugador que viene como parametro Para
-	 *         hacerlo, debe utilizar el arreglo cartasJugador que corresponda y
-	 *         el arreglo puntajesCartas
+	 * @return El metodo tiene la responsabilidad de contar el puntaje de las cartas que tiene el jugador que viene como parametro Para hacerlo, debe utilizar el arreglo cartasJugador que corresponda
+	 *         y el arreglo puntajesCartas
 	 */
 	public int contarPuntaje(int jugador) {
 		// TODO: PUNTO 4:
@@ -193,8 +181,7 @@ public class MainVentiuna {
 		// TODO: PUNTO
 		// 5----------------------------------------------------------------------------------------------------------------
 		/*
-		 * Este metodo debe retornar un arreglo de string con las etiquetas de
-		 * las cartas que tiene un jugador particular
+		 * Este metodo debe retornar un arreglo de string con las etiquetas de las cartas que tiene un jugador particular
 		 */
 		String[] listaCartas = new String[contarCartas(jugador)];
 		if (jugador == 1) {
@@ -235,8 +222,7 @@ public class MainVentiuna {
 	public void pedirCarta(int jugador) {
 		int cartaAleatoria1 = darPosicionCartaAleatoria();
 
-		while (cantidadCartas[cartaAleatoria1] == 0 || cartaAleatoria1 == 0
-				|| cartaAleatoria1 == 1) {
+		while (cantidadCartas[cartaAleatoria1] == 0 || cartaAleatoria1 == 0 || cartaAleatoria1 == 1) {
 			cartaAleatoria1 = darPosicionCartaAleatoria();
 		}
 		// reducir de la cantidad de cartas
@@ -279,8 +265,7 @@ public class MainVentiuna {
 				System.out.println("El jugador " + jugador + " se pasó!");
 			} else {
 				if (puntaje != 0) {
-					System.out.println("El jugador " + jugador + " tiene "
-							+ puntaje);
+					System.out.println("El jugador " + jugador + " tiene " + puntaje);
 				}
 			}
 		}
@@ -387,23 +372,19 @@ public class MainVentiuna {
 		while (opcion < MAX_OPCIONES) {
 
 			// titulo
-			System.out
-					.println("-------------------Ventiuna!!---------------- ");
+			System.out.println("-------------------Ventiuna!!---------------- ");
 
 			// mostrar las opciones posibles para el usuario
-			System.out.println(" El turno es del jugador " + turnoActual
-					+ ", Seleccione opcion: ");
+			System.out.println(" El turno es del jugador " + turnoActual + ", Seleccione opcion: ");
 			if (!partidaTerminada) {
 				System.out.println(" 1. Pedir Carta");
 				System.out.println(" 2. Plantar");
 				System.out.println(" 3. Mostrar cartas");
 				System.out.println(" 4. Salir");
-				System.out
-						.println("----------------------------------------------");
+				System.out.println("----------------------------------------------");
 			} else {
 				System.out.println(" 4. Salir");
-				System.out
-						.println("----------------------------------------------");
+				System.out.println("----------------------------------------------");
 			}
 
 			// pido la opcion de menu al usuario
@@ -466,9 +447,7 @@ public class MainVentiuna {
 	 * mostrarCartasJugador
 	 * 
 	 * @param jugador
-	 *            El metodo tiene la responsabilidad de mostrar las cartas del
-	 *            jugador que viene como parametro Para hacerlo, debe utilizar
-	 *            el arreglo cartasJugador que corresponda y el arreglo
+	 *            El metodo tiene la responsabilidad de mostrar las cartas del jugador que viene como parametro Para hacerlo, debe utilizar el arreglo cartasJugador que corresponda y el arreglo
 	 *            etiquetasCartas
 	 */
 	private void mostrarCartasJugador(int jugador) {
