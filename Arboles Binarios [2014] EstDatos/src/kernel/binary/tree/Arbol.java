@@ -112,4 +112,79 @@ public class Arbol {
 		return sRet;
 	}
 
+	// Devolver la cantidad de todos los nodos hojas (Aquellos que no tienen ningun hijo)
+	public int getNumberOfLeaves() {
+		return this.getNumberOfLeaves(this.root);
+	}
+
+	// Devolver la cantidad de todos los nodos hojas (Aquellos que no tienen ningun hijo)
+	private int getNumberOfLeaves(Nodo node) {
+		int sum = 0;
+
+		if (node == null)
+			return sum;
+
+		if (node.getLeft() != null)
+			sum += this.getNumberOfLeaves(node.getLeft());
+		if (node.getRight() != null)
+			sum += this.getNumberOfLeaves(node.getRight());
+
+		if (node.getLeft() == null && node.getRight() == null) {
+			sum++;
+		}
+
+		return sum;
+	}
+
+	// Devolver todos los nodos hojas (Aquellos que no tienen ningun hijo)
+	public int getNumberOfNodes() {
+		return this.getNumberOfNodes(this.root);
+	}
+
+	// Devolver todos los nodos hojas (Aquellos que no tienen ningun hijo)
+	private int getNumberOfNodes(Nodo node) {
+		int sum = 0;
+
+		if (node == null)
+			return sum;
+
+		if (node.getLeft() != null)
+			sum += this.getNumberOfNodes(node.getLeft());
+		if (node.getRight() != null)
+			sum += this.getNumberOfNodes(node.getRight());
+
+		sum++;
+
+		return sum;
+	}
+
+	// Devolver la altura del arbol (el nivel mas profundo del arbol)
+	public int getHigh() {
+		return this.getHigh(this.root, 0);
+	}
+
+	// Devolver la altura del arbol (el nivel mas profundo del arbol)
+	private int getHigh(Nodo node, int deep) {
+		int deepLeft = 0;
+		int deepRight = 0;
+
+		if (node == null)
+			return 0;
+
+		// Sumar la profundidad de cada lado
+		if (node.getLeft() != null)
+			deepLeft = this.getHigh(node.getLeft(), deep + 1);
+		if (node.getRight() != null)
+			deepRight = this.getHigh(node.getRight(), deep + 1);
+
+		// Profundidad final por hoja
+		if (node.getLeft() == null && node.getRight() == null) {
+			return deep;
+		}
+
+		// Retornar la mayor profundidad
+		return (deepLeft > deepRight) ? deepLeft : deepRight;
+
+	}
+
 }

@@ -33,9 +33,18 @@ public class Main {
 
 		System.out.println("Inorden:");
 		System.out.println(arbol.inorden());
-		
+
 		System.out.println("Postorden:");
 		System.out.println(arbol.postorden());
+
+		System.out.println("Numero de hojas:");
+		System.out.println(arbol.getNumberOfLeaves());
+
+		System.out.println("Numero de nodos:");
+		System.out.println(arbol.getNumberOfNodes());
+
+		System.out.println("Altura:");
+		System.out.println(arbol.getHigh());
 
 		/*
 		 * UI UI = new UI(); UI.on();
