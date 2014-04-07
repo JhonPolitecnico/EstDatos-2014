@@ -1,12 +1,13 @@
 package ui.console;
 
+import kernel.console.Action;
 import kernel.console.ConsoleUI;
 
 public class UI extends ConsoleUI {
 
 	@Override
-	protected String[] registerCommands() {
-		return new String[] { "hello world:hello", "login", "exit" };
+	protected Action[] registerCommands() {
+		return new Action[] { new Hello(this), new Login(this), new Exit(this) };
 	}
 
 	@Override
@@ -40,34 +41,6 @@ public class UI extends ConsoleUI {
 	@Override
 	protected void onInvalidCommand(String command) {
 		System.out.println("No selecciono una opci\u00F3n valida");
-	}
-
-	/*
-	 * Actions
-	 */
-
-	public void helloAction() {
-		System.out.println("Hola Mundo!");
-	}
-
-	public void loginAction() {
-		System.out.println("Escribe tu nombre:");
-		if (this.in.hasNext())
-			System.out.println("Tu nombre es: " + this.in.next());
-
-		System.out.println("Escribe tu ID:");
-		if (this.in.hasNextInt())
-			System.out.println("Tu ID es: " + this.in.nextInt());
-		else {
-			System.out.println("Tu ID es invalido");
-			this.skipError();
-		}
-
-	}
-
-	public void exitAction() {
-		System.out.println("Bye!");
-		this.off();
 	}
 
 }
