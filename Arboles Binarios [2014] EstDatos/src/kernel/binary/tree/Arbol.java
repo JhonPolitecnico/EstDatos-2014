@@ -8,11 +8,11 @@ public class Arbol {
 		return root;
 	}
 
-	public void addNode(int num) {
+	public boolean addNode(int num) {
 		// Si es el primer nodo (raiz)
 		if (this.root == null) {
 			this.root = new Nodo(num);
-			return;
+			return true;
 		}
 
 		Nodo node = this.root;
@@ -24,7 +24,7 @@ public class Arbol {
 
 				if (node.getRight() == null) {
 					node.setRight(new Nodo(num));
-					return;
+					return true;
 				}
 
 				node = node.getRight();
@@ -34,14 +34,14 @@ public class Arbol {
 
 				if (node.getLeft() == null) {
 					node.setLeft(new Nodo(num));
-					return;
+					return true;
 				}
 
 				node = node.getLeft();
 
 				// Igual
 			} else {
-				return;
+				return false;
 			}
 
 		} while (true);
@@ -185,6 +185,34 @@ public class Arbol {
 		// Retornar la mayor profundidad
 		return (deepLeft > deepRight) ? deepLeft : deepRight;
 
+	}
+	
+	// Buscar un valor
+	public boolean search(int num){
+		return search(this.root, num);
+	}
+	
+	// Buscar un valor
+	private boolean search(Nodo node, int num) {
+		boolean bRet = false;
+		
+		if (node == null)
+			return false;
+
+		// Si tiene el numero, retornar verdadero
+		if (num == node.getNum())
+			return true;
+		
+		// Si no, buscar en su lado derecho
+		if (node.getLeft() != null)
+			bRet = this.search(node.getLeft(), num);
+		
+		// Si no, buscar en su lado izquierdo
+		if (node.getRight() != null && !bRet)
+			bRet =  this.search(node.getRight(), num);
+		
+		// Retornar el valor
+		return bRet;
 	}
 
 }
