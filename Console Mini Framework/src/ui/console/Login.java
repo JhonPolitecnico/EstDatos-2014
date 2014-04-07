@@ -1,12 +1,12 @@
 package ui.console;
 
 import java.util.Scanner;
-
 import kernel.console.Action;
+import kernel.console.ConsoleUI;
 
 public class Login extends Action {
 
-	public Login(UI UI) {
+	public Login(ConsoleUI UI) {
 		super(UI);
 	}
 

@@ -3,10 +3,11 @@ package ui.console;
 import java.util.Scanner;
 
 import kernel.console.Action;
+import kernel.console.ConsoleUI;
 
 public class Hello extends Action {
 
-	public Hello(UI UI) {
+	public Hello(ConsoleUI UI) {
 		super(UI);
 	}
 

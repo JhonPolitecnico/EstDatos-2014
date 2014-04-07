@@ -3,10 +3,11 @@ package ui.console;
 import java.util.Scanner;
 
 import kernel.console.Action;
+import kernel.console.ConsoleUI;
 
 public class Exit extends Action {
 
-	public Exit(UI UI) {
+	public Exit(ConsoleUI UI) {
 		super(UI);
 	}
 
