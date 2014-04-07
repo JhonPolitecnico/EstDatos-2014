@@ -7,14 +7,14 @@ public abstract class ConsoleUI {
 	protected Scanner in;
 	protected String command = "";
 	protected boolean off = false;
-	protected String[] commands;
+	protected Action[] actions;
 
 	/**
 	 * Register commands to use
 	 * 
 	 * @return
 	 */
-	protected abstract String[] registerCommands();
+	protected abstract Action[] registerCommands();
 
 	/**
 	 * Print header
@@ -48,13 +48,13 @@ public abstract class ConsoleUI {
 	protected abstract void onInvalidCommand(String command);
 
 	protected ConsoleUI() {
-		this.commands = this.registerCommands();
+		this.actions = this.registerCommands();
 	}
 
 	/**
 	 * Avoid an infinite loop when an invalid expression is entered
 	 */
-	protected void skipError() {
+	public void skipError() {
 		in.next();
 	}
 
@@ -63,18 +63,20 @@ public abstract class ConsoleUI {
 	 * 
 	 * @param action
 	 */
-	protected void invokeAction(String action) {
-		try {
-			this.getClass().getMethod(action + "Action").invoke(this);
-		} catch (Exception e) {
-			this.onError(e);
+	protected void execute(String action) {
+		for (int i = 0; i < actions.length; i++) {
+			if (action.equals(actions[i].name())) {
+				actions[i].execute(this.in);
+				return;
+			}
 		}
+		this.onInvalidCommand(action);
 	}
 
 	/**
 	 * Turn off console
 	 */
-	protected void off() {
+	public void off() {
 		this.off = true;
 	}
 
@@ -90,49 +92,35 @@ public abstract class ConsoleUI {
 				this.printHeader();
 
 				do {
-					Engine: {
-						if (this.off)
-							break;
 
-						this.printMenu();
+					if (this.off)
+						break;
 
-						do {
-							// Get action
-							if (in.hasNext())
-								command = in.next();
-							else {
-								command = "";
-							}
+					this.printMenu();
 
-							// avoid commands empty
-							if (!command.equals("")) {
-								break;
-							}
-						} while (true);
-
-						// New line
-						System.out.println();
-
-						// Return command
-						this.onCommand(command);
-
-						// Run Command
-						for (int i = 0; i < commands.length; i++) {
-
-							if (command.equals(commands[i])) {
-								this.invokeAction(command);
-								break Engine;
-
-							} else if ((commands[i].split(":").length == 2) && (command.equals(commands[i].split(":")[0]))) {
-								this.invokeAction(commands[i].split(":")[1]);
-								break Engine;
-							}
-
+					do {
+						// Get action
+						if (in.hasNext())
+							command = in.next();
+						else {
+							command = "";
 						}
 
-						// No valid command
-						this.onInvalidCommand(command);
-					}
+						// avoid commands empty
+						if (!command.equals("")) {
+							break;
+						}
+					} while (true);
+
+					// New line
+					System.out.println();
+
+					// Return command
+					this.onCommand(command);
+
+					// Run Command
+					this.execute(command);
+
 				} while (true);
 
 			} catch (Exception e) {
