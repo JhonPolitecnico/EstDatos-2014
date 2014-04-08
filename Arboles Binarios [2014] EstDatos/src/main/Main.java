@@ -1,6 +1,7 @@
 package main;
 
 import kernel.binary.tree.Arbol;
+import kernel.binary.tree.Nodo;
 import ui.console.UI;
 
 public class Main {
@@ -10,7 +11,7 @@ public class Main {
 	 */
 
 	public static void main(String[] args) {
-		boolean testMode = false;
+		boolean testMode = true;
 
 		if (testMode) {
 
@@ -53,11 +54,26 @@ public class Main {
 				System.out.println("Buscar el numero " + i + ":");
 				System.out.println((arbol.search(i)) ? "\t\tEncontrado!" : "No existe :c");
 			}
+
+			System.out.println();
+			System.out.println();
+
+			System.out.println("Nodo mas izquierdo:" + arbol.getLeftOfleft());
+
+			System.out.println();
+			System.out.println();
+
+			Nodo node = null;
+			for (int i = 0; i <= 50; i++) {
+				node = arbol.getParent(i);
+				System.out.println("Buscar el padre de: " + i + ":");
+				System.out.println((node != null) ? "\t\tEncontrado: " + node.getNum() + "!" : "No tiene padre :'c");
+			}
+
 		} else {
 			UI UI = new UI();
 			UI.on();
 		}
 
 	}
-
 }

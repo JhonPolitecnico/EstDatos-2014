@@ -112,12 +112,14 @@ public class Arbol {
 		return sRet;
 	}
 
-	// Devolver la cantidad de todos los nodos hojas (Aquellos que no tienen ningun hijo)
+	// Devolver la cantidad de todos los nodos hojas (Aquellos que no tienen
+	// ningun hijo)
 	public int getNumberOfLeaves() {
 		return this.getNumberOfLeaves(this.root);
 	}
 
-	// Devolver la cantidad de todos los nodos hojas (Aquellos que no tienen ningun hijo)
+	// Devolver la cantidad de todos los nodos hojas (Aquellos que no tienen
+	// ningun hijo)
 	private int getNumberOfLeaves(Nodo node) {
 		int sum = 0;
 
@@ -186,33 +188,82 @@ public class Arbol {
 		return (deepLeft > deepRight) ? deepLeft : deepRight;
 
 	}
-	
+
 	// Buscar un valor
-	public boolean search(int num){
+	public boolean search(int num) {
 		return search(this.root, num);
 	}
-	
+
 	// Buscar un valor
 	private boolean search(Nodo node, int num) {
 		boolean bRet = false;
-		
+
 		if (node == null)
 			return false;
 
 		// Si tiene el numero, retornar verdadero
 		if (num == node.getNum())
 			return true;
-		
+
 		// Si no, buscar en su lado derecho
 		if (node.getLeft() != null)
 			bRet = this.search(node.getLeft(), num);
-		
+
 		// Si no, buscar en su lado izquierdo
 		if (node.getRight() != null && !bRet)
-			bRet =  this.search(node.getRight(), num);
-		
+			bRet = this.search(node.getRight(), num);
+
 		// Retornar el valor
 		return bRet;
 	}
 
+	// Retornar el nodo mas izquierdo
+	public int getLeftOfleft() {
+		return this.getLeftOfleft(this.root);
+	}
+
+	// Retornar el nodo mas izquierdo
+	private int getLeftOfleft(Nodo node) {
+
+		if (node == null)
+			return 0;
+
+		if (node.getLeft() != null)
+			return this.getLeftOfleft(node.getLeft());
+
+		return node.getNum();
+
+	}
+
+	// Obtener el padre de un nodo
+	public Nodo getParent(int num) {
+		return this.getParent(this.root, num);
+	}
+
+	// Obtener el padre de un nodo
+	private Nodo getParent(Nodo node, int num) {
+
+		Nodo tmp = null;
+
+		if (node == null)
+			return null;
+
+		// Obtener el padre...
+		// Lado izquierdo
+		if (node.getLeft() != null && num == node.getLeft().getNum())
+			return node;
+		// lado derecho
+		if (node.getRight() != null && num == node.getRight().getNum())
+			return node;
+
+		// Seguir buscando...
+		if (node.getLeft() != null)
+			tmp = this.getParent(node.getLeft(), num);
+		if (node.getRight() != null && tmp == null)
+			return this.getParent(node.getRight(), num);
+
+		// Retornar nodo, ya sea nulo o no
+		return tmp;
+
+	}
 }
