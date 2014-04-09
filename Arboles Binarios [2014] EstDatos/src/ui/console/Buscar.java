@@ -20,8 +20,8 @@ public class Buscar extends Action {
 		System.out.println("Escribe el numero a buscar:");
 
 		if (scanner.hasNextInt()) {
-			boolean ret = ((UI) this.UI).getArbol().search(scanner.nextInt());
-			if (ret)
+			kernel.binary.tree.Nodo node = ((UI) this.UI).getArbol().search(scanner.nextInt());
+			if (node == null)
 				System.out.println("Numero encontrado!");
 			else
 				System.out.println("El numero no existe :'c");

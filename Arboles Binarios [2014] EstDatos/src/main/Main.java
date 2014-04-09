@@ -16,6 +16,7 @@ public class Main {
 		if (testMode) {
 
 			Arbol arbol = new Arbol();
+			Nodo node = null;
 
 			// Raiz
 			arbol.addNode(20);
@@ -51,19 +52,19 @@ public class Main {
 			System.out.println(arbol.getHigh());
 
 			for (int i = 0; i <= 50; i++) {
+				node = arbol.search(i);
 				System.out.println("Buscar el numero " + i + ":");
-				System.out.println((arbol.search(i)) ? "\t\tEncontrado!" : "No existe :c");
+				System.out.println((node != null) ? "\t\tEncontrado!" : "No existe :c");
 			}
 
 			System.out.println();
 			System.out.println();
 
-			System.out.println("Nodo mas izquierdo:" + arbol.getLeftOfleft());
+			System.out.println("Nodo mas izquierdo: " + arbol.getLeftOfleft().getNum());
 
 			System.out.println();
 			System.out.println();
 
-			Nodo node = null;
 			for (int i = 0; i <= 50; i++) {
 				node = arbol.getParent(i);
 				System.out.println("Buscar el padre de: " + i + ":");

@@ -190,48 +190,48 @@ public class Arbol {
 	}
 
 	// Buscar un valor
-	public boolean search(int num) {
+	public Nodo search(int num) {
 		return search(this.root, num);
 	}
 
 	// Buscar un valor
-	private boolean search(Nodo node, int num) {
-		boolean bRet = false;
+	private Nodo search(Nodo node, int num) {
+		Nodo rNode = null;
 
 		if (node == null)
-			return false;
+			return null;
 
 		// Si tiene el numero, retornar verdadero
 		if (num == node.getNum())
-			return true;
+			return node;
 
 		// Si no, buscar en su lado derecho
 		if (node.getLeft() != null)
-			bRet = this.search(node.getLeft(), num);
+			rNode = this.search(node.getLeft(), num);
 
 		// Si no, buscar en su lado izquierdo
-		if (node.getRight() != null && !bRet)
-			bRet = this.search(node.getRight(), num);
+		if (node.getRight() != null && rNode == null)
+			rNode = this.search(node.getRight(), num);
 
 		// Retornar el valor
-		return bRet;
+		return rNode;
 	}
 
 	// Retornar el nodo mas izquierdo
-	public int getLeftOfleft() {
+	public Nodo getLeftOfleft() {
 		return this.getLeftOfleft(this.root);
 	}
 
 	// Retornar el nodo mas izquierdo
-	private int getLeftOfleft(Nodo node) {
+	private Nodo getLeftOfleft(Nodo node) {
 
 		if (node == null)
-			return 0;
+			return null;
 
 		if (node.getLeft() != null)
 			return this.getLeftOfleft(node.getLeft());
 
-		return node.getNum();
+		return node;
 
 	}
 
@@ -265,5 +265,88 @@ public class Arbol {
 		// Retornar nodo, ya sea nulo o no
 		return tmp;
 
+	}
+
+	private boolean deleteNode(int num) {
+
+		Nodo node = this.search(num);
+
+		// Si el nodo a eliminar no existe
+		if (node == null)
+			return false;
+
+		Nodo parent = null;
+
+		/*
+		 * Eliminar nodo sin hijos
+		 */
+		if (node.getLeft() == null && node.getRight() == null) {
+			// Buscar su padre
+			parent = this.getParent(num);
+			// Si el padre existe...
+			if (parent != null) {
+				// Dependiendo de su valor, esta a la izquierda o derecha, entonces eliminar segun corresponda
+				if (num > parent.getNum())
+					parent.setRight(null);
+				else
+					parent.setLeft(null);
+			}
+			// Si no tiene padre, hay un error
+			return false;
+		}
+
+		/*
+		 * Eliminar nodo con un hijo
+		 */
+		// Lado Izquierdo
+		if (node.getLeft() != null && node.getRight() == null) {
+			// Busar su padre
+			parent = this.getParent(num);
+			// Si el padre existe...
+			if (parent != null) {
+				// Dependiendo de su valor, esta a la izquierda o derecha, entonces eliminar segun corresponda
+				if (num > parent.getNum())
+					parent.setRight(node.getLeft());
+				else
+					parent.setLeft(node.getLeft());
+
+			}
+			// Si no tiene padre, hay un error
+			return false;
+			// Lado derecho
+		} else if (node.getLeft() == null && node.getRight() != null) {
+			// Busar su padre
+			parent = this.getParent(num);
+			// Si el padre existe...
+			if (parent != null) {
+				// Dependiendo de su valor, esta a la izquierda o derecha, entonces eliminar segun corresponda
+				if (num > parent.getNum())
+					parent.setRight(node.getRight());
+				else
+					parent.setLeft(node.getRight());
+
+			}
+			// Si no tiene padre, hay un error
+			return false;
+		}
+
+		/*
+		 * Eliminar nodo con dos hijos
+		 */
+
+		Nodo nodeLeft = null;
+		Nodo nodeRight = null;
+		/*
+		 * Nota, el reemplazo es por numero, y la eliminacion del hijo es recursiva, no usar enlaces
+		 */
+
+		// Obtener el nodo mas izquierdo del nodo derecho
+		nodeRight = this.getLeftOfleft(node.getRight());
+		// Pasar el lado izquierdo del nodo a eliminar al nodo que lo reemplazara
+		nodeRight.setLeft(node.getLeft());
+		// Reemplazar el nodo hijo con el padre
+		this.getParent(num).setRight(nodeRight);
+
+		return false;
 	}
 }
