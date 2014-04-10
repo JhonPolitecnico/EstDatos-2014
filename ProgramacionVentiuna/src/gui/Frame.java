@@ -31,7 +31,7 @@ public class Frame extends JFrame {
 	private ButtonController buttonController;
 
 	public static void main(String[] args) {
-		Frame frame = new Frame();
+		new Frame();
 	}
 
 	private String getPath() {
@@ -177,18 +177,14 @@ public class Frame extends JFrame {
 			panel.removeAll();
 
 			cartas = this.model.darListaCartasJugador(i);
+
 			for (int j = 0; j < cartas.length; j++) {
 
-				// this.model.palosSegunImagenes[i-1];
-
-				if (cartas[j].indexOf(this.model.PALOS_CORAZONES) != -1) {
-					palo = 0;
-				} else if (cartas[j].indexOf(this.model.PALOS_TREBOLES) != -1) {
-					palo = 1;
-				} else if (cartas[j].indexOf(this.model.PALOS_PICAS) != -1) {
-					palo = 2;
-				} else if (cartas[j].indexOf(this.model.PALOS_DIAMANTES) != -1) {
-					palo = 3;
+				for (int j2 = 0; j2 < this.model.palosSegunImagenes.length; j2++) {
+					if (cartas[j].indexOf(this.model.palosSegunImagenes[j2]) != -1) {
+						palo = j2;
+						break;
+					}
 				}
 
 				for (int j2 = 0; j2 < this.model.valores.length; j2++) {
@@ -196,7 +192,7 @@ public class Frame extends JFrame {
 					// Si es jugador actual, sus cartas de ven
 					if (i == this.model.darTurno()) {
 						if (cartas[j].indexOf(this.model.valores[j2]) != -1) {
-							numeroCarta = j2;
+							numeroCarta = j2 + 1;
 							break;
 						}
 
@@ -213,7 +209,8 @@ public class Frame extends JFrame {
 				panel.add(label);
 
 			}
-			// Referencia: http://docs.oracle.com/javase/7/docs/api/java/awt/Container.html#removeAll()
+			// Referencia:
+			// http://docs.oracle.com/javase/7/docs/api/java/awt/Container.html#removeAll()
 			panel.validate();
 			panel.repaint();
 
