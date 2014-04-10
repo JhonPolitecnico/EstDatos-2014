@@ -1,5 +1,12 @@
 package kernel.binary.tree;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Nodo {
 
 	private Nodo left;
@@ -28,6 +35,10 @@ public class Nodo {
 
 	public int getNum() {
 		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 }

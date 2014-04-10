@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 import kernel.console.Action;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Postorden extends Action {
 
 	public Postorden(UI UI) {

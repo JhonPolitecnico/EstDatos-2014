@@ -5,6 +5,13 @@ import kernel.binary.tree.Arbol;
 import kernel.console.Action;
 import kernel.console.ConsoleUI;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Agregar extends Action {
 
 	public Agregar(ConsoleUI UI) {

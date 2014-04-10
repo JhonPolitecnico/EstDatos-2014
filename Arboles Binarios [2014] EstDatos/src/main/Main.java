@@ -4,6 +4,13 @@ import kernel.binary.tree.Arbol;
 import kernel.binary.tree.Nodo;
 import ui.console.UI;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Main {
 
 	/*
@@ -11,7 +18,7 @@ public class Main {
 	 */
 
 	public static void main(String[] args) {
-		boolean testMode = true;
+		boolean testMode = false;
 
 		if (testMode) {
 

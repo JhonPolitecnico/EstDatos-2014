@@ -2,6 +2,13 @@ package kernel.console;
 
 import java.util.Scanner;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public abstract class ConsoleUI {
 
 	protected Scanner in;

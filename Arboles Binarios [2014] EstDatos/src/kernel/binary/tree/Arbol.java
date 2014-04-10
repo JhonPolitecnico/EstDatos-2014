@@ -1,5 +1,12 @@
 package kernel.binary.tree;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Arbol {
 
 	private Nodo root;
@@ -267,7 +274,7 @@ public class Arbol {
 
 	}
 
-	private boolean deleteNode(int num) {
+	public boolean deleteNode(int num) {
 
 		Nodo node = this.search(num);
 
@@ -285,7 +292,8 @@ public class Arbol {
 			parent = this.getParent(num);
 			// Si el padre existe...
 			if (parent != null) {
-				// Dependiendo de su valor, esta a la izquierda o derecha, entonces eliminar segun corresponda
+				// Dependiendo de su valor, esta a la izquierda o derecha,
+				// entonces eliminar segun corresponda
 				if (num > parent.getNum())
 					parent.setRight(null);
 				else
@@ -304,7 +312,8 @@ public class Arbol {
 			parent = this.getParent(num);
 			// Si el padre existe...
 			if (parent != null) {
-				// Dependiendo de su valor, esta a la izquierda o derecha, entonces eliminar segun corresponda
+				// Dependiendo de su valor, esta a la izquierda o derecha,
+				// entonces eliminar segun corresponda
 				if (num > parent.getNum())
 					parent.setRight(node.getLeft());
 				else
@@ -319,7 +328,8 @@ public class Arbol {
 			parent = this.getParent(num);
 			// Si el padre existe...
 			if (parent != null) {
-				// Dependiendo de su valor, esta a la izquierda o derecha, entonces eliminar segun corresponda
+				// Dependiendo de su valor, esta a la izquierda o derecha,
+				// entonces eliminar segun corresponda
 				if (num > parent.getNum())
 					parent.setRight(node.getRight());
 				else
@@ -336,17 +346,22 @@ public class Arbol {
 
 		Nodo nodeLeft = null;
 		Nodo nodeRight = null;
+
 		/*
-		 * Nota, el reemplazo es por numero, y la eliminacion del hijo es recursiva, no usar enlaces
+		 * Nota, el reemplazo es por valor, y la eliminacion del hijo es recursiva, no usar enlaces
 		 */
 
 		// Obtener el nodo mas izquierdo del nodo derecho
 		nodeRight = this.getLeftOfleft(node.getRight());
 		// Pasar el lado izquierdo del nodo a eliminar al nodo que lo reemplazara
-		nodeRight.setLeft(node.getLeft());
-		// Reemplazar el nodo hijo con el padre
-		this.getParent(num).setRight(nodeRight);
 
-		return false;
+		// Guardar el nodo que lo reemplazara
+		int nodoNuevo = nodeRight.getNum();
+		// Eliminar este nodo
+		this.deleteNode(nodoNuevo);
+		// Reemplazar el nodo
+		node.setNum(nodoNuevo);
+
+		return true;
 	}
 }

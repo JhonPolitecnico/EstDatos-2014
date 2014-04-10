@@ -5,6 +5,13 @@ import java.util.Scanner;
 import kernel.console.Action;
 import kernel.console.ConsoleUI;
 
+/**
+ * Arbol binario
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Nodo extends Action {
 
 	public Nodo(ConsoleUI UI) {
