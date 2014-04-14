@@ -1,7 +1,5 @@
 package poligran;
 
-import java.util.Scanner;
-
 /**
  * Ventiuna
  * 
@@ -48,10 +46,35 @@ public class MainVentiuna {
 	public int[] cartasJugador3 = new int[NUMERO_CARTAS];
 	public int[] cartasJugador4 = new int[NUMERO_CARTAS];
 
+	// Callback
+	private String logger;
+	private boolean debug = true;
+
+	public void log(String text) {
+		this.logger += text + "\n";
+		if (debug)
+			System.out.println(text);
+	}
+
+	public void clearLog() {
+		this.logger = "";
+	}
+
+	public String getLog() {
+		return this.logger;
+	}
+
+	public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
+
 	// TODO: FIN PUNTO 1:
 	// ----------------------------------------------------------------------------------------------------
 
 	public void reiniciar() {
+
+		// Algo muy "trivial"...
+		this.partidaTerminada = false;
 
 		// TODO: PUNTO 2:
 		// ----------------------------------------------------------------------------------------------------
@@ -254,52 +277,23 @@ public class MainVentiuna {
 		int puntaje = contarPuntaje(jugador);
 
 		if (relancina) {
-			System.out.println("El jugador " + jugador + " tiene relancina");
+			this.log("El jugador " + jugador + " tiene relancina");
 			puntaje = RELANCINA;
 		} else if (chipolo) {
-			System.out.println("El jugador " + jugador + " tiene chipolo");
+			this.log("El jugador " + jugador + " tiene chipolo");
 			puntaje = CHIPOLO;
 		} else {
 			if (puntaje == 21) {
-				System.out.println("El jugador " + jugador + " tiene ventiuna");
+				this.log("El jugador " + jugador + " tiene ventiuna");
 			} else if (puntaje > 21) {
-				System.out.println("El jugador " + jugador + " se pasó!");
+				this.log("El jugador " + jugador + " se pasó!");
 			} else {
 				if (puntaje != 0) {
-					System.out.println("El jugador " + jugador + " tiene " + puntaje);
+					this.log("El jugador " + jugador + " tiene " + puntaje);
 				}
 			}
 		}
 		return puntaje;
-	}
-
-	public String darValidacion(int jugador) {
-		String respuesta = "";
-		// caso relancina
-		boolean relancina = validarRelancina(jugador);
-		// caso chipolo
-		boolean chipolo = validarChipolo(jugador);
-		// contar los puntajes, considere el as como 1
-		int puntaje = contarPuntaje(jugador);
-
-		if (relancina) {
-			respuesta = ("El jugador " + jugador + " tiene relancina");
-			puntaje = RELANCINA;
-		} else if (chipolo) {
-			respuesta = ("El jugador " + jugador + " tiene chipolo");
-			puntaje = CHIPOLO;
-		} else {
-			if (puntaje == 21) {
-				respuesta = ("El jugador " + jugador + " tiene ventiuna");
-			} else if (puntaje > 21) {
-				respuesta = ("El jugador " + jugador + " se pasó!");
-			} else {
-				if (puntaje != 0) {
-					respuesta = ("El jugador " + jugador + " tiene " + puntaje);
-				}
-			}
-		}
-		return respuesta;
 	}
 
 	private boolean validarRelancina(int jugador) {
@@ -350,11 +344,6 @@ public class MainVentiuna {
 		return res;
 	}
 
-	public void main(String[] args) {
-		reiniciar();
-		menu();
-	}
-
 	public void cambiarTurno() {
 		if (turnoActual < 4) {
 			turnoActual++;
@@ -363,76 +352,16 @@ public class MainVentiuna {
 		}
 	}
 
-	private void menu() {
-		// variable para guardar la opcion seleccionada por el usuario
-		int opcion = 0;
-		// scanner para pedir al usuario la opcion de menu
-		Scanner teclado = new Scanner(System.in);
-		// ciclo encargado de mostrar al usuario las opciones de menu cada
-		// jugada hasta que decida salir
-		while (opcion < MAX_OPCIONES) {
-
-			// titulo
-			System.out.println("-------------------Ventiuna!!---------------- ");
-
-			// mostrar las opciones posibles para el usuario
-			System.out.println(" El turno es del jugador " + turnoActual + ", Seleccione opcion: ");
-			if (!partidaTerminada) {
-				System.out.println(" 1. Pedir Carta");
-				System.out.println(" 2. Plantar");
-				System.out.println(" 3. Mostrar cartas");
-				System.out.println(" 4. Salir");
-				System.out.println("----------------------------------------------");
-			} else {
-				System.out.println(" 4. Salir");
-				System.out.println("----------------------------------------------");
-			}
-
-			// pido la opcion de menu al usuario
-			opcion = teclado.nextInt();
-			if (opcion == 1) // si la opcion es 1, juego
-			{
-				if (!partidaTerminada)
-					pedirCarta(turnoActual);
-			} else if (opcion == 2) // si la opcion es 2, planta (termina turno)
-			{
-				if (!partidaTerminada)
-					plantar(turnoActual);
-			} else if (opcion == 3) // si la opcion es 3, muestro estado
-			{
-				if (!partidaTerminada)
-					mostrarCartasJugador(turnoActual);
-			} else if (opcion == 4) // si la opcion es 4, salgo
-			{
-				System.out.println("Ha seleccionado salir del juego!");
-			} else // cualquier otra cosa que escriba el usuario es invalida
-			{
-				System.out.println("Opcion Invalida");
-			}
-			// imprimir algunos espacios
-			espacios();
-		}
-	}
-
 	public void plantar(int jugador) {
 		if (jugador < 4) {
 			cambiarTurno();
 		} else if (jugador == 4) {
-			System.out.println("Fin del juego, los resultados finales son: ");
+			this.log("Fin del juego, los resultados finales son: ");
 			validar(1);
 			validar(2);
 			validar(3);
 			validar(4);
 			partidaTerminada = true;
-		}
-	}
-
-	private void espacios() {
-
-		System.out.println("---------Pulse Enter para continuar-----------");
-		new Scanner(System.in).nextLine();
-		for (int i = 0; i < 25; i++) {
-			System.out.println();
 		}
 	}
 
@@ -442,49 +371,6 @@ public class MainVentiuna {
 
 	public boolean darPartidaTerminada() {
 		return partidaTerminada;
-	}
-
-	/**
-	 * mostrarCartasJugador
-	 * 
-	 * @param jugador
-	 *            El metodo tiene la responsabilidad de mostrar las cartas del jugador que viene como parametro Para hacerlo, debe utilizar el arreglo cartasJugador que corresponda y el arreglo
-	 *            etiquetasCartas
-	 */
-	private void mostrarCartasJugador(int jugador) {
-
-		if (jugador == 1) {
-			System.out.println("Cartas del jugador 1");
-			for (int i = 0; i < cartasJugador1.length; i++) {
-				if (cartasJugador1[i] > 0) {
-					System.out.println(etiquetasCartas[i]);
-				}
-			}
-
-		} else if (jugador == 2) {
-			System.out.println("Cartas del jugador 2");
-			for (int i = 0; i < cartasJugador2.length; i++) {
-				if (cartasJugador2[i] > 0) {
-					System.out.println(etiquetasCartas[i]);
-				}
-			}
-		} else if (jugador == 3) {
-			System.out.println("Cartas del jugador 3");
-			for (int i = 0; i < cartasJugador3.length; i++) {
-				if (cartasJugador3[i] > 0) {
-					System.out.println(etiquetasCartas[i]);
-				}
-			}
-		} else if (jugador == 4) {
-			System.out.println("Cartas del jugador 4");
-			for (int i = 0; i < cartasJugador4.length; i++) {
-				if (cartasJugador4[i] > 0) {
-					System.out.println(etiquetasCartas[i]);
-				}
-			}
-		}
-
-		validar(jugador);
 	}
 
 }

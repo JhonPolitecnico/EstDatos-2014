@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,15 +21,21 @@ import poligran.MainVentiuna;
  */
 public class Frame extends JFrame {
 
+	private static final long serialVersionUID = -7980907874610783159L;
+
 	private MainVentiuna model;
 	private JPanel panelPlayer1;
 	private JPanel panelPlayer2;
 	private JPanel panelPlayer3;
 	private JPanel panelPlayer4;
 	private JPanel panelControl;
+	private JLabel status;
 	private JButton btnCarta;
 	private JButton btnPasar;
+	private JButton btnReiniciar;
+	private JCheckBox chkDebug;
 	private ButtonController buttonController;
+	private CheckController checkController;
 
 	public static void main(String[] args) {
 		new Frame();
@@ -55,6 +62,12 @@ public class Frame extends JFrame {
 		this.panelPlayer3 = new JPanel();
 		this.panelPlayer4 = new JPanel();
 		this.panelControl = new JPanel();
+		this.panelControl = new JPanel();
+		// Denifir el label de estado
+		this.status = new JLabel(" ");
+		this.status.setBounds(50, 620, 720, 80);
+		this.status.setBackground(Color.PINK);
+		this.status.setOpaque(true);
 
 		/*
 		 * Panel 1
@@ -124,16 +137,25 @@ public class Frame extends JFrame {
 		// Pasar turno
 		this.btnPasar = new JButton("Pasar");
 		this.btnPasar.setActionCommand("Pasar");
+		// Reiniciar juego
+		this.btnReiniciar = new JButton("Reiniciar");
+		this.btnReiniciar.setActionCommand("Reiniciar");
 		// Agregar al panel de control
 		this.panelControl.add(this.btnCarta);
 		this.panelControl.add(this.btnPasar);
+		this.panelControl.add(this.btnReiniciar);
 
 		/*
-		 * Eventos
+		 * Debug
 		 */
-		this.buttonController = new ButtonController(this);
-		this.btnCarta.addActionListener(buttonController);
-		this.btnPasar.addActionListener(buttonController);
+		this.chkDebug = new JCheckBox("Debug");
+		this.chkDebug.setSelected(true);
+		this.panelControl.add(this.chkDebug);
+
+		/*
+		 * Estado
+		 */
+		this.getContentPane().add(this.status);
 
 		/*
 		 * Modelo
@@ -141,6 +163,17 @@ public class Frame extends JFrame {
 		this.model = new MainVentiuna();
 		this.model.reiniciar();
 		this.refrescar();
+
+		/*
+		 * Eventos
+		 */
+		this.buttonController = new ButtonController(this);
+		this.btnCarta.addActionListener(buttonController);
+		this.btnPasar.addActionListener(buttonController);
+		this.btnReiniciar.addActionListener(buttonController);
+		// CheckBox
+		this.checkController = new CheckController(this.model);
+		this.chkDebug.addChangeListener(checkController);
 
 		// Hacer visible
 		this.setVisible(true);
@@ -150,12 +183,32 @@ public class Frame extends JFrame {
 		return model;
 	}
 
+	/**
+	 * Establecer un comentario en el juego
+	 * 
+	 * @param text
+	 */
+	public void setStatus(String text) {
+		this.status.setText("<html>" + text.replace("\n", "<br />") + "</html>");
+	}
+
+	private void isTerminated() {
+		boolean terminated = this.model.darPartidaTerminada();
+
+		this.btnCarta.setEnabled(!terminated);
+		this.btnPasar.setEnabled(!terminated);
+		this.btnReiniciar.setEnabled(terminated);
+
+	}
+
 	public void refrescar() {
 
 		String[] cartas = null;
 		JPanel panel = null;
 		int palo = 0;
 		int numeroCarta = 0;
+
+		this.isTerminated();
 
 		for (int i = 1; i <= 4; i++) {
 			switch (i) {
@@ -189,8 +242,8 @@ public class Frame extends JFrame {
 
 				for (int j2 = 0; j2 < this.model.valores.length; j2++) {
 
-					// Si es jugador actual, sus cartas de ven
-					if (i == this.model.darTurno()) {
+					// Si es jugador actual, o la partida termino, sus cartas de ven
+					if (i == this.model.darTurno() || this.model.darPartidaTerminada()) {
 						if (cartas[j].indexOf(this.model.valores[j2]) != -1) {
 							numeroCarta = j2 + 1;
 							break;

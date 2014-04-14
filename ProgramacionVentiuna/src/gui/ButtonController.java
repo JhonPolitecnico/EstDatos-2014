@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import poligran.MainVentiuna;
 
 /**
  * Ventiuna
@@ -13,14 +15,25 @@ import java.awt.event.ActionListener;
 public class ButtonController implements ActionListener {
 
 	private Frame frame;
+	private MainVentiuna model;
 
 	public ButtonController(Frame frame) {
 		this.frame = frame;
+		this.model = this.frame.getModel();
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		String sCommand = arg0.getActionCommand();
+	public void actionPerformed(ActionEvent e) {
+
+		if (!(e.getSource() instanceof JButton))
+			return;
+
+		JButton button = (JButton) e.getSource();
+
+		if (!button.isEnabled())
+			return;
+
+		String sCommand = e.getActionCommand();
 
 		switch (sCommand) {
 		case "Carta":
@@ -31,6 +44,10 @@ public class ButtonController implements ActionListener {
 			this.pasarCommand();
 			break;
 
+		case "Reiniciar":
+			this.reiniciarCommand();
+			break;
+
 		default:
 			break;
 		}
@@ -38,12 +55,24 @@ public class ButtonController implements ActionListener {
 	}
 
 	private void cartaCommand() {
-		this.frame.getModel().pedirCarta(this.frame.getModel().darTurno());
+		this.model.pedirCarta(this.model.darTurno());
 		this.frame.refrescar();
 	}
 
 	private void pasarCommand() {
-		this.frame.getModel().plantar(this.frame.getModel().darTurno());
+		this.model.plantar(this.model.darTurno());
 		this.frame.refrescar();
+		// Fin del juego
+		if (this.model.darPartidaTerminada()) {
+			this.model.clearLog();
+			this.model.plantar(this.model.darTurno());
+			this.frame.setStatus(this.model.getLog());
+		}
+	}
+
+	private void reiniciarCommand() {
+		this.model.reiniciar();
+		this.frame.refrescar();
+		this.frame.setStatus("");
 	}
 }
