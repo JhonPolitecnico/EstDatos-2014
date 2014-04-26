@@ -8,13 +8,30 @@ public class Cancion {
 	private String artista;
 	private int año;
 	private String casaDiscografica;
-	private long duracion;
+	private String duracion;
 	private MIDIFile archivo;
 
 	public Cancion(MIDIFile archivo) {
 		super();
 		this.archivo = archivo;
-		this.duracion = (new MIDIPlayer(this.archivo)).getMicrosecondTime();
+
+		// Duracion
+		long microseconds = (new MIDIPlayer(this.archivo)).getMicrosecondTime();
+		long minutes = 0;
+		long seconds = 0;
+		long milliseconds = microseconds / 1000;
+
+		if (milliseconds >= 1000) {
+			seconds = milliseconds / 1000;
+			milliseconds = milliseconds - (seconds * 1000);
+		}
+
+		if (seconds >= 60) {
+			minutes = seconds / 60;
+			seconds = seconds - (minutes * 60);
+		}
+
+		this.duracion = String.format("%02d:%02d:%04d", minutes, seconds, milliseconds);
 
 	}
 
@@ -61,11 +78,11 @@ public class Cancion {
 		this.casaDiscografica = casaDiscografica;
 	}
 
-	public long getDuracion() {
+	public String getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(long duracion) {
+	public void setDuracion(String duracion) {
 		this.duracion = duracion;
 	}
 

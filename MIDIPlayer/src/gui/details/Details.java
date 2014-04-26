@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SpringLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public abstract class Details extends JFrame {
 
@@ -20,8 +22,8 @@ public abstract class Details extends JFrame {
 	protected JLabel lblArchivo;
 	protected JLabel txtDuracion;
 	protected JLabel txtArchivo;
+	protected JButton btnGuardar;
 	protected JButton btnCancelar;
-	protected JButton btnCancelar_1;
 
 	/**
 	 * Create the frame.
@@ -31,7 +33,7 @@ public abstract class Details extends JFrame {
 		setName("frmDetails");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 284, 256);
+		setBounds(100, 100, 284, 266);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
@@ -102,14 +104,51 @@ public abstract class Details extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, txtArchivo, 0, SpringLayout.EAST, txtTitulo);
 		contentPane.add(txtArchivo);
 
-		btnCancelar = new JButton("Guardar");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCancelar, 21, SpringLayout.SOUTH, lblArchivo);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnCancelar, 10, SpringLayout.WEST, contentPane);
-		contentPane.add(btnCancelar);
+		btnGuardar = new JButton("Guardar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGuardar, 21, SpringLayout.SOUTH, lblArchivo);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnGuardar, 10, SpringLayout.WEST, contentPane);
+		contentPane.add(btnGuardar);
 
-		btnCancelar_1 = new JButton("Cancelar");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCancelar_1, 0, SpringLayout.NORTH, btnCancelar);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnCancelar_1, 0, SpringLayout.EAST, txtTitulo);
-		contentPane.add(btnCancelar_1);
+		btnCancelar = new JButton("Cancelar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCancelar, 0, SpringLayout.NORTH, btnGuardar);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnCancelar, 0, SpringLayout.EAST, txtTitulo);
+		contentPane.add(btnCancelar);
 	}
+
+	/*
+	 * Getters & Setters
+	 */
+
+	public JTextField getTxtTitulo() {
+		return txtTitulo;
+	}
+
+	public JTextField getTxtArtista() {
+		return txtArtista;
+	}
+
+	public JTextField getTxtAño() {
+		return txtAño;
+	}
+
+	public JTextField getTxtDisco() {
+		return txtDisco;
+	}
+
+	public JLabel getLblDuracion() {
+		return lblDuracion;
+	}
+
+	public JLabel getLblArchivo() {
+		return lblArchivo;
+	}
+
+	public JLabel getTxtDuracion() {
+		return txtDuracion;
+	}
+
+	public JLabel getTxtArchivo() {
+		return txtArchivo;
+	}
+
 }

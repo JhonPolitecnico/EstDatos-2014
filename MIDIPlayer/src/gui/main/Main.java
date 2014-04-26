@@ -71,12 +71,13 @@ public class Main extends JFrame {
 	public Main() {
 		// Crear el controlador de Main
 		createController();
-		setLocationRelativeTo(null);
+		// Centrar el formulario
+		setSize(new Dimension(780, 525));
+		Utils.centerFrame(this);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setTitle("Reproductor MIDI - Jhon Jairo Eslava");
-		setSize(new Dimension(780, 525));
 
 		JScrollPane scrollPane = new JScrollPane();
 
