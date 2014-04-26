@@ -16,10 +16,12 @@ public class DeleteElement implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		if (controller.getOwner().getList().isSelectionEmpty())
+		if (controller.getList().isSelectionEmpty())
 			return;
 
-		controller.getMIDIList().remove(controller.getOwner().getList().getSelectedIndex());
+		for (Object element : controller.getList().getSelectedValuesList())
+			controller.getMIDIList().removeElement(element);
+
 	}
 
 }

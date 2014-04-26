@@ -3,9 +3,6 @@ package gui.details;
 import gui.details.mouse.Cancel;
 import gui.details.mouse.Save;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 
 import midi.Cancion;
@@ -30,7 +27,6 @@ public class Controller extends Details {
 		/*
 		 * Eventos
 		 */
-
 		this.btnCancelar.addActionListener(new Cancel(this));
 		this.btnGuardar.addActionListener(new Save(this));
 

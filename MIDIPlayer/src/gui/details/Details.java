@@ -6,8 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SpringLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public abstract class Details extends JFrame {
 

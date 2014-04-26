@@ -1,16 +1,5 @@
 package gui.main;
 
-import gui.main.check.Repeat;
-import gui.main.mouse.AddFile;
-import gui.main.mouse.DeleteElement;
-import gui.main.mouse.EmptyList;
-import gui.main.mouse.PlayAndPause;
-import gui.main.mouse.Stop;
-import gui.main.mouse.StopList;
-import gui.main.mouse.ViewDetails;
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -36,44 +25,28 @@ import utils.Utils;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class Main extends JFrame {
+public abstract class Main extends JFrame {
 
 	private static final long serialVersionUID = 3247169800303769527L;
-	private Controller controller;
-	private JList list;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main frame = new Main();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	private void createController() {
-		this.controller = new Controller(this);
-	}
+	protected JList list;
+	protected JMenuItem mntmLimpiar;
+	protected JMenuItem mntmAadirArchivo;
+	protected JMenuItem mntmEliminar;
+	protected JMenuItem mntmPropiedades;
+	protected JButton btnNewButton;
+	protected JCheckBox chckbxModoAleatorio;
+	protected JCheckBox chckbxRepetir;
+	protected JButton btnParar;
+	protected JButton btnPararLista;
+	protected JMenuItem mntmSalir;
 
 	/**
 	 * Create the frame.
 	 */
 	public Main() {
-		// Crear el controlador de Main
-		createController();
-		// Centrar el formulario
 		setSize(new Dimension(780, 525));
-		Utils.centerFrame(this);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -96,49 +69,40 @@ public class Main extends JFrame {
 						.addComponent(panelControl, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
 		list = new JList();
-		list.setModel(this.controller.getMIDIList());
 		list.setVisibleRowCount(-1);
 		scrollPane.setViewportView(list);
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(list, popupMenu);
 
-		JMenuItem mntmLimpiar = new JMenuItem("Vaciar lista");
-		mntmLimpiar.addActionListener(new EmptyList(controller));
+		mntmLimpiar = new JMenuItem("Vaciar lista");
 		popupMenu.add(mntmLimpiar);
 
 		JSeparator separator_2 = new JSeparator();
 		popupMenu.add(separator_2);
 
-		JMenuItem mntmAadirArchivo = new JMenuItem("A\u00F1adir archivo(s)");
-		mntmAadirArchivo.addActionListener(new AddFile(controller));
+		mntmAadirArchivo = new JMenuItem("A\u00F1adir archivo(s)");
 		popupMenu.add(mntmAadirArchivo);
 
-		JMenuItem mntmEliminar = new JMenuItem("Eliminar");
-		mntmEliminar.addActionListener(new DeleteElement(controller));
+		mntmEliminar = new JMenuItem("Eliminar");
 		popupMenu.add(mntmEliminar);
 
 		JSeparator separator = new JSeparator();
 		popupMenu.add(separator);
 
-		JMenuItem mntmPropiedades = new JMenuItem("Propiedades");
-		mntmPropiedades.addActionListener(new ViewDetails(controller));
+		mntmPropiedades = new JMenuItem("Propiedades");
 		popupMenu.add(mntmPropiedades);
 
-		JButton btnNewButton = new JButton("Reproducir / Pausa");
-		btnNewButton.addMouseListener(new PlayAndPause(controller));
+		btnNewButton = new JButton("Reproducir / Pausa");
 		btnNewButton.setAlignmentY(Component.TOP_ALIGNMENT);
 
-		JCheckBox chckbxModoAleatorio = new JCheckBox("Modo Aleatorio");
+		chckbxModoAleatorio = new JCheckBox("Modo Aleatorio");
 
-		JCheckBox chckbxRepetir = new JCheckBox("Repetir");
-		chckbxRepetir.addActionListener(new Repeat(controller));
+		chckbxRepetir = new JCheckBox("Repetir");
 
-		JButton btnParar = new JButton("Parar");
-		btnParar.addMouseListener(new Stop(controller));
+		btnParar = new JButton("Parar");
 
-		JButton btnPararLista = new JButton("Parar Lista");
-		btnPararLista.addMouseListener(new StopList(controller));
+		btnPararLista = new JButton("Parar Lista");
 		GroupLayout gl_panelControl = new GroupLayout(panelControl);
 		gl_panelControl.setHorizontalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_panelControl.createSequentialGroup().addComponent(btnNewButton).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnParar).addPreferredGap(ComponentPlacement.RELATED)
@@ -160,13 +124,7 @@ public class Main extends JFrame {
 		JMenu mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
 
-		JMenuItem mntmSalir = new JMenuItem("Salir");
-		mntmSalir.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.exit(0);
-			}
-		});
+		mntmSalir = new JMenuItem("Salir");
 		mnArchivo.add(mntmSalir);
 
 		JMenu mnLista = new JMenu("Lista");
@@ -203,9 +161,5 @@ public class Main extends JFrame {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
-	}
-
-	public JList getList() {
-		return list;
 	}
 }

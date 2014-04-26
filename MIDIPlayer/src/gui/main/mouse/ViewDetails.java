@@ -18,10 +18,11 @@ public class ViewDetails implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		if (controller.getOwner().getList().isSelectionEmpty())
+		if (controller.getList().isSelectionEmpty())
 			return;
 
-		new gui.details.Controller(this.controller.getOwner(), (Cancion) controller.getOwner().getList().getSelectedValue());
+		for (Object element : controller.getList().getSelectedValuesList())
+			new gui.details.Controller(this.controller, (Cancion) element);
 	}
 
 }
