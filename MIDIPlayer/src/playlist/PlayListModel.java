@@ -1,4 +1,4 @@
-package gui.save.playlist;
+package playlist;
 
 import javax.swing.DefaultListModel;
 

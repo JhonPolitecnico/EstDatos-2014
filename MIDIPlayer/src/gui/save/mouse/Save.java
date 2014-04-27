@@ -1,12 +1,13 @@
 package gui.save.mouse;
 
 import gui.save.Controller;
-import gui.save.playlist.PlayList;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
+
+import playlist.PlayList;
 
 public class Save extends MouseAdapter {
 
@@ -43,6 +44,6 @@ public class Save extends MouseAdapter {
 		}
 
 		JOptionPane.showMessageDialog(this.controller, "La lista se guardo correctamente", "OK", JOptionPane.INFORMATION_MESSAGE);
-
+		this.controller.dispose();
 	}
 }

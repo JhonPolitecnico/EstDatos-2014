@@ -10,6 +10,7 @@ import gui.main.mouse.AddFile;
 import gui.main.mouse.DeleteElement;
 import gui.main.mouse.EmptyList;
 import gui.main.mouse.Exit;
+import gui.main.mouse.LoadList;
 import gui.main.mouse.PlayAndPause;
 import gui.main.mouse.SaveList;
 import gui.main.mouse.Stop;
@@ -59,6 +60,7 @@ public class Controller extends Main {
 		 * Eventos
 		 */
 		mntmAadirArchivo.addActionListener(new AddFile(this));
+		mntmCargar.addActionListener(new LoadList(this));
 		mntmEliminar.addActionListener(new DeleteElement(this));
 		mntmGuardar.addActionListener(new SaveList(this));
 		mntmLimpiar.addActionListener(new EmptyList(this));
@@ -96,7 +98,13 @@ public class Controller extends Main {
 	}
 
 	public void setMIDIList(MIDIListModel mIDIList) {
-		MIDIList = mIDIList;
+		MIDIListModel clon = new MIDIListModel();
+
+		for (int i = 0; i < mIDIList.getSize(); i++)
+			clon.addElement(mIDIList.get(i));
+
+		MIDIList = clon;
+		jList.setModel(this.MIDIList);
 	}
 
 	public MIDIPlayerController getPlayerController() {
