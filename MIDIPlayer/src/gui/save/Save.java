@@ -25,6 +25,7 @@ public abstract class Save extends JFrame {
 	 * Create the frame.
 	 */
 	public Save() {
+		setTitle("Guardar Lista");
 		setName("frmSave");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 237, 550);

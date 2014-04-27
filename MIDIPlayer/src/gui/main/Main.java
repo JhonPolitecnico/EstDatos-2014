@@ -25,6 +25,7 @@ import utils.Utils;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTable;
 
 public abstract class Main extends JFrame {
 
@@ -69,7 +70,7 @@ public abstract class Main extends JFrame {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
 				groupLayout.createSequentialGroup().addGap(13).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(panelControl, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addContainerGap()));
-
+		
 		jList = new JList();
 		jList.setVisibleRowCount(-1);
 		scrollPane.setViewportView(jList);

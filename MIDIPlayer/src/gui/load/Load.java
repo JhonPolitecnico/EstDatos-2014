@@ -23,6 +23,7 @@ public abstract class Load extends JFrame {
 	 * Create the frame.
 	 */
 	public Load() {
+		setTitle("Cargar Lista");
 		setName("frmSave");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 237, 488);
