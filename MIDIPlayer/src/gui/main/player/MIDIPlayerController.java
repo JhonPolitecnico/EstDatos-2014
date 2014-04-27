@@ -40,7 +40,6 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 		}
 
 		this.newPlayer(controller.getMIDIList().get(id).getArchivo());
-		System.out.println(e.getArchivo().getFileName() + "<<== tremino");
 	}
 
 	public void reset() {
