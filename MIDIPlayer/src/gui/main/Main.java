@@ -30,7 +30,7 @@ public abstract class Main extends JFrame {
 
 	private static final long serialVersionUID = 3247169800303769527L;
 
-	protected JList list;
+	protected JList jList;
 	protected JMenuItem mntmLimpiar;
 	protected JMenuItem mntmAadirArchivo;
 	protected JMenuItem mntmEliminar;
@@ -41,6 +41,8 @@ public abstract class Main extends JFrame {
 	protected JButton btnParar;
 	protected JButton btnPararLista;
 	protected JMenuItem mntmSalir;
+	protected JMenuItem mntmCargar;
+	protected JMenuItem mntmGuardar;
 
 	/**
 	 * Create the frame.
@@ -68,12 +70,12 @@ public abstract class Main extends JFrame {
 				groupLayout.createSequentialGroup().addGap(13).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(panelControl, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
-		list = new JList();
-		list.setVisibleRowCount(-1);
-		scrollPane.setViewportView(list);
+		jList = new JList();
+		jList.setVisibleRowCount(-1);
+		scrollPane.setViewportView(jList);
 
 		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(list, popupMenu);
+		addPopup(jList, popupMenu);
 
 		mntmLimpiar = new JMenuItem("Vaciar lista");
 		popupMenu.add(mntmLimpiar);
@@ -136,10 +138,10 @@ public abstract class Main extends JFrame {
 		JSeparator separator_1 = new JSeparator();
 		mnLista.add(separator_1);
 
-		JMenuItem mntmCargar = new JMenuItem("Cargar");
+		mntmCargar = new JMenuItem("Cargar");
 		mnLista.add(mntmCargar);
 
-		JMenuItem mntmGuardar = new JMenuItem("Guardar");
+		mntmGuardar = new JMenuItem("Guardar");
 		mnLista.add(mntmGuardar);
 	}
 

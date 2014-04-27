@@ -11,16 +11,19 @@ import gui.main.mouse.DeleteElement;
 import gui.main.mouse.EmptyList;
 import gui.main.mouse.Exit;
 import gui.main.mouse.PlayAndPause;
+import gui.main.mouse.SaveList;
 import gui.main.mouse.Stop;
 import gui.main.mouse.StopList;
 import gui.main.mouse.ViewDetails;
 import gui.main.player.MIDIPlayerController;
 import midi.MIDIListModel;
+import midi.MIDIPLayList;
 
 public class Controller extends Main {
 
 	private static final long serialVersionUID = 6445097674136753468L;
 
+	private MIDIPLayList playList;
 	private MIDIListModel MIDIList;
 	private MIDIPlayerController playerController;
 
@@ -46,8 +49,10 @@ public class Controller extends Main {
 		/*
 		 * Modelo
 		 */
+		this.playList = new MIDIPLayList();
 		this.MIDIList = new MIDIListModel();
-		list.setModel(this.MIDIList);
+		this.playList.addList("Default", this.MIDIList);
+		jList.setModel(this.MIDIList);
 		this.playerController = new MIDIPlayerController(this);
 
 		/*
@@ -55,6 +60,7 @@ public class Controller extends Main {
 		 */
 		mntmAadirArchivo.addActionListener(new AddFile(this));
 		mntmEliminar.addActionListener(new DeleteElement(this));
+		mntmGuardar.addActionListener(new SaveList(this));
 		mntmLimpiar.addActionListener(new EmptyList(this));
 		mntmPropiedades.addActionListener(new ViewDetails(this));
 		mntmSalir.addActionListener(new Exit());
@@ -74,7 +80,15 @@ public class Controller extends Main {
 	 */
 
 	public JList getList() {
-		return this.list;
+		return this.jList;
+	}
+
+	public MIDIPLayList getPlayList() {
+		return playList;
+	}
+
+	public void setPlayList(MIDIPLayList playList) {
+		this.playList = playList;
 	}
 
 	public MIDIListModel getMIDIList() {
