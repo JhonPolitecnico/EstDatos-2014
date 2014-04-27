@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JList;
 
+import serializer.engine.Serializer;
 import utils.Utils;
 import gui.main.check.Repeat;
 import gui.main.mouse.AddFile;
@@ -17,6 +18,7 @@ import gui.main.mouse.Stop;
 import gui.main.mouse.StopList;
 import gui.main.mouse.ViewDetails;
 import gui.main.player.MIDIPlayerController;
+import gui.main.window.WindowController;
 import midi.MIDIListModel;
 import midi.MIDIPLayList;
 
@@ -48,17 +50,29 @@ public class Controller extends Main {
 		super();
 
 		/*
+		 * Serializer
+		 */
+		Serializer s = new Serializer(Utils.getLibrary());
+		Object object = s.unserialize();
+
+		if (object != null && object instanceof MIDIPLayList) {
+			this.playList = (MIDIPLayList) object;
+		} else
+			this.playList = new MIDIPLayList();
+
+		/*
 		 * Modelo
 		 */
-		this.playList = new MIDIPLayList();
 		this.MIDIList = new MIDIListModel();
-		this.playList.addList("Default", this.MIDIList);
 		jList.setModel(this.MIDIList);
 		this.playerController = new MIDIPlayerController(this);
 
 		/*
 		 * Eventos
 		 */
+
+		this.addWindowListener(new WindowController(this));
+
 		mntmAadirArchivo.addActionListener(new AddFile(this));
 		mntmCargar.addActionListener(new LoadList(this));
 		mntmEliminar.addActionListener(new DeleteElement(this));

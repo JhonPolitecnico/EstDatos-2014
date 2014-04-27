@@ -1,8 +1,10 @@
 package midi;
 
+import java.io.Serializable;
+
 import midi.player.MIDIPlayer;
 
-public class Cancion {
+public class Cancion implements Serializable {
 
 	private String titulo;
 	private String artista;

@@ -1,10 +1,11 @@
 package midi;
 
 import java.io.File;
+import java.io.Serializable;
 
 import javax.swing.DefaultListModel;
 
-public class MIDIListModel extends DefaultListModel<Cancion> {
+public class MIDIListModel extends DefaultListModel<Cancion> implements Serializable {
 
 	private static final long serialVersionUID = 5697885976584118660L;
 
@@ -32,6 +33,7 @@ public class MIDIListModel extends DefaultListModel<Cancion> {
 		if (!archivo.getName().endsWith(".mid"))
 			return;
 
-		super.addElement(new Cancion(new MIDIFile(archivo.getAbsolutePath())));
+		Cancion song = new Cancion(new MIDIFile(archivo.getAbsolutePath()));
+		super.addElement(SongList.getInstance().addSong(song));
 	}
 }

@@ -1,8 +1,9 @@
 package midi;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class MIDIFile extends File {
+public class MIDIFile extends File implements Serializable {
 
 	private static final long serialVersionUID = -691317870702529354L;
 

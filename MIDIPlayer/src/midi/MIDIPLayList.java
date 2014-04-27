@@ -1,8 +1,12 @@
 package midi;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class MIDIPLayList {
+public class MIDIPLayList implements Serializable {
+
+	private static final long serialVersionUID = -3060777809404304238L;
+
 	private HashMap<String, MIDIListModel> lists;
 
 	public MIDIPLayList() {

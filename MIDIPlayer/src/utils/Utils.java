@@ -2,11 +2,18 @@ package utils;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+
 import javax.swing.JFrame;
 
 public class Utils {
+
 	public static String getPath() {
 		return System.getProperty("user.dir");
+	}
+
+	public static File getLibrary() {
+		return new File(Utils.getPath() + "\\library.bin");
 	}
 
 	public static void centerFrame(JFrame frame) {
