@@ -1,5 +1,12 @@
 package playlist;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import javax.swing.DefaultListModel;
 
 public class PlayListModel extends DefaultListModel<PlayList> {

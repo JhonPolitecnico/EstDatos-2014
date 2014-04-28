@@ -1,5 +1,12 @@
 package utils;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;

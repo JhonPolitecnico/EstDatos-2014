@@ -1,5 +1,12 @@
 package gui.details;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import gui.details.mouse.Cancel;
 import gui.details.mouse.Save;
 

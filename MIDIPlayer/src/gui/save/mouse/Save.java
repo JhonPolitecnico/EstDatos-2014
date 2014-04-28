@@ -1,5 +1,12 @@
 package gui.save.mouse;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import gui.save.Controller;
 
 import java.awt.event.MouseAdapter;

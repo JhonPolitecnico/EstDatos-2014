@@ -1,5 +1,12 @@
 package gui.main;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.EventQueue;
 
 import javax.swing.JList;

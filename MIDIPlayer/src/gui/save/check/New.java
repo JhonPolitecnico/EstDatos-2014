@@ -1,5 +1,12 @@
 package gui.save.check;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

@@ -1,5 +1,12 @@
 package midi.player;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.util.EventObject;
 
 import midi.MIDIFile;

@@ -1,5 +1,12 @@
 package gui.main.player;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import gui.main.Controller;
 import midi.MIDIFile;
 import midi.player.MIDIPLayerListener;

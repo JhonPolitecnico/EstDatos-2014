@@ -1,5 +1,12 @@
 package gui.load;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.util.Map.Entry;
 
 import javax.swing.JList;

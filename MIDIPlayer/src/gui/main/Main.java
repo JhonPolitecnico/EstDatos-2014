@@ -1,5 +1,12 @@
 package gui.main;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -21,11 +28,8 @@ import javax.swing.JMenu;
 import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
 
-import utils.Utils;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JTable;
 
 public abstract class Main extends JFrame {
 
@@ -70,7 +74,7 @@ public abstract class Main extends JFrame {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(
 				groupLayout.createSequentialGroup().addGap(13).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(panelControl, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addContainerGap()));
-		
+
 		jList = new JList();
 		jList.setVisibleRowCount(-1);
 		scrollPane.setViewportView(jList);

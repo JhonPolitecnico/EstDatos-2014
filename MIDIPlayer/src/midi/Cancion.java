@@ -1,5 +1,12 @@
 package midi;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.io.Serializable;
 
 import midi.player.MIDIPlayer;

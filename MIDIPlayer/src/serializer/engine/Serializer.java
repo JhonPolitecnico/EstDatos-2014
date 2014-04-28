@@ -1,5 +1,12 @@
 package serializer.engine;
 
+/**
+ * MIDIPlayer
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.io.*;
 
 public class Serializer {
