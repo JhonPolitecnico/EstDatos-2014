@@ -11,6 +11,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
 
@@ -66,16 +67,20 @@ public class Main extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		JButton btnLinea = new JButton("Linea");
+		JButton btnLinea = new JButton("");
+		btnLinea.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\line.png"));
 		panel_1.add(btnLinea);
 		
-		JButton btnTriangulo = new JButton("Triangulo");
+		JButton btnTriangulo = new JButton("");
+		btnTriangulo.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\triangle.png"));
 		panel_1.add(btnTriangulo);
 		
-		JButton btnCuadrado = new JButton("Cuadrado");
+		JButton btnCuadrado = new JButton("");
+		btnCuadrado.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\square.png"));
 		panel_1.add(btnCuadrado);
 		
-		JButton btnPoligono = new JButton("Poligono");
+		JButton btnPoligono = new JButton("");
+		btnPoligono.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\polygon.png"));
 		panel_1.add(btnPoligono);
 		contentPane.setLayout(gl_contentPane);
 	}
