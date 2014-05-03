@@ -1,37 +1,47 @@
 package gui.main;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+/**
+ * Paint
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
+
+import gui.main.workspace.Workspace;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.Color;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+import utils.Utils;
+
 public class Main extends JFrame {
 
-	private JPanel contentPane;
+	private static final long serialVersionUID = 6181817596811086435L;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main frame = new Main();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JPanel contentPane;
+	protected Workspace pnlWorkspace;
+	protected JPanel pnlLeft;
+	protected JPanel pnlRight;
+	protected JButton btnWhite;
+	protected JButton btnBlack;
+	protected JButton btnRed;
+	protected JButton btnGreen;
+	protected JButton btnBlue;
+	protected JButton btnOrange;
+	protected JButton btnLine;
+	protected JButton btnTriangle;
+	protected JButton btnSquare;
+	protected JButton btnPolygon;
 
 	/**
 	 * Create the frame.
@@ -42,73 +52,66 @@ public class Main extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.ORANGE);
-		
-		JPanel panel_1 = new JPanel();
-		
-		JPanel panel_2 = new JPanel();
+
+		pnlWorkspace = new Workspace();
+		pnlWorkspace.setBackground(Color.ORANGE);
+
+		pnlLeft = new JPanel();
+
+		pnlRight = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-					.addGap(0))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		
-		JButton button = new JButton("   ");
-		button.setBackground(Color.WHITE);
-		panel_2.add(button);
-		
-		JButton button_1 = new JButton("   ");
-		button_1.setBackground(Color.BLACK);
-		panel_2.add(button_1);
-		
-		JButton button_2 = new JButton("   ");
-		button_2.setBackground(Color.RED);
-		panel_2.add(button_2);
-		
-		JButton button_3 = new JButton("   ");
-		button_3.setBackground(Color.GREEN);
-		panel_2.add(button_3);
-		
-		JButton button_4 = new JButton("   ");
-		button_4.setBackground(Color.BLUE);
-		panel_2.add(button_4);
-		
-		JButton button_5 = new JButton("   ");
-		button_5.setBackground(Color.ORANGE);
-		panel_2.add(button_5);
-		
-		JButton btnLinea = new JButton("");
-		btnLinea.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\line.png"));
-		panel_1.add(btnLinea);
-		
-		JButton btnTriangulo = new JButton("");
-		btnTriangulo.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\triangle.png"));
-		panel_1.add(btnTriangulo);
-		
-		JButton btnCuadrado = new JButton("");
-		btnCuadrado.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\square.png"));
-		panel_1.add(btnCuadrado);
-		
-		JButton btnPoligono = new JButton("");
-		btnPoligono.setIcon(new ImageIcon("C:\\Users\\jjeslava\\git\\Proyectos-2014\\Paint [Paradigmas]\\img\\polygon.png"));
-		panel_1.add(btnPoligono);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(
+				Alignment.LEADING,
+				gl_contentPane.createSequentialGroup().addComponent(pnlLeft, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(pnlWorkspace, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(pnlRight, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE).addGap(0)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addGroup(
+								gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(pnlLeft, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+										.addComponent(pnlRight, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+										.addComponent(pnlWorkspace, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)).addContainerGap()));
+
+		btnWhite = new JButton("   ");
+		btnWhite.setBackground(Color.WHITE);
+		pnlRight.add(btnWhite);
+
+		btnBlack = new JButton("   ");
+		btnBlack.setBackground(Color.BLACK);
+		pnlRight.add(btnBlack);
+
+		btnRed = new JButton("   ");
+		btnRed.setBackground(Color.RED);
+		pnlRight.add(btnRed);
+
+		btnGreen = new JButton("   ");
+		btnGreen.setBackground(Color.GREEN);
+		pnlRight.add(btnGreen);
+
+		btnBlue = new JButton("   ");
+		btnBlue.setBackground(Color.BLUE);
+		pnlRight.add(btnBlue);
+
+		btnOrange = new JButton("   ");
+		btnOrange.setBackground(Color.ORANGE);
+		pnlRight.add(btnOrange);
+
+		btnLine = new JButton("");
+		btnLine.setIcon(new ImageIcon(Utils.getPath() + "\\img\\line.png"));
+		pnlLeft.add(btnLine);
+
+		btnTriangle = new JButton("");
+		btnTriangle.setIcon(new ImageIcon(Utils.getPath() + "\\img\\triangle.png"));
+		pnlLeft.add(btnTriangle);
+
+		btnSquare = new JButton("");
+		btnSquare.setIcon(new ImageIcon(Utils.getPath() + "\\img\\square.png"));
+		pnlLeft.add(btnSquare);
+
+		btnPolygon = new JButton("");
+		btnPolygon.setIcon(new ImageIcon(Utils.getPath() + "\\img\\polygon.png"));
+		pnlLeft.add(btnPolygon);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
