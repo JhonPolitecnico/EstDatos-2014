@@ -1,6 +1,7 @@
 package main;
 
 import hashtable.Capital;
+import hashtable.Estudiante;
 
 public class Main {
 
@@ -21,6 +22,26 @@ public class Main {
 		System.out.println(capitales.buscarPorClave("Colombia"));
 		// Caracas, Montevideo, Kiev
 		System.out.println(capitales.devolverParejas());
+
+		/*
+		 * Estudiantes
+		 */
+		Estudiante estudiantes = new Estudiante();
+
+		// Insertar
+		estudiantes.insertarEstudiante(12, "jhon");
+		estudiantes.insertarEstudiante(16, "juan");
+		estudiantes.insertarEstudiante(31, "pedro");
+
+		// jhon
+		System.out.println(estudiantes.buscarPorCodigo(12));
+		// Eliminar
+		estudiantes.removerPorCodigo(12);
+		// Null
+		System.out.println(estudiantes.buscarPorCodigo(12));
+		// pedro, juan
+		System.out.println(estudiantes.devolverEstudiantes());
+
 	}
 
 }

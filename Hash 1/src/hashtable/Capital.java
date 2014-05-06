@@ -28,6 +28,7 @@ public class Capital extends Hashtable<String, String> {
 	public String devolverParejas() {
 		String sRet = "";
 		Enumeration<String> claves = this.keys();
+
 		while (claves.hasMoreElements()) {
 			Object clave = claves.nextElement();
 			Object valor = this.get(clave);
