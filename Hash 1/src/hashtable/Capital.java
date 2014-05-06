@@ -1,5 +1,6 @@
 package hashtable;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 /**
@@ -22,6 +23,18 @@ public class Capital extends Hashtable<String, String> {
 		if (this.containsKey(clave))
 			this.remove(clave);
 
+	}
+
+	public String devolverParejas() {
+		String sRet = "";
+		Enumeration<String> claves = this.keys();
+		while (claves.hasMoreElements()) {
+			Object clave = claves.nextElement();
+			Object valor = this.get(clave);
+			sRet += valor.toString() + "\n";
+		}
+
+		return sRet;
 	}
 
 }
