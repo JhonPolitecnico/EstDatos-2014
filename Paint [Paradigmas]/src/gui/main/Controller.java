@@ -47,6 +47,8 @@ public class Controller extends Main {
 		// Crear frame
 		Utils.centerFrame(this);
 
+		this.brush = new gui.main.brush.Controller(this);
+
 		super.workspace.addBrush(new Line(Color.BLACK, new Position(0, 0), new Position(100, 100)));
 		super.workspace.addBrush(new Line(Color.BLUE, new Position(0, 50), new Position(100, 150)));
 		super.workspace.addBrush(new Line(Color.RED, new Position(0, 100), new Position(100, 200)));

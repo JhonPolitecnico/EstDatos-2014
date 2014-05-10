@@ -8,6 +8,7 @@ public class Controller {
 	public Controller(gui.main.Controller main) {
 		this.main = main;
 		this.state = Brush.LINE;
+		this.setEnabled(this.state);
 	}
 
 	public Brush getState() {
@@ -38,9 +39,9 @@ public class Controller {
 	}
 
 	private void setEnabled(Brush state) {
-		this.main.getBtnLine().setEnabled(((state.getValue() & Brush.LINE.getValue()) != 0) ? true : false);
-		this.main.getBtnTriangle().setEnabled(((state.getValue() & Brush.TRIANGLE.getValue()) != 0) ? true : false);
-		this.main.getBtnSquare().setEnabled(((state.getValue() & Brush.SQUARE.getValue()) != 0) ? true : false);
-		this.main.getBtnPolygon().setEnabled(((state.getValue() & Brush.POLYGON.getValue()) != 0) ? true : false);
+		this.main.getBtnLine().setEnabled(state.getValue() == Brush.LINE.getValue());
+		this.main.getBtnTriangle().setEnabled(state.getValue() == Brush.TRIANGLE.getValue());
+		this.main.getBtnSquare().setEnabled(state.getValue() == Brush.SQUARE.getValue());
+		this.main.getBtnPolygon().setEnabled(state.getValue() == Brush.POLYGON.getValue());
 	}
 }
