@@ -1,5 +1,12 @@
 package position;
 
+/**
+ * Paint
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Position {
 	private int x;
 	private int y;

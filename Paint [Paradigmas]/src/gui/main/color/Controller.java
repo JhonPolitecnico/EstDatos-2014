@@ -1,5 +1,12 @@
 package gui.main.color;
 
+/**
+ * Paint
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.Color;
 
 public class Controller {

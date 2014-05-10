@@ -11,6 +11,7 @@ import graphic.Brush;
 import gui.main.Controller;
 import gui.main.workspace.mouse.Line;
 import gui.main.workspace.mouse.Square;
+import gui.main.workspace.mouse.Triangle;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -23,13 +24,15 @@ public class Workspace extends JPanel {
 
 	private Controller main;
 	private ArrayList<Brush> brushes;
-	private Brush tempBrush;
+	private ArrayList<Brush> tempBrushes;
 	private Line lineListener;
 	private Square squareListener;
+	private Triangle triangleListener;
 
 	public Workspace() {
 		super();
 		this.brushes = new ArrayList<Brush>();
+		this.tempBrushes = new ArrayList<Brush>();
 	}
 
 	public void setMain(Controller main) {
@@ -37,12 +40,16 @@ public class Workspace extends JPanel {
 
 		this.lineListener = new Line(this.main, this);
 		this.squareListener = new Square(this.main, this);
+		this.triangleListener = new Triangle(this.main, this);
 
 		this.addMouseListener(this.lineListener);
 		this.addMouseMotionListener(this.lineListener);
 
 		this.addMouseListener(this.squareListener);
 		this.addMouseMotionListener(this.squareListener);
+
+		this.addMouseListener(this.triangleListener);
+		this.addMouseMotionListener(this.triangleListener);
 	}
 
 	@Override
@@ -52,12 +59,18 @@ public class Workspace extends JPanel {
 		for (Brush brush : brushes)
 			brush.paint(g);
 
-		if (tempBrush != null)
-			tempBrush.paint(g);
+		if (tempBrushes != null)
+			for (Brush tempBrush : tempBrushes)
+				tempBrush.paint(g);
 	}
 
-	public void setTempBrush(Brush tempBrush) {
-		this.tempBrush = tempBrush;
+	public void clearTempBrushes() {
+		this.tempBrushes.clear();
+		this.repaint();
+	}
+
+	public void addTempBrush(Brush tempBrush) {
+		this.tempBrushes.add(tempBrush);
 		this.repaint();
 	}
 

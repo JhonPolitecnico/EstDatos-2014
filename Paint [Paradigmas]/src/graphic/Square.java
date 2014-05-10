@@ -1,5 +1,12 @@
 package graphic;
 
+/**
+ * Paint
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -15,6 +22,26 @@ public class Square extends BasicFigure {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		g.drawRect(this.posStart.getX(), this.posStart.getY(), this.posEnd.getX() - this.posStart.getX(), this.posEnd.getY() - this.posStart.getY());
+		int x;
+
+		if (this.posEnd.getX() >= this.posStart.getX()) {
+
+			x = this.posEnd.getX() - this.posStart.getX();
+
+			if (this.posEnd.getY() >= this.posStart.getY()) {
+				g.drawRect(this.posStart.getX(), this.posStart.getY(), x, this.posEnd.getY() - this.posStart.getY());
+			} else {
+				g.drawRect(this.posStart.getX(), this.posEnd.getY(), x, this.posStart.getY() - this.posEnd.getY());
+			}
+
+		} else {
+			x = this.posStart.getX() - this.posEnd.getX();
+
+			if (this.posEnd.getY() >= this.posStart.getY()) {
+				g.drawRect(this.posEnd.getX(), this.posStart.getY(), x, this.posEnd.getY() - this.posStart.getY());
+			} else {
+				g.drawRect(this.posEnd.getX(), this.posEnd.getY(), x, this.posStart.getY() - this.posEnd.getY());
+			}
+		}
 	}
 }

@@ -42,11 +42,10 @@ public class Line implements MouseListener, MouseMotionListener {
 		} else {
 			this.posEnd = new Position(e.getX(), e.getY());
 
-			this.workspace.setTempBrush(null);
 			this.workspace.addBrush(new graphic.Line(this.main.getColor().getState(), this.posStart, this.posEnd));
 
-			this.posStart = null;
-			this.posEnd = null;
+			this.workspace.clearTempBrushes();
+			this.posStart = this.posEnd = null;
 		}
 
 		// Cambiar el estado
@@ -63,11 +62,13 @@ public class Line implements MouseListener, MouseMotionListener {
 		// Si cambio de pincel
 		if (main.getBrush().getState() != Brush.LINE) {
 			this.state = false;
+			this.workspace.clearTempBrushes();
 			return;
 		}
 
 		// Dibujar una forma temporal
-		this.workspace.setTempBrush(new graphic.Line(this.main.getColor().getState(), this.posStart, new Position(e.getX(), e.getY())));
+		this.workspace.clearTempBrushes();
+		this.workspace.addTempBrush(new graphic.Line(this.main.getColor().getState(), this.posStart, new Position(e.getX(), e.getY())));
 	}
 
 	@Override

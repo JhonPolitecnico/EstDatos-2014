@@ -1,9 +1,5 @@
 package swing.jDataButton;
 
-import javax.swing.Action;
-import javax.swing.Icon;
-import javax.swing.JButton;
-
 /**
  * Paint
  * 
@@ -11,6 +7,10 @@ import javax.swing.JButton;
  * @code 1310012946
  * 
  */
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.JButton;
+
 public class JDataButton extends JButton {
 
 	/**

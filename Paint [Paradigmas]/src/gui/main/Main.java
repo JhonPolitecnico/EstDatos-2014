@@ -7,7 +7,6 @@ package gui.main;
  * @code 1310012946
  * 
  */
-
 import gui.main.workspace.Workspace;
 
 import javax.swing.JFrame;

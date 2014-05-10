@@ -7,6 +7,7 @@ package gui.main.workspace.mouse;
  * @code 1310012946
  * 
  */
+import graphic.Line;
 import gui.main.Controller;
 import gui.main.brush.Brush;
 import gui.main.workspace.Workspace;
@@ -17,58 +18,71 @@ import java.awt.event.MouseMotionListener;
 
 import position.Position;
 
-public class Square implements MouseListener, MouseMotionListener {
+public class Triangle implements MouseListener, MouseMotionListener {
 
 	private Controller main;
 	private Workspace workspace;
-	private boolean state;
-	private Position posStart;
-	private Position posEnd;
+	private int state;
+	private Position posA;
+	private Position posB;
+	private Position posC;
 
-	public Square(Controller main, Workspace workspace) {
+	public Triangle(Controller main, Workspace workspace) {
 		super();
 		this.main = main;
 		this.workspace = workspace;
-		this.state = false;
+		this.state = 0;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (main.getBrush().getState() != Brush.SQUARE)
+		if (main.getBrush().getState() != Brush.TRIANGLE)
 			return;
 
-		if (!state) {
-			this.posStart = new Position(e.getX(), e.getY());
+		if (this.state == 0) {
+			this.posA = new Position(e.getX(), e.getY());
+		} else if (this.state == 1) {
+			this.posB = new Position(e.getX(), e.getY());
 		} else {
-			this.posEnd = new Position(e.getX(), e.getY());
+			this.posC = new Position(e.getX(), e.getY());
 
-			this.workspace.addBrush(new graphic.Square(this.main.getColor().getState(), this.posStart, this.posEnd));
+			this.workspace.addBrush(new graphic.Triangle(this.main.getColor().getState(), this.posA, this.posB, this.posC));
 
 			this.workspace.clearTempBrushes();
-			this.posStart = this.posEnd = null;
+			this.posA = this.posB = this.posC = null;
+			this.state = -1; // Restaurar a 0
 		}
 
 		// Cambiar el estado
-		state = !state;
+		this.state++;
 
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// si aun no indica el primer click
-		if (!this.state || this.posStart == null)
+		if (this.state == 0 || this.posA == null)
 			return;
 
 		// Si cambio de pincel
-		if (main.getBrush().getState() != Brush.SQUARE) {
-			this.state = false;
+		if (main.getBrush().getState() != Brush.TRIANGLE) {
+			this.state = 0;
 			this.workspace.clearTempBrushes();
 			return;
 		}
 
 		// Dibujar una forma temporal
+
+		Position actual = new Position(e.getX(), e.getY());
+
 		this.workspace.clearTempBrushes();
-		this.workspace.addTempBrush(new graphic.Square(this.main.getColor().getState(), this.posStart, new Position(e.getX(), e.getY())));
+		// 0 to 1
+		if (this.state == 1)
+			this.workspace.addTempBrush(new Line(this.main.getColor().getState(), this.posA, actual));
+		else { // 1 to 2
+			this.workspace.addTempBrush(new graphic.Triangle(this.main.getColor().getState(), this.posA, this.posB, actual));
+		}
+
 	}
 
 	@Override

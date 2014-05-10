@@ -1,5 +1,12 @@
 package gui.main.brush;
 
+/**
+ * Paint
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 public class Controller {
 
 	private Brush state;
