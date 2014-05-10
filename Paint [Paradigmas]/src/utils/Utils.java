@@ -23,4 +23,5 @@ public class Utils {
 		int y = dim.height / 2 - frame.getSize().height / 2;
 		frame.setBounds(x, y, frame.getSize().width, frame.getSize().height);
 	}
+
 }

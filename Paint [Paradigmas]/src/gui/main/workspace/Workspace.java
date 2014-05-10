@@ -10,6 +10,7 @@ package gui.main.workspace;
 import graphic.Brush;
 import gui.main.Controller;
 import gui.main.workspace.mouse.Line;
+import gui.main.workspace.mouse.Square;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Workspace extends JPanel {
 	private ArrayList<Brush> brushes;
 	private Brush tempBrush;
 	private Line lineListener;
+	private Square squareListener;
 
 	public Workspace() {
 		super();
@@ -34,9 +36,13 @@ public class Workspace extends JPanel {
 		this.main = main;
 
 		this.lineListener = new Line(this.main, this);
+		this.squareListener = new Square(this.main, this);
 
 		this.addMouseListener(this.lineListener);
 		this.addMouseMotionListener(this.lineListener);
+
+		this.addMouseListener(this.squareListener);
+		this.addMouseMotionListener(this.squareListener);
 	}
 
 	@Override
