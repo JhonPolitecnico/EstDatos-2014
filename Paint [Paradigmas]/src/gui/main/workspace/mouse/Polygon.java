@@ -7,8 +7,6 @@ package gui.main.workspace.mouse;
  * @code 1310012946
  * 
  */
-import graphic.Line;
-import graphic.Polygon;
 import gui.main.Controller;
 import gui.main.brush.Brush;
 import gui.main.workspace.Workspace;
@@ -16,41 +14,40 @@ import gui.main.workspace.Workspace;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import position.Position;
 
-public class Triangle implements MouseListener, MouseMotionListener {
+public class Polygon implements MouseListener, MouseMotionListener {
 
 	private Controller main;
 	private Workspace workspace;
 	private int state;
-	private Position posA;
-	private Position posB;
-	private Position posC;
+	private ArrayList<Position> positions;
 
-	public Triangle(Controller main, Workspace workspace) {
+	public Polygon(Controller main, Workspace workspace) {
 		super();
 		this.main = main;
 		this.workspace = workspace;
 		this.state = 0;
+		this.positions = new ArrayList<Position>();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (main.getBrush().getState() != Brush.TRIANGLE)
+		if (main.getBrush().getState() != Brush.POLYGON)
 			return;
 
 		if (this.state == 0) {
-			this.posA = new Position(e.getX(), e.getY());
-		} else if (this.state == 1) {
-			this.posB = new Position(e.getX(), e.getY());
+			this.positions.add(new Position(e.getX(), e.getY()));
+		} else if (e.getButton() == MouseEvent.BUTTON1) { // N lines
+			this.positions.add(new Position(e.getX(), e.getY()));
 		} else {
-			this.posC = new Position(e.getX(), e.getY());
-
-			this.workspace.addBrush(new Polygon(this.main.getColor().getState(), this.posA, this.posB, this.posC));
+			this.positions.add(new Position(e.getX(), e.getY()));
+			this.workspace.addBrush(new graphic.Polygon(this.main.getColor().getState(), (ArrayList<Position>) this.positions.clone()));
 
 			this.workspace.clearTempBrushes();
-			this.posA = this.posB = this.posC = null;
+			this.positions.clear();
 			this.state = -1; // Restaurar a 0
 		}
 
@@ -62,27 +59,25 @@ public class Triangle implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// si aun no indica el primer click
-		if (this.state == 0 || this.posA == null)
+		if (this.state == 0 || this.positions.size() <= 0)
 			return;
 
 		// Si cambio de pincel
-		if (main.getBrush().getState() != Brush.TRIANGLE) {
+		if (main.getBrush().getState() != Brush.POLYGON) {
 			this.state = 0;
 			this.workspace.clearTempBrushes();
+			this.positions.clear();
 			return;
 		}
 
 		// Dibujar una forma temporal
 
 		Position actual = new Position(e.getX(), e.getY());
+		ArrayList<Position> tempPositions = (ArrayList<Position>) this.positions.clone();
+		tempPositions.add(actual);
 
 		this.workspace.clearTempBrushes();
-		// 0 to 1
-		if (this.state == 1)
-			this.workspace.addTempBrush(new Line(this.main.getColor().getState(), this.posA, actual));
-		else { // 1 to 2
-			this.workspace.addTempBrush(new Polygon(this.main.getColor().getState(), this.posA, this.posB, actual));
-		}
+		this.workspace.addTempBrush(new graphic.Polygon(this.main.getColor().getState(), tempPositions));
 
 	}
 
