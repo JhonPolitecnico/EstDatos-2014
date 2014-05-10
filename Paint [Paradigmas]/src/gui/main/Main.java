@@ -19,7 +19,6 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 import swing.jDataButton.JDataButton;
@@ -55,7 +54,7 @@ public class Main extends JFrame {
 		setContentPane(contentPane);
 
 		workspace = new Workspace();
-		workspace.setBackground(Color.ORANGE);
+		workspace.setBackground(new Color(192, 192, 192));
 
 		pnlLeft = new JPanel();
 

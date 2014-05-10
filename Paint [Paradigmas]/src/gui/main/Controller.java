@@ -9,7 +9,9 @@ package gui.main;
  */
 import gui.main.brush.Brush;
 import gui.main.mouse.ChangeBrush;
+import gui.main.mouse.ChangeColor;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -21,6 +23,7 @@ public class Controller extends Main {
 	private static final long serialVersionUID = 163143371781152352L;
 
 	private gui.main.brush.Controller brush;
+	private gui.main.color.Controller color;
 
 	/**
 	 * Launch the application.
@@ -47,13 +50,25 @@ public class Controller extends Main {
 		Utils.centerFrame(this);
 
 		this.brush = new gui.main.brush.Controller(this);
+		this.color = new gui.main.color.Controller(this);
 
 		super.workspace.setMain(this);
+
+		/*
+		 * Set properties
+		 */
 
 		this.btnLine.setData(Brush.LINE);
 		this.btnTriangle.setData(Brush.TRIANGLE);
 		this.btnSquare.setData(Brush.SQUARE);
 		this.btnPolygon.setData(Brush.POLYGON);
+
+		this.btnBlack.setData(Color.BLACK);
+		this.btnBlue.setData(Color.BLUE);
+		this.btnGreen.setData(Color.GREEN);
+		this.btnOrange.setData(Color.ORANGE);
+		this.btnRed.setData(Color.RED);
+		this.btnWhite.setData(Color.WHITE);
 
 		/*
 		 * Events
@@ -63,6 +78,13 @@ public class Controller extends Main {
 		this.btnTriangle.addMouseListener(new ChangeBrush(this.brush));
 		this.btnSquare.addMouseListener(new ChangeBrush(this.brush));
 		this.btnPolygon.addMouseListener(new ChangeBrush(this.brush));
+
+		this.btnBlack.addMouseListener(new ChangeColor(this.color));
+		this.btnBlue.addMouseListener(new ChangeColor(this.color));
+		this.btnGreen.addMouseListener(new ChangeColor(this.color));
+		this.btnOrange.addMouseListener(new ChangeColor(this.color));
+		this.btnRed.addMouseListener(new ChangeColor(this.color));
+		this.btnWhite.addMouseListener(new ChangeColor(this.color));
 	}
 
 	/*
@@ -70,7 +92,11 @@ public class Controller extends Main {
 	 */
 
 	public gui.main.brush.Controller getBrush() {
-		return brush;
+		return this.brush;
+	}
+
+	public gui.main.color.Controller getColor() {
+		return this.color;
 	}
 
 	public JButton getBtnWhite() {

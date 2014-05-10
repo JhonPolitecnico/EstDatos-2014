@@ -22,6 +22,8 @@ public class Workspace extends JPanel {
 
 	private Controller main;
 	private ArrayList<Brush> brushes;
+	private Brush tempBrush;
+	private Line lineListener;
 
 	public Workspace() {
 		super();
@@ -30,7 +32,11 @@ public class Workspace extends JPanel {
 
 	public void setMain(Controller main) {
 		this.main = main;
-		this.addMouseListener(new Line(this.main, this));
+
+		this.lineListener = new Line(this.main, this);
+
+		this.addMouseListener(this.lineListener);
+		this.addMouseMotionListener(this.lineListener);
 	}
 
 	@Override
@@ -39,6 +45,14 @@ public class Workspace extends JPanel {
 
 		for (Brush brush : brushes)
 			brush.paint(g);
+
+		if (tempBrush != null)
+			tempBrush.paint(g);
+	}
+
+	public void setTempBrush(Brush tempBrush) {
+		this.tempBrush = tempBrush;
+		this.repaint();
 	}
 
 	public void addBrush(Brush brush) {
