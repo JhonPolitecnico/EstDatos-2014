@@ -7,14 +7,13 @@ package gui.main;
  * @code 1310012946
  * 
  */
-import graphic.Line;
+import gui.main.brush.Brush;
+import gui.main.mouse.ChangeBrush;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
 
-import position.Position;
 import utils.Utils;
 
 public class Controller extends Main {
@@ -49,9 +48,21 @@ public class Controller extends Main {
 
 		this.brush = new gui.main.brush.Controller(this);
 
-		super.workspace.addBrush(new Line(Color.BLACK, new Position(0, 0), new Position(100, 100)));
-		super.workspace.addBrush(new Line(Color.BLUE, new Position(0, 50), new Position(100, 150)));
-		super.workspace.addBrush(new Line(Color.RED, new Position(0, 100), new Position(100, 200)));
+		super.workspace.setMain(this);
+
+		this.btnLine.setData(Brush.LINE);
+		this.btnTriangle.setData(Brush.TRIANGLE);
+		this.btnSquare.setData(Brush.SQUARE);
+		this.btnPolygon.setData(Brush.POLYGON);
+
+		/*
+		 * Events
+		 */
+
+		this.btnLine.addMouseListener(new ChangeBrush(this.brush));
+		this.btnTriangle.addMouseListener(new ChangeBrush(this.brush));
+		this.btnSquare.addMouseListener(new ChangeBrush(this.brush));
+		this.btnPolygon.addMouseListener(new ChangeBrush(this.brush));
 	}
 
 	/*

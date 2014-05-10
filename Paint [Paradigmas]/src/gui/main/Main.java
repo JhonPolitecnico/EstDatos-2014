@@ -22,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
+import swing.jDataButton.JDataButton;
 import utils.Utils;
 
 public class Main extends JFrame {
@@ -32,16 +33,16 @@ public class Main extends JFrame {
 	protected Workspace workspace;
 	protected JPanel pnlLeft;
 	protected JPanel pnlRight;
-	protected JButton btnWhite;
-	protected JButton btnBlack;
-	protected JButton btnRed;
-	protected JButton btnGreen;
-	protected JButton btnBlue;
-	protected JButton btnOrange;
-	protected JButton btnLine;
-	protected JButton btnTriangle;
-	protected JButton btnSquare;
-	protected JButton btnPolygon;
+	protected JDataButton btnWhite;
+	protected JDataButton btnBlack;
+	protected JDataButton btnRed;
+	protected JDataButton btnGreen;
+	protected JDataButton btnBlue;
+	protected JDataButton btnOrange;
+	protected JDataButton btnLine;
+	protected JDataButton btnTriangle;
+	protected JDataButton btnSquare;
+	protected JDataButton btnPolygon;
 
 	/**
 	 * Create the frame.
@@ -53,7 +54,7 @@ public class Main extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		workspace = new Workspace(this);
+		workspace = new Workspace();
 		workspace.setBackground(Color.ORANGE);
 
 		pnlLeft = new JPanel();
@@ -73,43 +74,43 @@ public class Main extends JFrame {
 										.addComponent(pnlRight, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
 										.addComponent(workspace, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)).addContainerGap()));
 
-		btnWhite = new JButton("   ");
+		btnWhite = new JDataButton("   ");
 		btnWhite.setBackground(Color.WHITE);
 		pnlRight.add(btnWhite);
 
-		btnBlack = new JButton("   ");
+		btnBlack = new JDataButton("   ");
 		btnBlack.setBackground(Color.BLACK);
 		pnlRight.add(btnBlack);
 
-		btnRed = new JButton("   ");
+		btnRed = new JDataButton("   ");
 		btnRed.setBackground(Color.RED);
 		pnlRight.add(btnRed);
 
-		btnGreen = new JButton("   ");
+		btnGreen = new JDataButton("   ");
 		btnGreen.setBackground(Color.GREEN);
 		pnlRight.add(btnGreen);
 
-		btnBlue = new JButton("   ");
+		btnBlue = new JDataButton("   ");
 		btnBlue.setBackground(Color.BLUE);
 		pnlRight.add(btnBlue);
 
-		btnOrange = new JButton("   ");
+		btnOrange = new JDataButton("   ");
 		btnOrange.setBackground(Color.ORANGE);
 		pnlRight.add(btnOrange);
 
-		btnLine = new JButton("");
+		btnLine = new JDataButton("");
 		btnLine.setIcon(new ImageIcon(Utils.getPath() + "\\img\\line.png"));
 		pnlLeft.add(btnLine);
 
-		btnTriangle = new JButton("");
+		btnTriangle = new JDataButton("");
 		btnTriangle.setIcon(new ImageIcon(Utils.getPath() + "\\img\\triangle.png"));
 		pnlLeft.add(btnTriangle);
 
-		btnSquare = new JButton("");
+		btnSquare = new JDataButton("");
 		btnSquare.setIcon(new ImageIcon(Utils.getPath() + "\\img\\square.png"));
 		pnlLeft.add(btnSquare);
 
-		btnPolygon = new JButton("");
+		btnPolygon = new JDataButton("");
 		btnPolygon.setIcon(new ImageIcon(Utils.getPath() + "\\img\\polygon.png"));
 		pnlLeft.add(btnPolygon);
 		contentPane.setLayout(gl_contentPane);

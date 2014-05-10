@@ -18,24 +18,6 @@ public class Controller {
 	public void setState(Brush state) {
 		this.state = state;
 		this.setEnabled(this.state);
-		switch (this.state) {
-
-		case LINE:
-			break;
-
-		case POLYGON:
-
-			break;
-
-		case SQUARE:
-
-			break;
-
-		case TRIANGLE:
-
-			break;
-		}
-
 	}
 
 	private void setEnabled(Brush state) {

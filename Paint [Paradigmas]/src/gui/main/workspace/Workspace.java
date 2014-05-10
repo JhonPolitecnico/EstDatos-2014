@@ -8,7 +8,7 @@ package gui.main.workspace;
  * 
  */
 import graphic.Brush;
-import gui.main.Main;
+import gui.main.Controller;
 import gui.main.workspace.mouse.Line;
 
 import java.awt.Graphics;
@@ -20,17 +20,16 @@ public class Workspace extends JPanel {
 
 	private static final long serialVersionUID = 308183912358545561L;
 
-	private Main main;
+	private Controller main;
 	private ArrayList<Brush> brushes;
 
-	public Workspace(Main main) {
+	public Workspace() {
 		super();
-		this.main = main;
 		this.brushes = new ArrayList<Brush>();
+	}
 
-		/*
-		 * Events
-		 */
+	public void setMain(Controller main) {
+		this.main = main;
 		this.addMouseListener(new Line(this.main, this));
 	}
 
@@ -44,6 +43,7 @@ public class Workspace extends JPanel {
 
 	public void addBrush(Brush brush) {
 		this.brushes.add(brush);
+		this.repaint();
 	}
 
 }
