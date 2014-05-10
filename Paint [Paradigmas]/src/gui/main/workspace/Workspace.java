@@ -7,8 +7,12 @@ package gui.main.workspace;
  * @code 1310012946
  * 
  */
-import java.awt.Color;
+import graphic.Brush;
+import gui.main.Main;
+import gui.main.workspace.mouse.Line;
+
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -16,18 +20,30 @@ public class Workspace extends JPanel {
 
 	private static final long serialVersionUID = 308183912358545561L;
 
+	private Main main;
+	private ArrayList<Brush> brushes;
+
+	public Workspace(Main main) {
+		super();
+		this.main = main;
+		this.brushes = new ArrayList<Brush>();
+
+		/*
+		 * Events
+		 */
+		this.addMouseListener(new Line(this.main, this));
+	}
+
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
-		g.setColor(Color.BLACK);
-		g.drawLine(0, 0, 100, 100);
 
-		g.setColor(Color.BLUE);
-		g.drawLine(0, 50, 100, 150);
+		for (Brush brush : brushes)
+			brush.paint(g);
+	}
 
-		g.setColor(Color.RED);
-		g.drawLine(0, 100, 100, 200);
+	public void addBrush(Brush brush) {
+		this.brushes.add(brush);
 	}
 
 }

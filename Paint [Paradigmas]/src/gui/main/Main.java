@@ -29,7 +29,7 @@ public class Main extends JFrame {
 	private static final long serialVersionUID = 6181817596811086435L;
 
 	protected JPanel contentPane;
-	protected Workspace pnlWorkspace;
+	protected Workspace workspace;
 	protected JPanel pnlLeft;
 	protected JPanel pnlRight;
 	protected JButton btnWhite;
@@ -53,8 +53,8 @@ public class Main extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		pnlWorkspace = new Workspace();
-		pnlWorkspace.setBackground(Color.ORANGE);
+		workspace = new Workspace(this);
+		workspace.setBackground(Color.ORANGE);
 
 		pnlLeft = new JPanel();
 
@@ -63,7 +63,7 @@ public class Main extends JFrame {
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(
 				Alignment.LEADING,
 				gl_contentPane.createSequentialGroup().addComponent(pnlLeft, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnlWorkspace, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(workspace, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(pnlRight, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE).addGap(0)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_contentPane
@@ -71,7 +71,7 @@ public class Main extends JFrame {
 						.addGroup(
 								gl_contentPane.createParallelGroup(Alignment.TRAILING).addComponent(pnlLeft, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
 										.addComponent(pnlRight, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-										.addComponent(pnlWorkspace, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)).addContainerGap()));
+										.addComponent(workspace, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)).addContainerGap()));
 
 		btnWhite = new JButton("   ");
 		btnWhite.setBackground(Color.WHITE);
