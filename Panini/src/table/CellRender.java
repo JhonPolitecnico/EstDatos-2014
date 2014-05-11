@@ -1,5 +1,12 @@
 package table;
 
+/**
+ * Panini
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.Color;
 import java.awt.Component;
 

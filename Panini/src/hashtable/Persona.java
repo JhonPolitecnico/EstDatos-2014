@@ -1,5 +1,12 @@
 package hashtable;
 
+/**
+ * Panini
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map.Entry;

@@ -1,7 +1,7 @@
 package gui.main;
 
 /**
- * Paint
+ * Panini
  * 
  * @author Jhon Jairo Eslava
  * @code 1310012946
@@ -65,15 +65,15 @@ public class Controller extends Main {
 			for (int i = 0; i < 640; i++) {
 
 				/**
-				 * Controlar el exceso de fichas repetidas
+				 * Controlar la opulencia de fichas
 				 * 
-				 * hay un 10% de sacar 0
+				 * hay un 10% de posibilidad de sacar 0
 				 * 
-				 * hay un 70% de sacar un 1
+				 * hay un 70% de posibilidad de sacar un 1
 				 * 
-				 * hay un 10% de sacar 2
+				 * hay un 10% de posibilidad de sacar 2
 				 * 
-				 * hay un 10% de sacar desde un 1 hasta un 5
+				 * hay un 10% de posibilidad de sacar desde un 1 hasta un 5
 				 */
 				int probabilidad = Utils.randInt(0, 9);
 				int numero = 0;
