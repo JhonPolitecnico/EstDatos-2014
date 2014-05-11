@@ -94,14 +94,19 @@ public class Controller extends Main {
 
 		Integer[][] fichas = new Integer[640][personas.length];
 
+		/**
+		 * Crear el modelo para el JTable
+		 */
 		for (int i = 0; i < fichas.length; i++) {
 			fichas[i][0] = i;
 
+			// Obtener el numero de repetidas de la ficha 'i' de todas las personas
 			Hashtable<String, Integer> repetidos = this.listaPersonas.obtenerListaDeRepetidos(i);
 
-			for (int j = 1; j < fichas[0].length; j++) {
+			// Obtener el numero de repetidas de la ficha 'i' de la persona 'j'
+			for (int j = 1; j < fichas[0].length; j++)
 				fichas[i][j] = repetidos.get(personas[j]);
-			}
+
 		}
 
 		/**
