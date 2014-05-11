@@ -8,7 +8,7 @@ package gui.main.brush;
  * 
  */
 public enum Brush {
-	LINE(0), TRIANGLE(1), SQUARE(2), POLYGON(3);
+	LINE(0), TRIANGLE(1), SQUARE(2), POLYGON(3), BRUSH(4);
 
 	private int value;
 

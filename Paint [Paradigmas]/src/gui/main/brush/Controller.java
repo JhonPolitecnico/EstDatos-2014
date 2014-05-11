@@ -32,5 +32,6 @@ public class Controller {
 		this.main.getBtnTriangle().setEnabled(state.getValue() == Brush.TRIANGLE.getValue());
 		this.main.getBtnSquare().setEnabled(state.getValue() == Brush.SQUARE.getValue());
 		this.main.getBtnPolygon().setEnabled(state.getValue() == Brush.POLYGON.getValue());
+		this.main.getBtnBrush().setEnabled(state.getValue() == Brush.BRUSH.getValue());
 	}
 }

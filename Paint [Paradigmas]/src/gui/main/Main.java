@@ -41,6 +41,7 @@ public class Main extends JFrame {
 	protected JDataButton btnTriangle;
 	protected JDataButton btnSquare;
 	protected JDataButton btnPolygon;
+	protected JDataButton btnBrush;
 
 	/**
 	 * Create the frame.
@@ -111,6 +112,10 @@ public class Main extends JFrame {
 		btnPolygon = new JDataButton("");
 		btnPolygon.setIcon(new ImageIcon(Utils.getPath() + "\\img\\polygon.png"));
 		pnlLeft.add(btnPolygon);
+
+		btnBrush = new JDataButton("");
+		btnBrush.setIcon(new ImageIcon(Utils.getPath() + "\\img\\brush.png"));
+		pnlLeft.add(btnBrush);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

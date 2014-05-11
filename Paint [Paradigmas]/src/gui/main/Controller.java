@@ -62,6 +62,7 @@ public class Controller extends Main {
 		this.btnTriangle.setData(Brush.TRIANGLE);
 		this.btnSquare.setData(Brush.SQUARE);
 		this.btnPolygon.setData(Brush.POLYGON);
+		this.btnBrush.setData(Brush.BRUSH);
 
 		this.btnBlack.setData(Color.BLACK);
 		this.btnBlue.setData(Color.BLUE);
@@ -78,6 +79,7 @@ public class Controller extends Main {
 		this.btnTriangle.addMouseListener(new ChangeBrush(this.brush));
 		this.btnSquare.addMouseListener(new ChangeBrush(this.brush));
 		this.btnPolygon.addMouseListener(new ChangeBrush(this.brush));
+		this.btnBrush.addMouseListener(new ChangeBrush(this.brush));
 
 		this.btnBlack.addMouseListener(new ChangeColor(this.color));
 		this.btnBlue.addMouseListener(new ChangeColor(this.color));
@@ -137,5 +139,9 @@ public class Controller extends Main {
 
 	public JButton getBtnPolygon() {
 		return super.btnPolygon;
+	}
+
+	public JButton getBtnBrush() {
+		return super.btnBrush;
 	}
 }

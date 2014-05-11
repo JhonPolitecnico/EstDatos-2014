@@ -30,6 +30,7 @@ public class Workspace extends JPanel {
 	private Square squareListener;
 	private Triangle triangleListener;
 	private Polygon polygonListener;
+	private gui.main.workspace.mouse.Brush brushListener;
 
 	public Workspace() {
 		super();
@@ -44,6 +45,7 @@ public class Workspace extends JPanel {
 		this.squareListener = new Square(this.main, this);
 		this.triangleListener = new Triangle(this.main, this);
 		this.polygonListener = new Polygon(this.main, this);
+		this.brushListener = new gui.main.workspace.mouse.Brush(this.main, this);
 
 		this.addMouseListener(this.lineListener);
 		this.addMouseMotionListener(this.lineListener);
@@ -56,6 +58,9 @@ public class Workspace extends JPanel {
 
 		this.addMouseListener(this.polygonListener);
 		this.addMouseMotionListener(this.polygonListener);
+
+		this.addMouseListener(this.brushListener);
+		this.addMouseMotionListener(this.brushListener);
 	}
 
 	@Override
