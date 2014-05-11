@@ -12,6 +12,7 @@ import gui.main.mouse.ChangeBrush;
 import gui.main.mouse.ChangeColor;
 import gui.main.mouse.Exit;
 import gui.main.mouse.Load;
+import gui.main.mouse.New;
 import gui.main.mouse.Save;
 
 import java.awt.Color;
@@ -78,6 +79,7 @@ public class Controller extends Main {
 		 * Events
 		 */
 
+		this.mntmNew.addActionListener(new New(this.workspace));
 		this.mntmLoad.addActionListener(new Load(this, this.workspace));
 		this.mntmSave.addActionListener(new Save(this, this.workspace));
 		this.mntmExit.addActionListener(new Exit());

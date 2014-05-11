@@ -75,6 +75,11 @@ public class Workspace extends JPanel {
 				tempBrush.paint(g);
 	}
 
+	public void clearBrushes() {
+		this.brushes.clear();
+		this.repaint();
+	}
+
 	public void clearTempBrushes() {
 		this.tempBrushes.clear();
 		this.repaint();

@@ -51,6 +51,9 @@ public class Main extends JFrame {
 	protected JMenuItem mntmLoad;
 	protected JMenuItem mntmSave;
 	protected JMenuItem mntmExit;
+	protected JMenuItem mntmNew;
+	protected JSeparator separator_1;
+	protected JSeparator separator;
 
 	/**
 	 * Create the frame.
@@ -65,13 +68,19 @@ public class Main extends JFrame {
 		mnFile = new JMenu("Archivo");
 		menuBar.add(mnFile);
 
+		mntmNew = new JMenuItem("Nuevo");
+		mnFile.add(mntmNew);
+
+		separator_1 = new JSeparator();
+		mnFile.add(separator_1);
+
 		mntmLoad = new JMenuItem("Cargar");
 		mnFile.add(mntmLoad);
 
 		mntmSave = new JMenuItem("Guardar");
 		mnFile.add(mntmSave);
 
-		JSeparator separator = new JSeparator();
+		separator = new JSeparator();
 		mnFile.add(separator);
 
 		mntmExit = new JMenuItem("Salir");
