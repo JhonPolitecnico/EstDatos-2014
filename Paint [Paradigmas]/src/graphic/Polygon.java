@@ -2,11 +2,14 @@ package graphic;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import position.Position;
 
-public class Polygon extends Brush {
+public class Polygon extends Brush implements Serializable {
+
+	private static final long serialVersionUID = -6529200935156761803L;
 
 	private ArrayList<Position> positions = new ArrayList<Position>();
 

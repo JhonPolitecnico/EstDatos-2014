@@ -22,6 +22,10 @@ import javax.swing.ImageIcon;
 
 import swing.jDataButton.JDataButton;
 import utils.Utils;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
 
 public class Main extends JFrame {
 
@@ -42,13 +46,36 @@ public class Main extends JFrame {
 	protected JDataButton btnSquare;
 	protected JDataButton btnPolygon;
 	protected JDataButton btnBrush;
+	protected JMenuBar menuBar;
+	protected JMenu mnFile;
+	protected JMenuItem mntmLoad;
+	protected JMenuItem mntmSave;
+	protected JMenuItem mntmExit;
 
 	/**
 	 * Create the frame.
 	 */
 	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 560, 248);
+		setBounds(100, 100, 560, 316);
+
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		mnFile = new JMenu("Archivo");
+		menuBar.add(mnFile);
+
+		mntmLoad = new JMenuItem("Cargar");
+		mnFile.add(mntmLoad);
+
+		mntmSave = new JMenuItem("Guardar");
+		mnFile.add(mntmSave);
+
+		JSeparator separator = new JSeparator();
+		mnFile.add(separator);
+
+		mntmExit = new JMenuItem("Salir");
+		mnFile.add(mntmExit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

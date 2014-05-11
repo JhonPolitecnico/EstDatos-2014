@@ -9,10 +9,13 @@ package graphic;
  */
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import position.Position;
 
-public class Point extends Brush {
+public class Point extends Brush implements Serializable {
+
+	private static final long serialVersionUID = -817121707291628634L;
 
 	private Position position;
 	private Line line;

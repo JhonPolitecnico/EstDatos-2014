@@ -7,7 +7,12 @@ package position;
  * @code 1310012946
  * 
  */
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
+
+	private static final long serialVersionUID = 4970288751292442796L;
+
 	private int x;
 	private int y;
 

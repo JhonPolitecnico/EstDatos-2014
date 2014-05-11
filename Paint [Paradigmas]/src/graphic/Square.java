@@ -9,10 +9,13 @@ package graphic;
  */
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import position.Position;
 
-public class Square extends BasicFigure {
+public class Square extends BasicFigure implements Serializable {
+
+	private static final long serialVersionUID = -206355307460459959L;
 
 	public Square(Color color, Position posStart, Position posEnd) {
 		super(color, posStart, posEnd);
@@ -24,23 +27,23 @@ public class Square extends BasicFigure {
 
 		int x;
 
-		if (this.posEnd.getX() >= this.posStart.getX()) {
+		if (super.posEnd.getX() >= super.posStart.getX()) {
 
-			x = this.posEnd.getX() - this.posStart.getX();
+			x = super.posEnd.getX() - super.posStart.getX();
 
-			if (this.posEnd.getY() >= this.posStart.getY()) {
-				g.drawRect(this.posStart.getX(), this.posStart.getY(), x, this.posEnd.getY() - this.posStart.getY());
+			if (super.posEnd.getY() >= super.posStart.getY()) {
+				g.drawRect(super.posStart.getX(), super.posStart.getY(), x, super.posEnd.getY() - super.posStart.getY());
 			} else {
-				g.drawRect(this.posStart.getX(), this.posEnd.getY(), x, this.posStart.getY() - this.posEnd.getY());
+				g.drawRect(super.posStart.getX(), super.posEnd.getY(), x, super.posStart.getY() - super.posEnd.getY());
 			}
 
 		} else {
-			x = this.posStart.getX() - this.posEnd.getX();
+			x = super.posStart.getX() - super.posEnd.getX();
 
-			if (this.posEnd.getY() >= this.posStart.getY()) {
-				g.drawRect(this.posEnd.getX(), this.posStart.getY(), x, this.posEnd.getY() - this.posStart.getY());
+			if (super.posEnd.getY() >= super.posStart.getY()) {
+				g.drawRect(super.posEnd.getX(), super.posStart.getY(), x, super.posEnd.getY() - super.posStart.getY());
 			} else {
-				g.drawRect(this.posEnd.getX(), this.posEnd.getY(), x, this.posStart.getY() - this.posEnd.getY());
+				g.drawRect(super.posEnd.getX(), super.posEnd.getY(), x, super.posStart.getY() - super.posEnd.getY());
 			}
 		}
 	}

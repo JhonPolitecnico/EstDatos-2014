@@ -90,4 +90,13 @@ public class Workspace extends JPanel {
 		this.repaint();
 	}
 
+	public ArrayList<Brush> getBrushes() {
+		return this.brushes;
+	}
+
+	public void setBrushes(ArrayList<Brush> brushes) {
+		this.brushes = brushes;
+		this.repaint();
+	}
+
 }

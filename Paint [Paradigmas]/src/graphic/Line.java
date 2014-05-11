@@ -9,10 +9,13 @@ package graphic;
  */
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import position.Position;
 
-public class Line extends BasicFigure {
+public class Line extends BasicFigure implements Serializable {
+
+	private static final long serialVersionUID = -2770346558065374781L;
 
 	public Line(Color color, Position posStart, Position posEnd) {
 		super(color, posStart, posEnd);

@@ -10,6 +10,9 @@ package gui.main;
 import gui.main.brush.Brush;
 import gui.main.mouse.ChangeBrush;
 import gui.main.mouse.ChangeColor;
+import gui.main.mouse.Exit;
+import gui.main.mouse.Load;
+import gui.main.mouse.Save;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -74,6 +77,10 @@ public class Controller extends Main {
 		/*
 		 * Events
 		 */
+
+		this.mntmLoad.addActionListener(new Load(this, this.workspace));
+		this.mntmSave.addActionListener(new Save(this, this.workspace));
+		this.mntmExit.addActionListener(new Exit());
 
 		this.btnLine.addMouseListener(new ChangeBrush(this.brush));
 		this.btnTriangle.addMouseListener(new ChangeBrush(this.brush));

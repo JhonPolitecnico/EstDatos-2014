@@ -9,9 +9,12 @@ package graphic;
  */
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public abstract class Brush {
+public abstract class Brush implements Serializable {
 
+	private static final long serialVersionUID = -2923554404551483905L;
+	
 	protected Color color;
 
 	public Brush(Color color) {
