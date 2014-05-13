@@ -14,25 +14,25 @@ public class MIDIPLayList implements Serializable {
 
 	private static final long serialVersionUID = -3060777809404304238L;
 
-	private HashMap<String, MIDIListModel> lists;
+	private HashMap<String, MIDIListModel<Cancion>> lists;
 
 	public MIDIPLayList() {
-		this.lists = new HashMap<String, MIDIListModel>();
+		this.lists = new HashMap<String, MIDIListModel<Cancion>>();
 	}
 
-	public void addList(String name, MIDIListModel list) {
+	public void addList(String name, MIDIListModel<Cancion> list) {
 		this.lists.put(name, list);
 	}
 
-	public void replaceList(String name, MIDIListModel list) {
+	public void replaceList(String name, MIDIListModel<Cancion> list) {
 		this.lists.replace(name, list);
 	}
 
-	public HashMap<String, MIDIListModel> getLists() {
+	public HashMap<String, MIDIListModel<Cancion>> getLists() {
 		return lists;
 	}
 
-	public void setLists(HashMap<String, MIDIListModel> lists) {
+	public void setLists(HashMap<String, MIDIListModel<Cancion>> lists) {
 		this.lists = lists;
 	}
 

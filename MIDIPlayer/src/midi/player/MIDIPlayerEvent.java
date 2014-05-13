@@ -14,15 +14,15 @@ import midi.MIDIFile;
 public class MIDIPlayerEvent extends EventObject {
 
 	private static final long serialVersionUID = 8322396952129914755L;
-	private MIDIFile archivo;
+	private MIDIFile mIDIFile;
 
-	public MIDIPlayerEvent(Object source, MIDIFile archivo) {
+	public MIDIPlayerEvent(Object source, MIDIFile mIDIFile) {
 		super(source);
-		this.archivo = archivo;
+		this.mIDIFile = mIDIFile;
 	}
 
-	public MIDIFile getArchivo() {
-		return archivo;
+	public MIDIFile getMIDIFile() {
+		return mIDIFile;
 	}
 
 }

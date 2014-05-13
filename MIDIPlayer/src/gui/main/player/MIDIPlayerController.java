@@ -7,6 +7,8 @@ package gui.main.player;
  * @code 1310012946
  * 
  */
+import javax.swing.JOptionPane;
+
 import gui.main.Controller;
 import midi.MIDIFile;
 import midi.player.MIDIPLayerListener;
@@ -30,23 +32,43 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 	private void newPlayer(MIDIFile archivo) {
 		this.player = new MIDIPlayer(archivo);
 		this.player.setEventListener(this);
-		this.player.playAndPause();
+		if (this.player.prepare())
+			this.player.playAndPause();
 	}
 
+	@Override
 	public void onTerminate(MIDIPlayerEvent e) {
 		id++;
 
-		System.out.println(controller.getMIDIList().size());
-		System.out.println(id);
 		if (id >= controller.getMIDIList().size()) {
 			this.reset();
-			if (!isRepeat()) {
-				this.stop();
+
+			/**
+			 * Repeat at the end of the playlist
+			 */
+			if (!isRepeat())
 				return;
-			}
 		}
 
 		this.newPlayer(controller.getMIDIList().get(id).getArchivo());
+	}
+
+	@Override
+	public void onMIDIUnavailable(MIDIPlayerEvent e) {
+		this.reset();
+		JOptionPane.showMessageDialog(this.controller, "Oops, usted no tiene una libreria MIDI compatible", "ERROR", JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void onInvalidMIDIFile(MIDIPlayerEvent e) {
+		this.reset();
+		JOptionPane.showMessageDialog(this.controller, "Oops, el archivo que intenta reproducir no es un archivo MIDI compatible o esta corrupto", "ERROR", JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void onFileNotFound(MIDIPlayerEvent e) {
+		this.reset();
+		JOptionPane.showMessageDialog(this.controller, "Oops, el archivo que intenta reproducir no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void reset() {

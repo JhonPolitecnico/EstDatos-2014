@@ -23,17 +23,17 @@ public class Controller extends Save {
 
 	private gui.main.Controller owner;
 	private PlayListModel playlist;
-	private MIDIListModel MIDIList;
+	private MIDIListModel<Cancion> mIDIList;
 	private boolean bNew;
 
-	public Controller(gui.main.Controller owner, MIDIListModel list) {
+	public Controller(gui.main.Controller owner, MIDIListModel<Cancion> list) {
 		super();
 		this.owner = owner;
-		this.MIDIList = list;
+		this.mIDIList = list;
 
 		this.playlist = new PlayListModel();
 
-		for (Entry<String, MIDIListModel> entry : this.owner.getPlayList().getLists().entrySet())
+		for (Entry<String, MIDIListModel<Cancion>> entry : this.owner.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 
 		this.list.setModel(this.playlist);
@@ -63,7 +63,7 @@ public class Controller extends Save {
 		this.textField.setEnabled(value);
 	}
 
-	public JList getList() {
+	public JList<PlayList> getList() {
 		return this.list;
 	}
 
@@ -75,11 +75,11 @@ public class Controller extends Save {
 		return playlist;
 	}
 
-	public MIDIListModel getMIDIList() {
-		MIDIListModel clon = new MIDIListModel();
+	public MIDIListModel<Cancion> getMIDIList() {
+		MIDIListModel<Cancion> clon = new MIDIListModel<Cancion>();
 
-		for (int i = 0; i < this.MIDIList.getSize(); i++)
-			clon.addElement(this.MIDIList.get(i));
+		for (int i = 0; i < this.mIDIList.getSize(); i++)
+			clon.addElement(this.mIDIList.get(i));
 
 		return clon;
 	}

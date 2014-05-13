@@ -11,9 +11,7 @@ import gui.main.Controller;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
 
-import midi.MIDIPLayList;
 import serializer.engine.Serializer;
 import utils.Utils;
 

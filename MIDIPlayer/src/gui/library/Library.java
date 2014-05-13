@@ -7,9 +7,6 @@ package gui.library;
  * @code 1310012946
  * 
  */
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -21,6 +18,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Library extends JFrame {
 
+	private static final long serialVersionUID = 7532832003283013307L;
+	
 	private JPanel contentPane;
 
 	/**

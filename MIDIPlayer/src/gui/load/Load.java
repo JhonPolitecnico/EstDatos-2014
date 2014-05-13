@@ -14,16 +14,18 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
-import javax.swing.JCheckBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
+import playlist.PlayList;
+
 public abstract class Load extends JFrame {
 
+	private static final long serialVersionUID = 7374801605100165298L;
+
 	protected JPanel contentPane;
-	protected JList list;
+	protected JList<PlayList> list;
 	protected JButton btnCargar;
 
 	/**
@@ -54,7 +56,7 @@ public abstract class Load extends JFrame {
 				gl_contentPane.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(btnCargar).addGap(2)));
 
-		list = new JList();
+		list = new JList<PlayList>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 		contentPane.setLayout(gl_contentPane);

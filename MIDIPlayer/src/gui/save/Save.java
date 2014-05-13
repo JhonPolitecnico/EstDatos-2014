@@ -20,10 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
+import playlist.PlayList;
+
 public abstract class Save extends JFrame {
 
+	private static final long serialVersionUID = 2717518904562274867L;
+
 	protected JPanel contentPane;
-	protected JList list;
+	protected JList<PlayList> list;
 	protected JTextField textField;
 	protected JButton btnGuardar;
 	protected JCheckBox chckbxNuevo;
@@ -70,7 +74,7 @@ public abstract class Save extends JFrame {
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
 						.addComponent(btnGuardar).addGap(7)));
 
-		list = new JList();
+		list = new JList<PlayList>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 		contentPane.setLayout(gl_contentPane);

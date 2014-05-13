@@ -1,5 +1,6 @@
 package playlist;
 
+import midi.Cancion;
 /**
  * MIDIPlayer
  * 
@@ -11,9 +12,9 @@ import midi.MIDIListModel;
 
 public class PlayList {
 	private String name;
-	private MIDIListModel list;
+	private MIDIListModel<Cancion> list;
 
-	public PlayList(String name, MIDIListModel list) {
+	public PlayList(String name, MIDIListModel<Cancion> list) {
 		super();
 		this.name = name;
 		this.list = list;
@@ -23,7 +24,7 @@ public class PlayList {
 		return name;
 	}
 
-	public MIDIListModel getList() {
+	public MIDIListModel<Cancion> getList() {
 		return list;
 	}
 

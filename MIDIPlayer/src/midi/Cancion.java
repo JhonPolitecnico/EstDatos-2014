@@ -13,19 +13,30 @@ import midi.player.MIDIPlayer;
 
 public class Cancion implements Serializable {
 
+	private static final long serialVersionUID = 4614709442745098197L;
+
 	private String titulo;
 	private String artista;
 	private int año;
 	private String casaDiscografica;
 	private String duracion;
-	private MIDIFile archivo;
+	private MIDIFile mIDIFile;
 
-	public Cancion(MIDIFile archivo) {
+	public Cancion(MIDIFile mIDIFile) {
 		super();
-		this.archivo = archivo;
+		this.mIDIFile = mIDIFile;
 
-		// Duracion
-		long microseconds = (new MIDIPlayer(this.archivo)).getMicrosecondTime();
+		/**
+		 * Set time of song
+		 */
+		MIDIPlayer tempPlayer = new MIDIPlayer(this.mIDIFile);
+
+		if (!tempPlayer.prepare()) {
+			this.duracion = "00:00:00";
+			return;
+		}
+
+		long microseconds = tempPlayer.getMicrosecondTime();
 		long minutes = 0;
 		long seconds = 0;
 		long milliseconds = microseconds / 1000;
@@ -49,8 +60,8 @@ public class Cancion implements Serializable {
 		if (this.titulo != null)
 			return this.titulo;
 
-		if (this.archivo != null)
-			return archivo.getFileName();
+		if (this.mIDIFile != null)
+			return mIDIFile.getFileName();
 
 		return "No disponible";
 	}
@@ -96,7 +107,7 @@ public class Cancion implements Serializable {
 	}
 
 	public MIDIFile getArchivo() {
-		return archivo;
+		return mIDIFile;
 	}
 
 }

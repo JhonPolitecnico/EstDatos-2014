@@ -7,7 +7,7 @@ package midi;
  * @code 1310012946
  * 
  */
-import java.io.File;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -22,18 +22,18 @@ public class SongList implements Serializable {
 		this.songs = new ArrayList<Cancion>();
 	}
 
-	public boolean exists(File file) {
+	public boolean exists(MIDIFile mIDIFile) {
 
 		for (Cancion single : this.songs)
-			if (single.getArchivo().getAbsolutePath().equals(file.getAbsolutePath()))
+			if (single.getArchivo().getFile().getAbsolutePath().equals(mIDIFile.getFile().getAbsolutePath()))
 				return true;
 
 		return false;
 	}
 
-	public Cancion getSong(File file) {
+	public Cancion getSong(MIDIFile mIDIFile) {
 		for (int i = 0; i < songs.size(); i++)
-			if (file.getAbsolutePath().equals(songs.get(i).getArchivo().getAbsolutePath()))
+			if (mIDIFile.getFile().getAbsolutePath().equals(songs.get(i).getArchivo().getFile().getAbsolutePath()))
 				return songs.get(i);
 
 		return null;

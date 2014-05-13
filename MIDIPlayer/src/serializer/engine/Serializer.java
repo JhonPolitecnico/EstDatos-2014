@@ -1,7 +1,7 @@
 package serializer.engine;
 
 /**
- * MIDIPlayer
+ * Paint
  * 
  * @author Jhon Jairo Eslava
  * @code 1310012946
@@ -11,7 +11,7 @@ import java.io.*;
 
 public class Serializer {
 
-	File file;
+	private File file;
 
 	public Serializer(File file) {
 		super();
@@ -20,28 +20,71 @@ public class Serializer {
 
 	public boolean serialize(Object object) {
 
+		boolean ret = true;
+
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
 		try {
-			FileOutputStream fos = new FileOutputStream(this.file);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			fos = new FileOutputStream(this.file);
+			oos = new ObjectOutputStream(fos);
 			oos.writeObject(object);
-			oos.close();
 		} catch (IOException e) {
-			return false;
+			ret = false;
+		} finally {
+
+			// Close ObjectOutputStream
+			if (oos != null) {
+				try {
+					oos.close();
+				} catch (IOException e) {
+					ret = false;
+				}
+			}
+
+			// Close FileOutputStream
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					ret = false;
+				}
+			}
 		}
 
-		return true;
+		return ret;
 	}
 
 	public Object unserialize() {
 
 		Object object = null;
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+
 		try {
-			FileInputStream fis = new FileInputStream(this.file);
-			ObjectInputStream ois = new ObjectInputStream(fis);
+			fis = new FileInputStream(this.file);
+			ois = new ObjectInputStream(fis);
 			object = ois.readObject();
-			ois.close();
 		} catch (IOException | ClassNotFoundException e) {
 			return object;
+		} finally {
+
+			// Close ObjectInputStream
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					return object;
+				}
+			}
+
+			// Close FileInputStream
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					return object;
+				}
+			}
 		}
 
 		return object;
