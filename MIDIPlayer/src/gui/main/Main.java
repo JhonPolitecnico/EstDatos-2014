@@ -38,18 +38,18 @@ public abstract class Main extends JFrame {
 	private static final long serialVersionUID = 3247169800303769527L;
 
 	protected JList<Song> jList;
-	protected JMenuItem mntmLimpiar;
-	protected JMenuItem mntmAadirArchivo;
-	protected JMenuItem mntmEliminar;
-	protected JMenuItem mntmPropiedades;
+	protected JMenuItem mntmClear;
+	protected JMenuItem mntmAddFile;
+	protected JMenuItem mntmRemove;
+	protected JMenuItem mntmProperties;
 	protected JButton btnPlayPause;
-	protected JCheckBox chckbxModoAleatorio;
-	protected JCheckBox chckbxRepetir;
-	protected JButton btnParar;
-	protected JButton btnPararLista;
-	protected JMenuItem mntmSalir;
-	protected JMenuItem mntmCargar;
-	protected JMenuItem mntmGuardar;
+	protected JCheckBox chckbxRandomMode;
+	protected JCheckBox chckbxRepeat;
+	protected JButton btnStop;
+	protected JButton btnStopList;
+	protected JMenuItem mntmExit;
+	protected JMenuItem mntmLoad;
+	protected JMenuItem mntmSave;
 
 	/**
 	 * Create the frame.
@@ -84,45 +84,45 @@ public abstract class Main extends JFrame {
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(jList, popupMenu);
 
-		mntmLimpiar = new JMenuItem("Vaciar lista");
-		popupMenu.add(mntmLimpiar);
+		mntmClear = new JMenuItem("Vaciar lista");
+		popupMenu.add(mntmClear);
 
 		JSeparator separator_2 = new JSeparator();
 		popupMenu.add(separator_2);
 
-		mntmAadirArchivo = new JMenuItem("A\u00F1adir archivo(s)");
-		popupMenu.add(mntmAadirArchivo);
+		mntmAddFile = new JMenuItem("A\u00F1adir archivo(s)");
+		popupMenu.add(mntmAddFile);
 
-		mntmEliminar = new JMenuItem("Eliminar");
-		popupMenu.add(mntmEliminar);
+		mntmRemove = new JMenuItem("Eliminar");
+		popupMenu.add(mntmRemove);
 
 		JSeparator separator = new JSeparator();
 		popupMenu.add(separator);
 
-		mntmPropiedades = new JMenuItem("Propiedades");
-		popupMenu.add(mntmPropiedades);
+		mntmProperties = new JMenuItem("Propiedades");
+		popupMenu.add(mntmProperties);
 
 		btnPlayPause = new JButton("Reproducir / Pausa");
 		btnPlayPause.setAlignmentY(Component.TOP_ALIGNMENT);
 
-		chckbxModoAleatorio = new JCheckBox("Modo Aleatorio");
+		chckbxRandomMode = new JCheckBox("Modo Aleatorio");
 
-		chckbxRepetir = new JCheckBox("Repetir");
+		chckbxRepeat = new JCheckBox("Repetir");
 
-		btnParar = new JButton("Parar");
+		btnStop = new JButton("Parar");
 
-		btnPararLista = new JButton("Parar Lista");
+		btnStopList = new JButton("Parar Lista");
 		GroupLayout gl_panelControl = new GroupLayout(panelControl);
 		gl_panelControl.setHorizontalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
-				gl_panelControl.createSequentialGroup().addComponent(btnPlayPause).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnParar).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnPararLista).addPreferredGap(ComponentPlacement.RELATED, 260, Short.MAX_VALUE).addComponent(chckbxModoAleatorio).addGap(14).addComponent(chckbxRepetir)
+				gl_panelControl.createSequentialGroup().addComponent(btnPlayPause).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnStop).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnStopList).addPreferredGap(ComponentPlacement.RELATED, 260, Short.MAX_VALUE).addComponent(chckbxRandomMode).addGap(14).addComponent(chckbxRepeat)
 						.addContainerGap()));
 		gl_panelControl.setVerticalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_panelControl
 						.createSequentialGroup()
 						.addGroup(
-								gl_panelControl.createParallelGroup(Alignment.LEADING).addComponent(chckbxRepetir).addComponent(chckbxModoAleatorio)
-										.addGroup(gl_panelControl.createParallelGroup(Alignment.BASELINE).addComponent(btnParar).addComponent(btnPararLista)).addComponent(btnPlayPause))
+								gl_panelControl.createParallelGroup(Alignment.LEADING).addComponent(chckbxRepeat).addComponent(chckbxRandomMode)
+										.addGroup(gl_panelControl.createParallelGroup(Alignment.BASELINE).addComponent(btnStop).addComponent(btnStopList)).addComponent(btnPlayPause))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panelControl.setLayout(gl_panelControl);
 		getContentPane().setLayout(groupLayout);
@@ -130,26 +130,26 @@ public abstract class Main extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnArchivo = new JMenu("Archivo");
-		menuBar.add(mnArchivo);
+		JMenu mnFile = new JMenu("Archivo");
+		menuBar.add(mnFile);
 
-		mntmSalir = new JMenuItem("Salir");
-		mnArchivo.add(mntmSalir);
+		mntmExit = new JMenuItem("Salir");
+		mnFile.add(mntmExit);
 
 		JMenu mnLista = new JMenu("Lista");
 		menuBar.add(mnLista);
 
-		JMenuItem mntmVerListas = new JMenuItem("Ver listas");
-		mnLista.add(mntmVerListas);
+		JMenuItem mntmViewLists = new JMenuItem("Ver listas");
+		mnLista.add(mntmViewLists);
 
 		JSeparator separator_1 = new JSeparator();
 		mnLista.add(separator_1);
 
-		mntmCargar = new JMenuItem("Cargar");
-		mnLista.add(mntmCargar);
+		mntmLoad = new JMenuItem("Cargar");
+		mnLista.add(mntmLoad);
 
-		mntmGuardar = new JMenuItem("Guardar");
-		mnLista.add(mntmGuardar);
+		mntmSave = new JMenuItem("Guardar");
+		mnLista.add(mntmSave);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

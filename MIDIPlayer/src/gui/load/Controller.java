@@ -37,7 +37,7 @@ public class Controller extends Load {
 		/*
 		 * Events
 		 */
-		this.btnCargar.addMouseListener(new gui.load.mouse.Load(this));
+		this.btnLoad.addMouseListener(new gui.load.mouse.Load(this));
 
 		setLocationRelativeTo(owner);
 		setVisible(true);

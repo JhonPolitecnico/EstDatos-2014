@@ -81,19 +81,19 @@ public class Controller extends Main {
 
 		this.addWindowListener(new WindowController(this));
 
-		mntmAadirArchivo.addActionListener(new AddFile(this));
-		mntmCargar.addActionListener(new LoadList(this));
-		mntmEliminar.addActionListener(new DeleteElement(this));
-		mntmGuardar.addActionListener(new SaveList(this));
-		mntmLimpiar.addActionListener(new EmptyList(this));
-		mntmPropiedades.addActionListener(new ViewDetails(this));
-		mntmSalir.addActionListener(new Exit());
+		mntmAddFile.addActionListener(new AddFile(this));
+		mntmLoad.addActionListener(new LoadList(this));
+		mntmRemove.addActionListener(new DeleteElement(this));
+		mntmSave.addActionListener(new SaveList(this));
+		mntmClear.addActionListener(new EmptyList(this));
+		mntmProperties.addActionListener(new ViewDetails(this));
+		mntmExit.addActionListener(new Exit());
 
 		btnPlayPause.addMouseListener(new PlayAndPause(this));
-		btnParar.addMouseListener(new Stop(this));
-		btnPararLista.addMouseListener(new StopList(this));
+		btnStop.addMouseListener(new Stop(this));
+		btnStopList.addMouseListener(new StopList(this));
 
-		chckbxRepetir.addActionListener(new Repeat(this));
+		chckbxRepeat.addActionListener(new Repeat(this));
 
 		// Crear frame
 		Utils.centerFrame(this);
