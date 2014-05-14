@@ -24,18 +24,18 @@ public class Controller extends Details {
 		super();
 		this.song = song;
 
-		this.txtArchivo.setText(this.song.getMIDIFile().getFileName());
-		this.txtArtista.setText(this.song.getArtist());
-		this.txtAño.setText(String.valueOf(this.song.getYear()));
-		this.txtDisco.setText(this.song.getAlbum());
-		this.txtDuracion.setText(this.song.getLength());
-		this.txtTitulo.setText(this.song.getTitle());
+		this.txtFile.setText(this.song.getMIDIFile().getFileName());
+		this.txtArtist.setText(this.song.getArtist());
+		this.txtYear.setText(String.valueOf(this.song.getYear()));
+		this.txtAlbum.setText(this.song.getAlbum());
+		this.txtLength.setText(this.song.getLength());
+		this.txtTitle.setText(this.song.getTitle());
 
 		/*
 		 * Eventos
 		 */
-		this.btnCancelar.addActionListener(new Cancel(this));
-		this.btnGuardar.addActionListener(new Save(this));
+		this.btnCancel.addActionListener(new Cancel(this));
+		this.btnSave.addActionListener(new Save(this));
 
 		this.setLocationRelativeTo(owner);
 		this.setVisible(true);

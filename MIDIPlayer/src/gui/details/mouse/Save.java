@@ -26,15 +26,15 @@ public class Save implements ActionListener {
 	public void actionPerformed(ActionEvent aE) {
 		Song song = this.controller.getSong();
 
-		song.setArtist(this.controller.getTxtArtista().getText());
+		song.setArtist(this.controller.getTxtArtist().getText());
 		int year = 0;
 		try {
-			year = (Integer.parseInt(this.controller.getTxtAño().getText()));
+			year = (Integer.parseInt(this.controller.getTxtYear().getText()));
 		} catch (Exception e) {
 		}
 		song.setYear(year);
-		song.setAlbum(this.controller.getTxtDisco().getText());
-		song.setTitle(this.controller.getTxtTitulo().getText());
+		song.setAlbum(this.controller.getTxtAlbum().getText());
+		song.setTitle(this.controller.getTxtTitle().getText());
 
 		this.controller.dispose();
 	}

@@ -19,16 +19,16 @@ public abstract class Details extends JFrame {
 	private static final long serialVersionUID = 6811103470110601282L;
 
 	protected JPanel contentPane;
-	protected JTextField txtTitulo;
-	protected JTextField txtArtista;
-	protected JTextField txtAño;
-	protected JTextField txtDisco;
-	protected JLabel lblDuracion;
-	protected JLabel lblArchivo;
-	protected JLabel txtDuracion;
-	protected JLabel txtArchivo;
-	protected JButton btnGuardar;
-	protected JButton btnCancelar;
+	protected JTextField txtTitle;
+	protected JTextField txtArtist;
+	protected JTextField txtYear;
+	protected JTextField txtAlbum;
+	protected JLabel lblLength;
+	protected JLabel lblFile;
+	protected JLabel txtLength;
+	protected JLabel txtFile;
+	protected JButton btnSave;
+	protected JButton btnCancel;
 
 	/**
 	 * Create the frame.
@@ -45,115 +45,123 @@ public abstract class Details extends JFrame {
 		SpringLayout sl_contentPane = new SpringLayout();
 		contentPane.setLayout(sl_contentPane);
 
-		txtTitulo = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtTitulo, 10, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtTitulo, -10, SpringLayout.EAST, contentPane);
-		contentPane.add(txtTitulo);
-		txtTitulo.setColumns(10);
+		txtTitle = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtTitle, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtTitle, -10, SpringLayout.EAST, contentPane);
+		contentPane.add(txtTitle);
+		txtTitle.setColumns(10);
 
-		txtArtista = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtArtista, 6, SpringLayout.SOUTH, txtTitulo);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtArtista, 0, SpringLayout.WEST, txtTitulo);
-		txtArtista.setColumns(10);
-		contentPane.add(txtArtista);
+		txtArtist = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtArtist, 6, SpringLayout.SOUTH, txtTitle);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtArtist, 0, SpringLayout.WEST, txtTitle);
+		txtArtist.setColumns(10);
+		contentPane.add(txtArtist);
 
-		txtAño = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtAño, 6, SpringLayout.SOUTH, txtArtista);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtAño, 0, SpringLayout.WEST, txtTitulo);
-		txtAño.setColumns(10);
-		contentPane.add(txtAño);
+		txtYear = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtYear, 6, SpringLayout.SOUTH, txtArtist);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtYear, 0, SpringLayout.WEST, txtTitle);
+		txtYear.setColumns(10);
+		contentPane.add(txtYear);
 
-		txtDisco = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDisco, 6, SpringLayout.SOUTH, txtAño);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtDisco, 0, SpringLayout.WEST, txtTitulo);
-		txtDisco.setColumns(10);
-		contentPane.add(txtDisco);
+		txtAlbum = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtAlbum, 6, SpringLayout.SOUTH, txtYear);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtAlbum, 0, SpringLayout.WEST, txtTitle);
+		txtAlbum.setColumns(10);
+		contentPane.add(txtAlbum);
 
-		JLabel lblTitulo = new JLabel("Titulo");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblTitulo, 0, SpringLayout.NORTH, txtTitulo);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblTitulo, 10, SpringLayout.WEST, contentPane);
-		contentPane.add(lblTitulo);
+		JLabel lblTitle = new JLabel("Titulo");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblTitle, 0, SpringLayout.NORTH, txtTitle);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblTitle, 10, SpringLayout.WEST, contentPane);
+		contentPane.add(lblTitle);
 
-		JLabel lblArtista = new JLabel("Artista");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblArtista, 0, SpringLayout.NORTH, txtArtista);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblArtista, 0, SpringLayout.WEST, lblTitulo);
-		contentPane.add(lblArtista);
+		JLabel lblArtist = new JLabel("Artista");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblArtist, 0, SpringLayout.NORTH, txtArtist);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblArtist, 0, SpringLayout.WEST, lblTitle);
+		contentPane.add(lblArtist);
 
-		JLabel lblAo = new JLabel("A\u00F1o");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAo, 0, SpringLayout.NORTH, txtAño);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblAo, 0, SpringLayout.WEST, lblTitulo);
-		contentPane.add(lblAo);
+		JLabel lblYear = new JLabel("A\u00F1o");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblYear, 0, SpringLayout.NORTH, txtYear);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblYear, 0, SpringLayout.WEST, lblTitle);
+		contentPane.add(lblYear);
 
-		JLabel lblDiscografica = new JLabel("Discogr\u00E1fica");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDiscografica, 0, SpringLayout.NORTH, txtDisco);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblDiscografica, 0, SpringLayout.WEST, lblTitulo);
-		contentPane.add(lblDiscografica);
+		JLabel lblAlbum = new JLabel("Album");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAlbum, 0, SpringLayout.NORTH, txtAlbum);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAlbum, 0, SpringLayout.WEST, lblTitle);
+		contentPane.add(lblAlbum);
 
-		lblDuracion = new JLabel("Duraci\u00F3n");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDuracion, 24, SpringLayout.SOUTH, lblDiscografica);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblDuracion, 0, SpringLayout.WEST, lblTitulo);
-		contentPane.add(lblDuracion);
+		lblLength = new JLabel("Duraci\u00F3n");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblLength, 24, SpringLayout.SOUTH, lblAlbum);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblLength, 0, SpringLayout.WEST, lblTitle);
+		contentPane.add(lblLength);
 
-		lblArchivo = new JLabel("Archivo");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblArchivo, 17, SpringLayout.SOUTH, lblDuracion);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblArchivo, 0, SpringLayout.WEST, lblTitulo);
-		contentPane.add(lblArchivo);
+		lblFile = new JLabel("Archivo");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblFile, 17, SpringLayout.SOUTH, lblLength);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblFile, 0, SpringLayout.WEST, lblTitle);
+		contentPane.add(lblFile);
 
-		txtDuracion = new JLabel("......");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDuracion, 0, SpringLayout.NORTH, lblDuracion);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtDuracion, 0, SpringLayout.EAST, txtTitulo);
-		contentPane.add(txtDuracion);
+		txtLength = new JLabel("......");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtLength, 0, SpringLayout.NORTH, lblLength);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtLength, 0, SpringLayout.EAST, txtTitle);
+		contentPane.add(txtLength);
 
-		txtArchivo = new JLabel("......");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtArchivo, 0, SpringLayout.NORTH, lblArchivo);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtArchivo, 0, SpringLayout.EAST, txtTitulo);
-		contentPane.add(txtArchivo);
+		txtFile = new JLabel("......");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtFile, 0, SpringLayout.NORTH, lblFile);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtFile, 0, SpringLayout.EAST, txtTitle);
+		contentPane.add(txtFile);
 
-		btnGuardar = new JButton("Guardar");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnGuardar, 21, SpringLayout.SOUTH, lblArchivo);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnGuardar, 10, SpringLayout.WEST, contentPane);
-		contentPane.add(btnGuardar);
+		btnSave = new JButton("Guardar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnSave, 21, SpringLayout.SOUTH, lblFile);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnSave, 10, SpringLayout.WEST, contentPane);
+		contentPane.add(btnSave);
 
-		btnCancelar = new JButton("Cancelar");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCancelar, 0, SpringLayout.NORTH, btnGuardar);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnCancelar, 0, SpringLayout.EAST, txtTitulo);
-		contentPane.add(btnCancelar);
+		btnCancel = new JButton("Cancelar");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCancel, 0, SpringLayout.NORTH, btnSave);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnCancel, 0, SpringLayout.EAST, txtTitle);
+		contentPane.add(btnCancel);
 	}
 
 	/*
 	 * Getters & Setters
 	 */
 
-	public JTextField getTxtTitulo() {
-		return txtTitulo;
+	public JTextField getTxtTitle() {
+		return txtTitle;
 	}
 
-	public JTextField getTxtArtista() {
-		return txtArtista;
+	public JTextField getTxtArtist() {
+		return txtArtist;
 	}
 
-	public JTextField getTxtAño() {
-		return txtAño;
+	public JTextField getTxtYear() {
+		return txtYear;
 	}
 
-	public JTextField getTxtDisco() {
-		return txtDisco;
+	public JTextField getTxtAlbum() {
+		return txtAlbum;
 	}
 
-	public JLabel getLblDuracion() {
-		return lblDuracion;
+	public JLabel getLblLength() {
+		return lblLength;
 	}
 
-	public JLabel getLblArchivo() {
-		return lblArchivo;
+	public JLabel getLblFile() {
+		return lblFile;
 	}
 
-	public JLabel getTxtDuracion() {
-		return txtDuracion;
+	public JLabel getTxtLength() {
+		return txtLength;
 	}
 
-	public JLabel getTxtArchivo() {
-		return txtArchivo;
+	public JLabel getTxtFile() {
+		return txtFile;
+	}
+
+	public JButton getBtnSave() {
+		return btnSave;
+	}
+
+	public JButton getBtnCancel() {
+		return btnCancel;
 	}
 
 }
