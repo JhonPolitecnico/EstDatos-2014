@@ -12,7 +12,7 @@ import gui.details.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import midi.Cancion;
+import midi.Song;
 
 public class Save implements ActionListener {
 
@@ -24,17 +24,17 @@ public class Save implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent aE) {
-		Cancion song = this.controller.getSong();
+		Song song = this.controller.getSong();
 
-		song.setArtista(this.controller.getTxtArtista().getText());
+		song.setArtist(this.controller.getTxtArtista().getText());
 		int year = 0;
 		try {
 			year = (Integer.parseInt(this.controller.getTxtAño().getText()));
 		} catch (Exception e) {
 		}
-		song.setAño(year);
-		song.setCasaDiscografica(this.controller.getTxtDisco().getText());
-		song.setTitulo(this.controller.getTxtTitulo().getText());
+		song.setYear(year);
+		song.setAlbum(this.controller.getTxtDisco().getText());
+		song.setTitle(this.controller.getTxtTitulo().getText());
 
 		this.controller.dispose();
 	}

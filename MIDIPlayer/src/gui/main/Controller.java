@@ -26,7 +26,7 @@ import gui.main.mouse.StopList;
 import gui.main.mouse.ViewDetails;
 import gui.main.player.MIDIPlayerController;
 import gui.main.window.WindowController;
-import midi.Cancion;
+import midi.Song;
 import midi.MIDIListModel;
 import midi.MIDIPLayList;
 
@@ -35,7 +35,7 @@ public class Controller extends Main {
 	private static final long serialVersionUID = 6445097674136753468L;
 
 	private MIDIPLayList playList;
-	private MIDIListModel<Cancion> MIDIList;
+	private MIDIListModel<Song> MIDIList;
 	private MIDIPlayerController playerController;
 
 	/**
@@ -71,7 +71,7 @@ public class Controller extends Main {
 		/*
 		 * Modelo
 		 */
-		this.MIDIList = new MIDIListModel<Cancion>();
+		this.MIDIList = new MIDIListModel<Song>();
 		jList.setModel(this.MIDIList);
 		this.playerController = new MIDIPlayerController(this);
 
@@ -103,7 +103,7 @@ public class Controller extends Main {
 	 * Getters & Setters
 	 */
 
-	public JList<Cancion> getList() {
+	public JList<Song> getList() {
 		return this.jList;
 	}
 
@@ -115,12 +115,12 @@ public class Controller extends Main {
 		this.playList = playList;
 	}
 
-	public MIDIListModel<Cancion> getMIDIList() {
+	public MIDIListModel<Song> getMIDIList() {
 		return MIDIList;
 	}
 
-	public void setMIDIList(MIDIListModel<Cancion> mIDIList) {
-		MIDIListModel<Cancion> clon = new MIDIListModel<Cancion>();
+	public void setMIDIList(MIDIListModel<Song> mIDIList) {
+		MIDIListModel<Song> clon = new MIDIListModel<Song>();
 
 		for (int i = 0; i < mIDIList.getSize(); i++)
 			clon.addElement(mIDIList.get(i));

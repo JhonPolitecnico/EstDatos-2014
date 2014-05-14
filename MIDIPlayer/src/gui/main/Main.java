@@ -28,7 +28,7 @@ import javax.swing.JMenu;
 import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
 
-import midi.Cancion;
+import midi.Song;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +37,7 @@ public abstract class Main extends JFrame {
 
 	private static final long serialVersionUID = 3247169800303769527L;
 
-	protected JList<Cancion> jList;
+	protected JList<Song> jList;
 	protected JMenuItem mntmLimpiar;
 	protected JMenuItem mntmAadirArchivo;
 	protected JMenuItem mntmEliminar;
@@ -77,7 +77,7 @@ public abstract class Main extends JFrame {
 				groupLayout.createSequentialGroup().addGap(13).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(panelControl, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
-		jList = new JList<Cancion>();
+		jList = new JList<Song>();
 		jList.setVisibleRowCount(-1);
 		scrollPane.setViewportView(jList);
 

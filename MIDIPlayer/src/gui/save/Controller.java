@@ -14,7 +14,7 @@ import javax.swing.JList;
 import playlist.PlayList;
 import playlist.PlayListModel;
 import gui.save.check.New;
-import midi.Cancion;
+import midi.Song;
 import midi.MIDIListModel;
 
 public class Controller extends Save {
@@ -23,17 +23,17 @@ public class Controller extends Save {
 
 	private gui.main.Controller owner;
 	private PlayListModel playlist;
-	private MIDIListModel<Cancion> mIDIList;
+	private MIDIListModel<Song> mIDIList;
 	private boolean bNew;
 
-	public Controller(gui.main.Controller owner, MIDIListModel<Cancion> list) {
+	public Controller(gui.main.Controller owner, MIDIListModel<Song> list) {
 		super();
 		this.owner = owner;
 		this.mIDIList = list;
 
 		this.playlist = new PlayListModel();
 
-		for (Entry<String, MIDIListModel<Cancion>> entry : this.owner.getPlayList().getLists().entrySet())
+		for (Entry<String, MIDIListModel<Song>> entry : this.owner.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 
 		this.list.setModel(this.playlist);
@@ -75,8 +75,8 @@ public class Controller extends Save {
 		return playlist;
 	}
 
-	public MIDIListModel<Cancion> getMIDIList() {
-		MIDIListModel<Cancion> clon = new MIDIListModel<Cancion>();
+	public MIDIListModel<Song> getMIDIList() {
+		MIDIListModel<Song> clon = new MIDIListModel<Song>();
 
 		for (int i = 0; i < this.mIDIList.getSize(); i++)
 			clon.addElement(this.mIDIList.get(i));

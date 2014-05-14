@@ -50,7 +50,7 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 				return;
 		}
 
-		this.newPlayer(controller.getMIDIList().get(id).getArchivo());
+		this.newPlayer(controller.getMIDIList().get(id).getMIDIFile());
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 	}
 
 	public void playCurrent() {
-		this.newPlayer(controller.getMIDIList().get(id).getArchivo());
+		this.newPlayer(controller.getMIDIList().get(id).getMIDIFile());
 	}
 
 }

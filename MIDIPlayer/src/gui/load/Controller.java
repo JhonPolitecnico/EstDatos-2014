@@ -13,7 +13,7 @@ import javax.swing.JList;
 
 import playlist.PlayList;
 import playlist.PlayListModel;
-import midi.Cancion;
+import midi.Song;
 import midi.MIDIListModel;
 
 public class Controller extends Load {
@@ -29,7 +29,7 @@ public class Controller extends Load {
 
 		this.playlist = new PlayListModel();
 
-		for (Entry<String, MIDIListModel<Cancion>> entry : this.owner.getPlayList().getLists().entrySet())
+		for (Entry<String, MIDIListModel<Song>> entry : this.owner.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 
 		this.list.setModel(this.playlist);
