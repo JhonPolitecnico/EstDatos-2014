@@ -10,6 +10,10 @@ import midi.Song;
  */
 import midi.MIDIListModel;
 
+/**
+ * Single playlist
+ *
+ */
 public class PlayList {
 	private String name;
 	private MIDIListModel<Song> list;

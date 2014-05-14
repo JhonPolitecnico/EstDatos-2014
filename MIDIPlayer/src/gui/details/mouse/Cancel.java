@@ -12,6 +12,10 @@ import gui.details.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Abort editing the music file
+ *
+ */
 public class Cancel implements ActionListener {
 
 	private Controller controller;

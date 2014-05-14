@@ -14,6 +14,10 @@ import java.awt.event.ActionListener;
 
 import midi.Song;
 
+/**
+ * Load the "Details" frame
+ *
+ */
 public class ViewDetails implements ActionListener {
 
 	private Controller controller;

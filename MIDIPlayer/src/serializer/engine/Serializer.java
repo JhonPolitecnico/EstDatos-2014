@@ -9,10 +9,21 @@ package serializer.engine;
  */
 import java.io.*;
 
+/**
+ * Serializer
+ * 
+ * Serialize and unserialize an object
+ * 
+ */
 public class Serializer {
 
 	private File file;
 
+	/**
+	 * 
+	 * @param file
+	 *            a file to save or load the object
+	 */
 	public Serializer(File file) {
 		super();
 		this.file = file;

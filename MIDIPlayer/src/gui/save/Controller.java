@@ -17,6 +17,10 @@ import gui.save.check.New;
 import midi.Song;
 import midi.MIDIListModel;
 
+/**
+ * Save the actual playlist
+ * 
+ */
 public class Controller extends Save {
 
 	private static final long serialVersionUID = -2056308172932341438L;
@@ -26,6 +30,13 @@ public class Controller extends Save {
 	private MIDIListModel<Song> mIDIList;
 	private boolean bNew;
 
+	/**
+	 * 
+	 * @param owner
+	 *            Main frame
+	 * @param list
+	 *            list of songs to save
+	 */
 	public Controller(gui.main.Controller owner, MIDIListModel<Song> list) {
 		super();
 		this.owner = owner;

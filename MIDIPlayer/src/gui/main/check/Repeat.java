@@ -12,6 +12,10 @@ import gui.main.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Set repeat playlist
+ *
+ */
 public class Repeat implements ActionListener {
 
 	private Controller controller;

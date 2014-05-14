@@ -11,6 +11,10 @@ import java.util.EventObject;
 
 import midi.MIDIFile;
 
+/**
+ * Event of player
+ *
+ */
 public class MIDIPlayerEvent extends EventObject {
 
 	private static final long serialVersionUID = 8322396952129914755L;

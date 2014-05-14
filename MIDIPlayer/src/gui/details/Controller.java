@@ -14,10 +14,17 @@ import javax.swing.JFrame;
 
 import midi.Song;
 
+/**
+ * Edit the properties of music files
+ *
+ */
 public class Controller extends Details {
 
 	private static final long serialVersionUID = -4549619257548714350L;
 
+	/**
+	 * The actual song
+	 */
 	private Song song;
 
 	public Controller(JFrame owner, Song song) {
@@ -31,8 +38,8 @@ public class Controller extends Details {
 		this.txtLength.setText(this.song.getLength());
 		this.txtTitle.setText(this.song.getTitle());
 
-		/*
-		 * Eventos
+		/**
+		 * Events
 		 */
 		this.btnCancel.addActionListener(new Cancel(this));
 		this.btnSave.addActionListener(new Save(this));

@@ -12,6 +12,10 @@ import gui.main.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Play or pause actual song
+ * 
+ */
 public class PlayAndPause extends MouseAdapter {
 
 	private Controller controller;

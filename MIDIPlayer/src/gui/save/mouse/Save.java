@@ -16,6 +16,10 @@ import javax.swing.JOptionPane;
 
 import playlist.PlayList;
 
+/**
+ * Save the playlist
+ * 
+ */
 public class Save extends MouseAdapter {
 
 	private Controller controller;

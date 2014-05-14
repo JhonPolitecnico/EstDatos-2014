@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 
 import gui.save.Controller;
 
+/**
+ * Set new playlist
+ *
+ */
 public class New implements ActionListener {
 
 	private Controller controller;

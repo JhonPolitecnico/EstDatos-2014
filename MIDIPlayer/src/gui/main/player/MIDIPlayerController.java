@@ -15,6 +15,14 @@ import midi.player.MIDIPLayerListener;
 import midi.player.MIDIPlayer;
 import midi.player.MIDIPlayerEvent;
 
+/**
+ * Controller of player
+ * 
+ * Contains the current playlist, performs actions start, pause, stop, repeat.
+ * 
+ * Handles errors related to playback MIDI files
+ *
+ */
 public class MIDIPlayerController implements MIDIPLayerListener {
 
 	private Controller controller;

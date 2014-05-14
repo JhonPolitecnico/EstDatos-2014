@@ -12,6 +12,10 @@ import gui.main.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clear playlist
+ * 
+ */
 public class EmptyList implements ActionListener {
 
 	private Controller controller;

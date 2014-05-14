@@ -10,6 +10,10 @@ package midi;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * The model contains all saved playlists
+ * 
+ */
 public class MIDIPLayList implements Serializable {
 
 	private static final long serialVersionUID = -3060777809404304238L;

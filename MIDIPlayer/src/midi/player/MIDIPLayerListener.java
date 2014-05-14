@@ -9,6 +9,10 @@ package midi.player;
  */
 import java.util.EventListener;
 
+/**
+ * Listener of player
+ *
+ */
 public interface MIDIPLayerListener extends EventListener {
 	public void onMIDIUnavailable(MIDIPlayerEvent e);
 

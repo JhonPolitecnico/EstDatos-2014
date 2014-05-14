@@ -15,6 +15,12 @@ import java.awt.event.WindowListener;
 import serializer.engine.Serializer;
 import utils.Utils;
 
+/**
+ * Window Controller
+ * 
+ * Save the work of the session
+ * 
+ */
 public class WindowController implements WindowListener {
 
 	Controller controller;
@@ -37,7 +43,7 @@ public class WindowController implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		/*
+		/**
 		 * Serializer
 		 */
 		Serializer s = new Serializer(Utils.getLibrary());

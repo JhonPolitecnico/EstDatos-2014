@@ -16,6 +16,10 @@ import javax.swing.JOptionPane;
 
 import playlist.PlayList;
 
+/**
+ * Load the selected list
+ *
+ */
 public class Load extends MouseAdapter {
 
 	private Controller controller;

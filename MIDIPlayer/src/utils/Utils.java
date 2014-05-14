@@ -13,16 +13,35 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
+/**
+ * Utils
+ * 
+ */
 public class Utils {
 
+	/**
+	 * Get current path
+	 * 
+	 * @return
+	 */
 	public static String getPath() {
 		return System.getProperty("user.dir");
 	}
 
+	/**
+	 * Get path to library
+	 * 
+	 * @return
+	 */
 	public static File getLibrary() {
 		return new File(Utils.getPath() + "\\library.bin");
 	}
 
+	/**
+	 * Center a frame
+	 * 
+	 * @param frame
+	 */
 	public static void centerFrame(JFrame frame) {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = dim.width / 2 - frame.getSize().width / 2;

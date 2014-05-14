@@ -18,6 +18,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import utils.Utils;
 
+/**
+ * Add files to actual playlist
+ * 
+ * The user can select multiple files and folders.
+ * 
+ * The system navigates through all directories and files to load ".mid" files found
+ * 
+ */
 public class AddFile implements ActionListener {
 
 	private Controller controller;
@@ -42,7 +50,7 @@ public class AddFile implements ActionListener {
 			File[] selectedFiles = fc.getSelectedFiles();
 			for (int i = 0; i < selectedFiles.length; i++) {
 				File file = selectedFiles[i];
-				controller.getMIDIList().agregar(file);
+				controller.getMIDIList().addRecursiveFileOrPath(file);
 			}
 
 		}

@@ -12,6 +12,10 @@ import gui.main.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Remove multiple songs selected
+ *
+ */
 public class DeleteElement implements ActionListener {
 
 	private Controller controller;

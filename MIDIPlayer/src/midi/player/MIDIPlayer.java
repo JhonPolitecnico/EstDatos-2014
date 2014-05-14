@@ -20,6 +20,11 @@ import javax.sound.midi.Sequencer;
 
 import midi.MIDIFile;
 
+
+/**
+ * The real, crude and basic player
+ *
+ */
 public class MIDIPlayer implements MetaEventListener {
 
 	public static final int END_OF_TRACK_MESSAGE = 47;

@@ -11,6 +11,10 @@ import gui.main.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Stop actual song
+ *
+ */
 public class Stop extends MouseAdapter {
 
 	private Controller controller;

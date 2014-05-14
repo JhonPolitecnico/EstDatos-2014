@@ -11,6 +11,12 @@ package midi;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * List that contains all the songs from this Seller
+ * 
+ * Ensures data synchronization in all playlists
+ * 
+ */
 public class SongList implements Serializable {
 
 	private static final long serialVersionUID = -7206256068965025522L;

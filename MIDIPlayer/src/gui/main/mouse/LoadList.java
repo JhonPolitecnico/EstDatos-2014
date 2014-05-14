@@ -12,6 +12,10 @@ import gui.main.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Load the "Load" frame
+ *
+ */
 public class LoadList implements ActionListener {
 
 	private Controller controller;

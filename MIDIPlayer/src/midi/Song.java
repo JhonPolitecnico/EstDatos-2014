@@ -11,6 +11,10 @@ import java.io.Serializable;
 
 import midi.player.MIDIPlayer;
 
+/**
+ * The skeleton of song
+ * 
+ */
 public class Song implements Serializable {
 
 	private static final long serialVersionUID = 4614709442745098197L;
@@ -22,6 +26,11 @@ public class Song implements Serializable {
 	private String length;
 	private MIDIFile mIDIFile;
 
+	/**
+	 * Create a song from a MIDIFile
+	 * 
+	 * @param mIDIFile
+	 */
 	public Song(MIDIFile mIDIFile) {
 		super();
 		this.mIDIFile = mIDIFile;
@@ -36,6 +45,9 @@ public class Song implements Serializable {
 			return;
 		}
 
+		/**
+		 * Additions and subtractions ;D
+		 */
 		long microseconds = tempPlayer.getMicrosecondTime();
 		long minutes = 0;
 		long seconds = 0;

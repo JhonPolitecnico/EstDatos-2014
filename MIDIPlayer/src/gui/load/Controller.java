@@ -16,6 +16,10 @@ import playlist.PlayListModel;
 import midi.Song;
 import midi.MIDIListModel;
 
+/**
+ * Load the saved list
+ * 
+ */
 public class Controller extends Load {
 
 	private static final long serialVersionUID = -2056308172932341438L;
@@ -29,6 +33,9 @@ public class Controller extends Load {
 
 		this.playlist = new PlayListModel();
 
+		/**
+		 * Add playlist to temporal list
+		 */
 		for (Entry<String, MIDIListModel<Song>> entry : this.owner.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 

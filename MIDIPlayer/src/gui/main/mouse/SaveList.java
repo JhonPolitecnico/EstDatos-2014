@@ -12,6 +12,10 @@ import gui.main.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Load the "Save" frame
+ *
+ */
 public class SaveList implements ActionListener {
 
 	private Controller controller;

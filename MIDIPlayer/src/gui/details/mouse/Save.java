@@ -14,6 +14,10 @@ import java.awt.event.ActionListener;
 
 import midi.Song;
 
+/**
+ * Save properties
+ *
+ */
 public class Save implements ActionListener {
 
 	private Controller controller;
