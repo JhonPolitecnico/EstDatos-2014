@@ -12,6 +12,8 @@ import gui.main.Controller;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import library.Library;
+import midi.SongList;
 import serializer.engine.Serializer;
 import utils.Utils;
 
@@ -47,7 +49,8 @@ public class WindowController implements WindowListener {
 		 * Serializer
 		 */
 		Serializer s = new Serializer(Utils.getLibrary());
-		s.serialize(this.controller.getPlayList());
+		Library library = new Library(SongList.getInstance(), this.controller.getPlayList());
+		s.serialize(library);
 	}
 
 	@Override

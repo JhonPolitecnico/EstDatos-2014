@@ -13,7 +13,8 @@ import java.io.Serializable;
 import utils.Utils;
 
 /**
- * A skeleton that allows load files with relative address and offers some useful methods
+ * A skeleton that allows load files with relative address and offers some
+ * useful methods
  * 
  */
 public class MIDIFile implements Serializable {
@@ -48,6 +49,15 @@ public class MIDIFile implements Serializable {
 	 */
 	public File getFile() {
 		return new File(file);
+	}
+
+	/**
+	 * Get original file path
+	 * 
+	 * @return
+	 */
+	public String getRelativePath() {
+		return this.file;
 	}
 
 	/**

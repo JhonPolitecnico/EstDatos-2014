@@ -26,9 +26,11 @@ import gui.main.mouse.StopList;
 import gui.main.mouse.ViewDetails;
 import gui.main.player.MIDIPlayerController;
 import gui.main.window.WindowController;
+import library.Library;
 import midi.Song;
 import midi.MIDIListModel;
 import midi.MIDIPLayList;
+import midi.SongList;
 
 public class Controller extends Main {
 
@@ -63,8 +65,10 @@ public class Controller extends Main {
 		Serializer s = new Serializer(Utils.getLibrary());
 		Object object = s.unserialize();
 
-		if (object != null && object instanceof MIDIPLayList) {
-			this.playList = (MIDIPLayList) object;
+		if (object != null && object instanceof Library) {
+			Library library = (Library) object;
+			SongList.setInstance(library.getSongList());
+			this.playList = library.getPlaylists();
 		} else
 			this.playList = new MIDIPLayList();
 

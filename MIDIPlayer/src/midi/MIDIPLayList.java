@@ -29,7 +29,7 @@ public class MIDIPLayList implements Serializable {
 	}
 
 	public void replaceList(String name, MIDIListModel<Song> list) {
-		this.lists.replace(name, list);
+		this.lists.put(name, list);
 	}
 
 	public HashMap<String, MIDIListModel<Song>> getLists() {

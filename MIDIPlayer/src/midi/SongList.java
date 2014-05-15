@@ -52,6 +52,10 @@ public class SongList implements Serializable {
 		return this.getSong(song.getMIDIFile());
 	}
 
+	public static void setInstance(SongList songList) {
+		instance = songList;
+	}
+
 	public static SongList getInstance() {
 		return (instance != null) ? instance : (instance = new SongList());
 	}
