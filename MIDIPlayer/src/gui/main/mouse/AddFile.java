@@ -51,6 +51,7 @@ public class AddFile implements ActionListener {
 			for (int i = 0; i < selectedFiles.length; i++) {
 				File file = selectedFiles[i];
 				controller.getMIDIList().addRecursiveFileOrPath(file);
+				controller.getMIDITable().addRecursiveFileOrPath(file);
 			}
 
 		}

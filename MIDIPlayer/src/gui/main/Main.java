@@ -83,8 +83,11 @@ public abstract class Main extends JFrame {
 		jList.setVisibleRowCount(-1);
 		//scrollPane.setViewportView(jList);
 
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
 		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(jList, popupMenu);
+		addPopup(table, popupMenu);
 
 		mntmClear = new JMenuItem("Vaciar lista");
 		popupMenu.add(mntmClear);
@@ -103,9 +106,6 @@ public abstract class Main extends JFrame {
 
 		mntmProperties = new JMenuItem("Propiedades");
 		popupMenu.add(mntmProperties);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
 
 		btnPlayPause = new JButton("Reproducir / Pausa");
 		btnPlayPause.setAlignmentY(Component.TOP_ALIGNMENT);

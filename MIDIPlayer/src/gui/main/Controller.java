@@ -75,7 +75,7 @@ public class Controller extends Main {
 			this.playList = new MIDIPLayList();
 
 		/*
-		 * Modelo
+		 * Model
 		 */
 		this.MIDIList = new MIDIListModel<Song>();
 		jList.setModel(this.MIDIList);
@@ -84,9 +84,8 @@ public class Controller extends Main {
 		this.MIDITable = new MIDITableModel();
 
 		super.table.setModel(this.MIDITable);
-
-		for (int i = 0; i < 20; i++)
-			this.MIDITable.addFile(new java.io.File("files\\avicii-hey_brother.mid"));
+		
+		this.MIDITable.addFile(new java.io.File("files\\avicii-hey_brother.mid"));
 
 		/*
 		 * Eventos
@@ -118,6 +117,10 @@ public class Controller extends Main {
 
 	public JList<Song> getList() {
 		return this.jList;
+	}
+
+	public MIDITableModel getMIDITable() {
+		return MIDITable;
 	}
 
 	public MIDIPLayList getPlayList() {
