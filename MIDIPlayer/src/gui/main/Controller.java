@@ -27,6 +27,7 @@ import gui.main.mouse.ViewDetails;
 import gui.main.player.MIDIPlayerController;
 import gui.main.window.WindowController;
 import library.Library;
+import midi.MIDITableModel;
 import midi.Song;
 import midi.MIDIListModel;
 import midi.MIDIPLayList;
@@ -38,6 +39,7 @@ public class Controller extends Main {
 
 	private MIDIPLayList playList;
 	private MIDIListModel<Song> MIDIList;
+	private MIDITableModel MIDITable;
 	private MIDIPlayerController playerController;
 
 	/**
@@ -78,6 +80,13 @@ public class Controller extends Main {
 		this.MIDIList = new MIDIListModel<Song>();
 		jList.setModel(this.MIDIList);
 		this.playerController = new MIDIPlayerController(this);
+
+		this.MIDITable = new MIDITableModel();
+
+		super.table.setModel(this.MIDITable);
+
+		for (int i = 0; i < 20; i++)
+			this.MIDITable.addFile(new java.io.File("files\\avicii-hey_brother.mid"));
 
 		/*
 		 * Eventos

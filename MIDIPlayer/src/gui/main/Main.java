@@ -32,6 +32,7 @@ import midi.Song;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTable;
 
 public abstract class Main extends JFrame {
 
@@ -50,6 +51,7 @@ public abstract class Main extends JFrame {
 	protected JMenuItem mntmExit;
 	protected JMenuItem mntmLoad;
 	protected JMenuItem mntmSave;
+	protected JTable table;
 
 	/**
 	 * Create the frame.
@@ -79,7 +81,7 @@ public abstract class Main extends JFrame {
 
 		jList = new JList<Song>();
 		jList.setVisibleRowCount(-1);
-		scrollPane.setViewportView(jList);
+		//scrollPane.setViewportView(jList);
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(jList, popupMenu);
@@ -101,6 +103,9 @@ public abstract class Main extends JFrame {
 
 		mntmProperties = new JMenuItem("Propiedades");
 		popupMenu.add(mntmProperties);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
 		btnPlayPause = new JButton("Reproducir / Pausa");
 		btnPlayPause.setAlignmentY(Component.TOP_ALIGNMENT);
