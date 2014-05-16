@@ -31,6 +31,10 @@ import midi.MIDITableModel;
 import midi.MIDIPLayList;
 import midi.SongList;
 
+/**
+ * Main frame
+ * 
+ */
 public class Controller extends Main {
 
 	private static final long serialVersionUID = 6445097674136753468L;

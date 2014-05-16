@@ -23,29 +23,34 @@ public class Controller extends Load {
 
 	private static final long serialVersionUID = -2056308172932341438L;
 
-	private gui.main.Controller owner;
+	private gui.main.Controller main;
 	private PlayListModel playlist;
 
-	public Controller(gui.main.Controller owner) {
+	/**
+	 * 
+	 * @param main
+	 *            Main frame
+	 */
+	public Controller(gui.main.Controller main) {
 		super();
-		this.owner = owner;
+		this.main = main;
 
 		this.playlist = new PlayListModel();
 
 		/**
 		 * Add playlist to temporal list
 		 */
-		for (Entry<String, MIDITableModel> entry : this.owner.getPlayList().getLists().entrySet())
+		for (Entry<String, MIDITableModel> entry : this.main.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 
 		this.list.setModel(this.playlist);
 
-		/*
+		/**
 		 * Events
 		 */
 		this.btnLoad.addMouseListener(new gui.load.mouse.Load(this));
 
-		setLocationRelativeTo(owner);
+		setLocationRelativeTo(main);
 		setVisible(true);
 	}
 
@@ -57,8 +62,8 @@ public class Controller extends Load {
 		return this.list;
 	}
 
-	public gui.main.Controller getOwner() {
-		return owner;
+	public gui.main.Controller getMain() {
+		return main;
 	}
 
 	public PlayListModel getPlaylist() {

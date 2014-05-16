@@ -37,7 +37,7 @@ public class Load extends MouseAdapter {
 		}
 
 		PlayList playlist = (PlayList) this.controller.getList().getSelectedValue();
-		this.controller.getOwner().setMIDITable(playlist.getList());
+		this.controller.getMain().setMIDITable(playlist.getList());
 		// this.controller.getOwner().setMIDIList(playlist.getList());
 
 		JOptionPane.showMessageDialog(this.controller, "La lista se cargo correctamente", "OK", JOptionPane.INFORMATION_MESSAGE);

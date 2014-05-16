@@ -131,6 +131,11 @@ public class MIDITableModel extends AbstractTableModel implements Serializable {
 		super.fireTableRowsDeleted(rowCount, rowCount);
 	}
 
+	/**
+	 * Add row from a MIDIFile
+	 * 
+	 * @param midiFile
+	 */
 	public void addRow(MIDIFile midiFile) {
 		int rowCount = this.getRowCount();
 		this.songs.add(SongList.getInstance().addSong(midiFile));
@@ -141,6 +146,11 @@ public class MIDITableModel extends AbstractTableModel implements Serializable {
 		super.fireTableRowsInserted(rowCount, rowCount);
 	}
 
+	/**
+	 * Add row from a Song
+	 * 
+	 * @param song
+	 */
 	public void addRow(Song song) {
 		int rowCount = this.getRowCount();
 		this.songs.add(SongList.getInstance().addSong(song));
@@ -151,6 +161,11 @@ public class MIDITableModel extends AbstractTableModel implements Serializable {
 		super.fireTableRowsInserted(rowCount, rowCount);
 	}
 
+	/**
+	 * Remove a row
+	 * 
+	 * @param row
+	 */
 	public void removeRow(int row) {
 		int rowCount = this.getRowCount();
 
@@ -184,6 +199,10 @@ public class MIDITableModel extends AbstractTableModel implements Serializable {
 		super.fireTableRowsUpdated(row, row);
 	}
 
+	/**
+	 * Return clone
+	 * 
+	 */
 	public MIDITableModel clone() {
 		MIDITableModel clon = new MIDITableModel();
 

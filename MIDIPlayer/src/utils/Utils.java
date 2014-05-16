@@ -50,10 +50,22 @@ public class Utils {
 		frame.setBounds(x, y, frame.getSize().width, frame.getSize().height);
 	}
 
+	/**
+	 * Get crc from a filepath
+	 * 
+	 * @param file
+	 * @return
+	 */
 	public static long getCRC32(String file) {
 		return getCRC32(new File(file));
 	}
 
+	/**
+	 * Get crc from a File
+	 * 
+	 * @param file
+	 * @return
+	 */
 	public static long getCRC32(File file) {
 		try {
 			CheckedInputStream cis = new CheckedInputStream(new FileInputStream(file), new CRC32());

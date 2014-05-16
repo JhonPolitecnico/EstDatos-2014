@@ -45,6 +45,9 @@ public class MIDIFile implements Serializable {
 		if (this.file.charAt(0) == '\\')
 			this.file = this.file.split("\\\\", 2)[1];
 
+		/**
+		 * Checksum
+		 */
 		this.crc = Utils.getCRC32(this.file);
 	}
 
