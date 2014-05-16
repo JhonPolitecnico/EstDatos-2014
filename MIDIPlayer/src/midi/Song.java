@@ -67,8 +67,7 @@ public class Song implements Serializable {
 
 	}
 
-	public String toString() {
-
+	public String getTitle() {
 		if (this.title != null)
 			return this.title;
 
@@ -76,10 +75,6 @@ public class Song implements Serializable {
 			return mIDIFile.getFileName();
 
 		return "No disponible";
-	}
-
-	public String getTitle() {
-		return title;
 	}
 
 	public String getArtist() {

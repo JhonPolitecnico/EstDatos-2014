@@ -12,11 +12,9 @@ import gui.main.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import midi.Song;
-
 /**
  * Load the "Details" frame
- *
+ * 
  */
 public class ViewDetails implements ActionListener {
 
@@ -29,11 +27,16 @@ public class ViewDetails implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		if (controller.getList().isSelectionEmpty())
-			return;
+		int rows[] = controller.getTable().getSelectedRows();
 
-		for (Object element : controller.getList().getSelectedValuesList())
-			new gui.details.Controller(this.controller, (Song) element);
+		for (int row : rows)
+			new gui.details.Controller(this.controller, row);
+
+		/*
+		 * if (controller.getList().isSelectionEmpty()) return;
+		 * 
+		 * for (Object element : controller.getList().getSelectedValuesList()) new gui.details.Controller(this.controller, (Song) element);
+		 */
 	}
 
 }

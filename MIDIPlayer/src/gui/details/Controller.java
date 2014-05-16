@@ -10,50 +10,64 @@ package gui.details;
 import gui.details.mouse.Cancel;
 import gui.details.mouse.Save;
 
-import javax.swing.JFrame;
-
 import midi.Song;
 
 /**
  * Edit the properties of music files
- *
+ * 
  */
 public class Controller extends Details {
 
 	private static final long serialVersionUID = -4549619257548714350L;
 
-	/**
-	 * The actual song
-	 */
+	private gui.main.Controller main;
+	private int row;
 	private Song song;
 
-	public Controller(JFrame owner, Song song) {
+	/**
+	 * Edit a row
+	 * 
+	 * @param main
+	 *            Main frame
+	 * @param row
+	 *            Row to edit
+	 */
+	public Controller(gui.main.Controller main, int row) {
 		super();
-		this.song = song;
-
-		this.txtFile.setText(this.song.getMIDIFile().getFileName());
-		this.txtArtist.setText(this.song.getArtist());
-		this.txtYear.setText(String.valueOf(this.song.getYear()));
-		this.txtAlbum.setText(this.song.getAlbum());
-		this.txtLength.setText(this.song.getLength());
-		this.txtTitle.setText(this.song.getTitle());
+		this.main = main;
+		this.row = row;
+		this.song = this.main.getMIDITable().getRow(this.row);
+		super.txtFile.setText(this.song.getMIDIFile().getFileName());
+		super.txtArtist.setText(this.song.getArtist());
+		super.txtYear.setText(String.valueOf(this.song.getYear()));
+		super.txtAlbum.setText(this.song.getAlbum());
+		super.txtLength.setText(this.song.getLength());
+		super.txtTitle.setText(this.song.getTitle());
 
 		/**
 		 * Events
 		 */
-		this.btnCancel.addActionListener(new Cancel(this));
-		this.btnSave.addActionListener(new Save(this));
+		super.btnCancel.addActionListener(new Cancel(this));
+		super.btnSave.addActionListener(new Save(this));
 
-		this.setLocationRelativeTo(owner);
-		this.setVisible(true);
+		super.setLocationRelativeTo(this.main);
+		super.setVisible(true);
 	}
 
 	/*
 	 * Getters & Setters
 	 */
 
+	public gui.main.Controller getMain() {
+		return this.main;
+	}
+
+	public int getRow() {
+		return this.row;
+	}
+
 	public Song getSong() {
-		return song;
+		return this.song;
 	}
 
 }

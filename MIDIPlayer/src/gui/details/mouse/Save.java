@@ -16,7 +16,7 @@ import midi.Song;
 
 /**
  * Save properties
- *
+ * 
  */
 public class Save implements ActionListener {
 
@@ -28,6 +28,9 @@ public class Save implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent aE) {
+		/**
+		 * Update row
+		 */
 		Song song = this.controller.getSong();
 
 		song.setArtist(this.controller.getTxtArtist().getText());
@@ -40,6 +43,14 @@ public class Save implements ActionListener {
 		song.setAlbum(this.controller.getTxtAlbum().getText());
 		song.setTitle(this.controller.getTxtTitle().getText());
 
+		/**
+		 * Notify
+		 */
+		this.controller.getMain().getMIDITable().updateRow(this.controller.getRow());
+
+		/**
+		 * Close this
+		 */
 		this.controller.dispose();
 	}
 

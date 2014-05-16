@@ -13,8 +13,7 @@ import javax.swing.JList;
 
 import playlist.PlayList;
 import playlist.PlayListModel;
-import midi.Song;
-import midi.MIDIListModel;
+import midi.MIDITableModel;
 
 /**
  * Load the saved list
@@ -36,7 +35,7 @@ public class Controller extends Load {
 		/**
 		 * Add playlist to temporal list
 		 */
-		for (Entry<String, MIDIListModel<Song>> entry : this.owner.getPlayList().getLists().entrySet())
+		for (Entry<String, MIDITableModel> entry : this.owner.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 
 		this.list.setModel(this.playlist);

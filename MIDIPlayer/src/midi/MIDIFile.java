@@ -13,13 +13,17 @@ import java.io.Serializable;
 import utils.Utils;
 
 /**
- * A skeleton that allows load files with relative address and offers some
- * useful methods
+ * A skeleton that allows load files with relative address and offers some useful methods
  * 
  */
 public class MIDIFile implements Serializable {
 
 	private static final long serialVersionUID = -691317870702529354L;
+
+	/**
+	 * Get checksum
+	 */
+	private long crc;
 
 	/**
 	 * Filename or filepath (absolute or relative)
@@ -40,6 +44,15 @@ public class MIDIFile implements Serializable {
 		 */
 		if (this.file.charAt(0) == '\\')
 			this.file = this.file.split("\\\\", 2)[1];
+
+		this.crc = Utils.getCRC32(this.file);
+	}
+
+	/**
+	 * Get checksum
+	 */
+	public long getCRC() {
+		return this.crc;
 	}
 
 	/**

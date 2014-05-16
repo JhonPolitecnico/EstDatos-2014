@@ -42,7 +42,7 @@ public class Save extends MouseAdapter {
 				return;
 			}
 
-			this.controller.getOwner().getPlayList().addList(this.controller.getNewPlayListName(), this.controller.getMIDIList());
+			this.controller.getOwner().getPlayList().addList(this.controller.getNewPlayListName(), this.controller.getTable());
 		} else {
 
 			if (this.controller.getList().isSelectionEmpty()) {
@@ -51,7 +51,7 @@ public class Save extends MouseAdapter {
 			}
 
 			PlayList playlist = (PlayList) this.controller.getList().getSelectedValue();
-			this.controller.getOwner().getPlayList().replaceList(playlist.getName(), playlist.getList());
+			this.controller.getOwner().getPlayList().replaceList(playlist.getName(), this.controller.getTable());
 		}
 
 		JOptionPane.showMessageDialog(this.controller, "La lista se guardo correctamente", "OK", JOptionPane.INFORMATION_MESSAGE);

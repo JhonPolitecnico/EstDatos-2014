@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Remove multiple songs selected
- *
+ * 
  */
 public class DeleteElement implements ActionListener {
 
@@ -27,12 +27,17 @@ public class DeleteElement implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		if (controller.getList().isSelectionEmpty())
-			return;
+		int rows[] = controller.getTable().getSelectedRows();
 
-		for (Object element : controller.getList().getSelectedValuesList())
-			controller.getMIDIList().removeElement(element);
+		for (int i = 0; i < rows.length; i++) {
+			controller.getMIDITable().removeRow(rows[i] - i);
+		}
 
+		/*
+		 * if (controller.getList().isSelectionEmpty()) return;
+		 * 
+		 * for (Object element : controller.getList().getSelectedValuesList()) controller.getMIDIList().removeElement(element);
+		 */
 	}
 
 }

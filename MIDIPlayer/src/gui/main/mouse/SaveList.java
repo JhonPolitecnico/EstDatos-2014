@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Load the "Save" frame
- *
+ * 
  */
 public class SaveList implements ActionListener {
 
@@ -26,7 +26,7 @@ public class SaveList implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		new gui.save.Controller(this.controller, this.controller.getMIDIList());
+		new gui.save.Controller(this.controller, this.controller.getMIDITable());
 	}
 
 }

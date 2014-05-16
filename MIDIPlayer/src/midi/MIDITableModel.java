@@ -113,7 +113,83 @@ public class MIDITableModel extends AbstractTableModel implements Serializable {
 		if (!file.getName().endsWith(".mid"))
 			return;
 
-		Song song = new Song(new MIDIFile(file.getAbsolutePath()));
+		MIDIFile midiFile = new MIDIFile(file.getAbsolutePath());
+		this.addRow(midiFile);
+	}
+
+	/**
+	 * Remove all rows
+	 * 
+	 */
+	public void clear() {
+		int rowCount = this.getRowCount();
+		this.songs.clear();
+
+		/**
+		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been deleted.
+		 */
+		super.fireTableRowsDeleted(rowCount, rowCount);
+	}
+
+	public void addRow(MIDIFile midiFile) {
+		int rowCount = this.getRowCount();
+		this.songs.add(SongList.getInstance().addSong(midiFile));
+
+		/**
+		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been inserted.
+		 */
+		super.fireTableRowsInserted(rowCount, rowCount);
+	}
+
+	public void addRow(Song song) {
+		int rowCount = this.getRowCount();
 		this.songs.add(SongList.getInstance().addSong(song));
+
+		/**
+		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been inserted.
+		 */
+		super.fireTableRowsInserted(rowCount, rowCount);
+	}
+
+	public void removeRow(int row) {
+		int rowCount = this.getRowCount();
+
+		this.songs.remove(row);
+
+		/**
+		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been deleted.
+		 */
+		super.fireTableRowsDeleted(rowCount, rowCount);
+	}
+
+	/**
+	 * Get reference to $row
+	 * 
+	 * @param row
+	 * @return
+	 */
+	public Song getRow(int row) {
+		return this.songs.get(row);
+	}
+
+	/**
+	 * Notifies that a row was updated
+	 * 
+	 * @param row
+	 */
+	public void updateRow(int row) {
+		/**
+		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been updated.
+		 */
+		super.fireTableRowsUpdated(row, row);
+	}
+
+	public MIDITableModel clone() {
+		MIDITableModel clon = new MIDITableModel();
+
+		for (Song song : this.songs)
+			clon.addRow(song);
+
+		return clon;
 	}
 }

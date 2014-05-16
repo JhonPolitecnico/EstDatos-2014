@@ -31,7 +31,7 @@ public class SongList implements Serializable {
 	public boolean exists(MIDIFile mIDIFile) {
 
 		for (Song single : this.songs)
-			if (single.getMIDIFile().getFile().getAbsolutePath().equals(mIDIFile.getFile().getAbsolutePath()))
+			if (single.getMIDIFile().getFile().getAbsolutePath().equals(mIDIFile.getFile().getAbsolutePath()) && single.getMIDIFile().getCRC() == mIDIFile.getCRC())
 				return true;
 
 		return false;
@@ -39,10 +39,17 @@ public class SongList implements Serializable {
 
 	public Song getSong(MIDIFile mIDIFile) {
 		for (int i = 0; i < songs.size(); i++)
-			if (mIDIFile.getFile().getAbsolutePath().equals(songs.get(i).getMIDIFile().getFile().getAbsolutePath()))
+			if (mIDIFile.getFile().getAbsolutePath().equals(songs.get(i).getMIDIFile().getFile().getAbsolutePath()) && mIDIFile.getCRC() == songs.get(i).getMIDIFile().getCRC())
 				return songs.get(i);
 
 		return null;
+	}
+
+	public Song addSong(MIDIFile mIDIFile) {
+		if (!this.exists(mIDIFile))
+			this.songs.add(new Song(mIDIFile));
+
+		return this.getSong(mIDIFile);
 	}
 
 	public Song addSong(Song song) {

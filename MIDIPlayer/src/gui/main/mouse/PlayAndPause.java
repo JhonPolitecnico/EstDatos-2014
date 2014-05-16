@@ -26,7 +26,7 @@ public class PlayAndPause extends MouseAdapter {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if (controller.getMIDIList().size() <= 0)
+		if (controller.getMIDITable().getRowCount() <= 0)
 			return;
 
 		if (!controller.getPlayerController().isPlaying())

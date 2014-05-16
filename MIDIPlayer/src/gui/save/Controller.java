@@ -14,8 +14,7 @@ import javax.swing.JList;
 import playlist.PlayList;
 import playlist.PlayListModel;
 import gui.save.check.New;
-import midi.Song;
-import midi.MIDIListModel;
+import midi.MIDITableModel;
 
 /**
  * Save the actual playlist
@@ -27,7 +26,7 @@ public class Controller extends Save {
 
 	private gui.main.Controller owner;
 	private PlayListModel playlist;
-	private MIDIListModel<Song> mIDIList;
+	private MIDITableModel table;
 	private boolean bNew;
 
 	/**
@@ -37,14 +36,14 @@ public class Controller extends Save {
 	 * @param list
 	 *            list of songs to save
 	 */
-	public Controller(gui.main.Controller owner, MIDIListModel<Song> list) {
+	public Controller(gui.main.Controller owner, MIDITableModel table) {
 		super();
 		this.owner = owner;
-		this.mIDIList = list;
+		this.table = table.clone();
 
 		this.playlist = new PlayListModel();
 
-		for (Entry<String, MIDIListModel<Song>> entry : this.owner.getPlayList().getLists().entrySet())
+		for (Entry<String, MIDITableModel> entry : this.owner.getPlayList().getLists().entrySet())
 			this.playlist.addElement(new PlayList(entry.getKey(), entry.getValue()));
 
 		this.list.setModel(this.playlist);
@@ -86,13 +85,8 @@ public class Controller extends Save {
 		return playlist;
 	}
 
-	public MIDIListModel<Song> getMIDIList() {
-		MIDIListModel<Song> clon = new MIDIListModel<Song>();
-
-		for (int i = 0; i < this.mIDIList.getSize(); i++)
-			clon.addElement(this.mIDIList.get(i));
-
-		return clon;
+	public MIDITableModel getTable() {
+		return this.table;
 	}
 
 	public String getNewPlayListName() {

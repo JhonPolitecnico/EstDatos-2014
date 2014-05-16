@@ -8,7 +8,7 @@ package midi;
  * 
  */
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  * The model contains all saved playlists
@@ -18,25 +18,25 @@ public class MIDIPLayList implements Serializable {
 
 	private static final long serialVersionUID = -3060777809404304238L;
 
-	private HashMap<String, MIDIListModel<Song>> lists;
+	private Hashtable<String, MIDITableModel> lists;
 
 	public MIDIPLayList() {
-		this.lists = new HashMap<String, MIDIListModel<Song>>();
+		this.lists = new Hashtable<String, MIDITableModel>();
 	}
 
-	public void addList(String name, MIDIListModel<Song> list) {
+	public void addList(String name, MIDITableModel list) {
 		this.lists.put(name, list);
 	}
 
-	public void replaceList(String name, MIDIListModel<Song> list) {
-		this.lists.put(name, list);
+	public void replaceList(String name, MIDITableModel list) {
+		this.lists.replace(name, list);
 	}
 
-	public HashMap<String, MIDIListModel<Song>> getLists() {
+	public Hashtable<String, MIDITableModel> getLists() {
 		return lists;
 	}
 
-	public void setLists(HashMap<String, MIDIListModel<Song>> lists) {
+	public void setLists(Hashtable<String, MIDITableModel> lists) {
 		this.lists = lists;
 	}
 

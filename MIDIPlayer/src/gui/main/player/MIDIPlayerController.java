@@ -21,7 +21,7 @@ import midi.player.MIDIPlayerEvent;
  * Contains the current playlist, performs actions start, pause, stop, repeat.
  * 
  * Handles errors related to playback MIDI files
- *
+ * 
  */
 public class MIDIPlayerController implements MIDIPLayerListener {
 
@@ -48,7 +48,7 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 	public void onTerminate(MIDIPlayerEvent e) {
 		id++;
 
-		if (id >= controller.getMIDIList().size()) {
+		if (id >= controller.getMIDITable().getRowCount()) {
 			this.reset();
 
 			/**
@@ -58,7 +58,7 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 				return;
 		}
 
-		this.newPlayer(controller.getMIDIList().get(id).getMIDIFile());
+		this.newPlayer(controller.getMIDITable().getRow(id).getMIDIFile());
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 	}
 
 	public void playCurrent() {
-		this.newPlayer(controller.getMIDIList().get(id).getMIDIFile());
+		this.newPlayer(controller.getMIDITable().getRow(id).getMIDIFile());
 	}
 
 }

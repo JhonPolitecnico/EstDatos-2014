@@ -9,7 +9,7 @@ package gui.main;
  */
 import java.awt.EventQueue;
 
-import javax.swing.JList;
+import javax.swing.JTable;
 
 import serializer.engine.Serializer;
 import utils.Utils;
@@ -28,8 +28,6 @@ import gui.main.player.MIDIPlayerController;
 import gui.main.window.WindowController;
 import library.Library;
 import midi.MIDITableModel;
-import midi.Song;
-import midi.MIDIListModel;
 import midi.MIDIPLayList;
 import midi.SongList;
 
@@ -38,7 +36,6 @@ public class Controller extends Main {
 	private static final long serialVersionUID = 6445097674136753468L;
 
 	private MIDIPLayList playList;
-	private MIDIListModel<Song> MIDIList;
 	private MIDITableModel MIDITable;
 	private MIDIPlayerController playerController;
 
@@ -77,37 +74,31 @@ public class Controller extends Main {
 		/*
 		 * Model
 		 */
-		this.MIDIList = new MIDIListModel<Song>();
-		jList.setModel(this.MIDIList);
+		this.MIDITable = new MIDITableModel();
+		super.table.setModel(this.MIDITable);
 		this.playerController = new MIDIPlayerController(this);
 
-		this.MIDITable = new MIDITableModel();
-
-		super.table.setModel(this.MIDITable);
-		
-		this.MIDITable.addFile(new java.io.File("files\\avicii-hey_brother.mid"));
-
 		/*
-		 * Eventos
+		 * Events
 		 */
 
 		this.addWindowListener(new WindowController(this));
 
-		mntmAddFile.addActionListener(new AddFile(this));
-		mntmLoad.addActionListener(new LoadList(this));
-		mntmRemove.addActionListener(new DeleteElement(this));
-		mntmSave.addActionListener(new SaveList(this));
-		mntmClear.addActionListener(new EmptyList(this));
-		mntmProperties.addActionListener(new ViewDetails(this));
-		mntmExit.addActionListener(new Exit());
+		super.mntmAddFile.addActionListener(new AddFile(this));
+		super.mntmLoad.addActionListener(new LoadList(this));
+		super.mntmRemove.addActionListener(new DeleteElement(this));
+		super.mntmSave.addActionListener(new SaveList(this));
+		super.mntmClear.addActionListener(new EmptyList(this));
+		super.mntmProperties.addActionListener(new ViewDetails(this));
+		super.mntmExit.addActionListener(new Exit());
 
-		btnPlayPause.addMouseListener(new PlayAndPause(this));
-		btnStop.addMouseListener(new Stop(this));
-		btnStopList.addMouseListener(new StopList(this));
+		super.btnPlayPause.addMouseListener(new PlayAndPause(this));
+		super.btnStop.addMouseListener(new Stop(this));
+		super.btnStopList.addMouseListener(new StopList(this));
 
-		chckbxRepeat.addActionListener(new Repeat(this));
+		super.chckbxRepeat.addActionListener(new Repeat(this));
 
-		// Crear frame
+		// Center frame
 		Utils.centerFrame(this);
 	}
 
@@ -115,8 +106,8 @@ public class Controller extends Main {
 	 * Getters & Setters
 	 */
 
-	public JList<Song> getList() {
-		return this.jList;
+	public JTable getTable() {
+		return super.table;
 	}
 
 	public MIDITableModel getMIDITable() {
@@ -131,18 +122,9 @@ public class Controller extends Main {
 		this.playList = playList;
 	}
 
-	public MIDIListModel<Song> getMIDIList() {
-		return MIDIList;
-	}
-
-	public void setMIDIList(MIDIListModel<Song> mIDIList) {
-		MIDIListModel<Song> clon = new MIDIListModel<Song>();
-
-		for (int i = 0; i < mIDIList.getSize(); i++)
-			clon.addElement(mIDIList.get(i));
-
-		MIDIList = clon;
-		jList.setModel(this.MIDIList);
+	public void setMIDITable(MIDITableModel midiTableModel) {
+		this.MIDITable = midiTableModel.clone();
+		super.table.setModel(this.MIDITable);
 	}
 
 	public MIDIPlayerController getPlayerController() {

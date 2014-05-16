@@ -13,8 +13,6 @@ import javax.swing.JButton;
 
 import java.awt.Component;
 
-import javax.swing.JList;
-
 import java.awt.Dimension;
 
 import javax.swing.JCheckBox;
@@ -28,17 +26,12 @@ import javax.swing.JMenu;
 import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
 
-import midi.Song;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 
 public abstract class Main extends JFrame {
 
 	private static final long serialVersionUID = 3247169800303769527L;
 
-	protected JList<Song> jList;
 	protected JMenuItem mntmClear;
 	protected JMenuItem mntmAddFile;
 	protected JMenuItem mntmRemove;
@@ -52,6 +45,7 @@ public abstract class Main extends JFrame {
 	protected JMenuItem mntmLoad;
 	protected JMenuItem mntmSave;
 	protected JTable table;
+	protected JPopupMenu popupMenu;
 
 	/**
 	 * Create the frame.
@@ -79,15 +73,12 @@ public abstract class Main extends JFrame {
 				groupLayout.createSequentialGroup().addGap(13).addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(panelControl, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
-		jList = new JList<Song>();
-		jList.setVisibleRowCount(-1);
-		//scrollPane.setViewportView(jList);
-
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(table, popupMenu);
+
+		popupMenu = new JPopupMenu();
+		scrollPane.setComponentPopupMenu(this.popupMenu);
+		table.setComponentPopupMenu(this.popupMenu);
 
 		mntmClear = new JMenuItem("Vaciar lista");
 		popupMenu.add(mntmClear);
@@ -155,25 +146,5 @@ public abstract class Main extends JFrame {
 
 		mntmSave = new JMenuItem("Guardar");
 		mnLista.add(mntmSave);
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 }
