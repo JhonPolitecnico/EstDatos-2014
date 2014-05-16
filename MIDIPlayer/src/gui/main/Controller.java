@@ -58,7 +58,7 @@ public class Controller extends Main {
 	public Controller() {
 		super();
 
-		/*
+		/**
 		 * Serializer
 		 */
 		Serializer s = new Serializer(Utils.getLibrary());
@@ -71,14 +71,14 @@ public class Controller extends Main {
 		} else
 			this.playList = new MIDIPLayList();
 
-		/*
+		/**
 		 * Model
 		 */
 		this.MIDITable = new MIDITableModel();
 		super.table.setModel(this.MIDITable);
 		this.playerController = new MIDIPlayerController(this);
 
-		/*
+		/**
 		 * Events
 		 */
 
@@ -98,7 +98,9 @@ public class Controller extends Main {
 
 		super.chckbxRepeat.addActionListener(new Repeat(this));
 
-		// Center frame
+		/**
+		 * Center frame
+		 */
 		Utils.centerFrame(this);
 	}
 
