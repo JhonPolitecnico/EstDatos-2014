@@ -29,7 +29,7 @@ public class MIDIPLayList implements Serializable {
 	}
 
 	public void replaceList(String name, MIDITableModel list) {
-		this.lists.replace(name, list);
+		this.lists.put(name, list);
 	}
 
 	public Hashtable<String, MIDITableModel> getLists() {
