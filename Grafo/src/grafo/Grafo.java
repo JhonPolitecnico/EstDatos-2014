@@ -46,4 +46,35 @@ public class Grafo {
 		this.matrizDeAdyacencia[this.buscarVertice(destino)][this.buscarVertice(origen)] = 1;
 	}
 
+	public String imprimir() {
+		String ret = " ";
+
+		/**
+		 * Fila de etiquetas
+		 */
+		for (Vertice vertice : this.vertices) {
+			ret += vertice.getEtiqueta() + " ";
+		}
+
+		ret += "\n";
+
+		int fila = 0;
+
+		for (int[] i : this.matrizDeAdyacencia) {
+			ret += this.vertices[fila].getEtiqueta() + " ";
+			for (int j : i) {
+				ret += j + " ";
+			}
+			ret += "\n";
+			fila++;
+		}
+
+		return ret;
+	}
+
+	@Override
+	public String toString() {
+		return this.imprimir();
+	}
+
 }

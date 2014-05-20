@@ -16,4 +16,9 @@ public class Vertice {
 		this.etiqueta = etiqueta;
 	}
 
+	@Override
+	public String toString() {
+		return this.etiqueta;
+	}
+
 }
