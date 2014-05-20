@@ -10,7 +10,7 @@ public class Grafo {
 	}
 
 	public void insertarVertice(String etiqueta) {
-		if (buscarVertice(etiqueta) == -1)
+		if (buscarVertice(etiqueta) != -1)
 			return;
 
 		int i = 0;
@@ -30,6 +30,9 @@ public class Grafo {
 		int i = 0;
 
 		for (Vertice vertice : this.vertices) {
+			if (vertice == null)
+				return -1;
+
 			if (vertice.getEtiqueta().equals(etiqueta))
 				return i;
 			i++;
@@ -47,7 +50,7 @@ public class Grafo {
 	}
 
 	public String imprimir() {
-		String ret = " ";
+		String ret = "  ";
 
 		/**
 		 * Fila de etiquetas
@@ -61,6 +64,7 @@ public class Grafo {
 		int fila = 0;
 
 		for (int[] i : this.matrizDeAdyacencia) {
+
 			ret += this.vertices[fila].getEtiqueta() + " ";
 			for (int j : i) {
 				ret += j + " ";
