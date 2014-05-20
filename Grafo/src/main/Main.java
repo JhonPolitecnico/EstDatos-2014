@@ -27,6 +27,20 @@ public class Main {
 		grafo.insertarArco("4", "6");
 
 		System.out.println(grafo);
+
+		for (int i = 1; i <= 6; i++)
+			System.out.println("Grado del vertive " + i + ": " + grafo.gradoDeUnVertice(String.valueOf(i)));
+
+		System.out.println();
+
+		for (int i = 1; i <= 6; i++) {
+			System.out.print("relaciones del vertive " + i + ": ");
+			System.out.print(grafo.relacionesDeUnVertice(String.valueOf(i)));
+			System.out.println();
+		}
+
+		System.out.println(grafo.profundidadDeUnNodo("6"));
+
 	}
 
 }

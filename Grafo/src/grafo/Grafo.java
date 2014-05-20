@@ -1,5 +1,7 @@
 package grafo;
 
+import java.util.ArrayList;
+
 public class Grafo {
 	private Vertice[] vertices;
 	private int[][] matrizDeAdyacencia;
@@ -47,6 +49,81 @@ public class Grafo {
 
 		this.matrizDeAdyacencia[this.buscarVertice(origen)][this.buscarVertice(destino)] = 1;
 		this.matrizDeAdyacencia[this.buscarVertice(destino)][this.buscarVertice(origen)] = 1;
+	}
+
+	public int gradoDeUnVertice(String etiqueta) {
+		int id = this.buscarVertice(etiqueta);
+		if (id == -1)
+			return -1;
+
+		int[] fila = this.matrizDeAdyacencia[id];
+		int ret = 0;
+
+		for (int i : fila)
+			ret += i;
+
+		return ret;
+	}
+
+	public ArrayList<Vertice> relacionesDeUnVertice(String etiqueta) {
+		int id = this.buscarVertice(etiqueta);
+		if (id == -1)
+			return null;
+
+		int[] fila = this.matrizDeAdyacencia[id];
+
+		ArrayList<Vertice> aristas = new ArrayList<Vertice>();
+
+		for (int i = 0; i < fila.length; i++)
+			if (fila[i] != 0)
+				aristas.add(this.vertices[i]);
+
+		return aristas;
+	}
+
+	public ArrayList<Vertice> profundidadDeUnNodo(String etiqueta) {
+		return this.profundidadDeUnNodo(etiqueta, new ArrayList<Vertice>());
+	}
+
+	private ArrayList<Vertice> profundidadDeUnNodo(String etiqueta, ArrayList<Vertice> recorrido) {
+
+		if (this.buscarVertice(etiqueta) == -1)
+			return null;
+
+		ArrayList<Vertice> relaciones = this.relacionesDeUnVertice(etiqueta);
+
+		/**
+		 * Se agrega el al recorrido
+		 */
+		recorrido.add(this.vertices[this.buscarVertice(etiqueta)]);
+
+		boolean esta = false;
+
+		for (Vertice relacion : relaciones) {
+
+			esta = false;
+			for (Vertice vertice : recorrido) {
+				if (vertice.getEtiqueta().equals(relacion.getEtiqueta())) {
+					esta = true;
+					break;
+				}
+			}
+
+			/**
+			 * Si esta la relacion duplicada, omitirla
+			 */
+			if (esta)
+				continue;
+
+			/**
+			 * Si no esta, operarla
+			 */
+
+			this.profundidadDeUnNodo(relacion.getEtiqueta(), recorrido);
+
+		}
+
+		return recorrido;
 	}
 
 	public String imprimir() {
