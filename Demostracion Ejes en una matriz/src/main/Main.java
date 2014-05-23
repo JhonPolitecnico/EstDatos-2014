@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		int[][] ok = new int[5][15];
+		int[][] ok = new int[9][1];
 
 		System.out.print("0");
 		
