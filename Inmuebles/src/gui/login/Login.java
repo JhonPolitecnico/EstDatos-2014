@@ -1,7 +1,5 @@
 package gui.login;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,25 +17,12 @@ public class Login extends JFrame {
 
 	private static final long serialVersionUID = 6764621988629202798L;
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JPanel contentPane;
+	protected JTextField textUsername;
+	protected JTextField textPwd;
+	protected JButton btnExit;
+	protected JButton btnLogin;
+	protected JButton btnGuest;
 
 	/**
 	 * Create the frame.
@@ -53,66 +38,57 @@ public class Login extends JFrame {
 		lblNewLabel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JLabel lblUsuario = new JLabel("Usuario:");
+		JLabel lblUsername = new JLabel("Usuario:");
 
-		textField = new JTextField();
-		textField.setColumns(10);
+		textUsername = new JTextField();
+		textUsername.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textPwd = new JTextField();
+		textPwd.setColumns(10);
 
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		JLabel lblPwd = new JLabel("Contrase\u00F1a:");
 
-		JButton btnSalir = new JButton("Salir");
+		btnExit = new JButton("Salir");
 
-		JButton btnIngresar = new JButton("Ingresar");
-		
-		JButton btnInvitado = new JButton("Invitado");
+		btnLogin = new JButton("Ingresar");
+
+		btnGuest = new JButton("Invitado");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblUsuario, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnSalir)
-							.addGap(60)
-							.addComponent(btnInvitado)
-							.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-							.addComponent(btnIngresar)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUsuario)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(14)
-							.addComponent(lblContrasea)))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnSalir)
-						.addComponent(btnIngresar)
-						.addComponent(btnInvitado))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(
+								gl_contentPane
+										.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
+										.addGroup(
+												gl_contentPane.createSequentialGroup().addComponent(lblUsername, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+														.addPreferredGap(ComponentPlacement.RELATED).addComponent(textUsername, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
+										.addGroup(
+												gl_contentPane.createSequentialGroup().addComponent(lblPwd, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.RELATED).addComponent(textPwd, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
+										.addGroup(
+												gl_contentPane.createSequentialGroup().addComponent(btnExit).addGap(60).addComponent(btnGuest)
+														.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE).addComponent(btnLogin)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(
+								gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblUsername)
+										.addComponent(textUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(
+								gl_contentPane
+										.createParallelGroup(Alignment.LEADING)
+										.addGroup(
+												gl_contentPane.createSequentialGroup().addPreferredGap(ComponentPlacement.UNRELATED)
+														.addComponent(textPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_contentPane.createSequentialGroup().addGap(14).addComponent(lblPwd))).addGap(18)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(btnExit).addComponent(btnLogin).addComponent(btnGuest))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		contentPane.setLayout(gl_contentPane);
 	}
 }
