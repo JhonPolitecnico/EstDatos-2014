@@ -1,5 +1,12 @@
 package graphic;
 
+/**
+ * Paint
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
