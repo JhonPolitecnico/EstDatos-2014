@@ -7,8 +7,6 @@ package gui.property.list;
  * @code 1310012946
  * 
  */
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -21,28 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JMenu;
+import javax.swing.JTable;
 
 public class List extends JFrame {
 
 	private static final long serialVersionUID = 5759811461465050437L;
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					List frame = new List();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JPanel contentPane;
+	protected JTable table;
 
 	/**
 	 * Create the frame.
@@ -76,6 +60,9 @@ public class List extends JFrame {
 				gl_contentPane.createSequentialGroup().addComponent(panel, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 299, GroupLayout.PREFERRED_SIZE).addContainerGap(13, Short.MAX_VALUE)));
 
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
 		JLabel lblBusquedaYFiltros = new JLabel("Busqueda y Filtros");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
@@ -85,5 +72,4 @@ public class List extends JFrame {
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 	}
-
 }
