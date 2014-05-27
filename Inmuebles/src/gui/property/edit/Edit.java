@@ -1,5 +1,12 @@
 package gui.property.edit;
 
+/**
+ * Estate
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -64,19 +71,19 @@ public class Edit extends JFrame {
 
 		JMenu mnAcciones = new JMenu("Acciones");
 		menuBar.add(mnAcciones);
-		
+
 		JMenuItem mntmCambiarNombre = new JMenuItem("Cambiar nombre");
 		mnAcciones.add(mntmCambiarNombre);
-		
+
 		JMenuItem mntmCambiarImagen = new JMenuItem("Cambiar imagen");
 		mnAcciones.add(mntmCambiarImagen);
-		
+
 		JSeparator separator = new JSeparator();
 		mnAcciones.add(separator);
-		
+
 		JMenuItem mntmGuardar = new JMenuItem("Guardar");
 		mnAcciones.add(mntmGuardar);
-		
+
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mnAcciones.add(mntmSalir);
 		contentPane = new JPanel();
@@ -91,112 +98,108 @@ public class Edit extends JFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
-						.addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 523, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE))
-					.addGap(15))
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addGroup(
+								gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
+										.addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 523, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addGroup(
+								gl_contentPane
+										.createParallelGroup(Alignment.LEADING)
+										.addGroup(
+												gl_contentPane.createSequentialGroup().addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
+										.addComponent(panel, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)).addGap(15)));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
+
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
-		
+
 		JLabel lblTag = new JLabel("Tag:");
 		panel_1.add(lblTag);
-		
+
 		textField = new JTextField();
 		textField.setText("...");
 		panel_1.add(textField);
 		textField.setColumns(10);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
-		
+
 		JLabel label = new JLabel("Tag:");
 		panel_2.add(label);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setText("...");
 		textField_1.setColumns(10);
 		panel_2.add(textField_1);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
-		
+
 		JLabel label_1 = new JLabel("Tag:");
 		panel_3.add(label_1);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setText("...");
 		textField_2.setColumns(10);
 		panel_3.add(textField_2);
-		
+
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
-		
+
 		JLabel label_2 = new JLabel("Tag:");
 		panel_4.add(label_2);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setText("...");
 		textField_3.setColumns(10);
 		panel_4.add(textField_3);
-		
+
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
-		
+
 		JLabel label_3 = new JLabel("Tag:");
 		panel_5.add(label_3);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setText("...");
 		textField_4.setColumns(10);
 		panel_5.add(textField_4);
-		
+
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
-		
+
 		JLabel label_4 = new JLabel("Tag:");
 		panel_6.add(label_4);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setText("...");
 		textField_5.setColumns(10);
 		panel_6.add(textField_5);
-		
+
 		JPanel panel_7 = new JPanel();
 		panel.add(panel_7);
-		
+
 		JLabel label_5 = new JLabel("Tag:");
 		panel_7.add(label_5);
-		
+
 		textField_6 = new JTextField();
 		textField_6.setText("...");
 		textField_6.setColumns(10);
 		panel_7.add(textField_6);
-		
+
 		JPanel panel_8 = new JPanel();
 		panel.add(panel_8);
-		
+
 		JLabel label_6 = new JLabel("Tag:");
 		panel_8.add(label_6);
-		
+
 		textField_7 = new JTextField();
 		textField_7.setText("...");
 		textField_7.setColumns(10);

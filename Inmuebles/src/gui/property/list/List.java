@@ -1,5 +1,12 @@
 package gui.property.list;
 
+/**
+ * Estate
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -47,7 +54,7 @@ public class List extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnAcciones = new JMenu("Acciones");
 		menuBar.add(mnAcciones);
 		contentPane = new JPanel();

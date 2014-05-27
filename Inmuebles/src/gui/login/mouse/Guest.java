@@ -26,6 +26,8 @@ public class Guest extends MouseAdapter {
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		this.loginController.setSession(new user.Guest());
+		new gui.property.list.Controller(this.loginController);
 		this.loginController.dispose();
 	}
 }

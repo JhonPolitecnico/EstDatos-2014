@@ -1,6 +1,10 @@
 package user.mask;
 
 /**
+ * Estate
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
  * 
  * @reference http://en.wikipedia.org/wiki/Mask_%28computing%29
  * @reference http://stackoverflow.com/questions/648021/how-to-use-a-bitwise-operator-to-pass-multiple-integer-values-into-a-function-fo
