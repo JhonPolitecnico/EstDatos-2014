@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println(Binary.DecinalToBinary(7));
+		System.out.println(Binary.decinalToBinary(346));
 	}
 
 }
