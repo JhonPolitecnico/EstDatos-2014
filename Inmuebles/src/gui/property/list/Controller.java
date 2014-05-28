@@ -8,7 +8,6 @@ package gui.property.list;
  * 
  */
 import property.Property;
-import property.list.PropertyCellRender;
 import property.list.PropertyTableModel;
 import user.mask.Flag;
 import utils.Utils;
@@ -33,15 +32,15 @@ public class Controller extends List {
 		/**
 		 * Model
 		 */
-		this.propertyTable = new PropertyTableModel();
+		this.propertyTable = new PropertyTableModel(super.table);
 		for (int i = 1; i <= 30; i++) {
-			Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "photo", 4, true, 6);
+			Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "house.jpg", 4, true, 6);
 			this.propertyTable.addRow(property);
 		}
 
 		super.table.setModel(this.propertyTable);
-		super.table.setDefaultRenderer(Object.class, new PropertyCellRender());
 
+		Utils.centerFrame(this);
 		super.setVisible(true);
 	}
 

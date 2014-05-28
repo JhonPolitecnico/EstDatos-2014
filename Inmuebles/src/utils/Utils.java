@@ -7,10 +7,11 @@ package utils;
  * @code 1310012946
  * 
  */
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -26,6 +27,20 @@ public class Utils {
 	 */
 	public static String getPath() {
 		return System.getProperty("user.dir");
+	}
+
+	public static ImageIcon getImage(String relativePath) {
+		return new ImageIcon(getPath() + "\\img\\" + relativePath);
+	}
+
+	public static ImageIcon getPhoto(String relativePath, int width, int height) {
+		ImageIcon icon = new ImageIcon(getPath() + "\\img\\" + relativePath);
+		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+		Graphics2D g2d = (Graphics2D) bi.createGraphics();
+		g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+		g2d.drawImage(icon.getImage(), 0, 0, width, height, null);
+		g2d.dispose();
+		return new ImageIcon(bi);
 	}
 
 	/**

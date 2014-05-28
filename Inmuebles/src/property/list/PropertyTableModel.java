@@ -10,32 +10,36 @@ package property.list;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import property.Property;
+import property.list.cell.Controller;
 
 /**
  * A model that contains a list of properties
  * 
  * @param <T>
- *            song of type "Property"
+ *            property of type "Property"
  */
 public class PropertyTableModel extends AbstractTableModel implements Serializable {
 
 	private static final long serialVersionUID = -3369331427406130133L;
 
-	private String[] columnNames = { "" };
+	private JTable owner;
 	private ArrayList<Property> properties;
 
-	public PropertyTableModel() {
+	public PropertyTableModel(JTable owner) {
 		super();
+		this.owner = owner;
 		properties = new ArrayList<Property>();
-	}
 
-	@Override
-	public String getColumnName(int column) {
-		return columnNames[column];
+		/**
+		 * Prepare JTable
+		 */
+		this.owner.setDefaultRenderer(Object.class, new PropertyCellRender());
+		this.owner.setRowHeight((new Controller()).getSize().height);
+		this.owner.setTableHeader(null);
 	}
 
 	@Override
@@ -54,11 +58,6 @@ public class PropertyTableModel extends AbstractTableModel implements Serializab
 	}
 
 	@Override
-	public boolean isCellEditable(int row, int column) {
-		return false;
-	}
-
-	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 
 		if (rowIndex > this.properties.size() - 1)
@@ -72,7 +71,7 @@ public class PropertyTableModel extends AbstractTableModel implements Serializab
 		switch (columnIndex) {
 		case 0:
 
-			return new JButton("+");
+			return new Controller(property.getPhoto());
 
 			// return property.getAddress();
 
@@ -154,7 +153,7 @@ public class PropertyTableModel extends AbstractTableModel implements Serializab
 	 * 
 	 */
 	public PropertyTableModel clone() {
-		PropertyTableModel clon = new PropertyTableModel();
+		PropertyTableModel clon = new PropertyTableModel(this.owner);
 
 		for (Property property : this.properties)
 			clon.addRow(property);

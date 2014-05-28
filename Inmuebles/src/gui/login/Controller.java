@@ -47,6 +47,10 @@ public class Controller extends Login {
 	public Controller() {
 		super();
 
+		super.setTitle("Jhon's Estate Sales");
+		super.lblLogo.setIcon(Utils.getImage("logo.png"));
+		Utils.centerFrame(this);
+
 		/**
 		 * Serializer
 		 */
