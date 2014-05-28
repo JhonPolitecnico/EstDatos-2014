@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -21,7 +22,7 @@ public class Login extends JFrame {
 
 	protected JPanel contentPane;
 	protected JTextField textUsername;
-	protected JTextField textPwd;
+	protected JPasswordField textPwd;
 	protected JButton btnExit;
 	protected JButton btnLogin;
 	protected JButton btnGuest;
@@ -47,11 +48,11 @@ public class Login extends JFrame {
 		lblUsername.setBounds(10, 112, 58, 14);
 
 		textUsername = new JTextField();
-		textUsername.setBounds(90, 106, 247, 20);
+		textUsername.setBounds(90, 106, 247, 23);
 		textUsername.setColumns(10);
 
-		textPwd = new JTextField();
-		textPwd.setBounds(90, 138, 247, 20);
+		textPwd = new JPasswordField();
+		textPwd.setBounds(90, 138, 247, 23);
 		textPwd.setColumns(10);
 
 		JLabel lblPwd = new JLabel("Contrase\u00F1a:");

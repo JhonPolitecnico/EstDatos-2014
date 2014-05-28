@@ -18,7 +18,7 @@ public class Admin extends User implements Rol {
 
 	@Override
 	public int getFlags() {
-		return Flag.VIEW | Flag.USER_EDIT | Flag.USER_DELETE | Flag.ADMIN_EDIT | Flag.ADMIN_DELETE;
+		return Flag.VIEW | Flag.ADMIN_PROPERTY_DELETE | Flag.ADMIN_PROPERTY_EDIT;
 	}
 
 }

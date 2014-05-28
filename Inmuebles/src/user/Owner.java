@@ -18,7 +18,7 @@ public class Owner extends User implements Rol {
 
 	@Override
 	public int getFlags() {
-		return Flag.VIEW | Flag.USER_EDIT | Flag.USER_DELETE;
+		return Flag.VIEW | Flag.PROPERTY_DELETE | Flag.PROPERTY_EDIT | Flag.PROPERTY_NEW;
 	}
 
 }
