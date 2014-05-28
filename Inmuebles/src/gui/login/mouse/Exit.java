@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
  */
 public class Exit extends MouseAdapter {
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.exit(0);
 	}

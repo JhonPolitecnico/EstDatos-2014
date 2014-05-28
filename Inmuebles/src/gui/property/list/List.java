@@ -35,6 +35,9 @@ public class List extends JFrame {
 	protected JMenuItem mntmEditProfile;
 	protected JMenuItem mntmViewEstate;
 	protected JMenuItem mntmAddEstate;
+	protected JMenu mnAdmin;
+	protected JMenuItem mntmLogout;
+	protected JMenuItem mntmExit;
 
 	/**
 	 * Create the frame.
@@ -64,6 +67,18 @@ public class List extends JFrame {
 
 		mntmAddEstate = new JMenuItem("Agregar inmueble");
 		mnUser.add(mntmAddEstate);
+
+		JSeparator separator_1 = new JSeparator();
+		mnUser.add(separator_1);
+
+		mntmLogout = new JMenuItem("Cerrar sesi\u00F3n");
+		mnUser.add(mntmLogout);
+
+		mntmExit = new JMenuItem("Salir");
+		mnUser.add(mntmExit);
+
+		mnAdmin = new JMenu("Administrador");
+		menuBar.add(mnAdmin);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

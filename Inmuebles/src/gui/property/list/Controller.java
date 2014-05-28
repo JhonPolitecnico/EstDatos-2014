@@ -7,8 +7,12 @@ package gui.property.list;
  * @code 1310012946
  * 
  */
+import gui.property.list.mouse.Exit;
+import gui.property.list.mouse.Logout;
 import property.Property;
 import property.list.PropertyTableModel;
+import user.Admin;
+import user.User;
 import user.mask.Flag;
 import utils.Utils;
 
@@ -26,6 +30,18 @@ public class Controller extends List {
 		/**
 		 * Permissions
 		 */
+		super.menuBar.setVisible(!(this.loginController.getSession().getFlags() == Flag.VIEW));
+
+		super.mnAdmin.setVisible(this.loginController.getSession() instanceof Admin);
+
+		super.mntmViewProfile.setEnabled(Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROFILE_VIEW));
+		super.mntmEditProfile.setEnabled(Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROFILE_EDIT));
+
+		super.mntmViewEstate.setEnabled(Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROPERTY_VIEW));
+		super.mntmAddEstate.setEnabled(Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROPERTY_NEW));
+
+		super.mntmLogout.setEnabled(this.loginController.getSession() instanceof User);
+
 		if (!Flag.isFlag(this.loginController.getSession().getFlags(), Flag.VIEW))
 			Utils.fatalExit();
 
@@ -40,6 +56,15 @@ public class Controller extends List {
 
 		super.table.setModel(this.propertyTable);
 
+		/**
+		 * Events
+		 */
+		super.mntmLogout.addActionListener(new Logout(this, this.loginController));
+		super.mntmExit.addActionListener(new Exit());
+
+		/**
+		 * GUI
+		 */
 		Utils.centerFrame(this);
 		super.setVisible(true);
 	}

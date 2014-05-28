@@ -12,12 +12,47 @@ package user.mask;
  */
 public class Flag {
 
+	/**
+	 * View
+	 */
 	public final static int VIEW = 0x01;
-	public final static int PROPERTY_NEW = 0x02;
-	public final static int PROPERTY_EDIT = 0x04;
-	public final static int PROPERTY_DELETE = 0x08;
-	public final static int ADMIN_PROPERTY_EDIT = 0x10;
-	public final static int ADMIN_PROPERTY_DELETE = 0x20;
+	/**
+	 * View your profile
+	 */
+	public final static int PROFILE_VIEW = 0x02;
+	/**
+	 * Edit your profile
+	 */
+	public final static int PROFILE_EDIT = 0x04;
+	/**
+	 * View your properties
+	 */
+	public final static int PROPERTY_VIEW = 0x08;
+	/**
+	 * Create your property
+	 */
+	public final static int PROPERTY_NEW = 0x10;
+	/**
+	 * Edit your property
+	 */
+	public final static int PROPERTY_EDIT = 0x20;
+	/**
+	 * Delete your property
+	 */
+	public final static int PROPERTY_DELETE = 0x40;
+
+	/**
+	 * Edit profiles
+	 */
+	public final static int ADMIN_PROFILE_EDIT = 0x80;
+	/**
+	 * Edit properties
+	 */
+	public final static int ADMIN_PROPERTY_EDIT = 0x100;
+	/**
+	 * Delete properties
+	 */
+	public final static int ADMIN_PROPERTY_DELETE = 0x200;
 
 	public static boolean isFlag(final int flags, final int flag) {
 		return (flags & flag) != 0;

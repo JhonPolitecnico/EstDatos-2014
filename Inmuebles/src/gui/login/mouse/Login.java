@@ -30,6 +30,7 @@ public class Login extends MouseAdapter {
 		this.loginController = loginController;
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 
 		String username = this.loginController.getTextUsername().getText();
@@ -54,6 +55,15 @@ public class Login extends MouseAdapter {
 			return;
 		}
 
+		/**
+		 * Remove credentials
+		 */
+		this.loginController.getTextUsername().setText("");
+		this.loginController.getTextPwd().setText("");
+
+		/**
+		 * Show main frame
+		 */
 		new gui.property.list.Controller(this.loginController);
 		this.loginController.dispose();
 	}

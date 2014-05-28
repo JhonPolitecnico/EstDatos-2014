@@ -25,6 +25,7 @@ public class Guest extends MouseAdapter {
 		this.loginController = loginController;
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		this.loginController.setSession(new user.Guest());
 		new gui.property.list.Controller(this.loginController);
