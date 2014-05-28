@@ -89,7 +89,11 @@ public class Controller extends Login {
 		 * GUI
 		 */
 		super.setTitle("Jhon's Estate Sales");
-		super.lblLogo.setIcon(Utils.getImage("logo.png"));
+		try {
+			super.lblLogo.setIcon(Utils.getImage("logo.png"));
+		} catch (Exception e) {
+			super.lblLogo.setIcon(null);
+		}
 		Utils.centerFrame(this);
 	}
 

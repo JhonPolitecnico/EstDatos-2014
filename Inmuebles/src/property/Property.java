@@ -21,12 +21,9 @@ public class Property {
 	private boolean privateSecurity;
 	private String description;
 	private String photo;
-	private int toilets;
-	private boolean furnished;
-	private int garages;
 
 	public Property(Double area, String address, String city, int stratum, long salePrice, long leasePrice, int visits, String timeBuilt, long costOfAdministration, boolean privateSecurity,
-			String description, String photo, int toilets, boolean furnished, int garages) {
+			String description, String photo) {
 		super();
 		this.area = area;
 		this.address = address;
@@ -40,9 +37,6 @@ public class Property {
 		this.privateSecurity = privateSecurity;
 		this.description = description;
 		this.photo = photo;
-		this.toilets = toilets;
-		this.furnished = furnished;
-		this.garages = garages;
 	}
 
 	public Double getArea() {
@@ -93,18 +87,6 @@ public class Property {
 		return photo;
 	}
 
-	public int getToilets() {
-		return toilets;
-	}
-
-	public boolean isFurnished() {
-		return furnished;
-	}
-
-	public int getGarages() {
-		return garages;
-	}
-
 	public void setArea(Double area) {
 		this.area = area;
 	}
@@ -151,18 +133,6 @@ public class Property {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
-	}
-
-	public void setToilets(int toilets) {
-		this.toilets = toilets;
-	}
-
-	public void setFurnished(boolean furnished) {
-		this.furnished = furnished;
-	}
-
-	public void setGarages(int garages) {
-		this.garages = garages;
 	}
 
 }

@@ -7,6 +7,8 @@ package property.list;
  * @code 1310012946
  * 
  */
+import gui.property.list.cell.Controller;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -14,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import property.Property;
-import property.list.cell.Controller;
 
 /**
  * A model that contains a list of properties
@@ -68,17 +69,7 @@ public class PropertyTableModel extends AbstractTableModel implements Serializab
 		if (property == null)
 			return null;
 
-		switch (columnIndex) {
-		case 0:
-
-			return new Controller(property.getPhoto());
-
-			// return property.getAddress();
-
-		default:
-			return null;
-		}
-
+		return new Controller(property);
 	}
 
 	/**
@@ -146,6 +137,15 @@ public class PropertyTableModel extends AbstractTableModel implements Serializab
 		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been updated.
 		 */
 		super.fireTableRowsUpdated(row, row);
+	}
+
+	public ArrayList<Property> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(ArrayList<Property> properties) {
+		this.properties = properties;
+		super.fireTableRowsUpdated(this.properties.size(), this.properties.size());
 	}
 
 	/**

@@ -9,16 +9,38 @@ package user;
  */
 import user.mask.Flag;
 
+import java.util.ArrayList;
+
+import property.Property;
+
 public class Owner extends User implements Rol {
+
+	private ArrayList<Property> properties;
 
 	public Owner(String name, String surname, int phone, int cellphone, int dni, String nick, String password, String email) {
 		super(name, surname, phone, cellphone, dni, nick, password, email);
-		// TODO Auto-generated constructor stub
+		this.properties = new ArrayList<Property>();
 	}
 
 	@Override
 	public int getFlags() {
 		return Flag.VIEW | Flag.PROFILE_EDIT | Flag.PROFILE_VIEW | Flag.PROPERTY_DELETE | Flag.PROPERTY_EDIT | Flag.PROPERTY_NEW | Flag.PROPERTY_VIEW;
+	}
+
+	public ArrayList<Property> getProperties() {
+		return this.properties;
+	}
+
+	public void addProperty(Property property) {
+		this.properties.add(property);
+	}
+
+	public boolean removeProperty(Property property) {
+		return this.properties.remove(property);
+	}
+
+	public boolean containsProperty(Property property) {
+		return this.properties.contains(property);
 	}
 
 }

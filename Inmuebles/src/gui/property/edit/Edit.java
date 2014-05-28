@@ -7,8 +7,6 @@ package gui.property.edit;
  * @code 1310012946
  * 
  */
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,72 +25,63 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
 
 public class Edit extends JFrame {
 
 	private static final long serialVersionUID = -2284107981984764312L;
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Edit frame = new Edit();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JPanel contentPane;
+	protected JTextField textArea;
+	protected JTextField textAddress;
+	protected JTextField textCity;
+	protected JTextField textStratum;
+	protected JTextField textSalePrice;
+	protected JTextField textLeasePrice;
+	protected JTextField textTimeBuild;
+	protected JTextField textCostOfAdministration;
+	protected JMenuBar menuBar;
+	protected JMenu mnAcciones;
+	protected JMenuItem mntmUpdatePhoto;
+	protected JMenuItem mntmSave;
+	protected JMenuItem mntmExit;
+	protected JLabel lblPhoto;
+	protected JCheckBox chckbxPrivateSecurity;
+	protected JTextArea txtrDescription;
 
 	/**
 	 * Create the frame.
 	 */
 	public Edit() {
-		setTitle("Editar Inmueble: Nombre");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 727, 576);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 690, 539);
 
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnAcciones = new JMenu("Acciones");
+		mnAcciones = new JMenu("Acciones");
 		menuBar.add(mnAcciones);
 
-		JMenuItem mntmCambiarNombre = new JMenuItem("Cambiar nombre");
-		mnAcciones.add(mntmCambiarNombre);
-
-		JMenuItem mntmCambiarImagen = new JMenuItem("Cambiar imagen");
-		mnAcciones.add(mntmCambiarImagen);
+		mntmUpdatePhoto = new JMenuItem("Cambiar imagen");
+		mnAcciones.add(mntmUpdatePhoto);
 
 		JSeparator separator = new JSeparator();
 		mnAcciones.add(separator);
 
-		JMenuItem mntmGuardar = new JMenuItem("Guardar");
-		mnAcciones.add(mntmGuardar);
+		mntmSave = new JMenuItem("Guardar");
+		mnAcciones.add(mntmSave);
 
-		JMenuItem mntmSalir = new JMenuItem("Salir");
-		mnAcciones.add(mntmSalir);
+		mntmExit = new JMenuItem("Salir");
+		mnAcciones.add(mntmExit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JLabel lblImagen = new JLabel("Imagen");
-		lblImagen.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPhoto = new JLabel();
+		lblPhoto.setVerticalAlignment(SwingConstants.TOP);
+		lblPhoto.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblPhoto.setHorizontalAlignment(SwingConstants.LEFT);
 
 		JPanel panel = new JPanel();
 
@@ -102,9 +91,9 @@ public class Edit extends JFrame {
 				gl_contentPane
 						.createSequentialGroup()
 						.addGroup(
-								gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
-										.addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 523, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+								gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(lblPhoto, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE).addContainerGap(12, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_contentPane
 						.createSequentialGroup()
@@ -112,103 +101,112 @@ public class Edit extends JFrame {
 								gl_contentPane
 										.createParallelGroup(Alignment.LEADING)
 										.addGroup(
-												gl_contentPane.createSequentialGroup().addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)).addGap(15)));
+												gl_contentPane.createSequentialGroup().addComponent(lblPhoto, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+										.addComponent(panel, GroupLayout.PREFERRED_SIZE, 471, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
+		JPanel panelArea = new JPanel();
+		panel.add(panelArea);
 
-		JLabel lblTag = new JLabel("Tag:");
-		panel_1.add(lblTag);
+		JLabel lblArea = new JLabel("Area:");
+		panelArea.add(lblArea);
 
-		textField = new JTextField();
-		textField.setText("...");
-		panel_1.add(textField);
-		textField.setColumns(10);
+		textArea = new JTextField();
+		textArea.setText("...");
+		panelArea.add(textArea);
+		textArea.setColumns(10);
 
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
+		JPanel panelAddress = new JPanel();
+		panel.add(panelAddress);
 
-		JLabel label = new JLabel("Tag:");
-		panel_2.add(label);
+		JLabel lblAddress = new JLabel("Direcci\u00F3n:");
+		panelAddress.add(lblAddress);
 
-		textField_1 = new JTextField();
-		textField_1.setText("...");
-		textField_1.setColumns(10);
-		panel_2.add(textField_1);
+		textAddress = new JTextField();
+		textAddress.setText("...");
+		textAddress.setColumns(10);
+		panelAddress.add(textAddress);
 
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
+		JPanel panelCity = new JPanel();
+		panel.add(panelCity);
 
-		JLabel label_1 = new JLabel("Tag:");
-		panel_3.add(label_1);
+		JLabel lblCity = new JLabel("Ciudad:");
+		panelCity.add(lblCity);
 
-		textField_2 = new JTextField();
-		textField_2.setText("...");
-		textField_2.setColumns(10);
-		panel_3.add(textField_2);
+		textCity = new JTextField();
+		textCity.setText("...");
+		textCity.setColumns(10);
+		panelCity.add(textCity);
 
-		JPanel panel_4 = new JPanel();
-		panel.add(panel_4);
+		JPanel panelStratum = new JPanel();
+		panel.add(panelStratum);
 
-		JLabel label_2 = new JLabel("Tag:");
-		panel_4.add(label_2);
+		JLabel lblStratum = new JLabel("Estrato:");
+		panelStratum.add(lblStratum);
 
-		textField_3 = new JTextField();
-		textField_3.setText("...");
-		textField_3.setColumns(10);
-		panel_4.add(textField_3);
+		textStratum = new JTextField();
+		textStratum.setText("...");
+		textStratum.setColumns(10);
+		panelStratum.add(textStratum);
 
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5);
+		JPanel panelSalePrice = new JPanel();
+		panel.add(panelSalePrice);
 
-		JLabel label_3 = new JLabel("Tag:");
-		panel_5.add(label_3);
+		JLabel lblSalePrice = new JLabel("Precio de venta:");
+		panelSalePrice.add(lblSalePrice);
 
-		textField_4 = new JTextField();
-		textField_4.setText("...");
-		textField_4.setColumns(10);
-		panel_5.add(textField_4);
+		textSalePrice = new JTextField();
+		textSalePrice.setText("...");
+		textSalePrice.setColumns(10);
+		panelSalePrice.add(textSalePrice);
 
-		JPanel panel_6 = new JPanel();
-		panel.add(panel_6);
+		JPanel panelLeasePrice = new JPanel();
+		panel.add(panelLeasePrice);
 
-		JLabel label_4 = new JLabel("Tag:");
-		panel_6.add(label_4);
+		JLabel lblLeasePrice = new JLabel("Precio de arriendo:");
+		panelLeasePrice.add(lblLeasePrice);
 
-		textField_5 = new JTextField();
-		textField_5.setText("...");
-		textField_5.setColumns(10);
-		panel_6.add(textField_5);
+		textLeasePrice = new JTextField();
+		textLeasePrice.setText("...");
+		textLeasePrice.setColumns(10);
+		panelLeasePrice.add(textLeasePrice);
 
-		JPanel panel_7 = new JPanel();
-		panel.add(panel_7);
+		JPanel panelTimeBuild = new JPanel();
+		panel.add(panelTimeBuild);
 
-		JLabel label_5 = new JLabel("Tag:");
-		panel_7.add(label_5);
+		JLabel lblTimeBuild = new JLabel("Tiempo de construido:");
+		panelTimeBuild.add(lblTimeBuild);
 
-		textField_6 = new JTextField();
-		textField_6.setText("...");
-		textField_6.setColumns(10);
-		panel_7.add(textField_6);
+		textTimeBuild = new JTextField();
+		textTimeBuild.setText("...");
+		textTimeBuild.setColumns(10);
+		panelTimeBuild.add(textTimeBuild);
 
-		JPanel panel_8 = new JPanel();
-		panel.add(panel_8);
+		JPanel panelCostOfAdministration = new JPanel();
+		panel.add(panelCostOfAdministration);
 
-		JLabel label_6 = new JLabel("Tag:");
-		panel_8.add(label_6);
+		JLabel lblCostOfAdministration = new JLabel("Costo de administraci\u00F3n:");
+		panelCostOfAdministration.add(lblCostOfAdministration);
 
-		textField_7 = new JTextField();
-		textField_7.setText("...");
-		textField_7.setColumns(10);
-		panel_8.add(textField_7);
+		textCostOfAdministration = new JTextField();
+		textCostOfAdministration.setText("...");
+		textCostOfAdministration.setColumns(10);
+		panelCostOfAdministration.add(textCostOfAdministration);
 
-		JTextArea txtrNineInchNails = new JTextArea();
-		txtrNineInchNails
+		JPanel panelPrivateSecurity = new JPanel();
+		panel.add(panelPrivateSecurity);
+
+		JLabel lblPrivateSecurity = new JLabel("Seguridad privada:");
+		panelPrivateSecurity.add(lblPrivateSecurity);
+
+		chckbxPrivateSecurity = new JCheckBox("Si");
+		panelPrivateSecurity.add(chckbxPrivateSecurity);
+
+		txtrDescription = new JTextArea();
+		txtrDescription
 				.setText("Nine Inch Nails aren't on the bill, and they \r\nwon't play the fest anytime soon. Soundwave promoter\r\nAJ Maddah started a Twitter war-of-words with a few \r\nchoice comments about NIN's Trent Reznor.\r\n\r\n---------------------\r\n\r\nlorein");
-		scrollPane.setViewportView(txtrNineInchNails);
+		scrollPane.setViewportView(txtrDescription);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

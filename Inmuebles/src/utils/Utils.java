@@ -29,18 +29,28 @@ public class Utils {
 		return System.getProperty("user.dir");
 	}
 
-	public static ImageIcon getImage(String relativePath) {
-		return new ImageIcon(getPath() + "\\img\\" + relativePath);
+	public static ImageIcon getImage(String relativePath) throws Exception {
+		File file = new File(getPath() + "\\img\\" + relativePath);
+		if (!file.exists() || relativePath.equals(""))
+			throw new Exception();
+		ImageIcon img = new ImageIcon(file.getAbsolutePath());
+		img.setDescription(relativePath);
+		return img;
 	}
 
-	public static ImageIcon getPhoto(String relativePath, int width, int height) {
-		ImageIcon icon = new ImageIcon(getPath() + "\\img\\" + relativePath);
+	public static ImageIcon getPhoto(String relativePath, int width, int height) throws Exception {
+		File file = new File(getPath() + "\\img\\" + relativePath);
+		if (!file.exists() || relativePath.equals(""))
+			throw new Exception();
+		ImageIcon icon = new ImageIcon(file.getAbsolutePath());
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
 		Graphics2D g2d = (Graphics2D) bi.createGraphics();
 		g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
 		g2d.drawImage(icon.getImage(), 0, 0, width, height, null);
 		g2d.dispose();
-		return new ImageIcon(bi);
+		ImageIcon img = new ImageIcon(bi);
+		img.setDescription(relativePath);
+		return img;
 	}
 
 	/**

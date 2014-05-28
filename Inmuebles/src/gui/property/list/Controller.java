@@ -9,6 +9,8 @@ package gui.property.list;
  */
 import gui.property.list.mouse.Exit;
 import gui.property.list.mouse.Logout;
+import gui.property.list.mouse.AddEstate;
+import gui.property.list.mouse.ViewEstate;
 import property.Property;
 import property.list.PropertyTableModel;
 import user.Admin;
@@ -50,7 +52,7 @@ public class Controller extends List {
 		 */
 		this.propertyTable = new PropertyTableModel(super.table);
 		for (int i = 1; i <= 30; i++) {
-			Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "house.jpg", 4, true, 6);
+			Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "house.jpg");
 			this.propertyTable.addRow(property);
 		}
 
@@ -59,6 +61,8 @@ public class Controller extends List {
 		/**
 		 * Events
 		 */
+		super.mntmViewEstate.addActionListener(new ViewEstate(this, this.loginController));
+		super.mntmAddEstate.addActionListener(new AddEstate(this, this.loginController));
 		super.mntmLogout.addActionListener(new Logout(this, this.loginController));
 		super.mntmExit.addActionListener(new Exit());
 
