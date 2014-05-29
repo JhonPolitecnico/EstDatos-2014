@@ -7,8 +7,6 @@ package gui.property.view;
  * @code 1310012946
  * 
  */
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,68 +20,41 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
 
 public class View extends JFrame {
 
-	private static final long serialVersionUID = -1017403274124794549L;
+	private static final long serialVersionUID = -2284107981984764312L;
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					View frame = new View();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JPanel contentPane;
+	protected JTextField textArea;
+	protected JTextField textAddress;
+	protected JTextField textCity;
+	protected JTextField textStratum;
+	protected JTextField textSalePrice;
+	protected JTextField textLeasePrice;
+	protected JTextField textTimeBuild;
+	protected JTextField textCostOfAdministration;
+	protected JLabel lblPhoto;
+	protected JCheckBox chckbxPrivateSecurity;
+	protected JTextArea txtrDescription;
 
 	/**
 	 * Create the frame.
 	 */
 	public View() {
-		setTitle("Inmueble: Nombre");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 727, 576);
-
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JMenu mnAcciones = new JMenu("Acciones");
-		menuBar.add(mnAcciones);
-
-		JMenuItem mntmSeguir = new JMenuItem("Seguir");
-		mnAcciones.add(mntmSeguir);
-
-		JMenuItem mntmPedirCita = new JMenuItem("Pedir cita");
-		mnAcciones.add(mntmPedirCita);
-
-		JSeparator separator = new JSeparator();
-		mnAcciones.add(separator);
-
-		JMenuItem mntmModificar = new JMenuItem("Modificar");
-		mnAcciones.add(mntmModificar);
-
-		JMenuItem mntmEliminar = new JMenuItem("Eliminar");
-		mnAcciones.add(mntmEliminar);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 690, 516);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JLabel lblImagen = new JLabel("Imagen");
-		lblImagen.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPhoto = new JLabel();
+		lblPhoto.setVerticalAlignment(SwingConstants.TOP);
+		lblPhoto.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblPhoto.setHorizontalAlignment(SwingConstants.LEFT);
 
 		JPanel panel = new JPanel();
 
@@ -93,53 +64,134 @@ public class View extends JFrame {
 				gl_contentPane
 						.createSequentialGroup()
 						.addGroup(
-								gl_contentPane.createParallelGroup(Alignment.LEADING, false).addComponent(scrollPane, 0, 0, Short.MAX_VALUE)
-										.addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 523, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE).addContainerGap(14, Short.MAX_VALUE)));
+								gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(lblPhoto, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE).addContainerGap(12, Short.MAX_VALUE)));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_contentPane
 						.createSequentialGroup()
 						.addGroup(
 								gl_contentPane
-										.createParallelGroup(Alignment.TRAILING)
-										.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+										.createParallelGroup(Alignment.LEADING)
 										.addGroup(
-												gl_contentPane.createSequentialGroup().addComponent(lblImagen, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)))
-						.addGap(15)));
+												gl_contentPane.createSequentialGroup().addComponent(lblPhoto, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+										.addComponent(panel, GroupLayout.PREFERRED_SIZE, 471, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		JLabel lblTag = new JLabel("Tag: ...");
-		panel.add(lblTag);
+		JPanel panelArea = new JPanel();
+		panel.add(panelArea);
 
-		JLabel label = new JLabel("Tag: ...");
-		panel.add(label);
+		JLabel lblArea = new JLabel("Area:");
+		panelArea.add(lblArea);
 
-		JLabel label_1 = new JLabel("Tag: ...");
-		panel.add(label_1);
+		textArea = new JTextField();
+		textArea.setEditable(false);
+		textArea.setText("...");
+		panelArea.add(textArea);
+		textArea.setColumns(10);
 
-		JLabel label_2 = new JLabel("Tag: ...");
-		panel.add(label_2);
+		JPanel panelAddress = new JPanel();
+		panel.add(panelAddress);
 
-		JLabel label_3 = new JLabel("Tag: ...");
-		panel.add(label_3);
+		JLabel lblAddress = new JLabel("Direcci\u00F3n:");
+		panelAddress.add(lblAddress);
 
-		JLabel label_4 = new JLabel("Tag: ...");
-		panel.add(label_4);
+		textAddress = new JTextField();
+		textAddress.setEditable(false);
+		textAddress.setText("...");
+		textAddress.setColumns(10);
+		panelAddress.add(textAddress);
 
-		JLabel label_5 = new JLabel("Tag: ...");
-		panel.add(label_5);
+		JPanel panelCity = new JPanel();
+		panel.add(panelCity);
 
-		JLabel label_6 = new JLabel("Tag: ...");
-		panel.add(label_6);
+		JLabel lblCity = new JLabel("Ciudad:");
+		panelCity.add(lblCity);
 
-		JLabel label_7 = new JLabel("Tag: ...");
-		panel.add(label_7);
+		textCity = new JTextField();
+		textCity.setEditable(false);
+		textCity.setText("...");
+		textCity.setColumns(10);
+		panelCity.add(textCity);
 
-		JTextArea txtrNineInchNails = new JTextArea();
-		txtrNineInchNails
+		JPanel panelStratum = new JPanel();
+		panel.add(panelStratum);
+
+		JLabel lblStratum = new JLabel("Estrato:");
+		panelStratum.add(lblStratum);
+
+		textStratum = new JTextField();
+		textStratum.setEditable(false);
+		textStratum.setText("...");
+		textStratum.setColumns(10);
+		panelStratum.add(textStratum);
+
+		JPanel panelSalePrice = new JPanel();
+		panel.add(panelSalePrice);
+
+		JLabel lblSalePrice = new JLabel("Precio de venta:");
+		panelSalePrice.add(lblSalePrice);
+
+		textSalePrice = new JTextField();
+		textSalePrice.setEditable(false);
+		textSalePrice.setText("...");
+		textSalePrice.setColumns(10);
+		panelSalePrice.add(textSalePrice);
+
+		JPanel panelLeasePrice = new JPanel();
+		panel.add(panelLeasePrice);
+
+		JLabel lblLeasePrice = new JLabel("Precio de arriendo:");
+		panelLeasePrice.add(lblLeasePrice);
+
+		textLeasePrice = new JTextField();
+		textLeasePrice.setEditable(false);
+		textLeasePrice.setText("...");
+		textLeasePrice.setColumns(10);
+		panelLeasePrice.add(textLeasePrice);
+
+		JPanel panelTimeBuild = new JPanel();
+		panel.add(panelTimeBuild);
+
+		JLabel lblTimeBuild = new JLabel("Tiempo de construido:");
+		panelTimeBuild.add(lblTimeBuild);
+
+		textTimeBuild = new JTextField();
+		textTimeBuild.setEditable(false);
+		textTimeBuild.setText("...");
+		textTimeBuild.setColumns(10);
+		panelTimeBuild.add(textTimeBuild);
+
+		JPanel panelCostOfAdministration = new JPanel();
+		panel.add(panelCostOfAdministration);
+
+		JLabel lblCostOfAdministration = new JLabel("Costo de administraci\u00F3n:");
+		panelCostOfAdministration.add(lblCostOfAdministration);
+
+		textCostOfAdministration = new JTextField();
+		textCostOfAdministration.setEditable(false);
+		textCostOfAdministration.setText("...");
+		textCostOfAdministration.setColumns(10);
+		panelCostOfAdministration.add(textCostOfAdministration);
+
+		JPanel panelPrivateSecurity = new JPanel();
+		panel.add(panelPrivateSecurity);
+
+		JLabel lblPrivateSecurity = new JLabel("Seguridad privada:");
+		panelPrivateSecurity.add(lblPrivateSecurity);
+
+		chckbxPrivateSecurity = new JCheckBox("Si");
+		chckbxPrivateSecurity.setSelected(true);
+		chckbxPrivateSecurity.setEnabled(false);
+		chckbxPrivateSecurity.setFocusTraversalPolicyProvider(true);
+		panelPrivateSecurity.add(chckbxPrivateSecurity);
+
+		txtrDescription = new JTextArea();
+		txtrDescription.setEditable(false);
+		txtrDescription
 				.setText("Nine Inch Nails aren't on the bill, and they \r\nwon't play the fest anytime soon. Soundwave promoter\r\nAJ Maddah started a Twitter war-of-words with a few \r\nchoice comments about NIN's Trent Reznor.\r\n\r\n---------------------\r\n\r\nlorein");
-		scrollPane.setViewportView(txtrNineInchNails);
+		scrollPane.setViewportView(txtrDescription);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

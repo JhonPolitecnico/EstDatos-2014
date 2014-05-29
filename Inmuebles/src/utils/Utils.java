@@ -29,6 +29,14 @@ public class Utils {
 		return System.getProperty("user.dir");
 	}
 
+	/**
+	 * Get image from relative path
+	 * 
+	 * @param relativePath
+	 * @return
+	 * @throws Exception
+	 *             on error
+	 */
 	public static ImageIcon getImage(String relativePath) throws Exception {
 		File file = new File(getPath() + "\\img\\" + relativePath);
 		if (!file.exists() || relativePath.equals(""))
@@ -38,6 +46,16 @@ public class Utils {
 		return img;
 	}
 
+	/**
+	 * Get resized photo from relative path
+	 * 
+	 * @param relativePath
+	 * @param width
+	 * @param height
+	 * @return
+	 * @throws Exception
+	 *             on error
+	 */
 	public static ImageIcon getPhoto(String relativePath, int width, int height) throws Exception {
 		File file = new File(getPath() + "\\img\\" + relativePath);
 		if (!file.exists() || relativePath.equals(""))
@@ -80,5 +98,14 @@ public class Utils {
 	 */
 	public static void fatalExit() {
 		System.exit(0);
+	}
+
+	/**
+	 * Get application title
+	 * 
+	 * @return
+	 */
+	public static String getTitle() {
+		return " - Jhon's Estate Sales";
 	}
 }

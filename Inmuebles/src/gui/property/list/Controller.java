@@ -7,13 +7,18 @@ package gui.property.list;
  * @code 1310012946
  * 
  */
+import javax.swing.JTable;
+
+import gui.property.list.mouse.Edit;
 import gui.property.list.mouse.Exit;
 import gui.property.list.mouse.Logout;
 import gui.property.list.mouse.AddEstate;
+import gui.property.list.mouse.View;
 import gui.property.list.mouse.ViewEstate;
 import property.Property;
 import property.list.PropertyTableModel;
 import user.Admin;
+import user.Owner;
 import user.User;
 import user.mask.Flag;
 import utils.Utils;
@@ -25,7 +30,7 @@ public class Controller extends List {
 	private gui.login.Controller loginController;
 	private PropertyTableModel propertyTable;
 
-	public Controller(gui.login.Controller loginController) {
+	public Controller(gui.login.Controller loginController, boolean currentUser) {
 		super();
 		this.loginController = loginController;
 
@@ -44,6 +49,8 @@ public class Controller extends List {
 
 		super.mntmLogout.setEnabled(this.loginController.getSession() instanceof User);
 
+		super.mntmEdit.setVisible(currentUser);
+
 		if (!Flag.isFlag(this.loginController.getSession().getFlags(), Flag.VIEW))
 			Utils.fatalExit();
 
@@ -51,9 +58,20 @@ public class Controller extends List {
 		 * Model
 		 */
 		this.propertyTable = new PropertyTableModel(super.table);
-		for (int i = 1; i <= 30; i++) {
-			Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "house.jpg");
-			this.propertyTable.addRow(property);
+
+		if (currentUser) {
+			if (!(this.loginController.getSession() instanceof Owner))
+				Utils.fatalExit();
+
+			Owner owner = (Owner) this.loginController.getSession();
+
+			this.propertyTable.setProperties(owner.getProperties());
+		} else {
+
+			for (int i = 1; i <= 30; i++) {
+				Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "house.jpg");
+				this.propertyTable.addRow(property);
+			}
 		}
 
 		super.table.setModel(this.propertyTable);
@@ -66,11 +84,29 @@ public class Controller extends List {
 		super.mntmLogout.addActionListener(new Logout(this, this.loginController));
 		super.mntmExit.addActionListener(new Exit());
 
+		super.mntmView.addActionListener(new View(this, this.loginController));
+		super.mntmEdit.addActionListener(new Edit(this, this.loginController));
+
 		/**
 		 * GUI
 		 */
+		if (!currentUser) {
+			super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+			super.setTitle("Inmuebles" + Utils.getTitle());
+		} else {
+			super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			super.setTitle("Mis Inmuebles" + Utils.getTitle());
+		}
 		Utils.centerFrame(this);
 		super.setVisible(true);
+	}
+
+	public JTable getTable() {
+		return super.table;
+	}
+
+	public PropertyTableModel getPropertyTable() {
+		return propertyTable;
 	}
 
 }

@@ -80,9 +80,9 @@ public class Controller extends Edit {
 		 * GUI
 		 */
 		if (!this.isNew)
-			super.setTitle("Editar Inmueble");
+			super.setTitle("Editar Inmueble" + Utils.getTitle());
 		else
-			super.setTitle("Nuevo Inmueble");
+			super.setTitle("Nuevo Inmueble" + Utils.getTitle());
 
 		super.textArea.setText(String.valueOf(this.property.getArea()));
 		super.textAddress.setText(this.property.getAddress());
