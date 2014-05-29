@@ -9,6 +9,7 @@ package gui.property.list;
  */
 import javax.swing.JTable;
 
+import gui.property.list.mouse.Delete;
 import gui.property.list.mouse.Edit;
 import gui.property.list.mouse.Exit;
 import gui.property.list.mouse.Logout;
@@ -38,13 +39,15 @@ public class Controller extends List implements PropertyTableGUI {
 		this.currentUser = currentUser;
 
 		Owner owner = null;
+		boolean isAdmin = false;
 
 		if (this.currentUser) {
 			if (!(this.loginController.getSession() instanceof Owner))
 				Utils.fatalExit();
 
 			owner = (Owner) this.loginController.getSession();
-		}
+		} else
+			isAdmin = this.loginController.getSession() instanceof Admin;
 
 		/**
 		 * Permissions
@@ -69,7 +72,8 @@ public class Controller extends List implements PropertyTableGUI {
 		 * Permissions if is current user
 		 */
 		super.mntmViewEstate.setVisible(!this.currentUser);
-		super.mntmEdit.setVisible(this.currentUser);
+		super.mntmEdit.setVisible(this.currentUser | isAdmin);
+		super.mntmDelete.setVisible(this.currentUser | isAdmin);
 		super.mntmLogout.setVisible(!this.currentUser);
 
 		/**
@@ -99,6 +103,7 @@ public class Controller extends List implements PropertyTableGUI {
 
 		super.mntmView.addActionListener(new View(this, this.loginController));
 		super.mntmEdit.addActionListener(new Edit(this, this.loginController));
+		super.mntmDelete.addActionListener(new Delete(this));
 
 		/**
 		 * GUI

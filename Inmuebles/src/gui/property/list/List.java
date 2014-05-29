@@ -42,6 +42,7 @@ public class List extends JFrame {
 	protected JPopupMenu popupMenu;
 	protected JMenuItem mntmView;
 	protected JMenuItem mntmEdit;
+	protected JMenuItem mntmDelete;
 
 	/**
 	 * Create the frame.
@@ -108,6 +109,9 @@ public class List extends JFrame {
 
 		mntmEdit = new JMenuItem("Editar inmueble");
 		popupMenu.add(mntmEdit);
+
+		mntmDelete = new JMenuItem("Eliminar inmueble");
+		popupMenu.add(mntmDelete);
 
 		table = new JTable();
 		table.setComponentPopupMenu(popupMenu);
