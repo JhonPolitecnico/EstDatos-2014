@@ -30,6 +30,6 @@ public class AddEstate implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 
-		new gui.property.edit.Controller(this.loginController);
+		new gui.property.edit.Controller(this.listController, this.loginController);
 	}
 }

@@ -16,8 +16,18 @@ import java.awt.event.ActionListener;
  */
 public class Exit implements ActionListener {
 
+	private gui.property.list.Controller listController;
+
+	public Exit(gui.property.list.Controller listController) {
+		super();
+		this.listController = listController;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		System.exit(0);
+		if (!listController.isCurrentUser())
+			System.exit(0);
+		else
+			this.listController.dispose();
 	}
 }

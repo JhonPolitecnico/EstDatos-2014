@@ -181,9 +181,8 @@ public class View extends JFrame {
 		JLabel lblPrivateSecurity = new JLabel("Seguridad privada:");
 		panelPrivateSecurity.add(lblPrivateSecurity);
 
-		chckbxPrivateSecurity = new JCheckBox("Si");
+		chckbxPrivateSecurity = new JCheckBox("");
 		chckbxPrivateSecurity.setSelected(true);
-		chckbxPrivateSecurity.setEnabled(false);
 		chckbxPrivateSecurity.setFocusTraversalPolicyProvider(true);
 		panelPrivateSecurity.add(chckbxPrivateSecurity);
 

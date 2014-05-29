@@ -105,7 +105,16 @@ public class Utils {
 	 * 
 	 * @return
 	 */
+	public static String getTitleWithoutLine() {
+		return "Jhon's Estate Sales";
+	}
+
+	/**
+	 * Get application title with line
+	 * 
+	 * @return
+	 */
 	public static String getTitle() {
-		return " - Jhon's Estate Sales";
+		return " - " + getTitleWithoutLine();
 	}
 }

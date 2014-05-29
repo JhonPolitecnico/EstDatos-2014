@@ -43,7 +43,6 @@ public class Controller extends Login {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look and feel.
 		}
 
 		EventQueue.invokeLater(new Runnable() {
@@ -88,7 +87,7 @@ public class Controller extends Login {
 		/**
 		 * GUI
 		 */
-		super.setTitle("Jhon's Estate Sales");
+		super.setTitle(Utils.getTitleWithoutLine());
 		try {
 			super.lblLogo.setIcon(Utils.getImage("logo.png"));
 		} catch (Exception e) {

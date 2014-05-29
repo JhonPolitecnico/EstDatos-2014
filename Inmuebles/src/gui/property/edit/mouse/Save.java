@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import property.Property;
+import property.list.PropertyTableGUI;
 import user.Owner;
 import utils.Utils;
 
@@ -22,11 +23,13 @@ import utils.Utils;
  */
 public class Save implements ActionListener {
 
+	private PropertyTableGUI owner;
 	private Controller editController;
 	private gui.login.Controller loginController;
 
-	public Save(Controller editController, gui.login.Controller loginController) {
+	public Save(PropertyTableGUI owner, Controller editController, gui.login.Controller loginController) {
 		super();
+		this.owner = owner;
 		this.editController = editController;
 		this.loginController = loginController;
 	}
@@ -66,5 +69,6 @@ public class Save implements ActionListener {
 		if (!owner.containsProperty(property))
 			owner.addProperty(property);
 
+		this.owner.refreshProperies();
 	}
 }

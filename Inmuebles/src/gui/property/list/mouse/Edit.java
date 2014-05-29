@@ -33,6 +33,6 @@ public class Edit implements ActionListener {
 		int rows[] = listController.getTable().getSelectedRows();
 
 		for (int row : rows)
-			new gui.property.edit.Controller(loginController, listController.getPropertyTable().getRow(row));
+			new gui.property.edit.Controller(this.listController, this.loginController, this.listController.getPropertyTable().getRow(row));
 	}
 }

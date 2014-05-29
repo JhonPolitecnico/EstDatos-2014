@@ -16,6 +16,7 @@ import gui.property.list.mouse.AddEstate;
 import gui.property.list.mouse.View;
 import gui.property.list.mouse.ViewEstate;
 import property.Property;
+import property.list.PropertyTableGUI;
 import property.list.PropertyTableModel;
 import user.Admin;
 import user.Owner;
@@ -23,20 +24,35 @@ import user.User;
 import user.mask.Flag;
 import utils.Utils;
 
-public class Controller extends List {
+public class Controller extends List implements PropertyTableGUI {
 
 	private static final long serialVersionUID = 1762422748309620751L;
 
 	private gui.login.Controller loginController;
 	private PropertyTableModel propertyTable;
+	private boolean currentUser;
 
 	public Controller(gui.login.Controller loginController, boolean currentUser) {
 		super();
 		this.loginController = loginController;
+		this.currentUser = currentUser;
+
+		Owner owner = null;
+
+		if (this.currentUser) {
+			if (!(this.loginController.getSession() instanceof Owner))
+				Utils.fatalExit();
+
+			owner = (Owner) this.loginController.getSession();
+		}
 
 		/**
 		 * Permissions
 		 */
+		if (!Flag.isFlag(this.loginController.getSession().getFlags(), Flag.VIEW))
+			Utils.fatalExit();
+
+		// If is guest
 		super.menuBar.setVisible(!(this.loginController.getSession().getFlags() == Flag.VIEW));
 
 		super.mnAdmin.setVisible(this.loginController.getSession() instanceof Admin);
@@ -49,27 +65,24 @@ public class Controller extends List {
 
 		super.mntmLogout.setEnabled(this.loginController.getSession() instanceof User);
 
-		super.mntmEdit.setVisible(currentUser);
-
-		if (!Flag.isFlag(this.loginController.getSession().getFlags(), Flag.VIEW))
-			Utils.fatalExit();
+		/**
+		 * Permissions if is current user
+		 */
+		super.mntmViewEstate.setVisible(!this.currentUser);
+		super.mntmEdit.setVisible(this.currentUser);
+		super.mntmLogout.setVisible(!this.currentUser);
 
 		/**
 		 * Model
 		 */
 		this.propertyTable = new PropertyTableModel(super.table);
 
-		if (currentUser) {
-			if (!(this.loginController.getSession() instanceof Owner))
-				Utils.fatalExit();
-
-			Owner owner = (Owner) this.loginController.getSession();
-
+		if (this.currentUser)
 			this.propertyTable.setProperties(owner.getProperties());
-		} else {
+		else {
 
 			for (int i = 1; i <= 30; i++) {
-				Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "time", 7777, true, "desp...", "house.jpg");
+				Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "7 años", 7777, true, "desp...", "house.jpg");
 				this.propertyTable.addRow(property);
 			}
 		}
@@ -82,7 +95,7 @@ public class Controller extends List {
 		super.mntmViewEstate.addActionListener(new ViewEstate(this, this.loginController));
 		super.mntmAddEstate.addActionListener(new AddEstate(this, this.loginController));
 		super.mntmLogout.addActionListener(new Logout(this, this.loginController));
-		super.mntmExit.addActionListener(new Exit());
+		super.mntmExit.addActionListener(new Exit(this));
 
 		super.mntmView.addActionListener(new View(this, this.loginController));
 		super.mntmEdit.addActionListener(new Edit(this, this.loginController));
@@ -90,7 +103,7 @@ public class Controller extends List {
 		/**
 		 * GUI
 		 */
-		if (!currentUser) {
+		if (!this.currentUser) {
 			super.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			super.setTitle("Inmuebles" + Utils.getTitle());
 		} else {
@@ -101,12 +114,22 @@ public class Controller extends List {
 		super.setVisible(true);
 	}
 
+	@Override
+	public void refreshProperies() {
+		super.table.revalidate();
+		super.table.repaint();
+	}
+
 	public JTable getTable() {
 		return super.table;
 	}
 
 	public PropertyTableModel getPropertyTable() {
 		return propertyTable;
+	}
+
+	public boolean isCurrentUser() {
+		return this.currentUser;
 	}
 
 }

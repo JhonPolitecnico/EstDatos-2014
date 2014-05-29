@@ -17,28 +17,33 @@ import gui.property.edit.mouse.Exit;
 import gui.property.edit.mouse.Save;
 import utils.Utils;
 import property.Property;
+import property.list.PropertyTableGUI;
 import user.Admin;
+import user.Owner;
 import user.mask.Flag;
 
 public class Controller extends Edit {
 
 	private static final long serialVersionUID = 1322530645747508580L;
 
+	private PropertyTableGUI owner;
 	private gui.login.Controller loginController;
 	private Property property;
 	private boolean isNew;
 	private ImageIcon photo;
 
-	public Controller(gui.login.Controller loginController, Property property) {
+	public Controller(PropertyTableGUI owner, gui.login.Controller loginController, Property property) {
 		super();
+		this.owner = owner;
 		this.loginController = loginController;
 		this.property = property;
 		this.isNew = false;
 		this.prepare();
 	}
 
-	public Controller(gui.login.Controller loginController) {
+	public Controller(PropertyTableGUI owner, gui.login.Controller loginController) {
 		super();
+		this.owner = owner;
 		this.loginController = loginController;
 		this.property = new Property(0D, "", "", 0, 0, 0, 0, "", 0, false, "", "");
 		this.isNew = true;
@@ -48,19 +53,30 @@ public class Controller extends Edit {
 	private void prepare() {
 
 		/**
-		 * Permisions
-		 * 
+		 * Permissions
 		 */
 		boolean pass = false;
 
 		pass = Flag.isFlag(this.loginController.getSession().getFlags(), Flag.VIEW);
 
+		/**
+		 * Owners
+		 */
 		if (!(this.loginController.getSession() instanceof Admin)) {
+
+			if (!(this.loginController.getSession() instanceof Owner))
+				Utils.fatalExit();
+
+			Owner owner = (Owner) this.loginController.getSession();
+
 			if (!this.isNew)
-				pass &= Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROPERTY_EDIT);
+				pass &= Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROPERTY_EDIT) & owner.containsProperty(this.property);
 			else
 				pass &= Flag.isFlag(this.loginController.getSession().getFlags(), Flag.PROPERTY_NEW);
 		} else {
+			/**
+			 * Admins
+			 */
 			if (!this.isNew)
 				pass &= Flag.isFlag(this.loginController.getSession().getFlags(), Flag.ADMIN_PROPERTY_EDIT);
 			else
@@ -73,8 +89,8 @@ public class Controller extends Edit {
 		/**
 		 * Events
 		 */
-		super.mntmSave.addActionListener(new Save(this, this.loginController));
-		super.mntmExit.addActionListener(new Exit(this));
+		super.mntmSave.addActionListener(new Save(owner, this, this.loginController));
+		super.mntmExit.addActionListener(new Exit(owner, this));
 
 		/**
 		 * GUI
