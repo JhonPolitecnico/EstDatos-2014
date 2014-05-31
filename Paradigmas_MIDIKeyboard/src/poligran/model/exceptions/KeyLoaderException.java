@@ -1,5 +1,12 @@
 package poligran.model.exceptions;
 
+/**
+ * MIDIKeyBoard
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.io.IOException;
 
 /**

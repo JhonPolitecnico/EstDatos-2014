@@ -1,7 +1,7 @@
 package serializer.engine;
 
 /**
- * Estate
+ * MIDIKeyBoard
  * 
  * @author Jhon Jairo Eslava
  * @code 1310012946

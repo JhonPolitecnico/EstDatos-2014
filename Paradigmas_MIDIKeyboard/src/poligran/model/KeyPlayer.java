@@ -1,16 +1,18 @@
 package poligran.model;
 
+/**
+ * MIDIKeyBoard
+ * 
+ * @author Jhon Jairo Eslava
+ * @code 1310012946
+ * 
+ */
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
@@ -83,6 +85,7 @@ public class KeyPlayer {
 	 * @param
 	 * @return Description
 	 * 
+	 * 
 	 *         TODO: Punto 3 –Cargar notas base (Lectura de archivos) [25 puntos] El método private void initNotes()throws KeyLoaderException de la clase KeyPlayer tiene la responsabilidad de
 	 *         cargar un archivo de texto (keys.k) que asocia cada una de las teclas a un código MIDI que representa dicha nota. La manipulación de este archivo permite asignar directamente el
 	 *         sonido a cada una de las teclas.
@@ -90,7 +93,7 @@ public class KeyPlayer {
 	 *         Para implementar este método usted debe tener en cuenta: + La ubicación del archivo keys.k es la carpeta data del proyecto + Cada línea representa una pareja <nota>,<código> + La
 	 *         clase provee un método public void setNoteValue(String note, int value) que permite cambiar la asignación de código a una nota particular (es necesario llamarlo) + Se deben manejar
 	 *         las excepciones asociadas a la lectura de archivos y en caso de presentarse, se debe lanzar una excepción de tipo KeyLoaderException según las especificaciones del punto anterior.
-	 * @throws FileNotFoundException
+	 * @throws KeyLoaderException
 	 */
 	private void initNotes() throws KeyLoaderException {
 
