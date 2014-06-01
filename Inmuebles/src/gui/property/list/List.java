@@ -43,6 +43,7 @@ public class List extends JFrame {
 	protected JMenuItem mntmView;
 	protected JMenuItem mntmEdit;
 	protected JMenuItem mntmDelete;
+	protected JMenuItem mntmRegisterUser;
 
 	/**
 	 * Create the frame.
@@ -83,6 +84,9 @@ public class List extends JFrame {
 
 		mnAdmin = new JMenu("Administrador");
 		menuBar.add(mnAdmin);
+		
+		mntmRegisterUser = new JMenuItem("Registrar usuario");
+		mnAdmin.add(mntmRegisterUser);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

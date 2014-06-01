@@ -53,6 +53,10 @@ public class Flag {
 	 * Delete properties
 	 */
 	public final static int ADMIN_PROPERTY_DELETE = 0x200;
+	/**
+	 * Register new user
+	 */
+	public final static int ADMIN_REGISTER_USER = 0x400;
 
 	public static boolean isFlag(final int flags, final int flag) {
 		return (flags & flag) != 0;

@@ -22,7 +22,7 @@ public class Admin extends User implements Rol, Serializable {
 
 	@Override
 	public int getFlags() {
-		return Flag.VIEW | Flag.ADMIN_PROFILE_EDIT | Flag.ADMIN_PROPERTY_DELETE | Flag.ADMIN_PROPERTY_EDIT | Flag.PROFILE_EDIT | Flag.PROFILE_VIEW;
+		return Flag.VIEW | Flag.ADMIN_PROFILE_EDIT | Flag.ADMIN_PROPERTY_DELETE | Flag.ADMIN_PROPERTY_EDIT | Flag.PROFILE_EDIT | Flag.PROFILE_VIEW | Flag.ADMIN_REGISTER_USER;
 	}
 
 }

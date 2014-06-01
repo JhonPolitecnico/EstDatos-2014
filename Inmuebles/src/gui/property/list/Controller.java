@@ -14,6 +14,7 @@ import gui.property.list.mouse.Edit;
 import gui.property.list.mouse.Exit;
 import gui.property.list.mouse.Logout;
 import gui.property.list.mouse.AddEstate;
+import gui.property.list.mouse.RegisterUser;
 import gui.property.list.mouse.View;
 import gui.property.list.mouse.ViewEstate;
 import gui.property.list.window.WindowController;
@@ -106,6 +107,8 @@ public class Controller extends List implements PropertyTableGUI {
 		super.mntmEdit.setVisible(this.currentUser | isAdmin);
 		super.mntmDelete.setVisible(this.currentUser | isAdmin);
 		super.mntmLogout.setVisible(!this.currentUser);
+		super.mntmRegisterUser.setVisible(!this.currentUser & isAdmin & Flag.isFlag(this.loginController.getSession().getFlags(), Flag.ADMIN_REGISTER_USER));
+		super.mntmRegisterUser.setEnabled(super.mntmRegisterUser.isVisible());
 
 		/**
 		 * Model
@@ -136,6 +139,8 @@ public class Controller extends List implements PropertyTableGUI {
 		super.mntmView.addActionListener(new View(this, this.loginController));
 		super.mntmEdit.addActionListener(new Edit(this, this.loginController));
 		super.mntmDelete.addActionListener(new Delete(this));
+
+		super.mntmRegisterUser.addActionListener(new RegisterUser(this.loginController));
 
 		/**
 		 * GUI

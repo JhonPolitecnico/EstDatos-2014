@@ -104,6 +104,10 @@ public class Controller extends Login {
 		return roles;
 	}
 
+	public void addRol(Rol rol) {
+		this.roles.add(rol);
+	}
+
 	public void setSession(Rol session) {
 		this.session = session;
 	}
