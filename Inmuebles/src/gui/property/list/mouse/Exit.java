@@ -26,7 +26,7 @@ public class Exit implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (!listController.isCurrentUser())
-			System.exit(0);
+			this.listController.dispose();
 		else
 			this.listController.dispose();
 	}

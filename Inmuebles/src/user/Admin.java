@@ -1,5 +1,7 @@
 package user;
 
+import java.io.Serializable;
+
 /**
  * Estate
  * 
@@ -9,7 +11,9 @@ package user;
  */
 import user.mask.Flag;
 
-public class Admin extends User implements Rol {
+public class Admin extends User implements Rol, Serializable {
+
+	private static final long serialVersionUID = -4403977958138793210L;
 
 	public Admin(String name, String surname, int phone, int cellphone, int dni, String nick, String password, String email) {
 		super(name, surname, phone, cellphone, dni, nick, password, email);

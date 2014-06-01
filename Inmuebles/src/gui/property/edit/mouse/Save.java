@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
 
 import property.Property;
 import property.list.PropertyTableGUI;
+import user.Admin;
 import user.Owner;
-import utils.Utils;
 
 /**
  * Exit application
@@ -59,15 +59,19 @@ public class Save implements ActionListener {
 			property.setPhoto("");
 
 		/**
+		 * Permissions
+		 */
+		editController.checkPermissions();
+
+		/**
 		 * Add in current user if new
 		 */
-		if (!(loginController.getSession() instanceof Owner))
-			Utils.fatalExit();
+		if (!(this.loginController.getSession() instanceof Admin)) {
+			Owner owner = (Owner) loginController.getSession();
 
-		Owner owner = (Owner) loginController.getSession();
-
-		if (!owner.containsProperty(property))
-			owner.addProperty(property);
+			if (!owner.containsProperty(property))
+				owner.addProperty(property);
+		}
 
 		this.owner.refreshProperies();
 	}

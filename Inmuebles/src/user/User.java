@@ -7,7 +7,11 @@ package user;
  * @code 1310012946
  * 
  */
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+
+	private static final long serialVersionUID = -6891755563006122100L;
 
 	private String name;
 	private String surname;

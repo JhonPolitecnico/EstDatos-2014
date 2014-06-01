@@ -9,11 +9,14 @@ package user;
  */
 import user.mask.Flag;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import property.Property;
 
-public class Owner extends User implements Rol {
+public class Owner extends User implements Rol, Serializable {
+
+	private static final long serialVersionUID = 1619644617358068770L;
 
 	private ArrayList<Property> properties;
 

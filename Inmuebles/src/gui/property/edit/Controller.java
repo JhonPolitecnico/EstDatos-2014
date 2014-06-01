@@ -50,11 +50,10 @@ public class Controller extends Edit {
 		this.prepare();
 	}
 
-	private void prepare() {
-
-		/**
-		 * Permissions
-		 */
+	/**
+	 * Permissions
+	 */
+	public void checkPermissions() {
 		boolean pass = false;
 
 		pass = Flag.isFlag(this.loginController.getSession().getFlags(), Flag.VIEW);
@@ -85,6 +84,14 @@ public class Controller extends Edit {
 
 		if (!pass)
 			Utils.fatalExit();
+	}
+
+	private void prepare() {
+
+		/**
+		 * Permissions
+		 */
+		this.checkPermissions();
 
 		/**
 		 * Events

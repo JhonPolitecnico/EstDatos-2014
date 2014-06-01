@@ -1,5 +1,7 @@
 package property;
 
+import java.io.Serializable;
+
 /**
  * Estate
  * 
@@ -7,7 +9,10 @@ package property;
  * @code 1310012946
  * 
  */
-public class Property {
+
+public class Property implements Serializable {
+
+	private static final long serialVersionUID = 949572125158400526L;
 
 	private Double area;
 	private String address;

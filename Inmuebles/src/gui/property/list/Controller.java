@@ -16,11 +16,13 @@ import gui.property.list.mouse.Logout;
 import gui.property.list.mouse.AddEstate;
 import gui.property.list.mouse.View;
 import gui.property.list.mouse.ViewEstate;
+import gui.property.list.window.WindowController;
 import property.Property;
 import property.list.PropertyTableGUI;
 import property.list.PropertyTableModel;
 import user.Admin;
 import user.Owner;
+import user.Rol;
 import user.User;
 import user.mask.Flag;
 import utils.Utils;
@@ -84,11 +86,10 @@ public class Controller extends List implements PropertyTableGUI {
 		if (this.currentUser)
 			this.propertyTable.setProperties(owner.getProperties());
 		else {
-
-			for (int i = 1; i <= 30; i++) {
-				Property property = new Property(45.5, "Calle 98 No 34 - 21", "Bogota", 3, 454555, 5555, 44, "7 años", 7777, true, "desp...", "house.jpg");
-				this.propertyTable.addRow(property);
-			}
+			for (Rol rol : this.loginController.getRoles())
+				if (rol instanceof Owner)
+					for (Property property : ((Owner) rol).getProperties())
+						this.propertyTable.addRow(property);
 		}
 
 		super.table.setModel(this.propertyTable);
@@ -96,6 +97,9 @@ public class Controller extends List implements PropertyTableGUI {
 		/**
 		 * Events
 		 */
+
+		super.addWindowListener(new WindowController(this.loginController));
+
 		super.mntmViewEstate.addActionListener(new ViewEstate(this, this.loginController));
 		super.mntmAddEstate.addActionListener(new AddEstate(this, this.loginController));
 		super.mntmLogout.addActionListener(new Logout(this, this.loginController));
