@@ -30,6 +30,6 @@ public class ViewEstate implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 
-		new gui.property.list.Controller(this.loginController, true);
+		new gui.property.list.Controller(this.listController, this.loginController);
 	}
 }

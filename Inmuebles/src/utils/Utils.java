@@ -10,6 +10,9 @@ package utils;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -27,6 +30,32 @@ public class Utils {
 	 */
 	public static String getPath() {
 		return System.getProperty("user.dir");
+	}
+
+	public static String getNewImagePath(File file) {
+
+		int i = 0;
+
+		Path newName = null;
+
+		do {
+
+			newName = Paths.get(getPath() + "\\img\\" + i + file.getName());
+
+			if (Files.exists(newName))
+				i++;
+			else {
+				try {
+					Files.copy(file.toPath(), newName);
+					break;
+				} catch (IOException e) {
+					return "";
+				}
+			}
+
+		} while (true);
+
+		return newName.getFileName().toString();
 	}
 
 	/**

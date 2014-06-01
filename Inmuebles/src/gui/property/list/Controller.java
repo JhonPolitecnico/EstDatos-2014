@@ -31,23 +31,52 @@ public class Controller extends List implements PropertyTableGUI {
 
 	private static final long serialVersionUID = 1762422748309620751L;
 
+	private PropertyTableGUI owner;
 	private gui.login.Controller loginController;
 	private PropertyTableModel propertyTable;
 	private boolean currentUser;
 
-	public Controller(gui.login.Controller loginController, boolean currentUser) {
+	/**
+	 * Create a current user subframe from main frame
+	 * 
+	 * @param owner
+	 * @param loginController
+	 */
+	public Controller(PropertyTableGUI owner, gui.login.Controller loginController) {
 		super();
+		this.prepare(owner, loginController, true);
+	}
+
+	/**
+	 * Create main frame
+	 * 
+	 * @param loginController
+	 */
+	public Controller(gui.login.Controller loginController) {
+		super();
+		this.prepare(null, loginController, false);
+	}
+
+	/**
+	 * Prepare frame to determine the behavior
+	 * 
+	 * @param owner
+	 * @param loginController
+	 * @param currentUser
+	 */
+	private void prepare(PropertyTableGUI owner, gui.login.Controller loginController, boolean currentUser) {
 		this.loginController = loginController;
 		this.currentUser = currentUser;
+		this.owner = owner;
 
-		Owner owner = null;
+		Owner userOwner = null;
 		boolean isAdmin = false;
 
 		if (this.currentUser) {
 			if (!(this.loginController.getSession() instanceof Owner))
 				Utils.fatalExit();
 
-			owner = (Owner) this.loginController.getSession();
+			userOwner = (Owner) this.loginController.getSession();
 		} else
 			isAdmin = this.loginController.getSession() instanceof Admin;
 
@@ -71,7 +100,7 @@ public class Controller extends List implements PropertyTableGUI {
 		super.mntmLogout.setEnabled(this.loginController.getSession() instanceof User);
 
 		/**
-		 * Permissions if is current user
+		 * Permissions if is current user or admin
 		 */
 		super.mntmViewEstate.setVisible(!this.currentUser);
 		super.mntmEdit.setVisible(this.currentUser | isAdmin);
@@ -84,7 +113,7 @@ public class Controller extends List implements PropertyTableGUI {
 		this.propertyTable = new PropertyTableModel(super.table);
 
 		if (this.currentUser)
-			this.propertyTable.setProperties(owner.getProperties());
+			this.propertyTable.setProperties(userOwner.getProperties());
 		else {
 			for (Rol rol : this.loginController.getRoles())
 				if (rol instanceof Owner)
@@ -97,7 +126,6 @@ public class Controller extends List implements PropertyTableGUI {
 		/**
 		 * Events
 		 */
-
 		super.addWindowListener(new WindowController(this.loginController));
 
 		super.mntmViewEstate.addActionListener(new ViewEstate(this, this.loginController));
@@ -125,8 +153,18 @@ public class Controller extends List implements PropertyTableGUI {
 
 	@Override
 	public void refreshProperies() {
-		super.table.revalidate();
-		super.table.repaint();
+		if (this.currentUser) {
+			super.table.revalidate();
+			super.table.repaint();
+			this.owner.refreshProperies();
+		} else {
+			this.propertyTable.clear();
+
+			for (Rol rol : this.loginController.getRoles())
+				if (rol instanceof Owner)
+					for (Property property : ((Owner) rol).getProperties())
+						this.propertyTable.addRow(property);
+		}
 	}
 
 	public JTable getTable() {

@@ -64,7 +64,7 @@ public class Login extends MouseAdapter {
 		/**
 		 * Show main frame
 		 */
-		new gui.property.list.Controller(this.loginController, false);
+		new gui.property.list.Controller(this.loginController);
 		this.loginController.dispose();
 	}
 }

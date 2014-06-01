@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import gui.property.edit.mouse.AddImage;
 import gui.property.edit.mouse.Exit;
 import gui.property.edit.mouse.Save;
 import utils.Utils;
@@ -96,6 +97,7 @@ public class Controller extends Edit {
 		/**
 		 * Events
 		 */
+		super.mntmUpdatePhoto.addActionListener(new AddImage(this));
 		super.mntmSave.addActionListener(new Save(owner, this, this.loginController));
 		super.mntmExit.addActionListener(new Exit(owner, this));
 
@@ -138,8 +140,12 @@ public class Controller extends Edit {
 		return photo;
 	}
 
-	public void setPhoto(ImageIcon photo) {
-		this.photo = photo;
+	public void setPhoto(String relativePath) {
+		try {
+			this.photo = Utils.getPhoto(relativePath, 517, 327);
+			super.lblPhoto.setIcon(this.photo);
+		} catch (Exception e) {
+		}
 	}
 
 	public JTextField getTextArea() {
