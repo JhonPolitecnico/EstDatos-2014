@@ -9,6 +9,7 @@ package gui.login;
  */
 import gui.login.mouse.Exit;
 import gui.login.mouse.Guest;
+import gui.login.mouse.New;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -81,6 +82,7 @@ public class Controller extends Login {
 		 * Events
 		 */
 		super.btnExit.addMouseListener(new Exit());
+		super.btnNew.addMouseListener(new New(this));
 		super.btnGuest.addMouseListener(new Guest(this));
 		super.btnLogin.addMouseListener(new gui.login.mouse.Login(this));
 

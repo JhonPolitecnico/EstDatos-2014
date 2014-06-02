@@ -27,6 +27,7 @@ public class Login extends JFrame {
 	protected JButton btnLogin;
 	protected JButton btnGuest;
 	protected JLabel lblLogo;
+	protected JButton btnNew;
 
 	/**
 	 * Create the frame.
@@ -59,13 +60,13 @@ public class Login extends JFrame {
 		lblPwd.setBounds(10, 141, 72, 14);
 
 		btnExit = new JButton("Salir");
-		btnExit.setBounds(10, 169, 72, 23);
+		btnExit.setBounds(10, 169, 82, 23);
 
 		btnLogin = new JButton("Ingresar");
-		btnLogin.setBounds(246, 169, 91, 23);
+		btnLogin.setBounds(255, 169, 82, 23);
 
 		btnGuest = new JButton("Invitado");
-		btnGuest.setBounds(117, 169, 91, 23);
+		btnGuest.setBounds(172, 169, 82, 23);
 		contentPane.setLayout(null);
 		contentPane.add(btnExit);
 		contentPane.add(btnGuest);
@@ -75,5 +76,9 @@ public class Login extends JFrame {
 		contentPane.add(lblPwd);
 		contentPane.add(textPwd);
 		contentPane.add(textUsername);
+		
+		btnNew = new JButton("Nuevo");
+		btnNew.setBounds(90, 169, 82, 23);
+		contentPane.add(btnNew);
 	}
 }

@@ -30,13 +30,18 @@ public class Controller extends Register {
 		/**
 		 * Permissions
 		 */
-		if (!(this.loginController.getSession() instanceof Admin))
-			Utils.fatalExit();
+		if (this.loginController.getSession() != null) {
+			if (!(this.loginController.getSession() instanceof Admin))
+				Utils.fatalExit();
 
-		Admin admin = (Admin) this.loginController.getSession();
+			Admin admin = (Admin) this.loginController.getSession();
 
-		if (!Flag.isFlag(admin.getFlags(), Flag.ADMIN_REGISTER_USER))
-			Utils.fatalExit();
+			if (!Flag.isFlag(admin.getFlags(), Flag.ADMIN_REGISTER_USER))
+				Utils.fatalExit();
+		} else {
+			super.cmbUserType.setSelectedIndex(1); // User
+			super.cmbUserType.setEnabled(false);
+		}
 
 		/**
 		 * Events

@@ -16,6 +16,8 @@ import user.Admin;
 import user.Owner;
 import user.Rol;
 import user.User;
+import user.mask.Flag;
+import utils.Utils;
 
 /**
  * Exit application
@@ -36,9 +38,8 @@ public class Save extends MouseAdapter {
 	public void mouseClicked(MouseEvent me) {
 		String username = this.registerController.getTxtUsername().getText();
 		String password = this.registerController.getTxtPassword().getText();
-		
-		if (username.equals("") || password.equals(""))
-		{
+
+		if (username.equals("") || password.equals("")) {
 			JOptionPane.showMessageDialog(this.loginController, "Debe completar todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -72,16 +73,19 @@ public class Save extends MouseAdapter {
 		 */
 		switch (userType) {
 		case 0:
+			/**
+			 * Permissions
+			 */
+			if (this.loginController.getSession() == null || !Flag.isFlag(this.loginController.getSession().getFlags(), Flag.ADMIN_REGISTER_USER))
+				Utils.fatalExit();
+
 			newRol = new Admin("", "", 0, 0, 0, username, password, "");
 			break;
 		case 1:
 			newRol = new Owner("", "", 0, 0, 0, username, password, "");
 			break;
-		case 2:
-			// newUser = new Client("", "", 0, 0, 0, username, password, "");
-			break;
 		default:
-			break;
+			return;
 		}
 
 		this.loginController.addRol(newRol);
