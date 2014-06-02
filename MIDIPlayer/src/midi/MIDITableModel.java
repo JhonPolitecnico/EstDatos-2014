@@ -167,14 +167,12 @@ public class MIDITableModel extends AbstractTableModel implements Serializable {
 	 * @param row
 	 */
 	public void removeRow(int row) {
-		int rowCount = this.getRowCount();
-
 		this.songs.remove(row);
 
 		/**
 		 * Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been deleted.
 		 */
-		super.fireTableRowsDeleted(rowCount, rowCount);
+		super.fireTableRowsDeleted(row, row);
 	}
 
 	/**

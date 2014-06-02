@@ -13,7 +13,7 @@ import midi.MIDIFile;
 
 /**
  * Event of player
- *
+ * 
  */
 public class MIDIPlayerEvent extends EventObject {
 
@@ -25,6 +25,11 @@ public class MIDIPlayerEvent extends EventObject {
 		this.mIDIFile = mIDIFile;
 	}
 
+	/**
+	 * Return the current song when the error occurred
+	 * 
+	 * @return
+	 */
 	public MIDIFile getMIDIFile() {
 		return mIDIFile;
 	}

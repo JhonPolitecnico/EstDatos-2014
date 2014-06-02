@@ -27,16 +27,10 @@ public class ViewDetails implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		int rows[] = controller.getTable().getSelectedRows();
+		int rows[] = this.controller.getTable().getSelectedRows();
 
 		for (int row : rows)
-			new gui.details.Controller(this.controller, row);
-
-		/*
-		 * if (controller.getList().isSelectionEmpty()) return;
-		 * 
-		 * for (Object element : controller.getList().getSelectedValuesList()) new gui.details.Controller(this.controller, (Song) element);
-		 */
+			new gui.details.Controller(this.controller, this.controller.getTable().convertRowIndexToModel(row));
 	}
 
 }

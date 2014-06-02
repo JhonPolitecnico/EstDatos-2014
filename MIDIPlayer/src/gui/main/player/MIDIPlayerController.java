@@ -10,7 +10,7 @@ package gui.main.player;
 import javax.swing.JOptionPane;
 
 import gui.main.Controller;
-import midi.MIDIFile;
+import midi.Song;
 import midi.player.MIDIPLayerListener;
 import midi.player.MIDIPlayer;
 import midi.player.MIDIPlayerEvent;
@@ -37,19 +37,34 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 		repeat = false;
 	}
 
-	private void newPlayer(MIDIFile archivo) {
-		this.player = new MIDIPlayer(archivo);
+	/**
+	 * Creates a new music player capable of playing a sound
+	 * 
+	 * @param id
+	 */
+	private void newPlayer(int id) {
+		Song song = this.controller.getMIDITable().getRow(id);
+		this.controller.setCurrentSong(song.getTitle());
+		this.player = new MIDIPlayer(song.getMIDIFile());
 		this.player.setEventListener(this);
 		if (this.player.prepare())
 			this.player.playAndPause();
 	}
 
+	/**
+	 * Play specific song
+	 * 
+	 * @param id
+	 */
 	public void playSong(int id) {
 		this.stop();
 		this.id = id;
-		this.newPlayer(controller.getMIDITable().getRow(this.id).getMIDIFile());
+		this.newPlayer(this.id);
 	}
 
+	/**
+	 * Play previous song
+	 */
 	public void prevSong() {
 		this.id--;
 
@@ -58,26 +73,27 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 		else
 			this.stop();
 
-		System.out.println(this.id);
-
-		this.newPlayer(controller.getMIDITable().getRow(this.id).getMIDIFile());
+		this.newPlayer(this.id);
 	}
 
+	/**
+	 * Play next song
+	 */
 	public void nextSong() {
-		id++;
-		if (id >= controller.getMIDITable().getRowCount())
+		this.id++;
+		if (this.id >= controller.getMIDITable().getRowCount())
 			this.reset();
 		else
 			this.stop();
 
-		this.newPlayer(controller.getMIDITable().getRow(id).getMIDIFile());
+		this.newPlayer(this.id);
 	}
 
 	@Override
 	public void onTerminate(MIDIPlayerEvent e) {
-		id++;
+		this.id++;
 
-		if (id >= controller.getMIDITable().getRowCount()) {
+		if (this.id >= controller.getMIDITable().getRowCount()) {
 			this.reset();
 
 			/**
@@ -87,7 +103,7 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 				return;
 		}
 
-		this.newPlayer(controller.getMIDITable().getRow(id).getMIDIFile());
+		this.newPlayer(this.id);
 	}
 
 	@Override
@@ -108,27 +124,51 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 		JOptionPane.showMessageDialog(this.controller, "Oops, el archivo que intenta reproducir no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 
+	/**
+	 * Reset counter and stop cueent song
+	 */
 	public void reset() {
 		this.id = 0;
 		this.stop();
 	}
 
+	/**
+	 * Determines if is active the repeat flag
+	 * 
+	 * @return
+	 */
 	public boolean isRepeat() {
 		return repeat;
 	}
 
+	/**
+	 * Set repeat flag
+	 * 
+	 * @param repeat
+	 */
 	public void setRepeat(boolean repeat) {
 		this.repeat = repeat;
 	}
 
+	/**
+	 * Get current player
+	 * 
+	 * @return
+	 */
 	public MIDIPlayer getPlayer() {
 		return player;
 	}
 
+	/**
+	 * Play or pause current song
+	 */
 	public void playAndPause() {
 		this.player.playAndPause();
 	}
 
+	/**
+	 * Stop current song
+	 */
 	public void stop() {
 		if (!this.isPlaying())
 			return;
@@ -136,12 +176,20 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 		this.player = null;
 	}
 
+	/**
+	 * Determines if a song is playing
+	 * 
+	 * @return
+	 */
 	public boolean isPlaying() {
 		return (this.player != null);
 	}
 
+	/**
+	 * Play from the start the current song
+	 */
 	public void playCurrent() {
-		this.newPlayer(controller.getMIDITable().getRow(id).getMIDIFile());
+		this.newPlayer(this.id);
 	}
 
 }

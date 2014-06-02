@@ -48,11 +48,11 @@ public class Controller extends Save {
 
 		this.list.setModel(this.playlist);
 
-		/*
+		/**
 		 * Events
 		 */
-		this.chckbxNuevo.addActionListener(new New(this));
-		this.btnGuardar.addMouseListener(new gui.save.mouse.Save(this));
+		this.chckbxNew.addActionListener(new New(this));
+		this.btnSave.addMouseListener(new gui.save.mouse.Save(this));
 
 		setNew(false);
 		setLocationRelativeTo(owner);

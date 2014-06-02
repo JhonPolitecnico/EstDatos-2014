@@ -30,14 +30,7 @@ public class DeleteElement implements ActionListener {
 		int rows[] = controller.getTable().getSelectedRows();
 
 		for (int i = 0; i < rows.length; i++) {
-			controller.getMIDITable().removeRow(rows[i] - i);
+			controller.getMIDITable().removeRow(this.controller.getTable().convertRowIndexToModel(rows[i] - i));
 		}
-
-		/*
-		 * if (controller.getList().isSelectionEmpty()) return;
-		 * 
-		 * for (Object element : controller.getList().getSelectedValuesList()) controller.getMIDIList().removeElement(element);
-		 */
 	}
-
 }

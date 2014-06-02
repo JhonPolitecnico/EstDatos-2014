@@ -17,7 +17,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JTable;
 
 /**
- * Save the playlist
+ * Play select song
  * 
  */
 public class Play implements MouseListener, ActionListener {

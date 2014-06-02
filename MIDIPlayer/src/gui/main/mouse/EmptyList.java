@@ -26,7 +26,6 @@ public class EmptyList implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// controller.getMIDIList().clear();
 		controller.getMIDITable().clear();
 	}
 

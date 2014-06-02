@@ -29,8 +29,8 @@ public abstract class Save extends JFrame {
 	protected JPanel contentPane;
 	protected JList<PlayList> list;
 	protected JTextField textField;
-	protected JButton btnGuardar;
-	protected JCheckBox chckbxNuevo;
+	protected JButton btnSave;
+	protected JCheckBox chckbxNew;
 
 	/**
 	 * Create the frame.
@@ -46,12 +46,12 @@ public abstract class Save extends JFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		chckbxNuevo = new JCheckBox("Nuevo");
+		chckbxNew = new JCheckBox("Nuevo");
 
 		textField = new JTextField();
 		textField.setColumns(10);
 
-		btnGuardar = new JButton("Guardar");
+		btnSave = new JButton("Guardar");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_contentPane
@@ -64,15 +64,15 @@ public abstract class Save extends JFrame {
 												gl_contentPane
 														.createSequentialGroup()
 														.addGroup(
-																gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(chckbxNuevo)
+																gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(chckbxNew)
 																		.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 																		.addComponent(textField, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)).addContainerGap())
-										.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(btnGuardar).addGap(65)))));
+										.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup().addComponent(btnSave).addGap(65)))));
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(
 				gl_contentPane.createSequentialGroup().addContainerGap().addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxNuevo).addPreferredGap(ComponentPlacement.RELATED)
+						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(chckbxNew).addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-						.addComponent(btnGuardar).addGap(7)));
+						.addComponent(btnSave).addGap(7)));
 
 		list = new JList<PlayList>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

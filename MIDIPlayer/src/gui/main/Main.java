@@ -27,6 +27,8 @@ import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
 
 import javax.swing.JTable;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public abstract class Main extends JFrame {
 
@@ -48,6 +50,7 @@ public abstract class Main extends JFrame {
 	protected JPopupMenu popupMenu;
 	protected JButton btnNext;
 	protected JButton btnPrev;
+	protected JLabel lblCurrent;
 
 	/**
 	 * Create the frame.
@@ -96,7 +99,7 @@ public abstract class Main extends JFrame {
 
 		JSeparator separator = new JSeparator();
 		popupMenu.add(separator);
-		
+
 		mntmPlay = new JMenuItem("Reproducir");
 		popupMenu.add(mntmPlay);
 
@@ -111,40 +114,30 @@ public abstract class Main extends JFrame {
 		btnStop = new JButton("Parar");
 
 		btnStopList = new JButton("Parar Lista");
-		
+
 		btnNext = new JButton("Siguiente");
-		
+
 		btnPrev = new JButton("Anterior");
+
+		lblCurrent = new JLabel("...");
+		lblCurrent.setVerticalAlignment(SwingConstants.TOP);
+		lblCurrent.setHorizontalAlignment(SwingConstants.LEFT);
 		GroupLayout gl_panelControl = new GroupLayout(panelControl);
-		gl_panelControl.setHorizontalGroup(
-			gl_panelControl.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelControl.createSequentialGroup()
-					.addComponent(btnPlayPause)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnStop)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnStopList)
-					.addGap(30)
-					.addComponent(btnPrev)
-					.addGap(3)
-					.addComponent(btnNext)
-					.addPreferredGap(ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-					.addComponent(chckbxRepeat)
-					.addContainerGap())
-		);
-		gl_panelControl.setVerticalGroup(
-			gl_panelControl.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelControl.createSequentialGroup()
-					.addGroup(gl_panelControl.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelControl.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnStop)
-							.addComponent(btnStopList)
-							.addComponent(chckbxRepeat)
-							.addComponent(btnNext)
-							.addComponent(btnPrev))
-						.addComponent(btnPlayPause))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		gl_panelControl.setHorizontalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_panelControl.createSequentialGroup().addComponent(btnPlayPause).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnStop).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnStopList).addGap(30).addComponent(btnPrev).addGap(3).addComponent(btnNext).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblCurrent, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+						.addComponent(chckbxRepeat).addContainerGap()));
+		gl_panelControl.setVerticalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
+				gl_panelControl
+						.createSequentialGroup()
+						.addGroup(
+								gl_panelControl
+										.createParallelGroup(Alignment.LEADING)
+										.addGroup(
+												gl_panelControl.createParallelGroup(Alignment.BASELINE).addComponent(btnStop).addComponent(btnStopList).addComponent(chckbxRepeat)
+														.addComponent(btnNext).addComponent(btnPrev).addComponent(lblCurrent, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+										.addComponent(btnPlayPause)).addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panelControl.setLayout(gl_panelControl);
 		getContentPane().setLayout(groupLayout);
 
@@ -159,12 +152,6 @@ public abstract class Main extends JFrame {
 
 		JMenu mnLista = new JMenu("Lista");
 		menuBar.add(mnLista);
-
-		JMenuItem mntmViewLists = new JMenuItem("Ver listas");
-		mnLista.add(mntmViewLists);
-
-		JSeparator separator_1 = new JSeparator();
-		mnLista.add(separator_1);
 
 		mntmLoad = new JMenuItem("Cargar");
 		mnLista.add(mntmLoad);

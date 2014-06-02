@@ -13,7 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Play or pause actual song
+ * Play next song
  * 
  */
 public class Next extends MouseAdapter {

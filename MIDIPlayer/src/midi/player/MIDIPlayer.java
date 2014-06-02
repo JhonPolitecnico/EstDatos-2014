@@ -20,10 +20,9 @@ import javax.sound.midi.Sequencer;
 
 import midi.MIDIFile;
 
-
 /**
  * The real, crude and basic player
- *
+ * 
  */
 public class MIDIPlayer implements MetaEventListener {
 
@@ -39,6 +38,11 @@ public class MIDIPlayer implements MetaEventListener {
 		this.mIDIFile = mIDIFile;
 	}
 
+	/**
+	 * Prepare player to play a song
+	 * 
+	 * @return
+	 */
 	public boolean prepare() {
 		FileInputStream is = null;
 		try {
@@ -84,6 +88,11 @@ public class MIDIPlayer implements MetaEventListener {
 		return true;
 	}
 
+	/**
+	 * Get microsecond time
+	 * 
+	 * @return
+	 */
 	public long getMicrosecondTime() {
 		return this.sequencer.getMicrosecondLength();
 	}
@@ -97,6 +106,9 @@ public class MIDIPlayer implements MetaEventListener {
 		this.listener = listener;
 	}
 
+	/**
+	 * Play or pause
+	 */
 	public void playAndPause() {
 		if (sequencer != null)
 			if (!started) {
@@ -106,9 +118,11 @@ public class MIDIPlayer implements MetaEventListener {
 				sequencer.stop();
 				started = false;
 			}
-
 	}
 
+	/**
+	 * Stop
+	 */
 	public void stop() {
 		if (sequencer != null)
 			sequencer.stop();

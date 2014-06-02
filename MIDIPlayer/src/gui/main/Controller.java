@@ -161,4 +161,8 @@ public class Controller extends Main {
 	public void setPlayerController(MIDIPlayerController playerController) {
 		this.playerController = playerController;
 	}
+
+	public void setCurrentSong(String name) {
+		super.lblCurrent.setText(name);
+	}
 }
