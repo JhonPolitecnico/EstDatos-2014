@@ -44,6 +44,12 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 			this.player.playAndPause();
 	}
 
+	public void playSong(int id) {
+		this.stop();
+		this.id = id;
+		this.newPlayer(controller.getMIDITable().getRow(this.id).getMIDIFile());
+	}
+
 	public void prevSong() {
 		this.id--;
 

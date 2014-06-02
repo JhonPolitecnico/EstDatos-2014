@@ -35,6 +35,7 @@ public abstract class Main extends JFrame {
 	protected JMenuItem mntmClear;
 	protected JMenuItem mntmAddFile;
 	protected JMenuItem mntmRemove;
+	protected JMenuItem mntmPlay;
 	protected JMenuItem mntmProperties;
 	protected JButton btnPlayPause;
 	protected JCheckBox chckbxRepeat;
@@ -95,6 +96,9 @@ public abstract class Main extends JFrame {
 
 		JSeparator separator = new JSeparator();
 		popupMenu.add(separator);
+		
+		mntmPlay = new JMenuItem("Reproducir");
+		popupMenu.add(mntmPlay);
 
 		mntmProperties = new JMenuItem("Propiedades");
 		popupMenu.add(mntmProperties);

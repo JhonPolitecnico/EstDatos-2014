@@ -22,6 +22,7 @@ import gui.main.mouse.EmptyList;
 import gui.main.mouse.Exit;
 import gui.main.mouse.LoadList;
 import gui.main.mouse.Next;
+import gui.main.mouse.Play;
 import gui.main.mouse.PlayAndPause;
 import gui.main.mouse.Prev;
 import gui.main.mouse.SaveList;
@@ -100,14 +101,16 @@ public class Controller extends Main {
 		/**
 		 * Events
 		 */
-
 		this.addWindowListener(new WindowController(this));
+
+		super.table.addMouseListener(new Play(this));
 
 		super.mntmAddFile.addActionListener(new AddFile(this));
 		super.mntmLoad.addActionListener(new LoadList(this));
 		super.mntmRemove.addActionListener(new DeleteElement(this));
 		super.mntmSave.addActionListener(new SaveList(this));
 		super.mntmClear.addActionListener(new EmptyList(this));
+		super.mntmPlay.addActionListener(new Play(this));
 		super.mntmProperties.addActionListener(new ViewDetails(this));
 		super.mntmExit.addActionListener(new Exit(this));
 
