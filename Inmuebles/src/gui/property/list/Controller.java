@@ -138,7 +138,7 @@ public class Controller extends List implements PropertyTableGUI {
 
 		super.mntmView.addActionListener(new View(this, this.loginController));
 		super.mntmEdit.addActionListener(new Edit(this, this.loginController));
-		super.mntmDelete.addActionListener(new Delete(this));
+		super.mntmDelete.addActionListener(new Delete(this, this.loginController));
 
 		super.mntmRegisterUser.addActionListener(new RegisterUser(this.loginController));
 
