@@ -44,6 +44,29 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 			this.player.playAndPause();
 	}
 
+	public void prevSong() {
+		this.id--;
+
+		if (this.id >= controller.getMIDITable().getRowCount() || this.id < 0)
+			this.reset();
+		else
+			this.stop();
+
+		System.out.println(this.id);
+
+		this.newPlayer(controller.getMIDITable().getRow(this.id).getMIDIFile());
+	}
+
+	public void nextSong() {
+		id++;
+		if (id >= controller.getMIDITable().getRowCount())
+			this.reset();
+		else
+			this.stop();
+
+		this.newPlayer(controller.getMIDITable().getRow(id).getMIDIFile());
+	}
+
 	@Override
 	public void onTerminate(MIDIPlayerEvent e) {
 		id++;
@@ -101,6 +124,8 @@ public class MIDIPlayerController implements MIDIPLayerListener {
 	}
 
 	public void stop() {
+		if (!this.isPlaying())
+			return;
 		this.player.stop();
 		this.player = null;
 	}

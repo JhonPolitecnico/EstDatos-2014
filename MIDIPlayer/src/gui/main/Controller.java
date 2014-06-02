@@ -21,7 +21,9 @@ import gui.main.mouse.DeleteElement;
 import gui.main.mouse.EmptyList;
 import gui.main.mouse.Exit;
 import gui.main.mouse.LoadList;
+import gui.main.mouse.Next;
 import gui.main.mouse.PlayAndPause;
+import gui.main.mouse.Prev;
 import gui.main.mouse.SaveList;
 import gui.main.mouse.Stop;
 import gui.main.mouse.StopList;
@@ -112,6 +114,9 @@ public class Controller extends Main {
 		super.btnPlayPause.addMouseListener(new PlayAndPause(this));
 		super.btnStop.addMouseListener(new Stop(this));
 		super.btnStopList.addMouseListener(new StopList(this));
+
+		super.btnPrev.addMouseListener(new Prev(this));
+		super.btnNext.addMouseListener(new Next(this));
 
 		super.chckbxRepeat.addActionListener(new Repeat(this));
 

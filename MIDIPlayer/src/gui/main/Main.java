@@ -37,7 +37,6 @@ public abstract class Main extends JFrame {
 	protected JMenuItem mntmRemove;
 	protected JMenuItem mntmProperties;
 	protected JButton btnPlayPause;
-	protected JCheckBox chckbxRandomMode;
 	protected JCheckBox chckbxRepeat;
 	protected JButton btnStop;
 	protected JButton btnStopList;
@@ -46,6 +45,8 @@ public abstract class Main extends JFrame {
 	protected JMenuItem mntmSave;
 	protected JTable table;
 	protected JPopupMenu popupMenu;
+	protected JButton btnNext;
+	protected JButton btnPrev;
 
 	/**
 	 * Create the frame.
@@ -101,25 +102,45 @@ public abstract class Main extends JFrame {
 		btnPlayPause = new JButton("Reproducir / Pausa");
 		btnPlayPause.setAlignmentY(Component.TOP_ALIGNMENT);
 
-		chckbxRandomMode = new JCheckBox("Modo Aleatorio");
-
 		chckbxRepeat = new JCheckBox("Repetir");
 
 		btnStop = new JButton("Parar");
 
 		btnStopList = new JButton("Parar Lista");
+		
+		btnNext = new JButton("Siguiente");
+		
+		btnPrev = new JButton("Anterior");
 		GroupLayout gl_panelControl = new GroupLayout(panelControl);
-		gl_panelControl.setHorizontalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
-				gl_panelControl.createSequentialGroup().addComponent(btnPlayPause).addPreferredGap(ComponentPlacement.RELATED).addComponent(btnStop).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnStopList).addPreferredGap(ComponentPlacement.RELATED, 260, Short.MAX_VALUE).addComponent(chckbxRandomMode).addGap(14).addComponent(chckbxRepeat)
-						.addContainerGap()));
-		gl_panelControl.setVerticalGroup(gl_panelControl.createParallelGroup(Alignment.LEADING).addGroup(
-				gl_panelControl
-						.createSequentialGroup()
-						.addGroup(
-								gl_panelControl.createParallelGroup(Alignment.LEADING).addComponent(chckbxRepeat).addComponent(chckbxRandomMode)
-										.addGroup(gl_panelControl.createParallelGroup(Alignment.BASELINE).addComponent(btnStop).addComponent(btnStopList)).addComponent(btnPlayPause))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_panelControl.setHorizontalGroup(
+			gl_panelControl.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelControl.createSequentialGroup()
+					.addComponent(btnPlayPause)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnStop)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnStopList)
+					.addGap(30)
+					.addComponent(btnPrev)
+					.addGap(3)
+					.addComponent(btnNext)
+					.addPreferredGap(ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+					.addComponent(chckbxRepeat)
+					.addContainerGap())
+		);
+		gl_panelControl.setVerticalGroup(
+			gl_panelControl.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelControl.createSequentialGroup()
+					.addGroup(gl_panelControl.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelControl.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnStop)
+							.addComponent(btnStopList)
+							.addComponent(chckbxRepeat)
+							.addComponent(btnNext)
+							.addComponent(btnPrev))
+						.addComponent(btnPlayPause))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		panelControl.setLayout(gl_panelControl);
 		getContentPane().setLayout(groupLayout);
 
