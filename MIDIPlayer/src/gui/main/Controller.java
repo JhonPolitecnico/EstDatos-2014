@@ -10,6 +10,8 @@ package gui.main;
 import java.awt.EventQueue;
 
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import serializer.engine.Serializer;
 import utils.Utils;
@@ -47,6 +49,16 @@ public class Controller extends Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -80,6 +92,7 @@ public class Controller extends Main {
 		 */
 		this.MIDITable = new MIDITableModel();
 		super.table.setModel(this.MIDITable);
+		super.table.setAutoCreateRowSorter(true);
 		this.playerController = new MIDIPlayerController(this);
 
 		/**
@@ -94,7 +107,7 @@ public class Controller extends Main {
 		super.mntmSave.addActionListener(new SaveList(this));
 		super.mntmClear.addActionListener(new EmptyList(this));
 		super.mntmProperties.addActionListener(new ViewDetails(this));
-		super.mntmExit.addActionListener(new Exit());
+		super.mntmExit.addActionListener(new Exit(this));
 
 		super.btnPlayPause.addMouseListener(new PlayAndPause(this));
 		super.btnStop.addMouseListener(new Stop(this));

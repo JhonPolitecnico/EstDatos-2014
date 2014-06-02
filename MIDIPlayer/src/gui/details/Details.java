@@ -38,7 +38,7 @@ public abstract class Details extends JFrame {
 		setName("frmDetails");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 284, 266);
+		setBounds(100, 100, 284, 287);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		setContentPane(contentPane);

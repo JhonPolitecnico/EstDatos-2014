@@ -32,6 +32,15 @@ public class WindowController implements WindowListener {
 		this.controller = controller;
 	}
 
+	/**
+	 * Save songs and playlist
+	 */
+	private void save() {
+		Serializer s = new Serializer(Utils.getLibrary());
+		Library library = new Library(SongList.getInstance(), this.controller.getPlayList());
+		s.serialize(library);
+	}
+
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
@@ -40,17 +49,12 @@ public class WindowController implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
+		this.save();
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		/**
-		 * Serializer
-		 */
-		Serializer s = new Serializer(Utils.getLibrary());
-		Library library = new Library(SongList.getInstance(), this.controller.getPlayList());
-		s.serialize(library);
+		this.save();
 	}
 
 	@Override
