@@ -110,6 +110,10 @@ public class Controller extends Login {
 		this.roles.add(rol);
 	}
 
+	public void removeRol(Rol rol) {
+		this.roles.remove(rol);
+	}
+
 	public void setSession(Rol session) {
 		this.session = session;
 	}

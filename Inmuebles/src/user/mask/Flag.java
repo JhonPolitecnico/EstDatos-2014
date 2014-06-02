@@ -57,6 +57,10 @@ public class Flag {
 	 * Register new user
 	 */
 	public final static int ADMIN_REGISTER_USER = 0x400;
+	/**
+	 * Delete an user
+	 */
+	public final static int ADMIN_DELETE_USER = 0x800;
 
 	public static boolean isFlag(final int flags, final int flag) {
 		return (flags & flag) != 0;

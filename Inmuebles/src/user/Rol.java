@@ -11,4 +11,6 @@ public interface Rol {
 
 	public int getFlags();
 
+	public String toString();
+
 }

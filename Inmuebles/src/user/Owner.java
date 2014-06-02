@@ -46,4 +46,8 @@ public class Owner extends User implements Rol, Serializable {
 		return this.properties.contains(property);
 	}
 
+	@Override
+	public String toString() {
+		return super.getNick() + " => Cliente";
+	}
 }

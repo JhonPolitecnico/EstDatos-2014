@@ -10,6 +10,7 @@ package gui.property.list;
 import javax.swing.JTable;
 
 import gui.property.list.mouse.Delete;
+import gui.property.list.mouse.DeleteUser;
 import gui.property.list.mouse.Edit;
 import gui.property.list.mouse.Exit;
 import gui.property.list.mouse.Logout;
@@ -109,6 +110,8 @@ public class Controller extends List implements PropertyTableGUI {
 		super.mntmLogout.setVisible(!this.currentUser);
 		super.mntmRegisterUser.setVisible(!this.currentUser & isAdmin & Flag.isFlag(this.loginController.getSession().getFlags(), Flag.ADMIN_REGISTER_USER));
 		super.mntmRegisterUser.setEnabled(super.mntmRegisterUser.isVisible());
+		super.mntmDeleteUser.setVisible(!this.currentUser & isAdmin & Flag.isFlag(this.loginController.getSession().getFlags(), Flag.ADMIN_DELETE_USER));
+		super.mntmDeleteUser.setEnabled(super.mntmDeleteUser.isVisible());
 
 		/**
 		 * Model
@@ -141,6 +144,7 @@ public class Controller extends List implements PropertyTableGUI {
 		super.mntmDelete.addActionListener(new Delete(this, this.loginController));
 
 		super.mntmRegisterUser.addActionListener(new RegisterUser(this.loginController));
+		super.mntmDeleteUser.addActionListener(new DeleteUser(this.loginController));
 
 		/**
 		 * GUI
