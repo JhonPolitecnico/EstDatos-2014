@@ -149,6 +149,13 @@ class Transition {
 class SetOfStates {
 
 	private ArrayList<Integer> states;
+	private SetOfStates[] symbolTarget;
+
+	public SetOfStates(int cardinalityOfAlphabet) {
+		super();
+		this.states = new ArrayList<Integer>();
+		this.symbolTarget = new SetOfStates[cardinalityOfAlphabet];
+	}
 
 	public ArrayList<Integer> getStates() {
 		return states;
@@ -156,6 +163,44 @@ class SetOfStates {
 
 	public void addState(int state) {
 		this.states.add(state);
+	}
+
+	public boolean checkState(int state) {
+		return this.states.contains(state);
+	}
+
+	public void setDestinationSet(SetOfStates set, int symbol) {
+		this.symbolTarget[symbol] = set;
+	}
+
+	public SetOfStates getDestinationSet(int symbol) {
+		return this.symbolTarget[symbol];
+	}
+
+	public boolean isEmpty() {
+		return (this.states.size() == 0);
+	}
+
+	/**
+	 * Check if a set is equal
+	 */
+	@Override
+	public boolean equals(Object obj) {
+
+		if (!(obj instanceof SetOfStates))
+			return super.equals(obj);
+
+		SetOfStates set = (SetOfStates) obj;
+
+		if (set.getStates().size() != this.states.size())
+			return false;
+
+		for (int state : states) {
+			if (!set.checkState(state))
+				return false;
+		}
+
+		return true;
 	}
 }
 
@@ -240,88 +285,188 @@ class Automaton {
 		ArrayList<SetOfStates> setOfSets = new ArrayList<SetOfStates>();
 
 		// Initial state
-		SetOfStates set = new SetOfStates();
+		SetOfStates set = new SetOfStates(this.cardinalityZ);
 		set.addState(0);
 		setOfSets.add(set);
 
 		// temporal sets
 		SetOfStates[] tmpSets = new SetOfStates[this.symbols.length];
 
-		while (true) {
+		while (set != null) {
 
-			// Actual state
+			// clear temporal sets
+			for (int i = 0; i < tmpSets.length; i++)
+				tmpSets[i] = new SetOfStates(this.cardinalityZ);
+
+			// actual state
 			for (int state : set.getStates()) {
 
-				// clear temporal sets
-				for (int i = 0; i < tmpSets.length; i++)
-					tmpSets[i] = new SetOfStates();
-
-				// symbol
+				// actual symbol
 				for (int symbol = 0; symbol < this.symbols.length; symbol++) {
 
 					// transition
 					for (Transition transition : this.transitions) {
 
-						// (symbol)E*
+						// (symbol)
 						if (transition.getInitialState() == state && transition.getSymbol() == symbol) {
-							tmpSets[symbol].addState(transition.getTargetState());
+
+							// add state of set
+							if (!tmpSets[symbol].checkState(transition.getTargetState()))
+								tmpSets[symbol].addState(transition.getTargetState());
+
+							// (symbol)E*
+							this.getEmptyStates(transition.getTargetState(), tmpSets[symbol]);
+
+							boolean isEqual = false;
+
+							// check in set of sets
+							for (SetOfStates tmpSet : setOfSets) {
+								if (tmpSet.equals(tmpSets[symbol])) {
+									isEqual = true;
+									break;
+								}
+							}
+
+							// add new set of list of sets
+							if (!isEqual) {
+								setOfSets.add(tmpSets[symbol]);
+							}
+
 						}
 					}
 				}
 
 			}
 
+			// create new edges
+			for (int i = 0; i < tmpSets.length; i++)
+				if (!tmpSets[i].isEmpty())
+					set.setDestinationSet(tmpSets[i], i);
+
+			// next set
+			int index = setOfSets.indexOf(set) + 1;
+
+			set = (index >= setOfSets.size()) ? null : setOfSets.get(index);
+
 		}
 
-		return "okei";
+		StringBuilder output = new StringBuilder();
+
+		
+		// check if exits error state
+		int errorState = -1;
+
+		for (SetOfStates state : setOfSets) {
+
+			for (int symbol = 0; symbol < this.symbols.length; symbol++) {
+				SetOfStates destSet = state.getDestinationSet(symbol);
+
+				if (destSet == null) {
+					errorState = this.statesQ + 1;
+					break;
+				}
+			}
+
+		}
+
+		output.append((errorState != -1) ? errorState : this.statesQ); // N
+		output.append(" ");
+		output.append(this.cardinalityZ); // Z
+		output.append("\n");
+
+		// alphabet
+		for (String symbol : this.symbols) {
+			output.append(symbol);
+			output.append(" ");
+		}
+
+		output.setLength(output.length() - 1);
+		output.append("\n");
+
+		// matriz
+
+		for (SetOfStates state : setOfSets) {
+
+			for (int symbol = 0; symbol < this.symbols.length; symbol++) {
+				SetOfStates destSet = state.getDestinationSet(symbol);
+
+				if (destSet != null)
+					output.append(setOfSets.indexOf(destSet));
+				else
+					output.append(errorState);
+
+				output.append(" ");
+
+			}
+
+			output.setLength(output.length() - 1);
+			output.append("\n");
+
+		}
+
+		// error state
+		if (errorState != -1) {
+			for (int symbol = 0; symbol < this.symbols.length; symbol++) {
+				output.append(errorState);
+				output.append(" ");
+			}
+			output.setLength(output.length() - 1);
+			output.append("\n");
+		}
+
+		// final states
+		ArrayList<Integer> finalStates = new ArrayList<Integer>();
+
+		for (SetOfStates finalSet : setOfSets) {
+
+			for (int finalState : this.finalStates)
+				if (finalSet.checkState(finalState)) {
+					finalStates.add(setOfSets.indexOf(finalSet));
+					break;
+				}
+
+		}
+
+		output.append(finalStates.size());
+		output.append("\n");
+
+		for (int integer : finalStates) {
+			output.append(integer);
+			output.append(" ");
+		}
+
+		output.setLength(output.length() - 1);
+		output.append("\n");
+		output.append(0); // Queries
+
+		return output.toString();
 	}
 
 	/**
-	 * Execute a query
+	 * E* edges
 	 * 
-	 * @param query
-	 *            number of query
-	 * @return String result of query
+	 * @param initialState
+	 * @param set
 	 */
-	public String query(int query) {
-		String output = "", current = this.queries[query];
-		int state;
+	private void getEmptyStates(int initialState, SetOfStates set) {
+		// transition
+		for (Transition transition : this.transitions) {
 
-		// Reset automaton
-		this.currentState = 0;
+			// empty transition
+			if (transition.getInitialState() == initialState && transition.getSymbol() == -1) {
 
-		output += (this.mode == Mode.STEPTOSTEP) ? "Prosesando consulta " + query + " ...\n" : "";
+				// new state
+				if (set.checkState(transition.getTargetState()) == false) {
 
-		if (!this.checkSymbols(current))
-			return (this.mode == Mode.STEPTOSTEP) ? output + "La palabra NO fue aceptada, contiene simbolos ilegibles." : "NO";
+					// add new state
+					set.addState(transition.getTargetState());
 
-		String symbol;
-
-		for (int i = 0; i < current.length(); i++) {
-			symbol = current.substring(i, i + 1);
-
-			// save current state
-			state = this.currentState;
-			// change to new state
-			this.currentState = this.transitions[this.currentState][this.findSymbol(symbol)];
-
-			output += (this.mode == Mode.STEPTOSTEP) ? "Del estado " + state + " procesando el simbolo " + symbol + " paso al estado " + this.currentState + ".\n" : "";
-		}
-
-		boolean success = false;
-
-		for (int i = 0; i < this.finalStates.length; i++)
-			if (this.currentState == this.finalStates[i]) {
-				success = true;
-				break;
+					// next empty state
+					this.getEmptyStates(transition.getTargetState(), set);
+				}
 			}
 
-		if (success)
-			output += (this.mode == Mode.STEPTOSTEP) ? "La palabra SI fue aceptada, el estado " + this.currentState + " es estado de aceptación.\n" : "SI\n";
-		else
-			output += (this.mode == Mode.STEPTOSTEP) ? "La palabra NO fue aceptada, el estado " + this.currentState + " no es estado de aceptación.\n" : "NO\n";
-
-		return output.trim();
+		}
 	}
 
 	/**
