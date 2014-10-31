@@ -1,5 +1,13 @@
+/**
+ * Test input
+ * 
+ * <pre>
+ * <code>
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+ * </code>
+ * </pre>
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,11 +23,19 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		try {
-			System.setIn(new FileInputStream("input.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		/**
+		 * Test input
+		 * 
+		 * <pre>
+		 * <code>
+		 * 		try {
+		 * 			System.setIn(new FileInputStream("input.txt"));
+		 * 		} catch (FileNotFoundException e) {
+		 * 			e.printStackTrace();
+		 * 		}
+		 * </code>
+		 * </pre>
+		 */
 
 		Scanner sN = new Scanner(System.in);
 		sN.useDelimiter(System.lineSeparator());
@@ -121,6 +137,10 @@ class Input {
 	}
 }
 
+/**
+ * Transitions
+ *
+ */
 class Transition {
 
 	private int initialState, symbol, targetState;
@@ -146,6 +166,10 @@ class Transition {
 
 }
 
+/**
+ * new states to AFD
+ *
+ */
 class SetOfStates {
 
 	private ArrayList<Integer> states;
@@ -352,7 +376,6 @@ class Automaton {
 
 		StringBuilder output = new StringBuilder();
 
-		
 		// check if exits error state
 		int errorState = -1;
 
