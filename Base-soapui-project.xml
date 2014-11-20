@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Base" resourceRoot="${projectDir}" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Login" path="/login"><con:settings/><con:parameters/><con:method name="Login" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:log="http://localhost/login">log:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>text/html; charset=iso-8859-1</con:mediaType><con:status>200</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/x-www-form-urlencoded</con:mediaType><con:params/></con:representation><con:request name="login" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+	"username": "user",
+	"password": "d033e22ae348aeb5660fc2140aec35850c4da997"
+}
+</con:request><con:originalUri>http://localhost/login</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder/></con:request></con:method></con:resource></con:interface><con:restMockService port="8080" path="/" host="Jhon" name="REST MockService"><con:settings/><con:properties/><con:restMockAction name="/login" method="POST" resourcePath="/login"><con:description>servicio de login</con:description><con:settings/><con:defaultResponse>error</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="error" httpResponseStatus="200" mediaType="application/json"><con:description>devuelto en caso de usuario incorrecto</con:description><con:settings/><con:responseContent>{"status": "error"}</con:responseContent></con:response><con:response name="success user 1" httpResponseStatus="200" mediaType="application/json"><con:description>devuelto con una token unica de sesion en caso de logeo correcto</con:description><con:settings/><con:responseContent>{
+  "status": "success",
+  "token": "12dea96fec20593566ab75692c9949596833adc9",
+  "role": 1
+}</con:responseContent></con:response><con:response name="success user 2" httpResponseStatus="200"><con:settings/><con:responseContent>{
+  "status": "success",
+  "token": "12dea96fec20593566ab75692c9949596833adc9",
+  "role": 2
+}</con:responseContent></con:response><con:response name="success user 3" httpResponseStatus="200"><con:settings/><con:responseContent>{
+  "status": "success",
+  "token": "12dea96fec20593566ab75692c9949596833adc9",
+  "role": 3
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/paus" method="GET" resourcePath="/paus"><con:description>puntos de atencion</con:description><con:settings/><con:defaultResponse>puntos</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="puntos" httpResponseStatus="200" mediaType="application/json"><con:description>Obtiene una lista de los puntos de atencion</con:description><con:settings/><con:responseContent>[
+  {
+    "id": 1,
+    "name": "punto 1",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto1@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 2,
+    "name": "punto 2",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto2@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 3,
+    "name": "punto 3",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto3@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 4,
+    "name": "punto 4",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto4@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 5,
+    "name": "punto 5",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto5@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  }
+]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/doctors" method="GET" resourcePath="/doctors"><con:settings/><con:defaultResponse>doctors</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="doctors" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[
+  {
+    "id": 1,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 2,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 3,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 4,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 5,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  }
+]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/pau" method="GET" resourcePath="/pau"><con:settings/><con:defaultResponse>punto</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="punto" httpResponseStatus="200"><con:settings/><con:responseContent>{
+  "id": 1,
+  "name": "punto 1",
+  "location": "calle 98 no 54 - 89",
+  "phone": "678987543",
+  "email": "punto1@transito.gov.co",
+  "operation": "5 am - 4 pm"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/officials" method="GET" resourcePath="/officials"><con:settings/><con:defaultResponse>officials</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="officials" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[
+  {
+    "id": 6,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 7,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 8,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 9,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  },
+  {
+    "id": 10,
+    "dni": "3257675567",
+    "name": "juan garcia",
+    "birthday": "12/12/1977",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "cellphone": "678987543",
+    "email": "juan@gmail.com"
+  }
+]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/worker" method="GET" resourcePath="/worker"><con:settings/><con:defaultResponse>worker</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="worker" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "id": 6,
+  "dni": "3257675567",
+  "name": "juan garcia",
+  "birthday": "12/12/1977",
+  "location": "calle 98 no 54 - 89",
+  "phone": "678987543",
+  "cellphone": "678987543",
+  "email": "juan@gmail.com",
+  "work_experience": [
+    {
+      "immediate_boss": "Jhon Jairo",
+      "company": "PD TEAM",
+      "date_of_admission": "01/01/2010",
+      "departure_date": "12/12/2013",
+      "functions": "web developer, delphi senior",
+      "achievements": "ascent in 10 days"
+    },
+    {
+      "immediate_boss": "Jhon Jairo",
+      "company": "EC TEAM",
+      "date_of_admission": "01/01/2014",
+      "departure_date": "12/12/2014",
+      "functions": "web developer, delphi senior",
+      "achievements": "ascent in 10 days"
+    }
+  ]
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/pau/new" method="POST" resourcePath="/pau/new"><con:settings/><con:defaultResponse>success</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="success" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "success"
+}</con:responseContent></con:response><con:response name="error" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/pau/edit" method="POST" resourcePath="/pau/edit"><con:settings/><con:defaultResponse>success</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="success" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "success"
+}</con:responseContent></con:response><con:response name="error" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/user/new" method="POST" resourcePath="/user/new"><con:settings/><con:defaultResponse>success factura</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="success factura" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "success",
+  "bill": 45
+}</con:responseContent></con:response><con:response name="error" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/bill" method="POST" resourcePath="/bill"><con:settings/><con:defaultResponse>success</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="success" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "id": "45",
+  "date": "12/12/2014",
+  "payment": "80000",
+  "client_name": "Jhon Jairo Pro Developer",
+  "client_dni": "567049211",
+  "pau_name": "punto 1"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/worker/new" method="POST" resourcePath="/worker/new"><con:settings/><con:defaultResponse>success</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="success" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "success"
+}</con:responseContent></con:response><con:response name="error" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/records" method="POST" resourcePath="/records"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="error" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "error"
+}</con:responseContent></con:response><con:response name="success" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "status": "success",
+  "processed_users": 978,
+  "invoiced_value": 50000,
+  "invoiced_value_iva": 58000,
+  "iva": 8000
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/procedures" method="POST" resourcePath="/procedures"><con:settings/><con:defaultResponse>now</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="now" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
