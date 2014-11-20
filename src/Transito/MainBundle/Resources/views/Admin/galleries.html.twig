@@ -1,0 +1,67 @@
+{% extends "admin/layout.html.twig" %}
+{% use "admin/form.inc.twig" with ready_js as parent_js %}
+{% use "admin/form.inc.twig" with custom_js_footer as parent_js_footer %}
+{% use "admin/notify.inc.twig" with custom_js_footer as notify_js_footer %}
+{% use "admin/notify.inc.twig" with ready_js as notify_js %}
+{% set title = 'Galerias' %}
+{% set page_title = title %}
+{% set page_subtitle = title %}
+{% block custom_js_footer %}
+    {{ block('parent_js_footer') }}
+    {{ block('notify_js_footer') }}
+{% endblock %}
+{% block ready_js %}
+        var single_gallery_url = '{{ path('single_gallery_page', '-1', '-2') }}';
+
+        $("#edit").click(function() {
+            var girl = $("#girl").val();
+            var category = $("#category").val();
+            if (girl == '0' || category == '0') {
+                toastr.info("Debe seleccionar una masajista y una categoría", "Atención");
+            } else {
+                window.location = single_gallery_url.replace('-1', girl).replace('-2', category);
+            }
+        });
+        {{ block('parent_js') }}
+        {{ block('notify_js') }}
+{% endblock %}
+{% block panel_body %}
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11"><h1>Seleccione Galeria</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <label for="girl">
+                Masajista
+            </label>
+            <select id="girl" class="form-control search-select">
+                <option value="0">&nbsp;</option>
+                {% for girl in girls %}
+                    <option value="{{ girl.getId() }}">{{ girl.getProperty('name') }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label for="category">
+                Categoria
+            </label>
+            <select id="category" class="form-control search-select">
+                <option value="0">&nbsp;</option>
+                {% for category in categories %}
+                    <option value="{{ category.getId() }}">{{ category.getName() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8"><button id="edit" class="btn btn-blue btn-block">
+                Editar Galeria <i class="fa fa-arrow-circle-right"></i>
+            </button></div>
+        <div class="col-sm-2"></div>
+    </div>
+{% endblock %}

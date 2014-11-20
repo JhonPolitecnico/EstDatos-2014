@@ -1,0 +1,29 @@
+parameters:
+#    transito_main.example.class: Transito\MainBundle\Example
+    login.class: Transito\LoginBundle\Includes\LoginManager
+    utils.class: Transito\IncludesBundle\Utils
+    rest.class: Transito\RESTBundle\REST
+
+services:
+#    transito_main.example:
+#        class: %transito_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    login:
+        class: %login.class%
+        calls:
+            - [setContainer, ["@service_container"]]
+    utils:
+        class: %utils.class%
+        calls:
+            - [setContainer, ["@service_container"]]
+    rest:
+        class: %rest.class%
+        calls:
+            - [setContainer, ["@service_container"]]
+    transit.client:
+        class: "%guzzle.client.class%"
+        arguments:
+            - "http://localhost:8080"
+        calls:
+            - [setUserAgent, ["transito/1.0"]]
+            - [setDefaultOption, [ "headers", {"Content-Type": "application/json"} ] ]

@@ -1,0 +1,120 @@
+{% extends "TransitoMainBundle:Admin:layout.html.twig" %}
+{% use "TransitoMainBundle:Admin:form.inc.twig" with custom_js_footer as parent_js_footer %}
+{% use "TransitoMainBundle:Admin:form.inc.twig" with custom_css_head as parent_css_head %}
+{% set title = 'Registros' %}
+{% set page_title = title %}
+{% set page_subtitle = page_title %}
+{% block custom_css_head %}
+    {{ block('parent_css_head') }}
+    <link rel="stylesheet" href="{{ asset('rapido/assets/plugins/nvd3/nv.d3.min.css') }}">
+{% endblock %}
+{% block custom_js_footer %}
+    {{ block('parent_js_footer') }}
+    <script src="{{ asset('rapido/assets/plugins/nvd3/lib/d3.v3.js') }}"></script>
+    <script src="{{ asset('rapido/assets/plugins/nvd3/nv.d3.min.js') }}"></script>
+    <script src="{{ asset('rapido/assets/js/charts.js') }}"></script>
+    <script type="text/javascript">
+                $(function () {
+                nv.addGraph(function () {
+                var chart = nv.models.discreteBarChart().x(function (d) {
+                return d.label;
+                })//Specify the data accessors.
+                        .y(function (d) {
+                        return d.value;
+                        }).staggerLabels(true)//Too many bars and not enough room? Try staggering labels.
+                        .tooltips(false)//Don't show tooltips
+                        .showValues(true)//...instead, show the bar value right on top of each bar.
+                        .transitionDuration(350);
+                        d3.select('#records svg').datum(exampleData()).call(chart);
+                        nv.utils.windowResize(chart.update);
+                        return chart;
+                });
+                        //Each bar represents a single discrete quantity.
+                                function exampleData() {
+                                return [{
+                                key: "Cumulative Return",
+                                        values: [{
+                                        "label": "Usuarios Tramitados",
+                                                "value":{{ (report is not empty) ? report.getProcessedUsers() : 0 }}
+                                        }, {
+                                        "label": "Valor Facturado (IVA)",
+                                                "value":{{ (report is not empty) ? report.getInvoicedValue() : 0 }}
+                                        }, {
+                                        "label": "Valor Facturado (Neto)",
+                                                "value":{{ (report is not empty) ? report.getInvoicedValueIva() : 0 }}
+                                        }, {
+                                        "label": "IVA",
+                                                "value":{{ (report is not empty) ? report.getIva() : 0 }}
+                                        }]
+                                }];
+                                }
+
+                        });
+    </script>
+{% endblock %}
+{% block choice_widget %}
+    hola
+{% endblock %}
+{% block page_content %}
+    <form method="POST" action="{{ path('pau_records_list_page') }}" role="form" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% if errors is not empty %}
+                            <div class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close" type="button">
+                                    &times;
+                                </button>
+                                <h4 class="alert-heading"><i class="fa fa-times"></i> Error!</h4>
+                                {% for error in errors %}
+                                    <p>{{ error.message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">
+                                Punto de atención
+                            </label>
+                            <div class="col-sm-3">
+                                {% set option = form_widget(form.paus)|replace(
+                                                    {('name="' ~ form.paus.vars.full_name ~ '">'): ('name="' ~ form.paus.vars.full_name ~ '" class="form-control search-select">')}
+                                                                    ) %}
+                                {{ option|raw }}
+                            </div>
+                            <label class="col-sm-1 control-label">
+                                Fecha inicial
+                            </label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="text" name="{{ form.firstDate.vars.full_name }}" id="{{ form.firstDate.vars.id }}" value="{{ (form.vars.value is not empty ) ? form.vars.value.firstDate : '' }}" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                </div>
+                            </div>
+                            <label class="col-sm-1 control-label">
+                                Fecha final
+                            </label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="text" name="{{ form.lastDate.vars.full_name }}" id="{{ form.lastDate.vars.id }}" value="{{ (form.vars.value is not empty ) ? form.vars.value.lastDate : '' }}" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group"><div class="col-sm-12"><input type="submit" value="Mostrar estadísticas" class="btn btn-blue btn-block"></div></div>
+
+                        {% if (report is not empty) %}
+                            <div id="records" class="height-300">
+                                <svg></svg>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>    
+        {{ form_widget(form._token) }}
+    </form>
+
+{% endblock %}

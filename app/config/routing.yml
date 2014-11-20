@@ -1,0 +1,4 @@
+transito_main:
+    resource: "@TransitoMainBundle/Resources/config/routing.yml"
+    prefix:   /
+

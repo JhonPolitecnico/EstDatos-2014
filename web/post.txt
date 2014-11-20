@@ -1,0 +1,1777 @@
+-----------------------------------
+URL: http://localhost:8080/pau/new?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+{"name":"Jhon","location":"calle 33 # 56 - 44","email":"putas@gmail.com","operation":"12 am - 4 pm"}
+RESPONSE:
+{
+  "status": "success"
+}
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/procedures?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:POST
+REQUEST:
+[]
+RESPONSE:
+[
+  {
+    "bill": 45,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": true,
+    "physical": true,
+    "optometry": true
+  },
+  {
+    "bill": 46,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 47,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": true,
+    "psychological": false,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 48,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": true,
+    "physical": false,
+    "optometry": true
+  },
+  {
+    "bill": 49,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": true,
+    "optometry": false
+  },
+  {
+    "bill": 50,
+    "dni": "64535470975",
+    "name": "Jhon Jairo Epic Code",
+    "date": "12/12/2014 08:06:56",
+    "speech_therapy": false,
+    "psychological": false,
+    "physical": false,
+    "optometry": false
+  }
+]

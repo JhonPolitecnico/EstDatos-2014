@@ -1,0 +1,118 @@
+{% set active = ' class="active"' %}
+{% set open = ' class="active open"' %}
+<a class="closedbar inner hidden-sm hidden-xs" href="#">
+</a>
+<nav id="pageslide-left" class="pageslide inner">
+    <div class="navbar-content">
+        <!-- start: SIDEBAR -->
+        <div class="main-navigation left-wrapper transition-left">
+            <div class="navigation-toggler hidden-sm hidden-xs">
+                <a href="#main-navbar" class="sb-toggle-left">
+                </a>
+            </div>
+            <!-- start: MAIN NAVIGATION MENU -->
+            <ul class="main-navigation-menu">
+                {#
+                <li>
+                    <a href="{{ path('index_homepage') }}"><i class="fa fa-wrench"></i> <span class="title">Configuración general</span> </a>
+                </li>#}
+
+                {% set pauOpen = (app.request.get('_route') == 'pau_list_page') %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_doctors_list_page' %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_new_page' %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_edit_page' %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'user_new_page' %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'worker_details_page' %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'worker_new_page' %}
+                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_records_list_page' %}
+                <li{{ pauOpen ? open|raw : '' }}>
+                    <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Puntos de atención</span><i class="icon-arrow"></i> </a>
+                    <ul class="sub-menu">
+                        <li{{ (app.request.get('_route') == 'pau_list_page') ? active|raw : '' }}>
+                            <a href="{{ path('pau_list_page') }}">
+                                <span class="title">Ver Lista <i class="fa fa-list-alt"></i></span>
+                            </a>
+                        </li>
+                        <li{{ (app.request.get('_route') == 'pau_records_list_page') ? active|raw : '' }}>
+                            <a href="{{ path('pau_records_list_page') }}">
+                                <span class="title">Ver Registros <i class="fa fa-list-alt"></i></span>
+                            </a>
+                        </li>
+                        <li{{ (app.request.get('_route') == 'pau_new_page') ? active|raw : '' }}>
+                            <a href="{{ path('pau_new_page') }}">
+                                <span class="title">Agregar Nuevo <i class="fa fa-plus"></i></span>
+                            </a>
+                        </li>
+
+                        {% if (app.request.get('_route') == 'pau_doctors_list_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Medicos y funcionarios <i class="fa fa-user-md"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if (app.request.get('_route') == 'pau_edit_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Editar <i class="fa fa-edit"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if (app.request.get('_route') == 'user_new_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Nuevo usuario <i class="fa fa-user"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if (app.request.get('_route') == 'worker_details_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Hoja de vida <i class="fa fa-suitcase"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if (app.request.get('_route') == 'worker_new_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Nuevo trabajador <i class="fa fa-plus"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+
+                {% set proOpen = (app.request.get('_route') == 'procedure_list_page') %}
+                <li{{ proOpen ? open|raw : '' }}>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-user"></i>
+                        <span class="title">Medicos y funcionarios</span>
+                        <i class="icon-arrow"></i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li{{ (app.request.get('_route') == 'procedure_list_page') ? active|raw : '' }}>
+                            <a href="{{ path('procedure_list_page') }}">
+                                <span class="title">Tramites del dia <i class="fa fa-list-alt"></i></span>
+                            </a>
+                        </li>
+                </li>
+
+            </ul>
+            <!-- end: MAIN NAVIGATION MENU -->
+        </div>
+        <!-- end: SIDEBAR -->
+    </div>
+    <div class="slide-tools">
+        <div class="col-xs-6 text-left no-padding"></div>
+        <div class="col-xs-6 text-right no-padding">
+            <a class="btn btn-sm log-out text-right" href="{{ path('logout_page') }}">
+                <i class="fa fa-power-off"></i> Salir
+            </a>
+        </div>
+    </div>
+</nav>

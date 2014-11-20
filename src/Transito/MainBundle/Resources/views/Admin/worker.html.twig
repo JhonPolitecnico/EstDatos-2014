@@ -1,0 +1,62 @@
+{% extends "TransitoMainBundle:Admin:layout.html.twig" %}
+{% set title = 'Hoja de vida' %}
+{% set page_title = title %}
+{% set page_subtitle = 'Trabajador: <b>' ~ worker.getName() ~ '</b>' %}
+{% block page_content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <p><b>ID: </b> {{ worker.getId() }}</p>
+                    <p><b>DNI: </b> {{ worker.getDni() }}</p>
+                    <p><b>Nombre: </b> {{ worker.getName() }}</p>
+                    <p><b>Fecha de nacimiento: </b> {{ worker.getBirthday() }}</p>
+                    <p><b>Dirección: </b> {{ worker.getLocation() }}</p>
+                    <p><b>Telefono: </b> {{ worker.getPhone() }}</p>
+                    <p><b>Celular: </b> {{ worker.getCellphone() }}</p>
+                    <p><b>Email: </b> {{ worker.getEmail() }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- start: TABLE WITH IMAGES PANEL -->
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <p>Expreriencia laboral</p>
+                    <table class="table table-striped table-hover" id="sample-table-2">
+                        <thead>
+                            <tr>
+                                <th>Jefe inmediato</th>
+                                <th>Empresa</th>
+                                <th>Fecha de ingreso</th>
+                                <th>Fecha de salida</th>
+                                <th>Funciones</th>
+                                <th>Logros</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for exp in worker.getWork_experience() %}
+                                <tr>
+                                    <td>{{ exp.getImmediate_boss() }}</td>
+                                    <td>{{ exp.getCompany() }}</td>
+                                    <td>{{ exp.getDate_of_admission() }}</td>
+                                    <td>{{ exp.getDeparture_date() }}</td>
+                                    <td>{{ exp.getFunctions() }}</td>
+                                    <td>{{ exp.getAchievements() }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end: TABLE WITH IMAGES PANEL -->
+        </div>
+    </div>
+
+
+{% endblock %}

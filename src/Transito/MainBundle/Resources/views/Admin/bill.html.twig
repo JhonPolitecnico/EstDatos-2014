@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Factura No: {{ bill.getId() }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div style="text-align: center; width: 300px;">
+            <p>Transito S.A.S</p>
+            <p>NIT: 756555332-2</p>
+            <p>FACTURA DE VENTA #{{ bill.getId() }}</p>
+            <p>FECHA: {{ bill.getDate() }}</p>
+            <p>CLIENTE: {{ bill.getClientName()|upper }}</p>
+            <p>DNI: {{ bill.getClientDni() }}</p>
+            <p>PUNTO DE ATENCIÓN: {{ bill.getPauName()|upper }}</p>
+            <p>***DETALLE***</p>
+            <p>LICENCIA DE CONDUCCIÓN</p>
+            <p>***PAGO***</p>
+            <p>VENTA:       50000</p>
+            <p>SUBTOTAL:    50000</p>
+            <p>IVA:         8000</p>
+            <p>TOTAL:       58000</p>
+            <p>RESIBIDO:    {{ bill.getPayment() }}</p>
+            <p>CAMBIO:    {{ (bill.getPayment() - 58000) }}</p>
+        </div>
+    </body>
+</html>

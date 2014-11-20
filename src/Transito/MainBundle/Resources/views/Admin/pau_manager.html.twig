@@ -1,0 +1,58 @@
+{% extends "TransitoMainBundle:Admin:layout.html.twig" %}
+{% set title = 'Agregar nuevo punto de atención' %}
+{% set page_title = title %}
+{% set page_subtitle = title %}
+{% block panel_body %}
+
+    {% if errors is not empty %}
+        <div class="alert alert-block alert-danger fade in">
+            <button data-dismiss="alert" class="close" type="button">
+                &times;
+            </button>
+            <h4 class="alert-heading"><i class="fa fa-times"></i> Error!</h4>
+            {% for error in errors %}
+                <p>{{ error.message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% set action = (pau is not empty) ? path('pau_edit_page', {'pauID': pau.getId()}) : path('pau_new_page') %}    
+    <form method="POST" action="{{ action }}" role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="name">
+                Nombre
+            </label>
+            <div class="col-sm-9">
+                <input type="text" name="{{ form.name.vars.full_name }}" placeholder="Nombre" id="name" class="form-control" value="{{ (pau is not empty) ? pau.getName() : '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="location">
+                Dirección
+            </label>
+            <div class="col-sm-9">
+                <input type="text" name="{{ form.location.vars.full_name }}" placeholder="Carrrera XX # XX - XX" id="location" class="form-control" value="{{ (pau is not empty) ? pau.getLocation() : '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="email">
+                Email
+            </label>
+            <div class="col-sm-9">
+                <input type="text" name="{{ form.email.vars.full_name }}" placeholder="correo@servidor.com" id="email" class="form-control" value="{{ (pau is not empty) ? pau.getEmail() : '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="operation">
+                Horario de atención
+            </label>
+            <div class="col-sm-9">
+                <input type="text" name="{{ form.operation.vars.full_name }}" placeholder="X am - Y pm" id="operation" class="form-control" value="{{ (pau is not empty) ? pau.getOperation() : '' }}">
+            </div>
+        </div>
+        <br />
+        {% set buttonText = (pau is not empty) ? 'guardar' : 'crear' %}    
+        <div class="form-group"><div class="col-sm-12"><input type="submit" value="{{ buttonText }} punto de atención" class="btn btn-blue btn-block"></div></div>
+                {{ form_widget(form._token) }}
+    </form>
+{% endblock %}

@@ -1,0 +1,70 @@
+# main page
+index_homepage:
+    path: /
+    defaults: { _controller: TransitoMainBundle:Main:index }
+# login pages
+login_page:
+    path: /login
+    defaults: { _controller: LoginBundle:Login:index }
+logout_page:
+    path: /logout
+    defaults: { _controller: LoginBundle:Login:logOut }
+# pau pages
+pau_list_page:
+    path: /pau
+    defaults: { _controller: TransitoMainBundle:Pau:list }
+# doctors by pau
+pau_doctors_list_page:
+    path: /pau/doctors/{pau}
+    defaults: { _controller: TransitoMainBundle:Pau:doctors }
+    requirements:
+        pau: \d+
+# details from a worker
+worker_details_page:
+    path: /worker/details/{worker}
+    defaults: { _controller: TransitoMainBundle:Worker:details }
+    requirements:
+        worker: \d+
+# create new pau
+pau_new_page:
+    path: /pau/new
+    defaults: { _controller: TransitoMainBundle:Pau:manager, pauID: null }
+# edit pau
+pau_edit_page:
+    path: /pau/edit/{pauID}
+    defaults: { _controller: TransitoMainBundle:Pau:manager }
+    requirements:
+        pauID: \d+
+# create new client
+user_new_page:
+    path: /user/new/{pau}
+    defaults: { _controller: TransitoMainBundle:Client:manager }
+    requirements:
+        pauID: \d+
+# get bill
+user_bill_page:
+    path: /user/bill/{bill}
+    defaults: { _controller: TransitoMainBundle:Bill:bill }
+    requirements:
+        pauID: \d+
+# worker new page
+worker_new_page:
+    path: /worker/new/{type}/{pau}
+    defaults: { _controller: TransitoMainBundle:Worker:manager }
+    requirements:
+        pau: \d+
+        type: doctor|official
+# records by pau
+pau_records_list_page:
+    path: /pau/records
+    defaults: { _controller: TransitoMainBundle:Pau:records }
+procedure_list_page:
+    path: /procedures
+    defaults: { _controller: TransitoMainBundle:Procedure:index }
+# exam
+exam_page:
+    path: /user/exam/{type}/{bill}
+    defaults: { _controller: TransitoMainBundle:Exam:index }
+    requirements:
+        type: speech_therapy|psychological|physical|optometry
+        bill: \d+

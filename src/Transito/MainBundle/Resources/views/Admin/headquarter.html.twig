@@ -1,0 +1,123 @@
+{% extends "admin/layout.html.twig" %}
+{% use "admin/modal.inc.twig" with custom_js_footer as modal_js %}
+{% set title = 'Edición de instalaciones' %}
+{% set page_title = title %}
+{% set page_subtitle = title %}
+{% block custom_css_head %}
+    <link rel="stylesheet" href="{{ asset('rapido/assets/plugins/dropzone/downloads/css/dropzone.css') }}">
+{% endblock %}
+{% block custom_js_footer %}
+    <script src="{{ asset('rapido/assets/plugins/dropzone/downloads/dropzone.min.js') }}"></script>
+    <script>
+        Dropzone.options.myAwesomeDropzone = {
+            url: '{{ path('add_photo_to_headquarter_page') }}',
+            paramName: "images", // The name that will be used to transfer the file
+            uploadMultiple: true,
+            parallelUploads: 100,
+            maxFilesize: 5.0, // MB
+            addRemoveLinks: true,
+            autoProcessQueue: false,
+            // The setting up of the dropzone
+            init: function () {
+                var myDropzone = this;
+
+                // First change the button to actually tell Dropzone to process the queue.
+                this.element.querySelector("input[type=submit]").addEventListener("click", function (e) {
+                    // Make sure that the form isn't actually being sent.
+                    e.preventDefault();
+                    e.stopPropagation();
+                    myDropzone.processQueue();
+                });
+
+                // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+                // of the sending event because uploadMultiple is set to true.
+                this.on("sendingmultiple", function () {
+                    // Gets triggered when the form is actually being sent.
+                    // Hide the success button or the complete form.
+                });
+                this.on("successmultiple", function (files, response) {
+                    // Gets triggered when the files have successfully been sent.
+                    // Redirect user or notify of success.
+                });
+                this.on("errormultiple", function (files, response) {
+                    // Gets triggered when there was an error sending the files.
+                    // Maybe show form again, and notify user of error
+                });
+            }
+
+        };
+    </script>
+    {{ block('modal_js') }}
+{% endblock %}
+{% block page_content %}
+
+    <!-- start: PANLEL TABS -->
+    <div class="panel panel-white panel-tabs">
+        <div class="panel-heading">
+            <h4 class="panel-title">Instalaciones</h4>
+        </div>
+        <div class="panel-body">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#panel_tab_example1">
+                            Fotos
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#panel_tab_example2">
+                            Subir fotos
+                        </a>
+                    </li>
+            </div>
+
+
+            <div class="tab-content">
+
+                <div id="panel_tab_example1" class="tab-pane fade in active">
+                    {% for photo in photos %}
+                        {% if loop.index is divisible by(4) %}
+                            <div class="row">
+                            {% endif %}
+                            <div class="col-sm-3">
+                                <div class="thumbnail">
+                                    <img src="{{ asset('/images/' ~ photo) }}" style="width: 100%; display: block;">
+                                    <div class="caption">
+                                        <center>
+                                            <p>
+                                                <button url="{{ path('remove_photo_from_headquarter_page', loop.index-1) }}" data-bb="confirm" class="btn btn-dark-red">
+                                                    Borrar
+                                                </button>
+                                            </p>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if loop.index is divisible by(4) %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-red show-tab btn-block" href="#panel_tab_example2">
+                                Agregar archivos <i class="fa fa-arrow-circle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="panel_tab_example2" class="tab-pane fade">
+                    <form class="dropzone" id="my-awesome-dropzone">
+                        <input type="submit" value="Subir fotos" class="btn btn-green btn-lg btn-block">
+                    </form>
+                </div>
+                    
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- end: PANLEL TABS -->
+{% endblock %}

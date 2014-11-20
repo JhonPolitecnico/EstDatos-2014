@@ -1,0 +1,70 @@
+-----------------------------------
+URL: http://localhost:8080/paus?token=12dea96fec20593566ab75692c9949596833adc9
+METHOD:GET
+RESPONSE:
+[
+  {
+    "id": 1,
+    "name": "punto 1",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto1@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 2,
+    "name": "punto 2",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto2@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 3,
+    "name": "punto 3",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto3@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 4,
+    "name": "punto 4",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto4@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  },
+  {
+    "id": 5,
+    "name": "punto 5",
+    "location": "calle 98 no 54 - 89",
+    "phone": "678987543",
+    "email": "punto5@transito.gov.co",
+    "operation": "5 am - 4 pm"
+  }
+]
+-----------------------------------
+URL: http://localhost:8080/pau?token=12dea96fec20593566ab75692c9949596833adc9&pau=1
+METHOD:GET
+RESPONSE:
+{
+  "id": 1,
+  "name": "punto 1",
+  "location": "calle 98 no 54 - 89",
+  "phone": "678987543",
+  "email": "punto1@transito.gov.co",
+  "operation": "5 am - 4 pm"
+}
+-----------------------------------
+URL: http://localhost:8080/pau?token=12dea96fec20593566ab75692c9949596833adc9&pau=favicon.ico
+METHOD:GET
+RESPONSE:
+{
+  "id": 1,
+  "name": "punto 1",
+  "location": "calle 98 no 54 - 89",
+  "phone": "678987543",
+  "email": "punto1@transito.gov.co",
+  "operation": "5 am - 4 pm"
+}

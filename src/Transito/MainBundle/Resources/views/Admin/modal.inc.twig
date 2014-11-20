@@ -1,0 +1,12 @@
+{% block custom_css_head %}
+    <link href="{{ asset('rapido/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('rapido/assets/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block custom_js_footer %}
+    <script src="{{ asset('rapido/assets/plugins/bootstrap-modal/js/bootstrap-modal.js') }}"></script>
+    <script src="{{ asset('rapido/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}"></script>
+    <script src="{{ asset('rapido/assets/js/modals.js') }}"></script>
+{% endblock %}
+{% block ready_js %}
+    UIModals.init();
+{% endblock %}

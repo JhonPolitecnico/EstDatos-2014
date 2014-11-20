@@ -1,0 +1,84 @@
+{% extends "admin/layout.html.twig" %}
+{% use "admin/modal.inc.twig" with custom_js_footer as parent_js %}
+{% set title = 'Categorias' %}
+{% set page_title = title %}
+{% set page_subtitle = title %}
+{% block custom_js_footer %}
+    <script>var category_url = '{{ path('category_page', type) }}';</script>
+    {{ block('parent_js') }}
+{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <!-- start: TABLE WITH IMAGES PANEL -->
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-bordered table-hover" id="sample-table-2">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for category in categories %}
+                                        <tr>
+                                            <td>{{ category.getName() }}</td>
+                                            <td class="center">
+                                                <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                    <button url="{{ path('edit_category_page', category.getId(), type) }}" data-bb="prompt" class="btn btn-xs btn-blue tooltips" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></button>
+                                                    <button url="{{ path('remove_category_page', category.getId(), type) }}" data-bb="confirm" class="btn btn-xs btn-red tooltips" data-placement="top" data-original-title="Eliminar"><i class="fa fa-times fa fa-white"></i></button>
+                                                </div>
+                                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-green dropdown-toggle btn-sm" data-toggle="dropdown" href="#">
+                                                            <i class="fa fa-cog"></i> <span class="caret"></span>
+                                                        </a>
+                                                        <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
+                                                            <li>
+                                                                <a role="menuitem" tabindex="-1" href="#"  onclick="demos.prompt(this);" url="{{ path('edit_category_page', category.getId(), type) }}">
+                                                                    <i class="fa fa-edit"></i> Editar
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a role="menuitem" tabindex="-1" href="#" onclick="demos.confirm(this);" url="{{ path('remove_category_page', category.getId(), type) }}">
+                                                                    <i class="fa fa-times"></i> Eliminar
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="POST" action="{{ path('new_category_page', type) }}" role="form" class="form-horizontal">
+                                <div class="form-group"><div class="col-sm-10"><h3>Nueva Categoria</h3></div></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="form-field-1">
+                                        Nombre
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="name" placeholder="Escriba el nombre de la nueva categoria" id="form-field-1" class="form-control" value="{{ (girl is defined) ? girl.getProperty('name') : '' }}">
+                                    </div>
+                                    <div class="col-sm-1"></div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-10"><input type="submit" value="Agregar categoria" class="btn btn-blue btn-block"></div>
+                                    <div class="col-sm-1"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end: TABLE WITH IMAGES PANEL -->
+        </div>
+    </div>
+{% endblock %}
