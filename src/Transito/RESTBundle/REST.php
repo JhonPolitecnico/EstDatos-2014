@@ -26,10 +26,27 @@ class REST extends Controller {
         $this->serializer = $this->get('jms_serializer');
     }
 
+    private function renameClass($class) {
+
+        $classes = [
+            'ArrayCollection<' => 'Doctrine\Common\Collections\ArrayCollection<'
+        ];
+
+        foreach ($classes as $left => $replace) {
+
+            if (substr($class, 0, strlen($left)) == $left)
+                $class = str_replace($left, $replace, $class);
+        }
+
+        return $class;
+    }
+
     public function getEntity($path, $class, $query = []) {
 
+        $class = $this->renameClass($class);
+
         $request = $this->client->get(
-                $path, [
+                $path, [], [
             'query' => $query
                 ]
         );
@@ -40,6 +57,8 @@ class REST extends Controller {
     }
 
     public function postEntity($path, $post, $class, $query = []) {
+
+        $class = $this->renameClass($class);
 
         $request = $this->client->post(
                 $path, '', $this->serializer->serialize($post, self::FORMAT), [
