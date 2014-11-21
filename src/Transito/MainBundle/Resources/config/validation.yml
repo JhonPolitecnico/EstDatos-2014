@@ -108,3 +108,23 @@ Transito\MainBundle\Validations\Procedure:
         name:
             - NotBlank:
                 message: "El nombre no puede estar vacio"
+Transito\MainBundle\Validations\Record:
+    properties:
+        paus:
+            - NotBlank:
+                message: "Debe seleccionar un punto de atención"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "El punto de atención es invalido"
+        firstDate:
+            - NotBlank:
+                message: "La fecha inicial no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
+        lastDate:
+            - NotBlank:
+                message: "La fecha final no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
