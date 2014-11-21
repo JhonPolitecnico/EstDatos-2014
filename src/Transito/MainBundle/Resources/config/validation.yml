@@ -128,3 +128,90 @@ Transito\MainBundle\Validations\Record:
             - Regex:
                 pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
                 message: "El formato de la fecha es invalido"
+Transito\MainBundle\Validations\WorkExperience:
+    properties:
+        immediateBoss:
+            - NotBlank:
+                message: "El jefe inmediato no puede estar vacio"
+        company:
+            - NotBlank:
+                message: "La empresa no puede estar vacia"
+        dateOfAdmission:
+            - NotBlank:
+                message: "La fecha de ingreso no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
+        departureDate:
+            - NotBlank:
+                message: "La fecha de salida no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
+        functions:
+            - NotBlank:
+                message: "Las funciones no pueden estar vacias"
+        achievements:
+            - NotBlank:
+                message: "Los logros no pueden estar vacios"
+Transito\MainBundle\Validations\Doctor:
+    properties:
+        dni:
+            - NotBlank:
+                message: "El dni no puede estar vacio"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "El formato del dni es invalido"
+        firstName:
+            - NotBlank:
+                message: "El primer nombre no puede estar vacio"
+            - Regex:
+                pattern: '/^\w+$/'
+                message: "El formato del primer nombre es invalido"
+        lastName:
+            - NotBlank:
+                message: "El segundo nombre no puede estar vacio"
+            - Regex:
+                pattern: '/^\w+$/'
+                message: "El formato del segundo nombre es invalido"
+        firstSurname:
+            - NotBlank:
+                message: "El primer apellido no puede estar vacio"
+            - Regex:
+                pattern: '/^\w+$/'
+                message: "El formato del primer apellido es invalido"
+        lastSurname:
+            - NotBlank:
+                message: "El segundo apellido no puede estar vacio"
+            - Regex:
+                pattern: '/^\w+$/'
+                message: "El formato del segundo apellido es invalido"
+        birthday:
+            - NotBlank:
+                message: "La fecha de nacimiento no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
+        location:
+            - NotBlank:
+                message: "La dirección no puede estar vacia"
+        phone:
+            - NotBlank:
+                message: "El telefono no puede estar vacio"
+            - Regex:
+                pattern: '/^\(([1-2]|[4-8])\)-[0-9]{7}$/'
+                message: "El formato de telefono es invalido"
+        cellphone:
+            - NotBlank:
+                message: "El celular no puede estar vacio"
+            - Regex:
+                pattern: '/^(3[0-9]{2})-[0-9]{3}-[0-9]{4}$/'
+                message: "El formato de celular es invalido"
+        email:
+            - NotBlank:
+                message: "El correo electronico no puede estar vacio"
+            - Email:
+                message: El correo electronico "{{ value }}" no es validó
+                checkMX: true
+        workExperience:
+            - Valid: ~
