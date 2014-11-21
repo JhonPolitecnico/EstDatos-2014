@@ -6,3 +6,23 @@ Transito\LoginBundle\Validations\Login:
         password:
             - NotBlank:
                 message: "La contraseña no puede estar vacia"
+Transito\MainBundle\Validations\Pau:
+    properties:
+        name:
+            - NotBlank:
+                message: "El nombre no puede estar vacio"
+        location:
+            - NotBlank:
+                message: "La dirección no puede estar vacia"
+        email:
+            - NotBlank:
+                message: "El correo electronico no puede estar vacio"
+            - Email:
+                message: El correo electronico "{{ value }}" no es validó
+                checkMX: true
+        operation:
+            - NotBlank:
+                message: "El horario de atención no puede estar vacio"
+            - Regex:
+                pattern: '/^([1-9]|1[0-2]) (am|pm) - ([1-9]|1[0-2]) (am|pm)$/'
+                message: "El formato de hora es invalido"
