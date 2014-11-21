@@ -56,7 +56,7 @@ class Doctor {
 
     /**
      *
-     * @Type("ArrayCollection<Transito\MainBundle\Validations\WorkExperience>")
+     * @Type("ArrayCollection<Transito\RESTBundle\Entity\WorkExperience>")
      */
     private $work_experience;
 

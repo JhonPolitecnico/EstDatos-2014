@@ -4,7 +4,7 @@ namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Transito\RESTBundle\Entity\Client;
+use Transito\RESTBundle\Entity\Doctor;
 use Transito\RESTBundle\Entity\Pau;
 use Transito\RESTBundle\Entity\State;
 
@@ -12,9 +12,9 @@ class WorkerController extends Controller {
 
     /**
      *
-     * @var Client
+     * @var Doctor
      */
-    private $restSingleClientEntity;
+    private $restSingleWorkerEntity;
 
     /**
      *
@@ -27,6 +27,25 @@ class WorkerController extends Controller {
      * @var State
      */
     private $restStateEntity;
+
+    public function detailsAction($worker) {
+
+        // If logged then redirect to home page
+        $loginManager = $this->get('login');
+        if (!$loginManager->isLogged())
+            return $this->redirect($this->generateUrl('login_page'));
+
+        $query = [
+            'token' => $loginManager->getUser()->getToken(),
+            'worker' => $worker
+        ];
+
+        $this->restSingleWorkerEntity = $this->get('rest')->getEntity('/worker', 'Transito\RESTBundle\Entity\Doctor', $query);
+
+        return $this->render('TransitoMainBundle:Admin:worker.html.twig', [
+                    'worker' => $this->restSingleWorkerEntity
+        ]);
+    }
 
     public function managerAction(Request $request, $type, $pau) {
 
