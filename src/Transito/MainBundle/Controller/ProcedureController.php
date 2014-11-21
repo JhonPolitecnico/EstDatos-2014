@@ -4,7 +4,6 @@ namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Transito\RESTBundle\Entity\State;
 use \Doctrine\Common\Collections\ArrayCollection;
 use Transito\RESTBundle\Entity\Procedure;
 

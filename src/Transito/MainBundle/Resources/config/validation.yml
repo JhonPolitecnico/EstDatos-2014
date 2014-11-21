@@ -91,3 +91,20 @@ Transito\MainBundle\Validations\Client:
             - Regex:
                 pattern: '/^\d+$/'
                 message: "El formato de pago es invalido"
+Transito\MainBundle\Validations\Procedure:
+    properties:
+        date:
+            - NotBlank:
+                message: "La fecha no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
+        dni:
+            - NotBlank:
+                message: "El dni no puede estar vacio"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "El formato del dni es invalido"
+        name:
+            - NotBlank:
+                message: "El nombre no puede estar vacio"
