@@ -15,7 +15,7 @@
             var order = 0;
             var addTo = $('#elements');
 
-        {% for formType in [form.dates, form.numerics] %}
+        {% for formType in [form.dates, form.numerics, form.texts] %}
 
                 itemCount["{{ formType.vars.id }}"] = {{ formType|length }};
                         $('#add-{{ formType.vars.id }}').click(function (e) {
@@ -84,7 +84,7 @@
                                 </label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input type="text" name="{{ form.date.vars.full_name }}" id="{{ form.date.vars.id }}" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                        <input type="text" name="{{ form.date.vars.full_name }}" id="{{ form.date.vars.id }}" placeholder="Agrega una fecha aquí" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
                                         <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                     </div>
                                 </div>
@@ -113,7 +113,34 @@
                                     Respuesta
                                 </label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="{{ form.numeric.vars.full_name }}" id="{{ form.numeric.vars.id }}" class="form-control">
+                                    <input type="text" name="{{ form.numeric.vars.full_name }}" id="{{ form.numeric.vars.id }}" pattern="\d+" placeholder="Agrega numeros aquí" class="form-control">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="hidden" name="{{ form.id.vars.full_name }}" value="{{ form.id.vars.value }}">
+                                    <a href="#" class="btn btn-xs btn-red tooltips delete-{{ id }}" data-placement="top" data-original-title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        {#
+                            Text Type
+                        #}
+
+                        <div id="{{ form.texts.vars.id }}" data-prototype="{{ _self.text_prototype(form.texts.vars.prototype, form.texts.vars.id)|e }}"></div>
+
+                        {% macro text_prototype(form, id) %}
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
+                                    Pregunta
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" class="form-control">
+                                </div>
+                                <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
+                                    Respuesta
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="{{ form.text.vars.full_name }}" id="{{ form.text.vars.id }}" placeholder="Agrega texto aquí" class="form-control">
                                 </div>
                                 <div class="col-sm-1">
                                     <input type="hidden" name="{{ form.id.vars.full_name }}" value="{{ form.id.vars.value }}">
@@ -128,12 +155,16 @@
 
                         <div class="form-group">
                             <div class="col-sm-11">
-                                <button class="btn btn-green add-row" id="add-{{ form.dates.vars.id }}">
-                                    Agregar pregunta de fecha <i class="fa fa-plus"></i>
+                                <button class="btn btn-green add-row" id="add-{{ form.texts.vars.id }}">
+                                    Agregar pregunta de texto <i class="fa fa-plus"></i>
                                 </button>
 
                                 <button class="btn btn-green add-row" id="add-{{ form.numerics.vars.id }}">
                                     Agregar pregunta de numero <i class="fa fa-plus"></i>
+                                </button>
+
+                                <button class="btn btn-green add-row" id="add-{{ form.dates.vars.id }}">
+                                    Agregar pregunta de fecha <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>

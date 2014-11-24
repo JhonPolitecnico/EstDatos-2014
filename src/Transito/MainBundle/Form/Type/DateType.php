@@ -20,7 +20,7 @@ class DateType extends AbstractType {
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
-            'data_class' => 'Transito\MainBundle\Validations\Date',
+            'data_class' => 'Transito\MainBundle\Validations\DateType',
             'cascade_validation' => true,
         ));
     }

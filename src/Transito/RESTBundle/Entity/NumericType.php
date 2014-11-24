@@ -1,24 +1,26 @@
 <?php
 
-namespace Transito\MainBundle\Validations;
+namespace Transito\RESTBundle\Entity;
 
-class YesNo {
+use JMS\Serializer\Annotation\Type;
+
+class NumericType {
 
     /**
      *
-     * @var string
+     * @Type("string")
      */
     private $question;
 
     /**
      *
-     * @var boolean
+     * @Type("integer")
      */
-    private $yesNo;
+    private $numeric;
 
     /**
      *
-     * @var string
+     * @Type("integer")
      */
     private $id;
 
@@ -26,8 +28,8 @@ class YesNo {
         return $this->question;
     }
 
-    function getYesNo() {
-        return $this->yesNo;
+    function getNumeric() {
+        return $this->numeric;
     }
 
     function getId() {
@@ -38,8 +40,8 @@ class YesNo {
         $this->question = $question;
     }
 
-    function setYesNo($yesNo) {
-        $this->yesNo = $yesNo;
+    function setNumeric($numeric) {
+        $this->numeric = $numeric;
     }
 
     function setId($id) {

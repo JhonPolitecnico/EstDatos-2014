@@ -215,3 +215,65 @@ Transito\MainBundle\Validations\Doctor:
                 checkMX: true
         workExperience:
             - Valid: ~
+Transito\MainBundle\Validations\DateType:
+    properties:
+        question:
+            - NotBlank:
+                message: "La pregunta no puede estar vacia"
+        date:
+            - NotBlank:
+                message: "La respuesta no puede estar vacia"
+            - Regex:
+                pattern: '/^([0]?[1-9]|[1|2][0-9]|[3][0|1])-([0]?[1-9]|[1][0-2])-(19[0-9]{2}|[2-9][0-9]{3})$/'
+                message: "El formato de la fecha es invalido"
+        id:
+            - NotNull:
+                message: "La pregunta es invalidá"
+            - NotBlank:
+                message: "La pregunta es invalidá"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "La pregunta es invalidá"
+Transito\MainBundle\Validations\NumericType:
+    properties:
+        question:
+            - NotBlank:
+                message: "La pregunta no puede estar vacia"
+        numeric:
+            - NotBlank:
+                message: "La respuesta no puede estar vacia"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "La respuesta es invalidá"
+        id:
+            - NotNull:
+                message: "La pregunta es invalidá"
+            - NotBlank:
+                message: "La pregunta es invalidá"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "La pregunta es invalidá"
+Transito\MainBundle\Validations\TextType:
+    properties:
+        question:
+            - NotBlank:
+                message: "La pregunta no puede estar vacia"
+        text:
+            - NotBlank:
+                message: "La respuesta no puede estar vacia"
+        id:
+            - NotNull:
+                message: "La pregunta es invalidá"
+            - NotBlank:
+                message: "La pregunta es invalidá"
+            - Regex:
+                pattern: '/^\d+$/'
+                message: "La pregunta es invalidá"
+Transito\MainBundle\Validations\Exam:
+    properties:
+        dates:
+            - Valid: ~
+        numerics:
+            - Valid: ~
+        texts:
+            - Valid: ~
