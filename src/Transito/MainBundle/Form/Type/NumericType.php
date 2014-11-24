@@ -11,8 +11,9 @@ class NumericType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
+                ->add('question', 'text')
                 ->add('numeric', 'text')
-                ->add('id', 'text')
+                ->add('id', 'hidden', ['data' => '__ID__'])
         ;
     }
 
@@ -25,7 +26,7 @@ class NumericType extends AbstractType {
     }
 
     public function getName() {
-        return 'numeric';
+        return 'dNumericType';
     }
 
 }

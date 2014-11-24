@@ -1,0 +1,267 @@
+{% extends "TransitoMainBundle:Admin:layout.html.twig" %}
+{% set name = (1 == 'doctor') ? 'medico' : 'funcionario' %}
+{% set title = 'Registrar nuevo ' ~ name %}
+{% use "TransitoMainBundle:Admin:form.inc.twig" with custom_js_footer as parent_js_footer %}
+{% set page_title = title %}
+{% set page_subtitle = 'Punto de atención: <b>' ~ 'ok' ~ '</b>' %}
+{% block custom_js_footer %}
+    {{ block('parent_js_footer') }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+
+        jQuery(document).ready(function () {
+
+            var itemCount = new Array();
+            var order = 0;
+            var addTo = $('#elements');
+
+        {% for formType in [form.dates, form.numerics] %}
+
+                itemCount["{{ formType.vars.id }}"] = {{ formType|length }};
+                        $('#add-{{ formType.vars.id }}').click(function (e) {
+                    e.preventDefault();
+
+
+                    // grab the prototype template
+                    var newWidget = $('#{{ formType.vars.id }}').attr('data-prototype');
+                    // replace the "__name__" used in the id and name of the prototype
+                    // with a number that's unique to your emails
+                    // end name attribute looks like name="contact[emails][2]"
+                    $(newWidget.replace(/__name__/g, itemCount['{{ formType.vars.id }}']).replace(/__ID__/g, order)).appendTo(addTo);
+                    itemCount['{{ formType.vars.id }}']++;
+                    order++;
+                });
+
+                $('body').on('click', 'a.delete-{{ formType.vars.id }}', function () {
+                    var div = $(this).closest('div').parent();
+                    div.fadeOut(400, function () {
+                        div.remove();
+                    });
+                    return false;
+                });
+
+        {% endfor %}
+
+            })
+    </script>
+{% endblock %}
+{% block page_content %}
+    <form method="POST" action="{{ path('exam_page', {'type': type, 'bill': bill}) }}" role="form" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% if errors is not empty %}
+                            <div class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close" type="button">
+                                    &times;
+                                </button>
+                                <h4 class="alert-heading"><i class="fa fa-times"></i> Error!</h4>
+                                {% for error in errors %}
+                                    <p>{{ error.message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div id="elements"></div>
+
+                        {#
+                            Date Type
+                        #}
+
+                        <div id="{{ form.dates.vars.id }}" data-prototype="{{ _self.date_prototype(form.dates.vars.prototype, form.dates.vars.id)|e }}"></div>
+
+                        {% macro date_prototype(form, id) %}
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
+                                    Pregunta
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" class="form-control">
+                                </div>
+                                <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
+                                    Respuesta
+                                </label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="text" name="{{ form.date.vars.full_name }}" id="{{ form.date.vars.id }}" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="hidden" name="{{ form.id.vars.full_name }}" value="{{ form.id.vars.value }}">
+                                    <a href="#" class="btn btn-xs btn-red tooltips delete-{{ id }}" data-placement="top" data-original-title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        {#
+                            Numeric Type
+                        #}
+
+                        <div id="{{ form.numerics.vars.id }}" data-prototype="{{ _self.numeric_prototype(form.numerics.vars.prototype, form.numerics.vars.id)|e }}"></div>
+
+                        {% macro numeric_prototype(form, id) %}
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
+                                    Pregunta
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" class="form-control">
+                                </div>
+                                <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
+                                    Respuesta
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="{{ form.numeric.vars.full_name }}" id="{{ form.numeric.vars.id }}" class="form-control">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="hidden" name="{{ form.id.vars.full_name }}" value="{{ form.id.vars.value }}">
+                                    <a href="#" class="btn btn-xs btn-red tooltips delete-{{ id }}" data-placement="top" data-original-title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        {#
+                            Buttons for add types
+                        #}
+
+                        <div class="form-group">
+                            <div class="col-sm-11">
+                                <button class="btn btn-green add-row" id="add-{{ form.dates.vars.id }}">
+                                    Agregar pregunta de fecha <i class="fa fa-plus"></i>
+                                </button>
+
+                                <button class="btn btn-green add-row" id="add-{{ form.numerics.vars.id }}">
+                                    Agregar pregunta de numero <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group"><div class="col-sm-12"><input type="submit" value="Registrar nuevo" class="btn btn-blue btn-block"></div></div>
+
+                        {#
+                        
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="dni">
+                                                        DNI
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.dni.vars.full_name }}" placeholder="XXXXXXXX" id="dni" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="firstName">
+                                                        Primer nombre
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.firstName.vars.full_name }}" placeholder="Primer nombre" id="firstName" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="lastName">
+                                                        Segundo nombre
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.lastName.vars.full_name }}" placeholder="Segundo nombre" id="lastName" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="firstSurname">
+                                                        Primer apellido
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.firstSurname.vars.full_name }}" placeholder="Primer apellido" id="firstSurname" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="lastSurname">
+                                                        Segundo apellido
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.lastSurname.vars.full_name }}" placeholder="Segundo apellido" id="lastSurname" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="birthday">
+                                                        Fecha de nacimiento
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <input type="text" name="{{ form.birthday.vars.full_name }}" id="birthday" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                                            <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                                        </div>
+                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="location">
+                                                        Dirección
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.location.vars.full_name }}" placeholder="Carrera XX # XX - XX" id="location" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="phone">
+                                                        Telefono
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.phone.vars.full_name }}" placeholder="(1)-6704563" id="phone" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="cellphone">
+                                                        Celular
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.cellphone.vars.full_name }}" placeholder="314-576-1049" id="cellphone" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="email">
+                                                        Email
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="{{ form.email.vars.full_name }}" placeholder="correo@servidor.com" id="email" class="form-control">
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12 space20">
+                                                            <button class="btn btn-green add-row" id="add-another-experience">
+                                                                Agregar experiencia laboral <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Jefe inmediato</th>
+                                                                    <th>Empresa</th>
+                                                                    <th>Fecha de ingreso</th>
+                                                                    <th>Fecha de salida</th>
+                                                                    <th>Funciones</th>
+                                                                    <th>Logros</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="experience-items" data-prototype="{{ _self.work_experience_prototype(form.workExperience.vars.prototype)|e }}">
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                        #}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_widget(form._token) }}
+    </form>
+
+{% endblock %}
