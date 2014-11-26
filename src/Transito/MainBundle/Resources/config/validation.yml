@@ -282,3 +282,7 @@ Transito\MainBundle\Validations\Exam:
                 min: 0
                 max: 1000
                 maxMessage: "las observaciones adicionales no pueden tener más de {{ limit }} caracteres"
+        result:
+            - Choice:
+                choices: [0, 1, 2]
+                message: El examen es invalidó
