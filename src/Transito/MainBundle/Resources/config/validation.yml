@@ -277,3 +277,8 @@ Transito\MainBundle\Validations\Exam:
             - Valid: ~
         texts:
             - Valid: ~
+        observations:
+            - Length:
+                min: 0
+                max: 1000
+                maxMessage: "las observaciones adicionales no pueden tener más de {{ limit }} caracteres"

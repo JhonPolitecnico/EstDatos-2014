@@ -8,21 +8,33 @@ class Exam {
 
     /**
      *
-     * @Type("ArrayCollection<Transito\RESTBundle\Entity\DateType>")
+     * @Type("ArrayCollection<Transito\MainBundle\Validations\DateType>")
      */
     private $dates;
 
     /**
      *
-     * @Type("ArrayCollection<Transito\RESTBundle\Entity\NumericType>")
+     * @Type("ArrayCollection<Transito\MainBundle\Validations\NumericType>")
      */
     private $numerics;
 
     /**
      *
-     * @Type("ArrayCollection<Transito\RESTBundle\Entity\TextType>")
+     * @Type("ArrayCollection<Transito\MainBundle\Validations\TextType>")
      */
     private $texts;
+
+    /**
+     *
+     * @Type("string")
+     */
+    private $observations;
+
+    /**
+     *
+     * @Type("integer")
+     */
+    private $result;
 
     function getDates() {
         return $this->dates;
@@ -36,16 +48,32 @@ class Exam {
         return $this->texts;
     }
 
-    function setDates(array $dates) {
+    function getObservations() {
+        return $this->observations;
+    }
+
+    function getResult() {
+        return $this->result;
+    }
+
+    function setDates($dates) {
         $this->dates = $dates;
     }
 
-    function setNumerics(array $numerics) {
+    function setNumerics($numerics) {
         $this->numerics = $numerics;
     }
 
-    function setTexts(array $texts) {
+    function setTexts($texts) {
         $this->texts = $texts;
+    }
+
+    function setObservations($observations) {
+        $this->observations = $observations;
+    }
+
+    function setResult($result) {
+        $this->result = $result;
     }
 
 }

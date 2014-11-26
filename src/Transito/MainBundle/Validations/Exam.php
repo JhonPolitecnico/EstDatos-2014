@@ -22,6 +22,18 @@ class Exam {
      */
     private $texts;
 
+    /**
+     *
+     * @var string
+     */
+    private $observations;
+
+    /**
+     *
+     * @var integer
+     */
+    private $result;
+
     function getDates() {
         return $this->dates;
     }
@@ -34,6 +46,14 @@ class Exam {
         return $this->texts;
     }
 
+    function getObservations() {
+        return $this->observations;
+    }
+
+    function getResult() {
+        return $this->result;
+    }
+
     function setDates(array $dates) {
         $this->dates = $dates;
     }
@@ -44,6 +64,14 @@ class Exam {
 
     function setTexts(array $texts) {
         $this->texts = $texts;
+    }
+
+    function setObservations($observations) {
+        $this->observations = $observations;
+    }
+
+    function setResult($result) {
+        $this->result = $result;
     }
 
 }

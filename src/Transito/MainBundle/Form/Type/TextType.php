@@ -13,7 +13,7 @@ class TextType extends AbstractType {
         $builder
                 ->add('question', 'text')
                 ->add('text', 'text')
-                ->add('id', 'hidden', ['data' => '__ID__'])
+                ->add('id', 'hidden')
         ;
     }
 

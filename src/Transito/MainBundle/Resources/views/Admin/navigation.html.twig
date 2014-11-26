@@ -88,6 +88,7 @@
                 </li>
 
                 {% set proOpen = (app.request.get('_route') == 'procedure_list_page') %}
+                {% set proOpen = proOpen or app.request.get('_route') == 'exam_page' %}
                 <li{{ proOpen ? open|raw : '' }}>
                     <a href="javascript:void(0)">
                         <i class="fa fa-user"></i>
@@ -100,10 +101,19 @@
                                 <span class="title">Tramites del dia <i class="fa fa-list-alt"></i></span>
                             </a>
                         </li>
+
+                        {% if (app.request.get('_route') == 'exam_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Examen <i class="fa fa-stethoscope"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
                 </li>
 
-            </ul>
-            <!-- end: MAIN NAVIGATION MENU -->
+                <!-- end: MAIN NAVIGATION MENU -->
         </div>
         <!-- end: SIDEBAR -->
     </div>

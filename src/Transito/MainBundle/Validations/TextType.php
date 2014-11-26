@@ -2,23 +2,28 @@
 
 namespace Transito\MainBundle\Validations;
 
+use JMS\Serializer\Annotation\Type;
+
 class TextType {
 
     /**
      *
      * @var string
+     * @Type("string")
      */
     private $question;
 
     /**
      *
      * @var string
+     * @Type("string")
      */
     private $text;
 
     /**
      *
      * @var integer
+     * @Type("integer")
      */
     private $id;
 

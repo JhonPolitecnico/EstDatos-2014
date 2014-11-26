@@ -2,23 +2,28 @@
 
 namespace Transito\MainBundle\Validations;
 
+use JMS\Serializer\Annotation\Type;
+
 class NumericType {
 
     /**
      *
      * @var string
+     * @Type("string")
      */
     private $question;
 
     /**
      *
      * @var integer
+     * @Type("integer")
      */
     private $numeric;
 
     /**
      *
      * @var integer
+     * @Type("integer")
      */
     private $id;
 

@@ -76,19 +76,19 @@
                                                     &nbsp;<span class="badge badge-danger">+</span>
                                                 {% endif %}
                                             </a>
-                                            <a href="{{ path('index_homepage') }}" class="btn btn-xs btn-success tooltips" data-placement="top" data-original-title="Exámen Psicológico">
+                                            <a href="{{ path('exam_page', {'type': 'psychological', 'bill': procedure.getBill()}) }}" class="btn btn-xs btn-success tooltips" data-placement="top" data-original-title="Exámen Psicológico">
                                                 <i class="fa fa-stethoscope"></i>
                                                 {% if (not procedure.getPsychological()) %}
                                                     &nbsp;<span class="badge badge-danger">+</span>
                                                 {% endif %}
                                             </a>
-                                            <a href="{{ path('index_homepage') }}" class="btn btn-xs btn-info tooltips" data-placement="top" data-original-title="Exámen Físico">
+                                            <a href="{{ path('exam_page', {'type': 'physical', 'bill': procedure.getBill()}) }}" class="btn btn-xs btn-info tooltips" data-placement="top" data-original-title="Exámen Físico">
                                                 <i class="fa fa-stethoscope"></i>
                                                 {% if (not procedure.getPhysical()) %}
                                                     &nbsp;<span class="badge badge-danger">+</span>
                                                 {% endif %}
                                             </a>
-                                            <a href="{{ path('index_homepage') }}" class="btn btn-xs btn-warning tooltips" data-placement="top" data-original-title="Exámen de Optometría">
+                                            <a href="{{ path('exam_page', {'type': 'optometry', 'bill': procedure.getBill()}) }}" class="btn btn-xs btn-warning tooltips" data-placement="top" data-original-title="Exámen de Optometría">
                                                 <i class="fa fa-stethoscope"></i>
                                                 {% if (not procedure.getOptometry()) %}
                                                     &nbsp;<span class="badge badge-danger">+</span>
@@ -110,7 +110,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a role="menuitem" tabindex="-1" href="{{ path('index_homepage') }}">
+                                                        <a role="menuitem" tabindex="-1" href="{{ path('exam_page', {'type': 'psychological', 'bill': procedure.getBill()}) }}">
                                                             <i class="fa fa-stethoscope"></i> Exámen Psicológico
                                                             {% if (not procedure.getPsychological()) %}
                                                                 &nbsp;<span class="badge badge-danger">+</span>
@@ -118,7 +118,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a role="menuitem" tabindex="-1" href="{{ path('index_homepage') }}">
+                                                        <a role="menuitem" tabindex="-1" href="{{ path('exam_page', {'type': 'physical', 'bill': procedure.getBill()}) }}">
                                                             <i class="fa fa-stethoscope"></i> Exámen Físico
                                                             {% if (not procedure.getPhysical()) %}
                                                                 &nbsp;<span class="badge badge-danger">+</span>
@@ -126,7 +126,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a role="menuitem" tabindex="-1" href="{{ path('index_homepage') }}">
+                                                        <a role="menuitem" tabindex="-1" href="{{ path('exam_page', {'type': 'optometry', 'bill': procedure.getBill()}) }}">
                                                             <i class="fa fa-stethoscope"></i> Exámen de Optometría
                                                             {% if (not procedure.getOptometry()) %}
                                                                 &nbsp;<span class="badge badge-danger">+</span>

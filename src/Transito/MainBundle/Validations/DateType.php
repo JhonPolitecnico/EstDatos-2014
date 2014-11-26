@@ -2,23 +2,28 @@
 
 namespace Transito\MainBundle\Validations;
 
+use JMS\Serializer\Annotation\Type;
+
 class DateType {
 
     /**
      *
      * @var string
+     * @Type("string")
      */
     private $question;
 
     /**
      *
      * @var string
+     * @Type("string")
      */
     private $date;
 
     /**
      *
      * @var integer
+     * @Type("integer")
      */
     private $id;
 

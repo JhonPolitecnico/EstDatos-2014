@@ -13,7 +13,7 @@ class DateType extends AbstractType {
         $builder
                 ->add('question', 'text')
                 ->add('date', 'text')
-                ->add('id', 'hidden', ['data' => '__ID__'])
+                ->add('id', 'hidden')
         ;
     }
 

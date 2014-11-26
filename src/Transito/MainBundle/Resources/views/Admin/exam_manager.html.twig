@@ -1,9 +1,17 @@
 {% extends "TransitoMainBundle:Admin:layout.html.twig" %}
-{% set name = (1 == 'doctor') ? 'medico' : 'funcionario' %}
-{% set title = 'Registrar nuevo ' ~ name %}
+
+{% if (type == 'psychological') %}
+    {% set examName = 'Psicológico' %}
+{% elseif (type == 'physical') %}
+    {% set examName = 'Físico' %}
+{% elseif (type == 'optometry') %}
+    {% set examName = 'de Optometría' %}
+{% endif %}
+
+{% set title = 'Exámen ' ~ examName %}
 {% use "TransitoMainBundle:Admin:form.inc.twig" with custom_js_footer as parent_js_footer %}
 {% set page_title = title %}
-{% set page_subtitle = 'Punto de atención: <b>' ~ 'ok' ~ '</b>' %}
+{% set page_subtitle = 'Cliente: <b>' ~ user.getName()|upper ~ '</b> | Factura: <b>' ~ bill ~ '</b>' %}
 {% block custom_js_footer %}
     {{ block('parent_js_footer') }}
     <script type="text/javascript">
@@ -17,17 +25,17 @@
 
         {% for formType in [form.dates, form.numerics, form.texts] %}
 
-                itemCount["{{ formType.vars.id }}"] = {{ formType|length }};
+                order += {{ formType|length }}; // increasing order of creation
+                        itemCount["{{ formType.vars.id }}"] = {{ formType|length }};
                         $('#add-{{ formType.vars.id }}').click(function (e) {
                     e.preventDefault();
-
 
                     // grab the prototype template
                     var newWidget = $('#{{ formType.vars.id }}').attr('data-prototype');
                     // replace the "__name__" used in the id and name of the prototype
                     // with a number that's unique to your emails
                     // end name attribute looks like name="contact[emails][2]"
-                    $(newWidget.replace(/__name__/g, itemCount['{{ formType.vars.id }}']).replace(/__ID__/g, order)).appendTo(addTo);
+                    $(newWidget.replace(/__name__/g, itemCount['{{ formType.vars.id }}']).replace(/(<input type="hidden" name=".+" value=").*(">)/g, "$1" + order + "$2")).appendTo(addTo);
                     itemCount['{{ formType.vars.id }}']++;
                     order++;
                 });
@@ -63,7 +71,44 @@
                             </div>
                         {% endif %}
 
-                        <div id="elements"></div>
+                        <div id="elements">
+                            {#
+                                Existing elements
+                            #}
+                            {% set elements = [] %}
+
+                            {% for date in form.dates %}
+                                {% set elements = elements|merge({('key' ~ date.id.vars.value): _self.date_prototype(date, date.parent.vars.id)}) %}
+                            {% endfor %}
+
+                            {% for numeric in form.numerics %}
+                                {% set elements = elements|merge({('key' ~ numeric.id.vars.value): _self.numeric_prototype(numeric, numeric.parent.vars.id)}) %}
+                            {% endfor %}
+
+                            {% for text in form.texts %}
+                                {% set elements = elements|merge({('key' ~ text.id.vars.value): _self.text_prototype(text, text.parent.vars.id)}) %}
+                            {% endfor %}
+
+                            {# order elements #}
+                            {% if (elements|length > 0) %}
+                                {% for i in 0..(elements|length)-1 %}
+                                    {{ (elements['key'~ i] is defined) ? elements['key'~ i] : '' }}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        {#
+                            Observations
+                        #}
+
+                        <div class="form-group">
+                            <label class="col-sm-12" for="{{ form.observations.vars.id }}">
+                                <b>Observaciones Adicionales</b>
+                            </label>
+                            <div class="col-sm-12">
+                                <textarea class="autosize form-control" name="{{ form.observations.vars.full_name }}" id="{{ form.observations.vars.id }}">{{ form.observations.vars.value }}</textarea>
+                            </div>
+                        </div>
 
                         {#
                             Date Type
@@ -77,14 +122,14 @@
                                     Pregunta
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" class="form-control">
+                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" value="{{ form.question.vars.value }}" class="form-control">
                                 </div>
                                 <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
                                     Respuesta
                                 </label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input type="text" name="{{ form.date.vars.full_name }}" id="{{ form.date.vars.id }}" placeholder="Agrega una fecha aquí" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                        <input type="text" name="{{ form.date.vars.full_name }}" id="{{ form.date.vars.id }}" value="{{ form.date.vars.value }}" placeholder="Agrega una fecha aquí" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
                                         <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                     </div>
                                 </div>
@@ -107,13 +152,13 @@
                                     Pregunta
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" class="form-control">
+                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" value="{{ form.question.vars.value }}" class="form-control">
                                 </div>
                                 <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
                                     Respuesta
                                 </label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="{{ form.numeric.vars.full_name }}" id="{{ form.numeric.vars.id }}" pattern="\d+" placeholder="Agrega numeros aquí" class="form-control">
+                                    <input type="text" name="{{ form.numeric.vars.full_name }}" id="{{ form.numeric.vars.id }}" value="{{ form.numeric.vars.value }}" pattern="\d+" placeholder="Agrega numeros aquí" class="form-control">
                                 </div>
                                 <div class="col-sm-1">
                                     <input type="hidden" name="{{ form.id.vars.full_name }}" value="{{ form.id.vars.value }}">
@@ -134,13 +179,13 @@
                                     Pregunta
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" class="form-control">
+                                    <input type="text" name="{{ form.question.vars.full_name }}" id="{{ form.question.vars.id }}" value="{{ form.question.vars.value }}" class="form-control">
                                 </div>
                                 <label class="col-sm-1 control-label" for="{{ form.question.vars.id }}">
                                     Respuesta
                                 </label>
                                 <div class="col-sm-5">
-                                    <input type="text" name="{{ form.text.vars.full_name }}" id="{{ form.text.vars.id }}" placeholder="Agrega texto aquí" class="form-control">
+                                    <input type="text" name="{{ form.text.vars.full_name }}" id="{{ form.text.vars.id }}" value="{{ form.text.vars.value }}" placeholder="Agrega texto aquí" class="form-control">
                                 </div>
                                 <div class="col-sm-1">
                                     <input type="hidden" name="{{ form.id.vars.full_name }}" value="{{ form.id.vars.value }}">
@@ -154,7 +199,7 @@
                         #}
 
                         <div class="form-group">
-                            <div class="col-sm-11">
+                            <div class="col-sm-9">
                                 <button class="btn btn-green add-row" id="add-{{ form.texts.vars.id }}">
                                     Agregar pregunta de texto <i class="fa fa-plus"></i>
                                 </button>
@@ -167,125 +212,19 @@
                                     Agregar pregunta de fecha <i class="fa fa-plus"></i>
                                 </button>
                             </div>
+                            <label class="col-sm-1 control-label" for="{{ form.result.vars.id }}">
+                                Resultado
+                            </label>
+                            <div class="col-sm-2">
+                                {% set option = form_widget(form.result)|replace(
+                                                    {('name="' ~ form.result.vars.full_name ~ '">'): ('name="' ~ form.result.vars.full_name ~ '" class="form-control">')}
+                                                                    ) %}
+                                {{ option|raw }}
+                            </div>
                         </div>
 
 
-                        <div class="form-group"><div class="col-sm-12"><input type="submit" value="Registrar nuevo" class="btn btn-blue btn-block"></div></div>
-
-                        {#
-                        
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="dni">
-                                                        DNI
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.dni.vars.full_name }}" placeholder="XXXXXXXX" id="dni" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="firstName">
-                                                        Primer nombre
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.firstName.vars.full_name }}" placeholder="Primer nombre" id="firstName" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="lastName">
-                                                        Segundo nombre
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.lastName.vars.full_name }}" placeholder="Segundo nombre" id="lastName" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="firstSurname">
-                                                        Primer apellido
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.firstSurname.vars.full_name }}" placeholder="Primer apellido" id="firstSurname" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="lastSurname">
-                                                        Segundo apellido
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.lastSurname.vars.full_name }}" placeholder="Segundo apellido" id="lastSurname" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="birthday">
-                                                        Fecha de nacimiento
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <div class="input-group">
-                                                            <input type="text" name="{{ form.birthday.vars.full_name }}" id="birthday" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
-                                                            <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                                        </div>
-                        
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="location">
-                                                        Dirección
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.location.vars.full_name }}" placeholder="Carrera XX # XX - XX" id="location" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="phone">
-                                                        Telefono
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.phone.vars.full_name }}" placeholder="(1)-6704563" id="phone" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="cellphone">
-                                                        Celular
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.cellphone.vars.full_name }}" placeholder="314-576-1049" id="cellphone" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="email">
-                                                        Email
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="{{ form.email.vars.full_name }}" placeholder="correo@servidor.com" id="email" class="form-control">
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12 space20">
-                                                            <button class="btn btn-green add-row" id="add-another-experience">
-                                                                Agregar experiencia laboral <i class="fa fa-plus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-responsive">
-                                                        <table class="table table-bordered table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Jefe inmediato</th>
-                                                                    <th>Empresa</th>
-                                                                    <th>Fecha de ingreso</th>
-                                                                    <th>Fecha de salida</th>
-                                                                    <th>Funciones</th>
-                                                                    <th>Logros</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="experience-items" data-prototype="{{ _self.work_experience_prototype(form.workExperience.vars.prototype)|e }}">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                        #}
+                        <div class="form-group"><div class="col-sm-12"><input type="submit" value="Guardar examen" class="btn btn-blue btn-block"></div></div>
 
                     </div>
                 </div>

@@ -4,10 +4,17 @@ namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Transito\RESTBundle\Entity\User;
 use Transito\RESTBundle\Entity\Exam;
 use Transito\RESTBundle\Entity\State;
 
 class ExamController extends Controller {
+
+    /**
+     *
+     * @var User
+     */
+    private $restUserEntity;
 
     /**
      *
@@ -21,6 +28,30 @@ class ExamController extends Controller {
      */
     private $restStateEntity;
 
+    /**
+     *
+     * @var \Symfony\Component\Form\FormBuilder 
+     */
+    private $form;
+
+    /**
+     *
+     * @var string
+     */
+    private $type;
+
+    /**
+     *
+     * @var integer
+     */
+    private $bill;
+
+    /**
+     *
+     * @var \Symfony\Component\Validator\ConstraintViolationList
+     */
+    private $errors;
+
     public function indexAction(Request $request, $type, $bill) {
 
         // If logged then redirect to home page
@@ -28,21 +59,22 @@ class ExamController extends Controller {
         if (!$loginManager->isLogged())
             return $this->redirect($this->generateUrl('login_page'));
 
+        $this->type = $type;
+        $this->bill = $bill;
 
         $query = [
             'token' => $loginManager->getUser()->getToken(),
-            'type' => $type,
-            'bill' => $bill
+            'bill' => $this->bill
         ];
 
         try {
-            $this->restExamEntity = $this->get('rest')->getEntity('/exam/get', 'Transito\RESTBundle\Entity\Exam', $query);
+            $this->restUserEntity = $this->get('rest')->getEntity('/user/get', 'Transito\RESTBundle\Entity\User', $query);
         } catch (\RuntimeException $exc) {
             return $this->render('TransitoMainBundle:Admin:500.html.twig');
         }
 
         // Else make pau form
-        $form = $this->createFormBuilder(null, [
+        $this->form = $this->createFormBuilder(null, [
                     'validation_groups' => ['dates', 'numerics', 'texts']
                 ])
                 ->add('dates', 'collection', [
@@ -63,6 +95,10 @@ class ExamController extends Controller {
                     'allow_delete' => true,
                         ]
                 )
+                ->add('observations', 'textarea')
+                ->add('result', 'choice', [
+                    'choices' => [0 => 'Rechazado', 1 => 'Aprobado', 2 => 'Aplazado'],
+                ])
                 ->getForm();
 
         do {
@@ -70,26 +106,28 @@ class ExamController extends Controller {
             if (!$request->isMethod('POST'))
                 break;
 
-            $form->handleRequest($request);
+            $this->form->handleRequest($request);
 
             // If form not is valid
-            if (!$form->isValid())
+            if (!$this->form->isValid())
                 break;
 
-            $data = $form->getData();
+            $data = $this->form->getData();
 
             $exam = new \Transito\MainBundle\Validations\Exam();
             $exam->setDates($data['dates']);
             $exam->setNumerics($data['numerics']);
             $exam->setTexts($data['texts']);
+            $exam->setObservations($data['observations']);
+            $exam->setResult($data['result']);
 
             // Validate fields
             $validator = $this->get('validator');
-            $errors = $validator->validate($exam);
+            $this->errors = $validator->validate($exam);
 
             // If errors in fields
-            if (count($errors) > 0)
-                return $this->showManagerForm($form, $type, $bill, $errors);
+            if (count($this->errors) > 0)
+                return $this->showManagerForm();
 
             // prepare parameters
 
@@ -98,11 +136,13 @@ class ExamController extends Controller {
             ];
 
             $post = [
-                'type' => $type,
-                'bill' => $bill,
+                'type' => $this->type,
+                'bill' => $this->bill,
                 'dates' => $exam->getDates(),
                 'numerics' => $exam->getNumerics(),
-                'texts' => $exam->getTexts()
+                'texts' => $exam->getTexts(),
+                'observations' => $exam->getObservations(),
+                'result' => $exam->getResult()
             ];
 
             // send exam
@@ -125,16 +165,36 @@ class ExamController extends Controller {
                 return $this->render('TransitoMainBundle:Admin:500.html.twig');
         } while (FALSE);
 
+        // obtain the above stored test
+        $query = [
+            'token' => $loginManager->getUser()->getToken(),
+            'type' => $this->type,
+            'bill' => $this->bill
+        ];
+
+        try {
+            $this->restExamEntity = $this->get('rest')->getEntity('/exam/get', 'Transito\RESTBundle\Entity\Exam', $query);
+        } catch (\RuntimeException $exc) {
+            return $this->render('TransitoMainBundle:Admin:500.html.twig');
+        }
+
+        $this->form->get('dates')->setData($this->restExamEntity->getDates());
+        $this->form->get('numerics')->setData($this->restExamEntity->getNumerics());
+        $this->form->get('texts')->setData($this->restExamEntity->getTexts());
+        $this->form->get('observations')->setData($this->restExamEntity->getObservations());
+        $this->form->get('result')->setData($this->restExamEntity->getResult());
+
         // Show exam form
-        return $this->showManagerForm($form, $type, $bill);
+        return $this->showManagerForm();
     }
 
-    private function showManagerForm($form, $type, $bill, $errors = []) {
+    private function showManagerForm() {
         return $this->render('TransitoMainBundle:Admin:exam_manager.html.twig', [
-                    'form' => $form->createView(),
-                    'errors' => $errors,
-                    'type' => $type,
-                    'bill' => $bill,
+                    'form' => $this->form->createView(),
+                    'user' => $this->restUserEntity,
+                    'errors' => $this->errors,
+                    'type' => $this->type,
+                    'bill' => $this->bill,
         ]);
     }
 

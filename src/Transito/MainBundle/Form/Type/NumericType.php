@@ -13,7 +13,7 @@ class NumericType extends AbstractType {
         $builder
                 ->add('question', 'text')
                 ->add('numeric', 'text')
-                ->add('id', 'hidden', ['data' => '__ID__'])
+                ->add('id', 'hidden')
         ;
     }
 
