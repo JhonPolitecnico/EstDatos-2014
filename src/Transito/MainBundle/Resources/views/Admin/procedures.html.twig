@@ -70,7 +70,7 @@
 
                                     <td class="center">
                                         <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                            <a href="{{ path('exam_page', {'type': 'speech_therapy', 'bill': procedure.getBill()}) }}" class="btn btn-xs btn-primary tooltips" data-placement="top" data-original-title="Exámen de Fonoaudiología">
+                                            <a href="{{ path('exam_file_page', {'bill': procedure.getBill()}) }}" class="btn btn-xs btn-primary tooltips" data-placement="top" data-original-title="Exámen de Fonoaudiología">
                                                 <i class="fa fa-stethoscope"></i>
                                                 {% if (not procedure.getSpeechTherapy()) %}
                                                     &nbsp;<span class="badge badge-danger">+</span>
@@ -102,7 +102,7 @@
                                                 </a>
                                                 <ul role="menu" class="dropdown-menu pull-right dropdown-dark">
                                                     <li>
-                                                        <a role="menuitem" tabindex="-1" href="{{ path('exam_page', {'type': 'speech_therapy', 'bill': procedure.getBill()}) }}">
+                                                        <a role="menuitem" tabindex="-1" href="{{ path('exam_file_page', {'bill': procedure.getBill()}) }}">
                                                             <i class="fa fa-stethoscope"></i> Exámen de Fonoaudiología
                                                             {% if (not procedure.getSpeechTherapy()) %}
                                                                 &nbsp;<span class="badge badge-danger">+</span>

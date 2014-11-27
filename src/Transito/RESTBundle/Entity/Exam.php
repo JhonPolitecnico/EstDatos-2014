@@ -28,6 +28,12 @@ class Exam {
      *
      * @Type("string")
      */
+    private $attachment;
+
+    /**
+     *
+     * @Type("string")
+     */
     private $observations;
 
     /**
@@ -48,6 +54,10 @@ class Exam {
         return $this->texts;
     }
 
+    function getAttachment() {
+        return $this->attachment;
+    }
+
     function getObservations() {
         return $this->observations;
     }
@@ -66,6 +76,10 @@ class Exam {
 
     function setTexts($texts) {
         $this->texts = $texts;
+    }
+
+    function setAttachment($attachment) {
+        $this->attachment = $attachment;
     }
 
     function setObservations($observations) {

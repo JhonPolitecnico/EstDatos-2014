@@ -61,10 +61,16 @@ pau_records_list_page:
 procedure_list_page:
     path: /procedures
     defaults: { _controller: TransitoMainBundle:Procedure:index }
+# exam file
+exam_file_page:
+    path: /user/exam/speech_therapy/{bill}
+    defaults: { _controller: TransitoMainBundle:Exam:speechTherapy, type: speech_therapy }
+    requirements:
+        bill: \d+
 # exam
 exam_page:
     path: /user/exam/{type}/{bill}
     defaults: { _controller: TransitoMainBundle:Exam:index }
     requirements:
-        type: speech_therapy|psychological|physical|optometry
+        type: psychological|physical|optometry
         bill: \d+

@@ -911,6 +911,10 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
   },
   "observations": "soy una observaci\u00f3n adicional",
   "result": 2
+}</con:responseContent></con:response><con:response name="file" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+  "attachment": "6656565645,-6546.45645,-56464654,5645645,-5455,9,9.99,4",
+  "observations": "soy una observaci\u00f3n adicional",
+  "result": 2
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/user/get" method="GET" resourcePath="/user/get"><con:settings/><con:defaultResponse>username</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path

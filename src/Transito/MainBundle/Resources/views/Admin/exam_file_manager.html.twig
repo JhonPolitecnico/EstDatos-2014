@@ -1,0 +1,117 @@
+{% extends "TransitoMainBundle:Admin:layout.html.twig" %}
+{% set title = 'Exámen de Fonoaudiología' %}
+{% use "TransitoMainBundle:Admin:form.inc.twig" %}
+{% set page_title = title %}
+{% set page_subtitle = 'Cliente: <b>' ~ user.getName()|upper ~ '</b> | Factura: <b>' ~ bill ~ '</b>' %}
+{% block page_content %}
+    <form method="POST" action="{{ path('exam_file_page', {'bill': bill}) }}" role="form" class="form-horizontal" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% if errors is not empty %}
+                            <div class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close" type="button">
+                                    &times;
+                                </button>
+                                <h4 class="alert-heading"><i class="fa fa-times"></i> Error!</h4>
+                                {% for error in errors %}
+                                    <p>{{ error.message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if attachment is not null %}
+                            <table class="table table-striped table-hover" id="sample-table-2">
+                                <thead>
+                                    <tr>
+                                        <th>Baja intensidad por oído derecho</th>
+                                        <th>Media intensidad por oído derecho</th>
+                                        <th>Alta intensidad por oído derecho</th>
+                                        <th>Baja intensidad por oído izquierdo</th>
+                                        <th>Media intensidad por oído izquierdo</th>
+                                        <th>Alta intensidad por oído izquierdo</th>
+                                        <th>Valoración final oído derecho</th>
+                                        <th>Valoración final oído izquierdo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% for part in attachment|split(',') %}
+                                            <td>{{ part }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        {%endif%}
+
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label>
+                                    Archivo
+                                </label>
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="input-group">
+                                        <div class="form-control uneditable-input">
+                                            <i class="fa fa-file fileupload-exists"></i>
+                                            <span class="fileupload-preview"></span>
+                                        </div>
+                                        <div class="input-group-btn">
+                                            <div class="btn btn-light-grey btn-file">
+                                                <span class="fileupload-new"><i class="fa fa-folder-open-o"></i> Select file</span>
+                                                <span class="fileupload-exists"><i class="fa fa-folder-open-o"></i> Change</span>
+                                                <input type="file" class="file-input" id="{{ form.attachment.vars.id }}" name="{{ form.attachment.vars.full_name }}">
+                                            </div>
+                                            <a href="#" class="btn btn-light-grey fileupload-exists" data-dismiss="fileupload">
+                                                <i class="fa fa-times"></i> Remove
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {#
+                            Observations
+                        #}
+
+                        <div class="form-group">
+                            <label class="col-sm-12" for="{{ form.observations.vars.id }}">
+                                <b>Observaciones Adicionales</b>
+                            </label>
+                            <div class="col-sm-12">
+                                <textarea class="autosize form-control" name="{{ form.observations.vars.full_name }}" id="{{ form.observations.vars.id }}">{{ form.observations.vars.value }}</textarea>
+                            </div>
+                        </div>
+
+                        {#
+                            Result
+                        #}
+
+                        <div class="form-group">
+                            <div class="col-sm-9"></div>
+                            <label class="col-sm-1 control-label" for="{{ form.result.vars.id }}">
+                                Resultado
+                            </label>
+                            <div class="col-sm-2">
+                                {% set option = form_widget(form.result)|replace(
+                                                    {('name="' ~ form.result.vars.full_name ~ '">'): ('name="' ~ form.result.vars.full_name ~ '" class="form-control">')}
+                                                                    ) %}
+                                {{ option|raw }}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group"><div class="col-sm-12"><input type="submit" value="Guardar examen" class="btn btn-blue btn-block"></div></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_widget(form._token) }}
+    </form>
+
+{% endblock %}

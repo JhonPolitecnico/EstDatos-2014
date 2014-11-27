@@ -285,4 +285,21 @@ Transito\MainBundle\Validations\Exam:
         result:
             - Choice:
                 choices: [0, 1, 2]
-                message: El examen es invalidó
+                message: "El examen es invalidó"
+Transito\MainBundle\Validations\ExamFile:
+    properties:
+        attachment:
+            - File:
+                maxSize: 1024
+                maxSizeMessage: "El archivo es muy pesado"
+            - NotNull:
+                message: "Debe subir un archivo"
+        observations:
+            - Length:
+                min: 0
+                max: 1000
+                maxMessage: "las observaciones adicionales no pueden tener más de {{ limit }} caracteres"
+        result:
+            - Choice:
+                choices: [0, 1, 2]
+                message: "El examen es invalidó"
