@@ -89,6 +89,7 @@
 
                 {% set proOpen = (app.request.get('_route') == 'procedure_list_page') %}
                 {% set proOpen = proOpen or app.request.get('_route') == 'exam_page' %}
+                {% set proOpen = proOpen or app.request.get('_route') == 'exam_file_page' %}
                 <li{{ proOpen ? open|raw : '' }}>
                     <a href="javascript:void(0)">
                         <i class="fa fa-user"></i>
@@ -102,7 +103,7 @@
                             </a>
                         </li>
 
-                        {% if (app.request.get('_route') == 'exam_page') %}
+                        {% if (app.request.get('_route') == 'exam_page' or app.request.get('_route') == 'exam_file_page') %}
                             <li{{ active|raw }}>
                                 <a href="#">
                                     <span class="title">Examen <i class="fa fa-stethoscope"></i></span>
