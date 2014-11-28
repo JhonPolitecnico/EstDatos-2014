@@ -130,6 +130,8 @@ class WorkerController extends Controller {
             ];
 
             $post = [
+                'type' => $type,
+                'pau' => $pau,
                 'dni' => $worker->getDni(),
                 'firstName' => $worker->getFirstName(),
                 'lastName' => $worker->getLastName(),
