@@ -1,0 +1,201 @@
+{% extends "TransitoMainBundle:Admin:layout.html.twig" %}
+
+{% set title = 'Expedir certificado' %}
+{% use "TransitoMainBundle:Admin:form.inc.twig" %}
+{% set page_title = title %}
+{% set page_subtitle = 'Cliente: <b>' ~ user.getName()|upper ~ '</b> | Factura: <b>' ~ bill ~ '</b>' %}
+{% block page_content %}
+    <form method="POST" action="{{ path('certificate_page', {'bill': bill}) }}" role="form" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% if errors is not empty %}
+                            <div class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close" type="button">
+                                    &times;
+                                </button>
+                                <h4 class="alert-heading"><i class="fa fa-times"></i> Error!</h4>
+                                {% for error in errors %}
+                                    <p>{{ error.message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {#
+                            Exams
+                        #}
+
+                        {% for type, exam in exams %}
+
+                            {% if (type == 'speech_therapy') %}
+                                {% set examName = 'de Fonoaudiología' %}
+                            {% elseif (type == 'psychological') %}
+                                {% set examName = 'Psicológico' %}
+                            {% elseif (type == 'physical') %}
+                                {% set examName = 'Físico' %}
+                            {% elseif (type == 'optometry') %}
+                                {% set examName = 'de Optometría' %}
+                            {% endif %}
+
+                            <div class="form-group">
+                                <label class="col-sm-12">
+                                    <h1>Examen {{ examName }}</h1>
+                                </label>
+                            </div>
+
+                            {% set elements = [] %}
+
+                            {% for date in exam.getDates() %}
+                                {% set elements = elements|merge({('key' ~ date.getId()): _self.date_prototype(date)}) %}
+                            {% endfor %}
+
+                            {% for numeric in exam.getNumerics() %}
+                                {% set elements = elements|merge({('key' ~ numeric.getId()): _self.numeric_prototype(numeric)}) %}
+                            {% endfor %}
+
+                            {% for text in exam.getTexts() %}
+                                {% set elements = elements|merge({('key' ~ text.getId()): _self.text_prototype(text)}) %}
+                            {% endfor %}
+
+                            {# order elements #}
+                            {% if (elements|length > 0) %}
+                                {% for i in 0..(elements|length)-1 %}
+                                    {{ (elements['key'~ i] is defined) ? elements['key'~ i] : '' }}
+                                {% endfor %}
+                            {% endif %}
+
+                            {#
+                                speech therapy
+                            #}
+
+                            {% if (type == 'speech_therapy') %}
+                                <table class="table table-striped table-hover" id="sample-table-2">
+                                    <thead>
+                                        <tr>
+                                            <th>Baja intensidad por oído derecho</th>
+                                            <th>Media intensidad por oído derecho</th>
+                                            <th>Alta intensidad por oído derecho</th>
+                                            <th>Baja intensidad por oído izquierdo</th>
+                                            <th>Media intensidad por oído izquierdo</th>
+                                            <th>Alta intensidad por oído izquierdo</th>
+                                            <th>Valoración final oído derecho</th>
+                                            <th>Valoración final oído izquierdo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {% for part in exam.getAttachment()|split(',') %}
+                                                <td>{{ part }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            {%endif%}
+
+                            {#
+                                Observations
+                            #}
+
+                            <div class="form-group">
+                                <label class="col-sm-12">
+                                    <b>Observaciones Adicionales</b>
+                                </label>
+                                <div class="col-sm-12">
+                                    {{ exam.getObservations() }}
+                                </div>
+                            </div>
+
+                            {#
+                                Result
+                            #}
+
+                            <div class="form-group">
+                                <label class="col-sm-12">
+                                    <h4>Resultado</h4>
+                                </label>
+                                <div class="col-sm-12">
+                                    {% set result = ['Rechazado', 'Aprobado', 'Aplazado'] %}
+                                    <p class="text-danger"><b>{{ result[exam.getResult()] }}</b></p>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+
+                        {#
+                            Date Type
+                        #}
+
+                        {% macro date_prototype(date, id) %}
+                            <div class="form-group">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    ¿{{ date.getQuestion() }}?
+                                </div>
+                                <div class="col-sm-5">
+                                    {{ date.getDate() }}
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        {#
+                            Numeric Type
+                        #}
+
+                        {% macro numeric_prototype(numeric) %}
+                            <div class="form-group">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    ¿{{ numeric.getQuestion() }}?
+                                </div>
+                                <div class="col-sm-5">
+                                    {{ numeric.getNumeric() }}
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        {#
+                            Text Type
+                        #}
+
+                        {% macro text_prototype(text) %}
+                            <div class="form-group">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    ¿{{ text.getQuestion() }}?
+                                </div>
+                                <div class="col-sm-5">
+                                    {{ text.getText() }}
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        <div class="form-group">
+                            <div class="col-sm-3"></div>
+                            <label class="col-sm-2 control-label">
+                                Resultado final
+                            </label>
+                            <div class="col-sm-4">
+                                {% set option = form_widget(form.result)|replace(
+                                                    {('name="' ~ form.result.vars.full_name ~ '">'): ('name="' ~ form.result.vars.full_name ~ '" class="form-control search-select">')}
+                                                                    ) %}
+                                {{ option|raw }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="submit" value="Certificar" class="btn btn-blue btn-block">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_widget(form._token) }}
+
+    </form>
+
+{% endblock %}

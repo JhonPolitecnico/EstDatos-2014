@@ -74,3 +74,11 @@ exam_page:
     requirements:
         type: psychological|physical|optometry
         bill: \d+
+certificate_list_page:
+    path: /certificates
+    defaults: { _controller: TransitoMainBundle:Certificate:index }
+certificate_page:
+    path: /validate/{bill}
+    requirements:
+        bill: \d+
+    defaults: { _controller: TransitoMainBundle:Certificate:validate }

@@ -303,3 +303,9 @@ Transito\MainBundle\Validations\ExamFile:
             - Choice:
                 choices: [0, 1, 2]
                 message: "El examen es invalidó"
+Transito\MainBundle\Validations\Certificate:
+    properties:
+        result:
+            - Choice:
+                choices: [0, 1]
+                message: "El certificado es invalido"

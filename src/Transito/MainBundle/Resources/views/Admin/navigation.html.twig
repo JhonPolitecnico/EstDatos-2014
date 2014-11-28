@@ -12,11 +12,7 @@
             </div>
             <!-- start: MAIN NAVIGATION MENU -->
             <ul class="main-navigation-menu">
-                {#
-                <li>
-                    <a href="{{ path('index_homepage') }}"><i class="fa fa-wrench"></i> <span class="title">Configuración general</span> </a>
-                </li>#}
-
+                
                 {% set pauOpen = (app.request.get('_route') == 'pau_list_page') %}
                 {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_doctors_list_page' %}
                 {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_new_page' %}
@@ -90,6 +86,8 @@
                 {% set proOpen = (app.request.get('_route') == 'procedure_list_page') %}
                 {% set proOpen = proOpen or app.request.get('_route') == 'exam_page' %}
                 {% set proOpen = proOpen or app.request.get('_route') == 'exam_file_page' %}
+                {% set proOpen = proOpen or app.request.get('_route') == 'certificate_list_page' %}
+                {% set proOpen = proOpen or app.request.get('_route') == 'certificate_page' %}
                 <li{{ proOpen ? open|raw : '' }}>
                     <a href="javascript:void(0)">
                         <i class="fa fa-user"></i>
@@ -102,6 +100,12 @@
                                 <span class="title">Tramites del dia <i class="fa fa-list-alt"></i></span>
                             </a>
                         </li>
+                        
+                        <li{{ (app.request.get('_route') == 'certificate_list_page') ? active|raw : '' }}>
+                            <a href="{{ path('certificate_list_page') }}">
+                                <span class="title">Certificaciones del dia <i class="fa fa-list-alt"></i></span>
+                            </a>
+                        </li>
 
                         {% if (app.request.get('_route') == 'exam_page' or app.request.get('_route') == 'exam_file_page') %}
                             <li{{ active|raw }}>
@@ -111,6 +115,14 @@
                             </li>
                         {% endif %}
 
+                        {% if (app.request.get('_route') == 'certificate_page' or app.request.get('_route') == 'exam_file_page') %}
+                            <li{{ active|raw }}>
+                                <a href="#">
+                                    <span class="title">Expedir certificado <i class="fa fa-stethoscope"></i></span>
+                                </a>
+                            </li>
+                        {% endif %}                        
+                        
                     </ul>
                 </li>
 
