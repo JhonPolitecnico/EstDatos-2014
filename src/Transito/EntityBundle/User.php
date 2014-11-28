@@ -6,6 +6,7 @@ class User {
 
     const DOCTOR = 1;
     const FUNCTIONARY = 2;
+    const SECRETARY = 3;
 
     /**
      *

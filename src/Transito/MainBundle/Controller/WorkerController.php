@@ -3,6 +3,7 @@
 namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Transito\EntityBundle\User;
 use Symfony\Component\HttpFoundation\Request;
 use Transito\RESTBundle\Entity\Doctor;
 use Transito\RESTBundle\Entity\Pau;
@@ -32,7 +33,7 @@ class WorkerController extends Controller {
 
         // If logged then redirect to home page
         $loginManager = $this->get('login');
-        if (!$loginManager->isLogged())
+        if (!$loginManager->isLogged() or $loginManager->getUser()->getRole() != User::SECRETARY)
             return $this->redirect($this->generateUrl('login_page'));
 
         $query = [
@@ -51,7 +52,7 @@ class WorkerController extends Controller {
 
         // If logged then redirect to home page
         $loginManager = $this->get('login');
-        if (!$loginManager->isLogged())
+        if (!$loginManager->isLogged() or $loginManager->getUser()->getRole() != User::SECRETARY)
             return $this->redirect($this->generateUrl('login_page'));
 
 

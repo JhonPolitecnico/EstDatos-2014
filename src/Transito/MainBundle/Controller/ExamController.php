@@ -3,6 +3,7 @@
 namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Transito\EntityBundle\User as UserLogin;
 use Symfony\Component\HttpFoundation\Request;
 use Transito\RESTBundle\Entity\User;
 use Transito\RESTBundle\Entity\Exam;
@@ -62,7 +63,7 @@ class ExamController extends Controller {
 
         // If logged then redirect to home page
         $loginManager = $this->get('login');
-        if (!$loginManager->isLogged())
+        if (!$loginManager->isLogged() or $loginManager->getUser()->getRole() != UserLogin::DOCTOR)
             return $this->redirect($this->generateUrl('login_page'));
 
         $this->type = $type;
@@ -198,7 +199,7 @@ class ExamController extends Controller {
 
         // If logged then redirect to home page
         $loginManager = $this->get('login');
-        if (!$loginManager->isLogged())
+        if (!$loginManager->isLogged() or $loginManager->getUser()->getRole() != UserLogin::DOCTOR)
             return $this->redirect($this->generateUrl('login_page'));
 
         $this->type = $type;

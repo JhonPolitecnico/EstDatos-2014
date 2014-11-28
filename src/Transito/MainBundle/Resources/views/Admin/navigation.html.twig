@@ -12,119 +12,136 @@
             </div>
             <!-- start: MAIN NAVIGATION MENU -->
             <ul class="main-navigation-menu">
-                
-                {% set pauOpen = (app.request.get('_route') == 'pau_list_page') %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_doctors_list_page' %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_new_page' %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_edit_page' %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'user_new_page' %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'worker_details_page' %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'worker_new_page' %}
-                {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_records_list_page' %}
-                <li{{ pauOpen ? open|raw : '' }}>
-                    <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Puntos de atención</span><i class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li{{ (app.request.get('_route') == 'pau_list_page') ? active|raw : '' }}>
-                            <a href="{{ path('pau_list_page') }}">
-                                <span class="title">Ver Lista <i class="fa fa-list-alt"></i></span>
-                            </a>
-                        </li>
-                        <li{{ (app.request.get('_route') == 'pau_records_list_page') ? active|raw : '' }}>
-                            <a href="{{ path('pau_records_list_page') }}">
-                                <span class="title">Ver Registros <i class="fa fa-list-alt"></i></span>
-                            </a>
-                        </li>
-                        <li{{ (app.request.get('_route') == 'pau_new_page') ? active|raw : '' }}>
-                            <a href="{{ path('pau_new_page') }}">
-                                <span class="title">Agregar Nuevo <i class="fa fa-plus"></i></span>
-                            </a>
-                        </li>
 
-                        {% if (app.request.get('_route') == 'pau_doctors_list_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Medicos y funcionarios <i class="fa fa-user-md"></i></span>
+                {% if (login_service.getUser().getRole() == constant('Transito\\EntityBundle\\User::SECRETARY')) %}
+
+                    {% set pauOpen = (app.request.get('_route') == 'pau_list_page') %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_doctors_list_page' %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_new_page' %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_edit_page' %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'user_new_page' %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'worker_details_page' %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'worker_new_page' %}
+                    {% set pauOpen = pauOpen or app.request.get('_route') == 'pau_records_list_page' %}
+                    <li{{ pauOpen ? open|raw : '' }}>
+                        <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Puntos de atención</span><i class="icon-arrow"></i> </a>
+                        <ul class="sub-menu">
+                            <li{{ (app.request.get('_route') == 'pau_list_page') ? active|raw : '' }}>
+                                <a href="{{ path('pau_list_page') }}">
+                                    <span class="title">Ver Lista <i class="fa fa-list-alt"></i></span>
                                 </a>
                             </li>
-                        {% endif %}
-
-                        {% if (app.request.get('_route') == 'pau_edit_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Editar <i class="fa fa-edit"></i></span>
+                            <li{{ (app.request.get('_route') == 'pau_records_list_page') ? active|raw : '' }}>
+                                <a href="{{ path('pau_records_list_page') }}">
+                                    <span class="title">Ver Registros <i class="fa fa-list-alt"></i></span>
                                 </a>
                             </li>
-                        {% endif %}
-
-                        {% if (app.request.get('_route') == 'user_new_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Nuevo usuario <i class="fa fa-user"></i></span>
+                            <li{{ (app.request.get('_route') == 'pau_new_page') ? active|raw : '' }}>
+                                <a href="{{ path('pau_new_page') }}">
+                                    <span class="title">Agregar Nuevo <i class="fa fa-plus"></i></span>
                                 </a>
                             </li>
-                        {% endif %}
 
-                        {% if (app.request.get('_route') == 'worker_details_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Hoja de vida <i class="fa fa-suitcase"></i></span>
-                                </a>
-                            </li>
-                        {% endif %}
+                            {% if (app.request.get('_route') == 'pau_doctors_list_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Medicos y funcionarios <i class="fa fa-user-md"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
-                        {% if (app.request.get('_route') == 'worker_new_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Nuevo trabajador <i class="fa fa-plus"></i></span>
-                                </a>
-                            </li>
-                        {% endif %}
+                            {% if (app.request.get('_route') == 'pau_edit_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Editar <i class="fa fa-edit"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
-                    </ul>
-                </li>
+                            {% if (app.request.get('_route') == 'user_new_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Nuevo usuario <i class="fa fa-user"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
-                {% set proOpen = (app.request.get('_route') == 'procedure_list_page') %}
-                {% set proOpen = proOpen or app.request.get('_route') == 'exam_page' %}
-                {% set proOpen = proOpen or app.request.get('_route') == 'exam_file_page' %}
-                {% set proOpen = proOpen or app.request.get('_route') == 'certificate_list_page' %}
-                {% set proOpen = proOpen or app.request.get('_route') == 'certificate_page' %}
-                <li{{ proOpen ? open|raw : '' }}>
-                    <a href="javascript:void(0)">
-                        <i class="fa fa-user"></i>
-                        <span class="title">Medicos y funcionarios</span>
-                        <i class="icon-arrow"></i>
-                    </a>
-                    <ul class="sub-menu">
-                        <li{{ (app.request.get('_route') == 'procedure_list_page') ? active|raw : '' }}>
-                            <a href="{{ path('procedure_list_page') }}">
-                                <span class="title">Tramites del dia <i class="fa fa-list-alt"></i></span>
-                            </a>
-                        </li>
-                        
-                        <li{{ (app.request.get('_route') == 'certificate_list_page') ? active|raw : '' }}>
-                            <a href="{{ path('certificate_list_page') }}">
-                                <span class="title">Certificaciones del dia <i class="fa fa-list-alt"></i></span>
-                            </a>
-                        </li>
+                            {% if (app.request.get('_route') == 'worker_details_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Hoja de vida <i class="fa fa-suitcase"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
-                        {% if (app.request.get('_route') == 'exam_page' or app.request.get('_route') == 'exam_file_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Examen <i class="fa fa-stethoscope"></i></span>
-                                </a>
-                            </li>
-                        {% endif %}
+                            {% if (app.request.get('_route') == 'worker_new_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Nuevo trabajador <i class="fa fa-plus"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
-                        {% if (app.request.get('_route') == 'certificate_page' or app.request.get('_route') == 'exam_file_page') %}
-                            <li{{ active|raw }}>
-                                <a href="#">
-                                    <span class="title">Expedir certificado <i class="fa fa-stethoscope"></i></span>
-                                </a>
-                            </li>
-                        {% endif %}                        
-                        
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+
+                {% endif %}
+
+                {% if (login_service.getUser().getRole() != constant('Transito\\EntityBundle\\User::SECRETARY')) %}
+
+                    {% set proOpen = (app.request.get('_route') == 'procedure_list_page') %}
+                    {% set proOpen = proOpen or app.request.get('_route') == 'exam_page' %}
+                    {% set proOpen = proOpen or app.request.get('_route') == 'exam_file_page' %}
+                    {% set proOpen = proOpen or app.request.get('_route') == 'certificate_list_page' %}
+                    {% set proOpen = proOpen or app.request.get('_route') == 'certificate_page' %}
+                    <li{{ proOpen ? open|raw : '' }}>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-user"></i>
+                            <span class="title">Medicos y funcionarios</span>
+                            <i class="icon-arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+
+                            {% if (login_service.getUser().getRole() == constant('Transito\\EntityBundle\\User::DOCTOR')) %}
+
+                                <li{{ (app.request.get('_route') == 'procedure_list_page') ? active|raw : '' }}>
+                                    <a href="{{ path('procedure_list_page') }}">
+                                        <span class="title">Tramites del dia <i class="fa fa-list-alt"></i></span>
+                                    </a>
+                                </li>
+
+                            {% endif %}
+
+                            {% if (login_service.getUser().getRole() == constant('Transito\\EntityBundle\\User::FUNCTIONARY')) %}
+
+                                <li{{ (app.request.get('_route') == 'certificate_list_page') ? active|raw : '' }}>
+                                    <a href="{{ path('certificate_list_page') }}">
+                                        <span class="title">Certificaciones del dia <i class="fa fa-list-alt"></i></span>
+                                    </a>
+                                </li>
+
+                            {% endif %}
+
+                            {% if (app.request.get('_route') == 'exam_page' or app.request.get('_route') == 'exam_file_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Examen <i class="fa fa-stethoscope"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if (app.request.get('_route') == 'certificate_page' or app.request.get('_route') == 'exam_file_page') %}
+                                <li{{ active|raw }}>
+                                    <a href="#">
+                                        <span class="title">Expedir certificado <i class="fa fa-stethoscope"></i></span>
+                                    </a>
+                                </li>
+                            {% endif %}                        
+
+                        </ul>
+                    </li>
+
+                {% endif %}
 
                 <!-- end: MAIN NAVIGATION MENU -->
         </div>

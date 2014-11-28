@@ -3,6 +3,7 @@
 namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Transito\EntityBundle\User;
 use Symfony\Component\HttpFoundation\Request;
 use Transito\RESTBundle\Entity\Client;
 
@@ -18,7 +19,7 @@ class ClientController extends Controller {
 
         // If logged then redirect to home page
         $loginManager = $this->get('login');
-        if (!$loginManager->isLogged())
+        if (!$loginManager->isLogged() or $loginManager->getUser()->getRole() != User::SECRETARY)
             return $this->redirect($this->generateUrl('login_page'));
 
 

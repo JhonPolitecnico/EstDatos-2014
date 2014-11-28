@@ -3,6 +3,7 @@
 namespace Transito\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Transito\EntityBundle\User;
 use Symfony\Component\HttpFoundation\Request;
 use \Doctrine\Common\Collections\ArrayCollection;
 use Transito\RESTBundle\Entity\Procedure;
@@ -19,7 +20,7 @@ class ProcedureController extends Controller {
 
         // If logged then redirect to home page
         $loginManager = $this->get('login');
-        if (!$loginManager->isLogged())
+        if (!$loginManager->isLogged() or $loginManager->getUser()->getRole() != User::DOCTOR)
             return $this->redirect($this->generateUrl('login_page'));
 
         // Else make pau form
