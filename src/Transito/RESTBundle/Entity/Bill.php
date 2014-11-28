@@ -42,6 +42,13 @@ class Bill {
     /**
      *
      * @Type("string")
+     * @SerializedName("client_mail")
+     */
+    private $clientMail;
+
+    /**
+     *
+     * @Type("string")
      * @SerializedName("pau_name")
      */
     private $pauName;
@@ -66,6 +73,10 @@ class Bill {
         return $this->clientDni;
     }
 
+    function getClientMail() {
+        return $this->clientMail;
+    }
+
     function getPauName() {
         return $this->pauName;
     }
@@ -88,6 +99,10 @@ class Bill {
 
     function setClientDni($clientDni) {
         $this->clientDni = $clientDni;
+    }
+
+    function setClientMail($clientMail) {
+        $this->clientMail = $clientMail;
     }
 
     function setPauName($pauName) {

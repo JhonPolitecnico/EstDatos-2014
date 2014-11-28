@@ -611,6 +611,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
   "payment": "80000",
   "client_name": "Jhon Jairo Pro Developer",
   "client_dni": "567049211",
+  "client_mail": "jhon@jhon.com",
   "pau_name": "punto 1"
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/worker/new" method="POST" resourcePath="/worker/new"><con:settings/><con:defaultResponse>success</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header

@@ -110,13 +110,45 @@ class CertificateController extends Controller {
                 }
 
                 // redirect to procedures
-                if ($state->getStatus() == State::SUCCESS)
-                    return $this->redirect(
-                                    $this->generateUrl(
-                                            'certificate_list_page'
-                                    )
+                if ($state->getStatus() == State::SUCCESS) {
+
+                    $query = [
+                        'token' => $loginManager->getUser()->getToken()
+                    ];
+
+                    $post = [
+                        'bill' => $bill
+                    ];
+
+                    // get bill
+                    try {
+                        $billData = $this->get('rest')->postEntity(
+                                '/bill', $post, 'Transito\RESTBundle\Entity\Bill', $query
+                        );
+                    } catch (\RuntimeException $exc) {
+                        return $this->render('TransitoMainBundle:Admin:500.html.twig');
+                    }
+
+                    $certificateView = $this->render(
+                            'TransitoMainBundle:Admin:certificate.html.twig', [
+                        'bill' => $billData,
+                        'exams' => $exams,
+                        'result' => $certificate->getResult()
+                            ]
                     );
-                else
+
+                    $message = \Swift_Message::newInstance()
+                            ->setSubject('Resultado Certificado de Conducción')
+                            ->setFrom('certificados@transito.gov.co')
+                            ->setTo($billData->getClientMail())
+                            ->setBody(
+                            $certificateView
+                            , 'text/html')
+                    ;
+                    $this->get('mailer')->send($message);
+
+                    return $certificateView;
+                } else
                     return $this->render('TransitoMainBundle:Admin:500.html.twig');
             }
         }

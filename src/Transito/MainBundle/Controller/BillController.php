@@ -32,13 +32,13 @@ class BillController extends Controller {
 
         // get bill
         try {
-            $this->restSingleBillEntity = $this->restSingleClientEntity = $this->get('rest')->postEntity(
+            $this->restSingleBillEntity = $this->get('rest')->postEntity(
                     '/bill', $post, 'Transito\RESTBundle\Entity\Bill', $query
             );
         } catch (\RuntimeException $exc) {
             return $this->render('TransitoMainBundle:Admin:500.html.twig');
         }
-        
+
         return $this->render('TransitoMainBundle:Admin:bill.html.twig', [
                     'bill' => $this->restSingleBillEntity
         ]);

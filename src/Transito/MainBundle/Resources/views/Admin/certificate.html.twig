@@ -1,0 +1,39 @@
+{% set resultText = ['Rechazado', 'Aprobado', 'Aplazado'] %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Factura No: {{ bill.getId() }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div style="text-align: center; width: 300px;">
+            <p>Transito S.A.S</p>
+            <p>NIT: 756555332-2</p>
+            <p>FACTURA DE VENTA #{{ bill.getId() }}</p>
+            <p>FECHA: {{ bill.getDate() }}</p>
+            <p>CLIENTE: {{ bill.getClientName()|upper }}</p>
+            <p>DNI: {{ bill.getClientDni() }}</p>
+            <p>PUNTO DE ATENCIÓN: {{ bill.getPauName()|upper }}</p>
+            <p>***DETALLE***</p>
+            <p>LICENCIA DE CONDUCCIÓN</p>
+            <p>***RESULTADO***</p>
+            {% for type, exam in exams %}
+
+                {% if (type == 'speech_therapy') %}
+                    {% set examName = 'de Fonoaudiología' %}
+                {% elseif (type == 'psychological') %}
+                    {% set examName = 'Psicológico' %}
+                {% elseif (type == 'physical') %}
+                    {% set examName = 'Físico' %}
+                {% elseif (type == 'optometry') %}
+                    {% set examName = 'de Optometría' %}
+                {% endif %}
+
+                <p>Examen {{ examName }}:       {{ resultText[exam.getResult()] }}</p>
+
+            {% endfor %}
+            <p style="color: red;"><b>{{ resultText[result] }}</b></p>
+        </div>
+    </body>
+</html>
